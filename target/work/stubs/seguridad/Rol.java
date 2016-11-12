@@ -29,4 +29,5 @@ public static  void setConstraints(java.lang.Object value) { }
 public  java.lang.String getNombrerol() { return (java.lang.String)null;}
 public  java.lang.String setNombrerol(java.lang.String s) { return (java.lang.String)null;}
 public  java.lang.Object inicializarTablaRol() { return null;}
+public  java.lang.String agregarUsuario(seguridad.Usuario u) { return (java.lang.String)null;}
 }

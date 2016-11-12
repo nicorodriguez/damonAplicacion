@@ -16,15 +16,15 @@ class Usuario {
 //Cambiar los constructores por setters y getters solamente
 //Inicializar las listas rol y servicio del Usuario, y añadir setters y getters (Controlar que siempre haya un elemento)
 
-	Usuario(String email1, String password1, String nombre1, String apellido1){
+	Usuario(String email1, String password1, String nombre1, String apellido1, Rol r, Servicio s){
 		this()
 		this.email = email1
 		this.password = password1
 		this.nombre = nombre1
 		this.apellido = apellido1
 		this.estado = 'p'
-		//this.rol = []
-		//this.servicio = []
+		this.rol = r
+		this.servicio = s
 	}
 
 	static mapping = {

@@ -50,6 +50,7 @@
 
             <label for="exampleInputSelect">Elija modalidad</label>
             <select class="form-control" id="modalidad">
+                <option>-- Seleccione --</option>
                 <option>2 Veces por semana</option>
                 <option>3 veces por semana</option>
                 <option>Pase libre</option>

@@ -12,7 +12,7 @@ public class Usuario
     groovy.lang.GroovyObject {
 ;
 public Usuario
-(java.lang.String email1, java.lang.String password1, java.lang.String nombre1, java.lang.String apellido1) {
+(java.lang.String email1, java.lang.String password1, java.lang.String nombre1, java.lang.String apellido1, seguridad.Rol r, seguridad.Servicio s) {
 super ();
 }
 public  groovy.lang.MetaClass getMetaClass() { return (groovy.lang.MetaClass)null;}

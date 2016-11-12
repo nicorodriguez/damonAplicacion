@@ -49,11 +49,10 @@ class RegistroController {
                 serv3.save(flush: true)
             
                 
-                Usuario usuarioPrueba = new Usuario("ni.co55@hotmail.com","12345678","Nico","Rodriguez")
-                usuarioPrueba.setRol(administradorRol)
-                usuarioPrueba.setServicio(serv3)
+                Usuario usuarioPrueba = new Usuario("ni.co55@hotmail.com","12345678","Nico","Rodriguez",administradorRol,serv3)
                 usuarioPrueba.save(flush: true)
-                
+                administradorRol.agregarUsuario(usuarioPrueba)
+                administradorRol.save(flush: true)
 
                 println("Ya se crearon los Servicios, Roles y Usuario")
                 
@@ -67,7 +66,7 @@ class RegistroController {
             String apellido = request.getParameter("apell")
 	        String modalidad = request.getParameter("modal")
 
-            println("Recibi los parametros:"+email+" "+password+" "+nombre+" "+apellido+" "+modalidad)
+            println("Recibi los parametros: ->"+email+", "+password+", "+nombre+", "+apellido+", "+modalidad)
 
             if (modalidad == "2 Veces por semana"){
                 modalidad = "2VS"
@@ -93,12 +92,14 @@ class RegistroController {
 	        Servicio serv = Servicio.findByNombreservicio(modalidad)
             Rol usuariorol = Rol.findByNombrerol("ROL_USUARIO")
 
-            /*
-	        Usuario user = new Usuario(email,password,nombre,apellido)
-            usuarioPrueba.setRol(usuariorol)
-            usuarioPrueba.setServicio(serv)
+            
+	        Usuario user = new Usuario(email,password,nombre,apellido,usuariorol,serv)
 	        user.save(flush: true)
-            */
+            usuariorol.agregarUsuario(user)
+            usuariorol.save(flush: true)
+
+            def a = usuariorol.usuariosrol
+            println(a)
 
 	        render ("true")
     	}

@@ -33,4 +33,9 @@ class Rol {
 	def inicializarTablaRol(){
 		this.usuariosrol = []
 	}
+
+	String agregarUsuario(Usuario u){
+		this.usuariosrol << u
+		return("true")
+	}
 }

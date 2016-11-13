@@ -15,6 +15,7 @@ class Servicio {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
+		usuariosserv lazy: false
 		version false
 	}
 

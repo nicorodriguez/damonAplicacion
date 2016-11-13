@@ -29,6 +29,8 @@ class Usuario {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
+		rol lazy: false
+		servicio lazy: false
 		version false
 	}
 
@@ -36,7 +38,7 @@ class Usuario {
 		email nullable: false, blank: false, maxSize: 45, unique: true, email: true
 		nombre nullable: false, blank: false, maxSize: 45
 		apellido nullable: false, blank: false, maxSize: 45
-		password nullable: false, blank: false,  minSize: 8, maxSize: 45
+		password nullable: false, blank: false,  minSize: 6, maxSize: 18
 		estado nullable: false, blank: false, minSize: 1, maxSize: 1
 		rol nullable: false
 		servicio nullable: false

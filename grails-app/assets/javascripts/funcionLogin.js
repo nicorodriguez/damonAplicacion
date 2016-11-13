@@ -5,23 +5,24 @@ x.ready(inicializarEventosLogin);
 function inicializarEventosLogin(){
 	var x;
 	x=$("#btnLogin");
-	x.click();
+	x.click(crearParametros);
 }
-function traeruserpsw(){
-	var x;
-	var y;
-	x=$("#login-name").val();
-	y=$("#login-pass").val();
+function crearParametros(){
+	var email;
+	var password;
+
+	email1=$("#login-email").val();
+	password1=$("#login-pass").val();
 	
-	enviaJSON(x,y);
+	enviaJSON(email1,password1);
 }
 
-function enviaJSON(var1,var2){
+function enviaJSON(em,pas){
 	var parametros = {
-			name: var1,
-			time: var2
+			email: em,
+			password: pas
 		};
-	$.post( "/Damon2/controlador1", parametros);  //metodo index
+	$.post( "/damonAplicacion/Login/index", parametros);  //metodo index
 
 } 
 

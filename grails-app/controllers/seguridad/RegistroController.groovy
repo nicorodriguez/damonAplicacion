@@ -68,40 +68,30 @@ class RegistroController {
 
             println("Recibi los parametros: ->"+email+", "+password+", "+nombre+", "+apellido+", "+modalidad)
 
-            if (modalidad == "2 Veces por semana"){
-                modalidad = "2VS"
-                println(modalidad)
+            Usuario u = Usuario.findByEmail(email)
+
+            if (u){
+                println("Usuario ya creado")
+                render("false")
             }
             else{
-                if (modalidad == "3 veces por semana"){
-                    modalidad = "3VS"
-                    println(modalidad)
-                }
-                else{
-                    if(modalidad == "Pase libre"){
-                        modalidad = "PL"
-                        println(modalidad)
-                    }
-                    else{
-                        println("Modalidad Invalida")
-                        render("false")
-                    }
-                }
+
+    	        Servicio serv = Servicio.findByNombreservicio(modalidad)
+                Rol usuariorol = Rol.findByNombrerol("ROL_USUARIO")
+
+                
+    	        Usuario user = new Usuario(email,password,nombre,apellido,usuariorol,serv)
+    	        user.save(flush: true)
+                println(user)
+
+                usuariorol.agregarUsuario(user)
+                usuariorol.save(flush: true)
+
+                def a = usuariorol.usuariosrol
+                println(a)
+
+    	        render ("true")
             }
-
-	        Servicio serv = Servicio.findByNombreservicio(modalidad)
-            Rol usuariorol = Rol.findByNombrerol("ROL_USUARIO")
-
-            
-	        Usuario user = new Usuario(email,password,nombre,apellido,usuariorol,serv)
-	        user.save(flush: true)
-            usuariorol.agregarUsuario(user)
-            usuariorol.save(flush: true)
-
-            def a = usuariorol.usuariosrol
-            println(a)
-
-	        render ("true")
     	}
     	catch(Exception e){
     		println("PROBLEMA")

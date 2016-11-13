@@ -22,11 +22,11 @@
     <div id="contenedor">
             <div class="form-group">
                 <label for="valor1">Nombre</label>
-              	<input type="text" class="form-control" id="nombre" placeholder="Lucas Leonel">
+              	<input type="text" class="form-control" id="nombre" placeholder="Ejemplo: Lucas Leonel">
             </div>
              <div class="form-group">
               	<label for="exampleInputEmail1">Apellido</label>
-              	<input type="" class="form-control" id="apel" placeholder="Galetti">
+              	<input type="" class="form-control" id="apel" placeholder="Ejemplo: Galetti">
             </div>
 
              <div class="form-group">
@@ -35,7 +35,7 @@
             </div>
              <div class="form-group">
               	<label for="exampleInputEmail1">Repita Direccion de Email</label>
-              	<input type="email" class="form-control" id="remail" placeholder="Email">
+              	<input type="email" class="form-control" id="remail" placeholder="Repetir Email">
             </div>
 
             <div class="form-group" id="pasw">

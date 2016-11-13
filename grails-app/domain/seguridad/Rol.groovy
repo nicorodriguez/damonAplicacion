@@ -13,6 +13,7 @@ class Rol {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
+		usuariosrol lazy: false
 		version false
 	}
 

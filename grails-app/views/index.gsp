@@ -24,7 +24,7 @@
 
 			<div class="login-form" id="valor1">
 				<div class="control-group">
-				<input type="text" class="login-field center-block input-lg" value="" placeholder="Hotmail" id="login-name">
+				<input type="text" class="login-field center-block input-lg" value="" placeholder="Email" id="login-email">
 				<label class="login-field-icon fui-user" for="login-name"></label>
 				</div>
 

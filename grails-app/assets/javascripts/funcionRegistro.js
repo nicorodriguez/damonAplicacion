@@ -38,7 +38,7 @@ function checkemail(){
 
 	if (email == remail) {
 	    //Cheque que los emails coincidan
-	 	if (emails!=null){ //Chequea que los emails no sean blanco
+	 	if (email!=null){ //Chequea que los emails no sean blanco
 	 		checkPsw();    	//si los emails coinciden va a chequear las psw
 	 	}
 	 	else{
@@ -88,6 +88,22 @@ function checkmodalidad() {
 			alert("Se debe seleccionar la modalidad");
 		}
 		else{
+			if (modalidad == "2 Veces por semana"){
+                modalidad = "2VS";
+            }
+            else{
+              	if (modalidad == "3 veces por semana"){
+                    modalidad = "3VS";
+                }
+                else{
+                    if(modalidad == "Pase libre"){
+                        modalidad = "PL";
+                    }
+                    else{
+                        alert("Modalidad Invalida");
+                    }
+                }
+            }
 			enviarJSON(email,psw,nombre,apel,modalidad);
 		}
 }

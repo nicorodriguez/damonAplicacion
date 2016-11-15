@@ -17,12 +17,20 @@ function crearParametros(){
 	enviaJSON(email1,password1);
 }
 
-function enviaJSON(em,pas){
+function enviaJSON(email1,password1){
 	var parametros = {
-			email: em,
-			password: pas
+			email: email1,
+			password: password1
 		};
-	$.post( "/damonAplicacion/Login/index", parametros);  //metodo index
+	$.post( "/damonAplicacion/Login/index", parametros).done(function( resp ){
+		console.log(resp);
+		if(resp == "true"){
+			window.location.href = '/damonAplicacion/calendario/index';
+		}
+		else{
+			alert("Email o Contraseña incorrectos")
+		}
+	});
 
 } 
 

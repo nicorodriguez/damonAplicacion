@@ -1,0 +1,50 @@
+
+tr {
+	border-style: solid;
+	border-width: 4px;			/*  Agrego bordes a las columnas */
+	border-color: #550000;
+	
+	}
+
+td{
+	border-style: solid;       /* Agrego bordes a las filas */
+	border-width: 4px;
+	border-color: #550000;
+	text-align: center;
+
+}
+
+header{
+	background-color: #4C3892;
+	margin:0;
+	padding: 0; 
+
+}
+table{
+
+}
+
+h1{
+	padding: 0;
+	margin: 0;
+}
+
+tbody{
+			
+}
+
+section {
+
+	display: inline;
+	margin: 0 auto;
+	width: 50%;
+	padding-top: 5em;
+	padding-left: 10em;
+
+}
+
+div{
+	float: right;
+	border-style: solid;
+
+}

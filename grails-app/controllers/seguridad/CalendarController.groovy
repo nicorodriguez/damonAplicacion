@@ -2,7 +2,7 @@ package seguridad
 
 class CalendarController {
 
-	def index(){
-		render(view:'index')
+    def index() {
+    render(view: 'index') 
 	}
 }

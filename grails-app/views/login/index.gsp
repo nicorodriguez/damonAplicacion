@@ -34,7 +34,7 @@
 				</div>
 			<div class="btn-group-vertical center-block" id="Botones">
 
-				<a class="btn btn-info btn-lg btn" id="btnLogin">Login</a>
+				<a class="btn btn-info btn-lg btn" id="btnLogin" href="calendar">Login</a>
 				
 				<a class="btn btn-primary btn-lg btn" href='/damonAplicacion/registro/index' id="botonesRegistro">Registrarse</a>
 

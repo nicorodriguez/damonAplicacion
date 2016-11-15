@@ -3,6 +3,9 @@ body{
 	margin:0;
 	padding:0;
 }
+form {
+
+}
 
 h1{
 	margin: 0px;
@@ -12,6 +15,7 @@ header{
 	background-color: #4C3892;
 	margin:0;
 	padding: 0;
+	
 }
 
 input{
@@ -21,4 +25,5 @@ input{
 #contenedor{
 	width: 50%;
 	padding-left: 10em;
+
 }

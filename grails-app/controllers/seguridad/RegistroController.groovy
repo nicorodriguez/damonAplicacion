@@ -24,6 +24,7 @@ class RegistroController {
             else{
                 println("voy a crear los roles, servicios y usuario por default")
                 
+                /*
                 Rol administradorRol = new Rol("ROL_ADMIN")
                 administradorRol.inicializarTablaRol()
                 administradorRol.save(flush: true)
@@ -53,6 +54,7 @@ class RegistroController {
                 usuarioPrueba.save(flush: true)
                 administradorRol.agregarUsuario(usuarioPrueba)
                 administradorRol.save(flush: true)
+                */
 
                 println("Ya se crearon los Servicios, Roles y Usuario")
                 
@@ -66,7 +68,7 @@ class RegistroController {
             String apellido = request.getParameter("apell")
 	        String modalidad = request.getParameter("modal")
 
-            println("Recibi los parametros: ->"+email+", "+password+", "+nombre+", "+apellido+", "+modalidad)
+            println("Recibi los parametros: -> "+email+", "+password+", "+nombre+", "+apellido+", "+modalidad)
 
             Usuario u = Usuario.findByEmail(email)
 
@@ -89,6 +91,8 @@ class RegistroController {
 
                 def a = usuariorol.usuariosrol
                 println(a)
+
+                //redirect  (controller: "Login" , action:"index")
 
     	        render ("true")
             }

@@ -116,9 +116,19 @@ function enviarJSON(email,psw,nombre,apel,modalidad){
 		apell: apel,
 		modal: modalidad
 	};
-	$.post( "/damonAplicacion/registro/crearUsuario", parametros);
+	$.post( "/damonAplicacion/registro/crearUsuario", parametros).done(function( resp ){
+		console.log(resp);
+		if(resp == "true"){
+			window.location.href = '/damonAplicacion/login/index';
+		}
+		else{
+			alert("Usuario no creado")
+		}
+	});
+	
 }
 
+//window.location.replace(...)
 
 /*
 var x;

@@ -34,9 +34,9 @@
 				</div>
 			<div class="btn-group-vertical center-block" id="Botones">
 
-				<a class="btn btn-info btn-lg btn" href="calendar" id="btnLogin">Login</a>
+				<a class="btn btn-info btn-lg btn" id="btnLogin">Login</a>
 				
-				<a class="btn btn-primary btn-lg btn" href="registro" id="botonesRegistro">Registrese</a>
+				<a class="btn btn-primary btn-lg btn" href='/damonAplicacion/registro/index' id="botonesRegistro">Registrarse</a>
 
 			</div>
 				<p class="text-center" id="ocultado">Usuario o contraseña incorrectos</p>

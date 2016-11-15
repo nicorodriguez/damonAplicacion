@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
- 		<h1 class="text-center">SISTEMA DE SESION - DAMON CF</h1>
+ 		<h1 class="text-center">BIENVENIDOS - INDEX</h1>
 </header>
 
 <div class="login">
@@ -34,7 +34,7 @@
 				</div>
 			<div class="btn-group-vertical center-block" id="Botones">
 
-				<a class="btn btn-info btn-lg btn" href="calendar" id="btnLogin">Login</a>
+				<a class="btn btn-info btn-lg btn" href="calendario" id="btnLogin">Login</a>
 				
 				<a class="btn btn-primary btn-lg btn" href="registro" id="botonesRegistro">Registrese</a>
 

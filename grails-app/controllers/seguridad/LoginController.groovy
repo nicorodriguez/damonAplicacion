@@ -10,7 +10,7 @@ import session.SessionManager
 class LoginController {
 
     def index(){
-
+    	render(view:'index')
     }
 
     

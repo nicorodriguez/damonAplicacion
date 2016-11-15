@@ -17,13 +17,15 @@ function checkname(){
 
 	nom=$("#nombre").val();
 	ape=$("#apel").val();
+	nom=nom.length
+	ape=ape.length
 
-	if (nom!=null && apel!=null){
+	if (apel!= 0 && nom!=0){
 		checkemail();
 	}
 	else{
-		nom.addClass("has-error");
-		ape.addClass("has-error");
+		$(".nom").addClass("has-error");
+		return	false;	
 	}
 }
 
@@ -38,17 +40,17 @@ function checkemail(){
 
 	if (email == remail) {
 	    //Cheque que los emails coincidan
-	 	if (email!=null){ //Chequea que los emails no sean blanco
+	 	if (email.length=!0){ //Chequea que los emails no sean blanco
 	 		checkPsw();    	//si los emails coinciden va a chequear las psw
 	 	}
-	 	else{
-	 		email.addClass("has-error");
-	 		remail.addClass("has-error");
+	 	else{  //uno de los dos quedo en blanco
+	 		$(".correo").addClass("has-error");
+	 		return false;	 		
 	 	}
 	}
-	else{	//si los emails no coinciden
-		email.addClass("has-error");
-		remail.addClass("has-error");
+	else{	//si los emails no coinciden, ingreso 2 diferentes.
+		$(".correo").addClass("has-error");
+		return false;
 	}
 }
 
@@ -58,15 +60,19 @@ function checkPsw(){
 
 	psw=$("#psw").val();
 	rpsw=$("#rpsw").val();
-
-	if (psw == rpsw){
+	if (psw.length > 6 && rpsw.length > 6) {   //Chequea que las password no las deje en blanco y que sea >6 nº de caracteres
+		if (psw == rpsw){
 		//alert("los emails y las psw coinciden")
-		checkmodalidad();
+			checkmodalidad();
 	}
-	else{
-		$("#pasw").addClass("has-error");
-		$("#repasw").addClass("has-error");
-	}
+		else{ 
+			$(".pass").addClass("has-error");
+			return	false;  //Ingreso mal las passwords
+		}
+	}else{
+		$(".pass").addClass("has-error");  //ingreso password menor que la cantidad establecida
+		return false;
+	}	
 }
 
 function checkmodalidad() {
@@ -86,6 +92,7 @@ function checkmodalidad() {
 
 		if (modalidad=="-- Seleccione --"){
 			alert("Se debe seleccionar la modalidad");
+			return false;
 		}
 		else{
 			if (modalidad == "2 Veces por semana"){

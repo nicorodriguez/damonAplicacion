@@ -22,10 +22,10 @@ function enviaJSON(email1,password1){
 			email: email1,
 			password: password1
 		};
-	$.post( "/damonAplicacion/Login/index", parametros).done(function( resp ){
+	$.post( "/damonAplicacion/login/loguearse", parametros).done(function( resp ){
 		console.log(resp);
 		if(resp == "true"){
-			window.location.href = '/damonAplicacion/calendario/index';
+			window.location.href = '/damonAplicacion/calendar/index';
 		}
 		else{
 			alert("Email o Contraseña incorrectos")

@@ -48,3 +48,9 @@ Temporary Items
 
 *.lock
 *.h2
+devDb.h2.db
+*.db
+devDb.trace.db
+devDb.trace.db
+devDb.trace.db
+devDb.trace.db

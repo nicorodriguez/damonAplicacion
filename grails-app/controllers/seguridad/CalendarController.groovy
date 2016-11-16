@@ -3,6 +3,7 @@ package seguridad
 class CalendarController {
 
     def index() {
-    render(view: 'index') 
+    	println (session["usuario"].apellido)
+    	render(view: 'index') 
 	}
 }

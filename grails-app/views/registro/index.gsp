@@ -69,7 +69,7 @@
           	</div>
             <div>
                   <button type="submit" class="btn btn-default" id="botonRegistrarse">Registrarse</button>
-                  <a class="btn btn-info btn" href="/damonAplicacion" id="btnLogin">Volver</a>
+                  <a class="btn btn-info btn" href="/damonAplicacion" id="btnVolver">Volver</a>
             </div>
     </div>
 

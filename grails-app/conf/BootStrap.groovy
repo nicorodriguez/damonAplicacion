@@ -10,7 +10,7 @@ class BootStrap {
     def init = { servletContext ->
 
       
-    	Rol administradorRol = new Rol("ROL_ADMIN")
+    	          Rol administradorRol = new Rol("ROL_ADMIN")
                 administradorRol.inicializarTablaRol()
                 administradorRol.save(flush: true)
 

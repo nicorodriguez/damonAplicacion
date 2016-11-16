@@ -14,7 +14,7 @@ class LoginController {
     }
 
     def loguearse(){
-    	println("Voy a buscar los parametros")
+    	println("Login - Voy a buscar los parametros")
 
     	// Capturo datos de post de formulario
 	    String email = request.getParameter("email")
@@ -23,6 +23,8 @@ class LoginController {
 	    // Traigo un usuario de la base de datos
 	    Usuario usuario = Usuario.findByEmailAndPassword(email,password)
 	    Rol rol = usuario.rol
+
+	    session["usuario"] = usuario
 	    // Si el usuario existe, guardarlo en la sesion. Retornar el string Success
         if(usuario){
             def smgr = new SessionManager(request.session)

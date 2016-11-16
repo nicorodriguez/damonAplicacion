@@ -24,17 +24,17 @@
 
 			<div class="login-form" id="valor1">
 				<div class="control-group">
-				<input type="text" class="login-field center-block input-lg" value="" placeholder="Email" id="login-email">
+				<input type="text" class="login-field center-block input-lg" value="rodrigueznicolas.9319@gmail.com" placeholder="Email" id="login-email">
 				<label class="login-field-icon fui-user" for="login-name"></label>
 				</div>
 
 				<div class="control-group">
-				<input type="password" class="login-field center-block input-lg" value="" placeholder="Password" id="login-pass">
+				<input type="password" class="login-field center-block input-lg" value="1234567" placeholder="Password" id="login-pass">
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
 			<div class="btn-group-vertical center-block" id="Botones">
 
-				<a class="btn btn-info btn-lg btn" id="btnLogin" href="calendar">Login</a>
+				<a class="btn btn-info btn-lg btn" id="btnLogin1" onclick="crearParametros()">Login</a>
 				
 				<a class="btn btn-primary btn-lg btn" href='/damonAplicacion/registro/index' id="botonesRegistro">Registrarse</a>
 

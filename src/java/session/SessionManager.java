@@ -86,32 +86,6 @@ public class SessionManager {
 		
 	}
 	
-	// Crea un nuevo carrito en sesion.
-	/*
-	public void nuevoCarrito(){		
-		Carrito cart = new Carrito();
-		cart.setUsuario( this.getCurrentUsr() );
-		// Si hay un carrito actual, lo elimina.
-		this.eliminarCarrito();
-		this.session.setAttribute(sesCart, cart);
-	}
 
-	// Elimina el carrito de sesion.
-	public void eliminarCarrito(){
-		this.session.setAttribute(sesCart, null);
-	}
- 	
-	// Retorna el carrito actual.
-	public Carrito getCurrentCart(){
-		return (Carrito) this.session.getAttribute(sesCart);
-	}
-
-	// Dar el carrito actual.
-	public void setCurrentCart(Carrito cart){
-		this.eliminarCarrito();
-		cart.setUsuario( this.getCurrentUsr() );
-		this.session.setAttribute(sesCart, cart);
-	}
-	*/
 
 }

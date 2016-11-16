@@ -24,7 +24,7 @@ class LoginController {
 	    Usuario usuario = Usuario.findByEmailAndPassword(email,password)
 	    Rol rol = usuario.rol
 
-	    session["usuario"] = usuario
+	    //session["usuario"] = usuario
 	    // Si el usuario existe, guardarlo en la sesion. Retornar el string Success
         if(usuario){
             def smgr = new SessionManager(request.session)

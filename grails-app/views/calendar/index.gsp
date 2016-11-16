@@ -116,7 +116,7 @@
                                              <li>La lista</li>
                                              <li>Que habia</li>
                                              <li>Creado</li>
-                                             <li>La concha de tu hermana</li>
+                                             <li>A</li>
                                           </ul>
                                     </nav>
                               </div>

@@ -9,16 +9,16 @@
 </head>
 <body>
       <header class="text-center">
-		<H1>Sistema de Inscripción - DAMON CF</H1>
+      <div class="">   
+      <H1>Sistema de Inscripción - DAMON CF</H1>
+      </div>
       <div class="dropdown">
               <button class="btn btn-default dropdown-toggle btn-group btn-group-lg" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Usuario: <span class="caret"></span>
                </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">Perfil</a></li>
+                            <li><a href="#">Configuracion</a></li>
+                            <li><a href="#">Logout</a></li>
                     </ul>
       </div>
       </header>

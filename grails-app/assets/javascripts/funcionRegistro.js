@@ -126,7 +126,7 @@ function enviarJSON(email,psw,nombre,apel,modalidad){
 	$.post( "/damonAplicacion/registro/crearUsuario", parametros).done(function( resp ){
 		console.log(resp);
 		if(resp == "true"){
-			window.location.href = '/damonAplicacion/login/index';
+			$(location).attr('href', 'http://localhost:8080/damonAplicacion/')
 		}
 		else{
 			alert("Usuario no creado")

@@ -48,7 +48,7 @@
           		<input type="password" class="form-control" id="rpsw" placeholder="Repetir Contraseña">
           	</div>
 
-            <label for="exampleInputSelect">Elija modalidad</label><span class="glyphicon glyphicon-remove"></span>
+            <label for="exampleInputSelect">Elija modalidad</label>
             <select class="form-control" id="modalidad">
                 <option>-- Seleccione --</option>
                 <option>2 Veces por semana</option>

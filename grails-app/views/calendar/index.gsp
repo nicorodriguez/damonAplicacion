@@ -42,7 +42,7 @@
                         <div sclass="panel-body">
                               <table class="table" id="tbUsuario">
                                     <tr>
-                                       <td>Columna 1</td>
+                                       <td><span>0</span>/20</td>
                                        <td>Columna 2</td>
                                        <td>Columna 3</td>
                                        <td>Columna 4</td>

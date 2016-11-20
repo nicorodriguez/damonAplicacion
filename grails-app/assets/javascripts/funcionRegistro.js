@@ -90,29 +90,29 @@ function checkmodalidad() {
 	apel=$("#apel").val();
 	modalidad=$("#modalidad").val();
 
-		if (modalidad=="-- Seleccione --"){
-			alert("Se debe seleccionar la modalidad");
-			return false;
-		}
-		else{
-			if (modalidad == "2 Veces por semana"){
-                modalidad = "2VS";
+	if (modalidad=="-- Seleccione --"){
+		alert("Se debe seleccionar la modalidad");
+		return false;
+	}
+	else{
+		if (modalidad == "2 Veces por semana"){
+            modalidad = "2VS";
+        }
+        else{
+            if (modalidad == "3 veces por semana"){
+                modalidad = "3VS";
             }
             else{
-              	if (modalidad == "3 veces por semana"){
-                    modalidad = "3VS";
+                if(modalidad == "Pase libre"){
+                    modalidad = "PL";
                 }
                 else{
-                    if(modalidad == "Pase libre"){
-                        modalidad = "PL";
-                    }
-                    else{
-                        alert("Modalidad Invalida");
-                    }
+                    alert("Modalidad Invalida");
                 }
             }
-			enviarJSON(email,psw,nombre,apel,modalidad);
-		}
+        }
+        enviarJSON(email,psw,nombre,apel,modalidad);
+	}
 }
 
 function enviarJSON(email,psw,nombre,apel,modalidad){
@@ -123,14 +123,15 @@ function enviarJSON(email,psw,nombre,apel,modalidad){
 		apell: apel,
 		modal: modalidad
 	};
-	$.post( "/damonAplicacion/registro/crearUsuario", parametros).done(function( resp ){
-		console.log(resp);
-		if(resp == "true"){
-			window.location.href = '/damonAplicacion/login/index';
-		}
-		else{
-			alert("Usuario no creado")
-		}
+	$.post( "/damonAplicacion/registro/crearUsuario", parametros).then(
+			function( resp ){
+				console.log(resp);
+				if(resp == "true"){
+					$(location).attr('href','http://localhost:8080/damonAplicacion/');
+				}
+				else{
+					alert("Usuario no creado");
+				}
 	});
 	
 }

@@ -16,18 +16,6 @@ class RegistroController {
     @Transactional
     def crearUsuario(){
     	try{
-            def rolPrueba = Rol.findByNombrerol("ROL_USUARIO")
-
-            if (rolPrueba){
-               println("Las cosas por default ya fueron creadas") 
-            }
-            else{
-                println("voy a crear los roles, servicios y usuario por default")
-
-                println("Ya se crearon los Servicios, Roles y Usuario")
-                
-            }
-
             println("Voy a buscar los parametros")
 
 	    	String email = request.getParameter("email")
@@ -42,7 +30,7 @@ class RegistroController {
 
             if (u){
                 println("Usuario ya creado")
-                render("false")
+                render ("false")
             }
             else{
 
@@ -60,9 +48,9 @@ class RegistroController {
                 def a = usuariorol.usuariosrol
                 println(a)
 
-                //redirect  (controller: "Login" , action:"index")
-
+                println("Llegue al render")
     	        render ("true")
+                println("Sali del render")
             }
     	}
     	catch(Exception e){
@@ -72,5 +60,14 @@ class RegistroController {
     		render ("false")
     	}
 
+    }
+
+    def buscoUsuario(){
+        render true;
+    }
+
+    def redireccionarAlLogin(){
+        redirect(url: "damonAplicacion/")
+        //redirect(controller: "login" , action:"index")
     }
 }

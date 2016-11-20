@@ -3,10 +3,16 @@
 <head>
 	<title>registro</title>
 	
-	<asset:javascript src="jquery.js"/>
-	<asset:javascript src="bootstrap.js"/>
-  <asset:javascript src="jcryption.js"/>
-	<asset:stylesheet src="bootstrap.css"/>
+	<!--<asset:javascript src="jquery.js"/>-->
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!--<asset:javascript src="bootstrap.js"/>-->
+	<!--<asset:stylesheet src="bootstrap.css"/>-->
 	<asset:javascript src="funcionRegistro.js"/>
 	<asset:stylesheet src="estilosRegistro.css"/>
 
@@ -48,7 +54,7 @@
           		<input type="password" class="form-control" id="rpsw" placeholder="Repetir Contraseña">
           	</div>
 
-            <label for="exampleInputSelect">Elija modalidad</label><span class="glyphicon glyphicon-remove"></span>
+            <label for="exampleInputSelect">Elija modalidad</label>
             <select class="form-control" id="modalidad">
                 <option>-- Seleccione --</option>
                 <option>2 Veces por semana</option>

@@ -10,7 +10,14 @@ import session.SessionManager
 class LoginController {
 
     def index(){
-    	render(view: 'index')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            redirect  (controller: "calendar" , action:"index")
+        }
+        else{
+            render(view: 'index')
+        }
     }
 
     def loguearse(){
@@ -22,11 +29,12 @@ class LoginController {
 
 	    // Traigo un usuario de la base de datos
 	    Usuario usuario = Usuario.findByEmailAndPassword(email,password)
-	    Rol rol = usuario.rol
 
 	    //session["usuario"] = usuario
 	    // Si el usuario existe, guardarlo en la sesion. Retornar el string Success
         if(usuario){
+        	Rol rol = usuario.rol
+
             def smgr = new SessionManager(request.session)
 
             smgr.crearSesion(usuario,rol)

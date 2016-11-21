@@ -29,7 +29,7 @@
 				</div>
 
 				<div class="control-group">
-				<input type="password" class="login-field center-block input-lg" value="1234567" placeholder="Password" id="login-pass">
+				<input type="password" class="login-field center-block input-lg" value="123456" placeholder="Password" id="login-pass">
 				<label class="login-field-icon fui-lock" for="login-pass"></label>
 				</div>
 			<div class="btn-group-vertical center-block" id="Botones">

@@ -16,7 +16,8 @@ class CalendarController {
     		render(view: 'index')
     	}
     	else{
-    		redirect(url: "http://localhost:8080/damonAplicacion/")
+            redirect(controller: "login" , action:"index")
+    		//redirect(url: "http://localhost:8080/damonAplicacion/")
     	}
 	}
 }

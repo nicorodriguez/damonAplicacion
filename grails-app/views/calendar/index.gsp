@@ -12,7 +12,8 @@
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-   <asset:javascript src="funcionCalendar.js"/>
+  <asset:javascript src="funcionLogout.js"/>
+  <asset:javascript src="funcionCalendar.js"/>
 	<asset:stylesheet src="estiloCalendar.css"/>
 
 	<title>Damon | Calendario</title>
@@ -30,11 +31,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <img src="\damonAplicacion\grails-app\assets\images\logo.png" class="img-rounded" width="45" height="45">      
+      <img src="assets\images\favicon.ico" class="img-rounded" width="45" height="45">      
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/damonAplicacion/registro/index" class="color-me"><span class="glyphicon glyphicon-user"></span>Usuario</a></li>
+        <li><a href="#" class="color-me"><span class="glyphicon glyphicon-user"></span>Usuario</a></li>
+        <li><a href="#" id="botonLogout" class="color-me"><span class="glyphicon glyphicon-user"></span>Cerrar Sesión</a></li>
       </ul>
     </div>
   </div>

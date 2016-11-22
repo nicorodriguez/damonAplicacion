@@ -41,7 +41,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/damonAplicacion/registro/index" class="color-me"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
-        <li><a data-toggle="modal" data-target="#login-modal" class="color-me" id="btnLogin"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>
+        <!--<li><a data-toggle="modal" data-target="#login-modal" class="color-me" id="btnLogin"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>-->
       </ul>
     </div>
   </div>
@@ -72,6 +72,7 @@
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                 <a class="btn btn-sm btn-success" style="font-size:medium;" onclick="crearParametros()">Ingresar</a>
+
                             </fieldset>
                         </form>
                     </div>

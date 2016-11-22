@@ -83,4 +83,11 @@
 
   margin-left: 3px;
 }
+.col-md-12{
+    padding-bottom: 15.9em;
+}
 
+html{
+
+  height: 100%;
+}

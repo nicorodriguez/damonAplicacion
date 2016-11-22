@@ -28,26 +28,34 @@ class LoginController {
 	    String password = request.getParameter("password")
 
 	    // Traigo un usuario de la base de datos
+        Usuario user = Usuario.findByEmail(email)
 	    Usuario usuario = Usuario.findByEmailAndPassword(email,password)
 
-        if(usuario){
-            Rol rol = usuario.rol
-            
-            def smgr = new SessionManager(request.session)
-
-            smgr.crearSesion(usuario,rol)
-
-            println(usuario.email+", "+usuario.rol)
-
-            render("true")
+        //Si el usuario existe:
+        if(user){
+            println("Usuario encontrado")
+            //Si el email y contraseña son correctas:
+            if(usuario){
+                    Rol rol = usuario.rol
+                    
+                    def smgr = new SessionManager(request.session)
+        
+                    smgr.crearSesion(usuario,rol)
+        
+                    println(usuario.email+", "+usuario.rol)
+        
+                    render(1)
+                }
+            else{
+                println("Email o contraseña incorrecta")
+        
+                render(2)
+            }
         }
         else{
-
-        	println("Email o usuario incorrecto")
-
-        	render("false")
+            println("Usuario inexistente")
+            render(0)
         }
-
 
     }
 
@@ -55,7 +63,16 @@ class LoginController {
     def logout() {
         def mySession = request.session
         def smgr = new SessionManager(mySession)
-        smgr.eliminarSesion()
+        def u = smgr.getCurrentUser()
+        if (u){
+            println("Usuario Encontrado")
+            smgr.eliminarSesion()
+            render("true")
+        }
+        else{
+            println("Usuario No Encontrado")
+            render("false")
+        }
     }
 
     //Hay un usuario logeado?

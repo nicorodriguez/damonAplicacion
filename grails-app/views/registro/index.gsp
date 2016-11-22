@@ -31,14 +31,14 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#" class="color-me">Home</a></li>
+        <li class="active"><a href="/damonAplicacion" class="color-me">Home</a></li>
         <li><a href="#" id="ntext" class="color-me">Quienes Somos</a></li>
         <li><a href="#" class="color-me">Gimnasios</a></li>
         <li><a href="#" class="color-me">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        <!-- <li><a href="#" class="color-me"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
-        <li><a href="#" data-toggle="modal" data-target="#login-modal" class="color-me" id="vlogin"><span class="glyphicon glyphicon-log-in"></span> ¿Tienes cuenta? Iniciar sesión</a></li>
+        <li><a href="/damonAplicacion" data-toggle="modal" data-target="#login-modal" href="/damonAplicacion" class="color-me"><span class="glyphicon glyphicon-log-in"></span> ¿Tienes cuenta? Iniciar sesión</a></li>
       </ul>
     </div>
   </div>
@@ -91,6 +91,7 @@
       </select>
       <br>
       <button type="submit" class="btn btn-sm btn-success" id="botonRegistrarse" style="font-size:medium;">Registrarme!</button>
+      <a class="btn btn-sm btn-primary" style="font-size:medium;" href="/damonAplicacion">Volver</a>
   <!-- class="btn btn-primary" -->
     </div>
     </div>

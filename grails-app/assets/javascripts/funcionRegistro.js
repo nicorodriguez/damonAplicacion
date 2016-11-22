@@ -95,15 +95,15 @@ function checkmodalidad() {
 			return false;
 		}
 		else{
-			if (modalidad == "2 Veces por semana"){
+			if (modalidad == 0){
                 modalidad = "2VS";
             }
             else{
-              	if (modalidad == "3 veces por semana"){
+              	if (modalidad == 1){
                     modalidad = "3VS";
                 }
                 else{
-                    if(modalidad == "Pase libre"){
+                    if(modalidad == 2){
                         modalidad = "PL";
                     }
                     else{

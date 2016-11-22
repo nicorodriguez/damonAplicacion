@@ -9,7 +9,7 @@
 	<title>CALENDARIO</title>
 </head>
 <body>
-      
+      <header>
       <div class="container">
             <div class="left">
             <h2>DAMON CF</h2>
@@ -33,7 +33,7 @@
              <H1>Sistema de Inscripción</H1>
             </div>
       </div>
-      
+   </header>
 
    <div class="row">
             <div class="col-md-9">

@@ -84,10 +84,10 @@
       <label for="email">Modalidad:</label>
     
     <select class="form-control" id="modalidad">
-        <option value="" disabled selected>-- Seleccionar --</option>
-        <option value="0">2 Veces por semana</option>
-        <option value="1">3 veces por semana</option>
-        <option value="2">Pase libre</option>
+        <option value="0" disabled selected>-- Seleccionar --</option>
+        <option value="1">2 Veces por semana</option>
+        <option value="2">3 veces por semana</option>
+        <option value="3">Pase libre</option>
       </select>
       <br>
       <button type="submit" class="btn btn-sm btn-success" id="botonRegistrarse" style="font-size:medium;">Registrarme!</button>

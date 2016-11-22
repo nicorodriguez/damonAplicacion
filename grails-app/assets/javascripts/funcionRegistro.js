@@ -90,20 +90,20 @@ function checkmodalidad() {
 	apel=$("#apel").val();
 	modalidad=$("#modalidad").val();
 
-		if (modalidad=="-- Seleccione --"){
+		if (modalidad=="0"){
 			alert("Se debe seleccionar la modalidad");
 			return false;
 		}
 		else{
-			if (modalidad == 0){
+			if (modalidad == 1){
                 modalidad = "2VS";
             }
             else{
-              	if (modalidad == 1){
+              	if (modalidad == 2){
                     modalidad = "3VS";
                 }
                 else{
-                    if(modalidad == 2){
+                    if(modalidad == 3){
                         modalidad = "PL";
                     }
                     else{

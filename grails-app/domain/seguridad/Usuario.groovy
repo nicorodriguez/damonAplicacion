@@ -1,6 +1,7 @@
 package seguridad
 import seguridad.Rol
 import seguridad.Servicio
+import sistema.Tipousuario
 
 class Usuario {
 
@@ -11,12 +12,10 @@ class Usuario {
 	String estado = 'p'
 	Rol rol
 	Servicio servicio
-	static belongsTo = [rol: Rol, servicio: Servicio]
+	Tipousuario tipo
+	static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 
-//Cambiar los constructores por setters y getters solamente
-//Inicializar las listas rol y servicio del Usuario, y añadir setters y getters (Controlar que siempre haya un elemento)
-
-	Usuario(String email1, String password1, String nombre1, String apellido1, Rol r, Servicio s){
+	Usuario(String email1, String password1, String nombre1, String apellido1, Rol r, Servicio s, Tipousuario t){
 		this()
 		this.email = email1
 		this.password = password1
@@ -25,6 +24,7 @@ class Usuario {
 		this.estado = 'p'
 		this.rol = r
 		this.servicio = s
+		this.tipo = t
 	}
 
 	static mapping = {
@@ -42,6 +42,7 @@ class Usuario {
 		estado nullable: false, blank: false, minSize: 1, maxSize: 1
 		rol nullable: false
 		servicio nullable: false
+		tipo nullable: false
 	}
 
 	// Defino los seters y los geters solo porque la clase Session Manager los necesita.
@@ -62,6 +63,13 @@ class Usuario {
 	Rol getRol(){
 		return rol
 	}
+	Servicio getServ(){
+		return servicio
+	}
+	Tipousuario getTipo(){
+		return tipo
+	}
+
 
 	//Setters
 	String setEmail(String s){
@@ -75,6 +83,29 @@ class Usuario {
 	}
 	String setPassword(String s){
 		this.password = s
+	}
+	Boolean setEstado(Usuario u, String e){
+		int longitud = e.length()
+		println("Compruebo si el nuevo estado es longitud 1")
+
+		if (longitud == 1){
+			println("Longitud correcta")
+
+			Rol r = u.getRol()
+			String nombreR = r.getNombrerol()
+			if (nombreR == "ROL_ADMIN"){
+				this.estado = e
+				println("Se cambio el estado con exito")
+			}
+			else{
+				println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+				return false
+			}
+		}
+		else{
+			println("Longitud incorrecta")
+			return false
+		}
 	}
 	String setRol(Rol s){
 		try{
@@ -96,6 +127,20 @@ class Usuario {
 			println(e)
 		}
 	}
+	Boolean setTipo(Usuario u, Tipousuario t){
+		Rol r = u.getRol()
+		String nombreR = r.getNombrerol()
+		if (nombreR == "ROL_ADMIN"){
+			this.tipo = t
+			println("Se cambio el Tipo de Usuario con Exito")
+			return true
+		}
+		else{
+			println("No tiene el rol necesario!")
+			return false
+		}
+	}
+
 
 
 }

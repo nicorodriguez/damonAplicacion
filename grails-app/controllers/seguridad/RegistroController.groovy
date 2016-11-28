@@ -2,6 +2,7 @@ package seguridad
 import seguridad.Usuario
 import seguridad.Rol
 import seguridad.Servicio
+import sistema.Tipousuario
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
@@ -48,9 +49,9 @@ class RegistroController {
 
     	        Servicio serv = Servicio.findByNombreservicio(modalidad)
                 Rol usuariorol = Rol.findByNombrerol("ROL_USUARIO")
-
+                Tipousuario tipoPendiente = Tipousuario.findByNombre("PENDIENTE")
                 
-    	        Usuario user = new Usuario(email,password,nombre,apellido,usuariorol,serv)
+    	        Usuario user = new Usuario(email,password,nombre,apellido,usuariorol,serv,tipoPendiente)
     	        user.save(flush: true)
                 println(user)
 

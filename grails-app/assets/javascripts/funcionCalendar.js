@@ -37,10 +37,14 @@ $(document).ready(function(){
 
 
     });
+
     /*
     $("#tbUsuario tr td").mouseleave(function(){
         $(this).css('background-color','#F4F4F4');
         $(this).css('color','#333');
+        evento mouse leave cuando el usuario saca el mousse
     });
  */
 })
+
+

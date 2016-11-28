@@ -15,11 +15,12 @@ class UsuarioController {
         respond Usuario.list(params), model:[usuarioInstanceCount: Usuario.count()]
     }
 
-    def devolverRol(){
+    def devolverRol(){  // $.post("usuario/devolverRol").done(function (variable){} );
         def smgr = new SessionManager(request.session)
         Rol r = smgr.getCurrentRol()
         String nombreRol = r.getNombrerol()
-        return nombreRol
+        //return nombreRol
+        render(nombreRol)   //Probando a ver si me devuelve el 
     }
 
     def show(Usuario usuarioInstance) {

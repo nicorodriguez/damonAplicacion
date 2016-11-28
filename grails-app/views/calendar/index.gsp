@@ -59,48 +59,48 @@
                                     </tr>
                                     <tr>
                                        <td>9:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                            			<tr>
                                        <td>10:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                            			<tr>
                                        <td>11:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                            			<tr>
                                        <td>12:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                                     <tr>
                                        <td>13:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                                     <tr>
                                        <td>14:00</td>
@@ -121,7 +121,7 @@
                                        <td>Columna 7</td>
                                     </tr>
                                     <tr>
-                                       <td disabled>16:00</td>
+                                       <td onclick="noHacerNada()">16:00</td>
                                        <td>Columna 2</td>
                                        <td>Columna 3</td>
                                        <td>Columna 4</td>
@@ -141,18 +141,69 @@
                               </table>                                
                         </div>
                      </div>
-               </div>
+         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Crear Clase</button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="dias">Dia</label>
+                        <select class="form-control" id="dias">
+                          <option value="0" disabled selected>-- Seleccionar --</option>
+                          <option value="1">Lunes</option>
+                          <option value="2">Martes</option>
+                          <option value="3">Miercoles</option>
+                          <option value="4">Jueves</option>
+                          <option value="5">Viernes</option>
+                          <option value="6">Sabados</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="horario">Horario</label>
+                        <input type="email" class="form-control" id="remail" placeholder="nombre@ejemplo.com" required>
+                        <div class="form-group">
+                          <label for="email">Profesor</label>
+                          <select class="form-control" id="profesor">
+                              <option value="0" disabled selected>-- Seleccionar --</option>
+                              <option value="1">David</option>
+                              <option value="2">Herni</option>
+                              <option value="3">China</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="email">Tipo de Usuarios</label>
+                          <select class="form-control" id="profesor">
+                              <option value="0" disabled selected>-- Seleccionar --</option>
+                              <option value="1">KIDS</option>
+                              <option value="2">CROSSFITERO</option>
+                              <option value="3">ATLETA</option>
+                          </select>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn btn-primary" onclick="crearClase()">Crear Clase</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin de Modal -->
+
+          </div>
       <div class="col-md-3" id="clases">
          <div class="panel panel-info">
                      <div class="panel-heading">Clases Anotadas</div>
                         <div class="panel-body">      
                                     <nav>
                                           <ul id="anotado">
-                                             <li>Probando</li>
-                                             <li>La lista</li>
-                                             <li>inicialmente tiene que estar vacia!!!</li>
-                                             <li>Creado</li>
-                                             <li>A</li>
+                                          <li></li>
                                           </ul>
                                     </nav>
                               </div>
@@ -181,6 +232,7 @@
         <p>Ing. Sistemas de Informacion - UTN FRD &copy; 2016</p>
       </div>
   </p>
-</footer>	
+</footer>
+
 </body>
 </html>

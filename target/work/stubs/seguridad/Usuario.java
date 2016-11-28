@@ -41,6 +41,7 @@ public  java.lang.String setEmail(java.lang.String s) { return (java.lang.String
 public  java.lang.String setNombre(java.lang.String s) { return (java.lang.String)null;}
 public  java.lang.String setApellido(java.lang.String s) { return (java.lang.String)null;}
 public  java.lang.String setPassword(java.lang.String s) { return (java.lang.String)null;}
+public  java.lang.Boolean setEstado(seguridad.Usuario u, java.lang.String e) { return (java.lang.Boolean)null;}
 public  java.lang.String setRol(seguridad.Rol s) { return (java.lang.String)null;}
 public  java.lang.String setServicio(seguridad.Servicio s) { return (java.lang.String)null;}
 public  java.lang.Boolean setTipo(seguridad.Usuario u, sistema.Tipousuario t) { return (java.lang.Boolean)null;}

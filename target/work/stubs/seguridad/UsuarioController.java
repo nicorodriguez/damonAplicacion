@@ -20,9 +20,7 @@ public  void setProperty(java.lang.String property, java.lang.Object value) { }
 public static  java.lang.Object getAllowedMethods() { return null;}
 public static  void setAllowedMethods(java.lang.Object value) { }
 public  java.lang.Object index(java.lang.Integer max) { return null;}
-public  java.lang.Object login() { return null;}
-public  java.lang.Object logout() { return null;}
-public  java.lang.Object isSessionActive() { return null;}
+public  java.lang.Object devolverRol() { return null;}
 public  java.lang.Object show(seguridad.Usuario usuarioInstance) { return null;}
 public  java.lang.Object create() { return null;}
 @grails.transaction.Transactional() public  java.lang.Object save(seguridad.Usuario usuarioInstance) { return null;}

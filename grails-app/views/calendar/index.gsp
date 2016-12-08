@@ -1,3 +1,10 @@
+<%@ page import="session.SessionManager" %>
+<%@ page import="seguridad.Usuario" %>
+<% def smgr = new SessionManager(request.session) %>
+<% def usuario = smgr.getCurrentUser() %>
+<% def nombre = usuario.getNombre() %>
+<% def apellido = usuario.getApellido() %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +26,6 @@
 	<title>Damon | Calendario</title>
 </head>
 <body>
-<body>
 
 <nav class="navbar navbar-dark bg-primary">
   <div class="container-fluid">
@@ -35,7 +41,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" class="color-me"><span class="glyphicon glyphicon-user"></span>Usuario</a></li>
+        <li><a href="#" class="color-me"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido}</a></li>
         <li><a href="#" id="botonLogout" class="color-me"><span class="glyphicon glyphicon-user"></span>Cerrar Sesión</a></li>
       </ul>
     </div>
@@ -45,7 +51,7 @@
    <div class="row">
             <div class="col-md-7" id="calendario">
                <div class="panel panel-primary" id="panel1">
-                     <div class="panel-heading">Calendario para anotarse</div>
+                     <div class="panel-heading">Calendario</div>
                         <div sclass="panel-body">
                               <table class="table" id="tbUsuario">
                                     <tr>

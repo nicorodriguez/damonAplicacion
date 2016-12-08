@@ -35,14 +35,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#" class="color-me">Home</a></li>
-        <li><a href="#" id="ntext" class="color-me">Quienes Somos</a></li>
+        <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
+        <li><a href="#" id="ntext" class="color-me">¿Quiénes Somos?</a></li>
         <li><a href="#" class="color-me">Gimnasios</a></li>
         <li><a href="#" class="color-me">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/damonAplicacion/registro/index" class="color-me"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>
-        <!--<li><a data-toggle="modal" data-target="#login-modal" class="color-me" id="btnLogin"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a></li>-->
       </ul>
     </div>
   </div>
@@ -53,7 +52,7 @@
     <div class="modal-dialog" style="margin-bottom:0">
         <div class="modal-content">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Sign In</h3>
+                        <h3 class="panel-title">Iniciar Sesión</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form">
@@ -66,12 +65,11 @@
                                     <label for="exampleInputPassword1">Contraseña <a href="LINK A OLVIDE CONTRASEÑA">(Olvide mi contraseña)</a></label>
                                     <input class="form-control" value="" placeholder="Contraseña" id="login-pass" name="password" type="password" value="" maxlength="18" required>
                                 </div>
-                                <div class="checkbox">
+                                %{-- <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Recordarme
                                     </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
+                                </div> --}%
                                 <a class="btn btn-sm btn-success" style="font-size:medium;" onclick="crearParametros()">Ingresar</a>
 
                             </fieldset>

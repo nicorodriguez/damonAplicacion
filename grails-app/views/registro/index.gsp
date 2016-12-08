@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Damon | Registrate</title>
+  <title>Damon | Registro</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,14 +31,15 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/damonAplicacion" class="color-me">Home</a></li>
-        <li><a href="#" id="ntext" class="color-me">Quienes Somos</a></li>
+        <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
+        <li><a href="#" id="ntext" class="color-me">¿Quiénes Somos?</a></li>
         <li><a href="#" class="color-me">Gimnasios</a></li>
         <li><a href="#" class="color-me">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        <!-- <li><a href="#" class="color-me"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
-        <li><a href="/damonAplicacion" data-toggle="modal" data-target="#login-modal" href="/damonAplicacion" class="color-me"><span class="glyphicon glyphicon-log-in"></span> ¿Tienes cuenta? Iniciar sesión</a></li>
+       <!-- Saqué lo siguiente xq no funcionaba el href => data-target="#login-modal" -->
+        <li><a href="/damonAplicacion" data-toggle="modal"  class="color-me"><span class="glyphicon glyphicon-log-in" href="/damonAplicacion" ></span> ¿Tienes cuenta? Iniciar sesión</a></li>
       </ul>
     </div>
   </div>

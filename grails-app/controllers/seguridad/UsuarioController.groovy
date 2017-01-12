@@ -31,6 +31,10 @@ class UsuarioController {
         respond new Usuario(params)
     }
 
+    def misDatos(){
+        render(view: 'show')
+    }
+
     @Transactional
     def save(Usuario usuarioInstance) {
         if (usuarioInstance == null) {

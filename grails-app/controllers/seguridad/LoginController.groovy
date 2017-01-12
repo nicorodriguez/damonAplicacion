@@ -59,6 +59,16 @@ class LoginController {
 
     }
 
+    /*
+        Agregar al login la verificacion de que el usuario ya verificó su cuenta:
+            if (usuario.estado =! 'p'){
+                println("se verifico correctamente el estado del usuario")
+            }
+            else{
+                println("usuario pendiente de verificacion de correo")
+            }
+    */
+
     // Elimina la sesion actual.
     def logout() {
         def mySession = request.session

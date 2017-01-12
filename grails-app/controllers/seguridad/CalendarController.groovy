@@ -20,4 +20,8 @@ class CalendarController {
     		//redirect(url: "http://localhost:8080/damonAplicacion/")
     	}
 	}
+
+    def misDatos(){
+        redirect(controller: "usuario" , action:"misDatos")
+    }
 }

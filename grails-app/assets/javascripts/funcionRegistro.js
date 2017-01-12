@@ -6,6 +6,7 @@ x.ready(inicializarEventosRegistro);
 function inicializarEventosRegistro(){
 	
 	var x;
+	$('#error').hide()
 	x=$("#botonRegistrarse");
 	x.click(checkname);
 
@@ -20,10 +21,11 @@ function checkname(){
 	nom=nom.length
 	ape=ape.length
 
-	if (apel!= 0 && nom!=0){
+	if ((ape != 0) && (nom !=0)){
 		checkemail();
 	}
 	else{
+		$('#error').show()
 		$(".nom").addClass("has-error");
 		return	false;	
 	}
@@ -45,11 +47,13 @@ function checkemail(){
 	 	}
 	 	else{  //uno de los dos quedo en blanco
 	 		$(".correo").addClass("has-error");
+	 		$('#error').show()
 	 		return false;	 		
 	 	}
 	}
 	else{	//si los emails no coinciden, ingreso 2 diferentes.
 		$(".correo").addClass("has-error");
+		$('#error').show()
 		return false;
 	}
 }
@@ -60,17 +64,19 @@ function checkPsw(){
 
 	psw=$("#psw").val();
 	rpsw=$("#rpsw").val();
-	if (psw.length > 5 && rpsw.length > 5) {   //Chequea que las password no las deje en blanco y que sea >6 nº de caracteres
+	if ((psw.length > 5) && (rpsw.length > 5)) {   //Chequea que las password no las deje en blanco y que sea >6 nº de caracteres
 		if (psw == rpsw){
 		//alert("los emails y las psw coinciden")
 			checkmodalidad();
 	}
 		else{ 
 			$(".pass").addClass("has-error");
+			$('#error').show()
 			return	false;  //Ingreso mal las passwords
 		}
 	}else{
 		$(".pass").addClass("has-error");  //ingreso password menor que la cantidad establecida
+		$('#error').show()
 		return false;
 	}	
 }

@@ -10,7 +10,7 @@
   <asset:javascript src="jquery.js"/>
   <asset:stylesheet src="estilosRegistro.css"/>
   <asset:javascript src="funcionRegistro.js"/>
-  <link rel="icon" href="logotab.png">
+  <!--<link rel="icon" href="logotab.png">-->
 
 </head>
 <body>
@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
       </button>
 
-      <img src="logo.png" class="img-rounded" width="45" height="45">      
+      <!--<img src="logo.png" class="img-rounded" width="45" height="45">-->      
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -49,11 +49,11 @@
   <h2>Registro</h2>
   <form>
    <div class="col-sm-4" style="padding-left:0px">
-    <div class="form-group">
+    <div class="form-group nom">
       <label for="nombre">Nombre:</label> 
       <input type="text" class="form-control" id="nombre" placeholder="Ingresar Nombre" maxlength="16" required>
     </div>
-    <div class="form-group">
+    <div class="form-group nom">
       <label for="apellido">Apellido:</label>
       <input type="text" class="form-control" id="apel" placeholder="Ingresar Apellido" maxlength="16" required>
     </div>
@@ -100,7 +100,7 @@
 </div>
 </div>
 <hr>
-
+  <dir class="alert alert-danger" id="error"><p class="text-center">Verifique los campos en rojo</p></dir>
 <footer class="container-fluid text">
   <p>
       <div class="footer-right">

@@ -54,17 +54,17 @@
                      <div class="panel-heading">Calendario</div>
                         <div sclass="panel-body">
                               <table class="table" id="tbUsuario">
-                                    <tr>
-                                       <td><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></td>
+                                    <tr class="semana">
+                                       <td></td>
                                        <td>Lunes</td>
                                        <td>Martes</td>
-                                       <td>Miercoles</td>
+                                       <td>Miércoles</td>
                                        <td>Jueves</td>
                                        <td>Viernes</td>
-                                       <td>Sabados</td>
+                                       <td>Sábados</td>
                                     </tr>
                                     <tr>
-                                       <td>9:00</td>
+                                       <td class="horarios">9:00</td>
                                        <td></td>
                                        <td></td>
                                        <td></td>
@@ -73,7 +73,7 @@
                                        <td></td>
                                     </tr>
                            			<tr>
-                                       <td>10:00</td>
+                                       <td class="horarios">10:00</td>
                                        <td></td>
                                        <td></td>
                                        <td></td>
@@ -82,7 +82,7 @@
                                        <td></td>
                                     </tr>
                            			<tr>
-                                       <td>11:00</td>
+                                       <td class="horarios">11:00</td>
                                        <td></td>
                                        <td></td>
                                        <td></td>
@@ -91,7 +91,7 @@
                                        <td></td>
                                     </tr>
                            			<tr>
-                                       <td>12:00</td>
+                                       <td class="horarios">12:00</td>
                                        <td></td>
                                        <td></td>
                                        <td></td>
@@ -100,7 +100,7 @@
                                        <td></td>
                                     </tr>
                                     <tr>
-                                       <td>13:00</td>
+                                       <td class="horarios">13:00</td>
                                        <td></td>
                                        <td></td>
                                        <td></td>
@@ -109,7 +109,7 @@
                                        <td></td>
                                     </tr>
                                     <tr>
-                                       <td>14:00</td>
+                                       <td class="horarios">14:00</td>
                                        <td>Columna 2</td>
                                        <td>Columna 3</td>
                                        <td>Columna 4</td>
@@ -118,7 +118,7 @@
                                        <td>Columna 7</td>
                                     </tr>
                                     <tr>
-                                       <td>15:00</td>
+                                       <td class="horarios">15:00</td>
                                        <td>Columna 2</td>
                                        <td>Columna 3</td>
                                        <td>Columna 4</td>
@@ -127,7 +127,7 @@
                                        <td>Columna 7</td>
                                     </tr>
                                     <tr>
-                                       <td onclick="noHacerNada()">16:00</td>
+                                       <td class="horarios">16:00</td>
                                        <td>Columna 2</td>
                                        <td>Columna 3</td>
                                        <td>Columna 4</td>
@@ -136,7 +136,7 @@
                                        <td>Columna 7</td>
                                     </tr>
                                     <tr>
-                                       <td>17:00</td>
+                                       <td class="horarios">17:00</td>
                                        <td>Columna 2</td>
                                        <td>Columna 3</td>
                                        <td>Columna 4</td>

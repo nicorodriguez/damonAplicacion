@@ -32,6 +32,10 @@ function enviaJSON(email1,password1){
 		}
 	});
 
+}
+
+function probando(){
+	$.post( "/damonAplicacion/calendar/formatHora")
 } 
 
 /*

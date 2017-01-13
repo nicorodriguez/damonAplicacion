@@ -72,6 +72,8 @@
                                 </div> --}%
                                 <a class="btn btn-sm btn-success" style="font-size:medium;" onclick="crearParametros()">Ingresar</a>
 
+                                <a class="btn btn-sm btn-primary" style="font-size:medium;" onclick="probando()">ACA</a>
+
                             </fieldset>
                         </form>
                     </div>

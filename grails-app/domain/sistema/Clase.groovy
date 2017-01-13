@@ -2,6 +2,7 @@ package sistema
 import seguridad.Usuario
 import seguridad.Rol
 import seguridad.Servicio
+import sistema.Tipousuario
 
 class Clase {
 
@@ -9,14 +10,17 @@ class Clase {
 	Date fecha
 	Date horario
 	Usuario profe
+	Tipousuario tipo
+	Integer cantidadMax
+	Integer cantidadActual
 
-
-	Clase(String nombre1, Date fecha1, Date horario1, Usuario profe1){
+	Clase(String nombre1, Date fecha1, Date horario1, Usuario profe1, Tipousuario tipo1){
 		this()
 		this.nombre = nombre1
 		this.fecha = fecha1
 		this.horario = horario1
 		this.profe = profe1
+		this.tipo = tipo1
 	}
 
 	static mapping = {

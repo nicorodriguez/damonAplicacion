@@ -24,4 +24,20 @@ class CalendarController {
     def misDatos(){
         redirect(controller: "usuario" , action:"misDatos")
     }
+
+    def formatHora(){
+        Date a = new Date()
+        println(a)
+
+        //funciona para pasar un string a date, los parametros son: Date.parse(forma del string, variable string)
+        //Date date = Date.parse( 'dd-MMM-yyyy', a )
+
+        println()
+    }
+
+
+
+    def crearClase(){
+
+    }
 }

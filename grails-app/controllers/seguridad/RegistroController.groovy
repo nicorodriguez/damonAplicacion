@@ -61,9 +61,9 @@ class RegistroController {
                 def a = usuariorol.usuariosrol
                 println(a)
 
-                redirect  (controller: "Login" , action:"index")
+                redirect  (controller: "login" , action:"index")
 
-    	        render ("true")
+    	        //render ("true")
             }
     	}
     	catch(Exception e){

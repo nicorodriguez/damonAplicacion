@@ -2,6 +2,7 @@ package seguridad
 import seguridad.Rol
 import seguridad.Servicio
 import sistema.Tipousuario
+import sistema.Clase
 
 class Usuario {
 
@@ -14,6 +15,8 @@ class Usuario {
 	Servicio servicio
 	Tipousuario tipo
 	static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
+	static hasMany = [inscriptoclases: Clase]
+	//static hasOne = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 
 	Usuario(String email1, String password1, String nombre1, String apellido1, Rol r, Servicio s, Tipousuario t){
 		this()
@@ -31,6 +34,8 @@ class Usuario {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
 		rol lazy: false
 		servicio lazy: false
+		tipo lazy: false
+		inscriptoclases lazy: false
 		version false
 	}
 

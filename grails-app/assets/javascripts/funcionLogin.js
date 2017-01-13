@@ -10,11 +10,27 @@ function inicializarEventosLogin(){
 function crearParametros(){
 	var email;
 	var password;
+	var emailleng
+	var passleng
 
 	email1=$("#login-email").val();
 	password1=$("#login-pass").val();
-	
-	enviaJSON(email1,password1);
+	emailleng=email1.length
+	passleng=password1.length
+
+	if ((emailleng!==0) && (passleng!==0)) {
+		if ((passleng > 5) && (passleng<19)) {
+			if(emailleng < 46){
+		enviaJSON(email1,password1);
+	}else{
+		alert("Error email mal ingresado")
+	}	
+	}else{
+		alert("Error en la password")
+	}
+	}else{
+		alert("los campos estan vacios.")
+	}
 }
 
 function enviaJSON(email1,password1){
@@ -32,6 +48,10 @@ function enviaJSON(email1,password1){
 		}
 	});
 
+}
+
+function probando(){
+	$.post("/damonAplicacion/calendar/formatHora")
 } 
 
 /*

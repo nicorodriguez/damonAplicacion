@@ -31,7 +31,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <img src="\damonAplicacion\grails-app\assets\images\logo.png" class="img-rounded" width="45" height="45">      
+      <img src="/damonAplicacion/grails-app/assets/images/logo.png" class="img-rounded" width="45" height="45">      
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">

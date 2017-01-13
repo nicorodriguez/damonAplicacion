@@ -10,6 +10,7 @@
   <asset:javascript src="jquery.js"/>
   <asset:stylesheet src="estilosRegistro.css"/>
   <asset:javascript src="funcionRegistro.js"/>
+  <asset:javascript src="bootbox.min.js"/>
   <!--<link rel="icon" href="logotab.png">-->
 
 </head>

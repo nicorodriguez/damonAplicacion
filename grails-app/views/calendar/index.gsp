@@ -1,9 +1,12 @@
 <%@ page import="session.SessionManager" %>
 <%@ page import="seguridad.Usuario" %>
+<%@ page import="seguridad.Rol" %>
 <% def smgr = new SessionManager(request.session) %>
 <% def usuario = smgr.getCurrentUser() %>
 <% def nombre = usuario.getNombre() %>
 <% def apellido = usuario.getApellido() %>
+<% def rol = smgr.getCurrentRol() %>
+<% def nombreRol = rol.nombrerol %>
 
 <!DOCTYPE html>
 <html>
@@ -204,6 +207,24 @@
 
           </div>
       <div class="col-md-3" id="clases">
+        %{-- <% if (nombreRol == "ROL_ADMIN"){ %> --}%
+        <% if (nombreRol == "ROL_ADMIN"){ %>
+        
+          <div>
+          <button type="button" class="btn btn-primary btn-lg">Usuarios</button>
+          </div>
+          <div>
+          <button type="button" class="btn btn-primary btn-lg">Profesores</button>
+          </div>
+          <div>
+          <button type="button" class="btn btn-primary btn-lg">Clases</button>
+          </div>
+          <div>
+          <button type="button" class="btn btn-primary btn-lg">Servicios</button>
+          </div>
+
+        <% } %>
+
          <div class="panel panel-info">
                      <div class="panel-heading">Clases Anotadas</div>
                         <div class="panel-body">      
@@ -214,7 +235,7 @@
                                     </nav>
                               </div>
                         </div>       
-         </div>   
+      </div>   
 	</div>
 
    <div id="footer"></div>

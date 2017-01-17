@@ -85,6 +85,7 @@ class LoginController {
         if (u){
             println("Usuario Encontrado")
             smgr.eliminarSesion()
+            println("Sesion Cerrada")
             render("true")
         }
         else{

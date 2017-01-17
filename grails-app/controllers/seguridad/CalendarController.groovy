@@ -90,7 +90,7 @@ class CalendarController {
                 clasee.save(flush: true)
                 println(clasee)
 
-                println("CrearClase - Clase creada satisfactoriamente")
+                println("CrearClase - CLASE CREADA SATISFACTORIAMENTE")
                 render("true")
             }
         }

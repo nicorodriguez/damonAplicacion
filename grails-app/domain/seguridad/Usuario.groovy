@@ -16,7 +16,6 @@ class Usuario {
 	Tipousuario tipo
 	static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 	static hasMany = [inscriptoclases: Clase]
-	//static hasOne = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 
 	Usuario(String email1, String password1, String nombre1, String apellido1, Rol r, Servicio s, Tipousuario t){
 		this()

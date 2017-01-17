@@ -40,4 +40,37 @@ class Clase {
     def inicializarTablaAnotados(){
 		this.anotados = []
 	}
+
+	//Obtener el día de la fecha de la clase
+	def getfechaDia(){
+	}
+
+	boolean hayLugar(){
+		if (this.cantidadActual < this.cantidadMax){
+			return(true);
+		}
+		else{
+			return(false);
+		}
+	}
+
+	int aumentarCapActual(){
+		println("cantidad anterior: " + this.cantidadActual)
+		this.cantidadActual = this.cantidadActual + 1
+		println("canidad siguiente: " + this.cantidadActual)
+		return(this.cantidadActual)
+	}
+
+	boolean agregarUsuarioALista(Usuario u){
+		try{
+			this.anotados << u
+			return(true)
+		}
+		catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            return(false)
+        }
+	}
 }

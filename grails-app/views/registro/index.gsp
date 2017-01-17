@@ -1,3 +1,11 @@
+<%@ page import="seguridad.Servicio" %>
+<% def servicioLista= Servicio.getAll()%>
+%{-- 
+<% def servicioLista= Servicio.getAll()%>
+<g:each var="servicio" in="${servicioLista}">
+${servicio.nombreservicio}
+</g:each>
+--}%
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,12 +93,26 @@
      <!-- <div class="col-sm-4" style="padding-left:0px"> -->
       <label for="email">Modalidad:</label>
     
-    <select class="form-control" id="modalidad">
+    %{-- <select class="form-control" id="modalidad">
         <option value="0" disabled selected>-- Seleccionar --</option>
-        <option value="1">2 Veces por semana</option>
+        <option value="1">2 veces por semana</option>
         <option value="2">3 veces por semana</option>
         <option value="3">Pase libre</option>
-      </select>
+    </select> --}%
+
+    %{-- <select class="form-control" id="modalidad">
+          <option value="0" disabled selected>-- Seleccionar --</option>
+          <g:each var="servicio" in="${servicioLista}">
+          <option value="1">${servicio.nombreservicio}</option>
+        </g:each>
+    </select> --}%
+
+    <select class="form-control" id="modalidad">
+          <option value="0" disabled selected>-- Seleccionar --</option>
+          <g:each var="servicio" in="${servicioLista}">
+          <option value="${servicio.nombreservicio}">${servicio.nombreservicio}</option>
+        </g:each>
+    </select>
       <br>
       <button type="submit" class="btn btn-sm btn-success" id="botonRegistrarse" style="font-size:medium;">Registrarme!</button>
       <a class="btn btn-sm btn-primary" style="font-size:medium;" href="/damonAplicacion">Volver</a>

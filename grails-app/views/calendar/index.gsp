@@ -37,7 +37,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <img src="assets\images\favicon.ico" class="img-rounded" width="45" height="45">      
+      %{-- <img src="assets\images\favicon.ico" class="img-rounded" width="45" height="45"> --}%      
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">

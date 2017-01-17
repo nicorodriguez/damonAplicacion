@@ -21,40 +21,48 @@ class LoginController {
     }
 
     def loguearse(){
-    	println("Login - Voy a buscar los parametros")
+        try{
+        	println("Login - Voy a buscar los parametros")
 
-    	// Capturo datos de post de formulario
-	    String email = request.getParameter("email")
-	    String password = request.getParameter("password")
+        	// Capturo datos de post de formulario
+    	    String email = request.getParameter("email")
+    	    String password = request.getParameter("password")
 
-	    // Traigo un usuario de la base de datos
-        Usuario user = Usuario.findByEmail(email)
-	    Usuario usuario = Usuario.findByEmailAndPassword(email,password)
+    	    // Traigo un usuario de la base de datos
+            Usuario user = Usuario.findByEmail(email)
+    	    Usuario usuario = Usuario.findByEmailAndPassword(email,password)
 
-        //Si el usuario existe:
-        if(user){
-            println("Usuario encontrado")
-            //Si el email y contraseña son correctas:
-            if(usuario){
-                    Rol rol = usuario.rol
-                    
-                    def smgr = new SessionManager(request.session)
-        
-                    smgr.crearSesion(usuario,rol)
-        
-                    println(usuario.email+", "+usuario.rol)
-        
-                    render(1)
+            //Si el usuario existe:
+            if(user){
+                println("Usuario encontrado")
+                //Si el email y contraseña son correctas:
+                if(usuario){
+                        Rol rol = usuario.rol
+                        
+                        def smgr = new SessionManager(request.session)
+            
+                        smgr.crearSesion(usuario,rol)
+            
+                        println(usuario.email+", "+usuario.rol)
+            
+                        render(1)
+                    }
+                else{
+                    println("Email o contraseña incorrecta")
+            
+                    render(2)
                 }
+            }
             else{
-                println("Email o contraseña incorrecta")
-        
-                render(2)
+                println("Usuario inexistente")
+                render(0)
             }
         }
-        else{
-            println("Usuario inexistente")
-            render(0)
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
         }
 
     }

@@ -68,13 +68,14 @@ function checkPsw(){
 		if (psw == rpsw){
 		//alert("los emails y las psw coinciden")
 			checkmodalidad();
-	}
+		}
 		else{ 
 			$(".pass").addClass("has-error");
 			$('#error').show()
 			return	false;  //Ingreso mal las passwords
 		}
-	}else{
+	}
+	else{
 		$(".pass").addClass("has-error");  //ingreso password menor que la cantidad establecida
 		$('#error').show()
 		return false;
@@ -95,28 +96,13 @@ function checkmodalidad() {
 	nombre=$("#nombre").val();
 	apel=$("#apel").val();
 	modalidad=$("#modalidad").val();
+	console.log(modalidad);
 
 		if (modalidad=="0"){
 			alert("Se debe seleccionar la modalidad");
 			return false;
 		}
 		else{
-			if (modalidad == 1){
-                modalidad = "2VS";
-            }
-            else{
-              	if (modalidad == 2){
-                    modalidad = "3VS";
-                }
-                else{
-                    if(modalidad == 3){
-                        modalidad = "PL";
-                    }
-                    else{
-                        alert("Modalidad Invalida");
-                    }
-                }
-            }
 			enviarJSON(email,psw,nombre,apel,modalidad);
 		}
 }

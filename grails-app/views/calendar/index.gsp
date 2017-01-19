@@ -22,6 +22,10 @@
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
 	<asset:stylesheet src="estiloCalendar.css"/>
@@ -150,7 +154,12 @@
                               </table>                                
                         </div>
                      </div>
+
+
+                      
+
          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Crear Clase</button>
+
 
           <!-- Modal -->
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -193,6 +202,10 @@
                               <option value="2">CROSSFITERO</option>
                               <option value="3">ATLETA</option>
                           </select>
+                      </div>
+                      <div class="form-group">
+                          <label>Fecha</label>
+                          <input type="text" id="fecha" name="fecha" />
                       </div>
                     </div>
                 </div>
@@ -261,5 +274,10 @@
   </p>
 </footer>
 
+<script>
+        $( document ).ready(function() {
+            $('#fecha').datepicker();
+        });
+    </script>
 </body>
 </html>

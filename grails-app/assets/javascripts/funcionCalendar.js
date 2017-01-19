@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
- 	/*
+
+    /*
     $("#tbUsuario tr").click(function(){
         $(this).css('background-color','black');
         $(this).css('color','white');
@@ -40,6 +41,36 @@ $(document).ready(function(){
 
     });
 
+function crearClase() {
+    var dia,horario,profesor,fecha,tipo
 
+    dia=$("#dias").val()
+    horario=$("14:00") //Falta esto,a discutir con Nico.
+    profesor=$("#profesor").val()
+    tipo=$("#tipo").val()
+    fecha=$("#fecha").val()
+
+    envioDatos(dia,horario,profesor,tipo,fecha);  
+}
+
+function envioDatos(dia,horario,profesor,tipo,fecha){
+    var datos = {
+        dia: dia,
+        horario: horario,
+        profe: profesor,
+        tipous: tipo,
+        fecha: fecha
+    };
+    $.post( "/damonAplicacion/calendar/crearClase", parametros).done(function( resp ){
+        console.log(resp);
+        if(resp == "true"){
+            alert("Clase creada satisfactoriamente");
+            $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+        }
+        else{
+            alert("Clase no creada");
+        }
+    });
+}
 
 

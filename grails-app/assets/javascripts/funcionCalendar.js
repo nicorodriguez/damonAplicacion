@@ -44,8 +44,8 @@ $(document).ready(function(){
 function crearClase() {
     var dia,horario,profesor,fecha,tipo
 
-    dia=$("#dias").text()
-    horario=$("14:00") //Falta esto,a discutir con Nico.
+    dia=$("#dias").val()
+    horario=$("#horario").val()
     profesor=$("#profesor").val()
     tipo=$("#tipo").val()
     fecha=$("#fecha").val()
@@ -61,7 +61,7 @@ function envioDatos(dia,horario,profesor,tipo,fecha){
         tipous: tipo,
         fecha: fecha
     };
-    $.post( "/damonAplicacion/calendar/crearClase", parametros).done(function( resp ){
+    $.post( "/damonAplicacion/calendar/crearClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
             alert("Clase creada satisfactoriamente");

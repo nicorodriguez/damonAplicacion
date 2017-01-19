@@ -44,7 +44,7 @@ $(document).ready(function(){
 function crearClase() {
     var dia,horario,profesor,fecha,tipo
 
-    dia=$("#dias").val()
+    dia=$("#dias").text()
     horario=$("14:00") //Falta esto,a discutir con Nico.
     profesor=$("#profesor").val()
     tipo=$("#tipo").val()
@@ -55,7 +55,7 @@ function crearClase() {
 
 function envioDatos(dia,horario,profesor,tipo,fecha){
     var datos = {
-        dia: dia,
+        dia: dia,  
         horario: horario,
         profe: profesor,
         tipous: tipo,

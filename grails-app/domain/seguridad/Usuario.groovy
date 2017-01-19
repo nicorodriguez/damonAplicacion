@@ -10,6 +10,7 @@ class Usuario {
 	String password
 	String nombre
 	String apellido
+	String sexo
 	String estado = 'p'
 	Rol rol
 	Servicio servicio
@@ -17,12 +18,13 @@ class Usuario {
 	static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 	static hasMany = [inscriptoclases: Clase]
 
-	Usuario(String email1, String password1, String nombre1, String apellido1, Rol r, Servicio s, Tipousuario t){
+	Usuario(String email1, String password1, String nombre1, String apellido1, String sexo1, Rol r, Servicio s, Tipousuario t){
 		this()
 		this.email = email1
 		this.password = password1
 		this.nombre = nombre1
 		this.apellido = apellido1
+		this.sexo = sexo1
 		this.estado = 'p'
 		this.rol = r
 		this.servicio = s
@@ -61,6 +63,9 @@ class Usuario {
 	String getApellido(){
 		return apellido
 	}
+	String getSexo(){
+		return sexo
+	}
 	String getPassword(){
 		return password
 	}
@@ -84,6 +89,9 @@ class Usuario {
 	}	
 	String setApellido(String s){
 		this.apellido = s
+	}
+	String setSexo(String s){
+		this.sexo = s
 	}
 	String setPassword(String s){
 		this.password = s

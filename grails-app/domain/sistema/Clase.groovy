@@ -6,6 +6,7 @@ import sistema.Tipousuario
 
 class Clase {
 
+	Date dia
 	Date fecha
 	Date horario
 	Usuario profe
@@ -15,8 +16,9 @@ class Clase {
 	static hasMany = [anotados: Usuario]
 	static belongsTo = Usuario
 
-	Clase(Date fecha1, Date horario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
+	Clase(Date dia1, Date fecha1, Date horario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
 		this()
+		this.dia = dia1
 		this.fecha = fecha1
 		this.horario = horario1
 		this.profe = profe1

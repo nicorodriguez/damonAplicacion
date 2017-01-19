@@ -51,7 +51,7 @@ class BootStrap {
         tipoUsuario5.inicializarTablaTipo()
         tipoUsuario5.save(flush: true)
 
-        Usuario usuarioPrueba = new Usuario("ni.co55@hotmail.com","12345678","Nico","Rodriguez",administradorRol,serv3,tipoUsuario5)
+        Usuario usuarioPrueba = new Usuario("ni.co55@hotmail.com","12345678","Nico","Rodriguez","Masculinos",administradorRol,serv3,tipoUsuario5)
         usuarioPrueba.save(flush: true)
         
         administradorRol.agregarUsuario(usuarioPrueba)

@@ -96,6 +96,7 @@ function checkmodalidad() {
 	nombre=$("#nombre").val();
 	apel=$("#apel").val();
 	modalidad=$("#modalidad").val();
+	sexo=$(".sexo:checked").val();
 	console.log(modalidad);
 
 		if (modalidad=="0"){
@@ -103,17 +104,18 @@ function checkmodalidad() {
 			return false;
 		}
 		else{
-			enviarJSON(email,psw,nombre,apel,modalidad);
+			enviarJSON(email,psw,nombre,apel,modalidad,sexo);
 		}
 }
 
-function enviarJSON(email,psw,nombre,apel,modalidad){
+function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 	var parametros = {
 		email: email,
 		password: psw,
 		nomb: nombre,
 		apell: apel,
-		modal: modalidad
+		modal: modalidad,
+		sex: sexo
 	};
 	$.post( "/damonAplicacion/registro/crearUsuario", parametros).done(function( resp ){
 		console.log(resp);

@@ -35,9 +35,10 @@ class RegistroController {
 	        String password = request.getParameter("password")
 	        String nombre = request.getParameter("nomb")
             String apellido = request.getParameter("apell")
+            String sexo = request.getParameter("sex")
 	        String modalidad = request.getParameter("modal")
 
-            println("Recibi los parametros: -> "+email+", "+password+", "+nombre+", "+apellido+", "+modalidad)
+            println("Recibi los parametros: -> "+email+", "+password+", "+nombre+", "+apellido+", "+modalidad+", "+sexo)
 
             Usuario u = Usuario.findByEmail(email)
 
@@ -51,7 +52,7 @@ class RegistroController {
                 Rol usuariorol = Rol.findByNombrerol("ROL_USUARIO")
                 Tipousuario tipoPendiente = Tipousuario.findByNombre("PENDIENTE")
                 
-    	        Usuario user = new Usuario(email,password,nombre,apellido,usuariorol,serv,tipoPendiente)
+    	        Usuario user = new Usuario(email,password,nombre,apellido,sexo,usuariorol,serv,tipoPendiente)
     	        user.save(flush: true)
                 println(user)
 
@@ -73,5 +74,18 @@ class RegistroController {
     		render ("false")
     	}
 
+    }
+
+    @Transactional
+    def modificarSexo(){
+        try{
+            Usuario admin = Usuario.findByEmail("ni.co55@hotmail.com")
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
     }
 }

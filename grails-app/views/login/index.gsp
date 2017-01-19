@@ -16,7 +16,7 @@
   <asset:stylesheet src="estilosLogin.css"/>
   <asset:javascript src="funcionLogin.js"/>
 
-  <link rel="icon" href="logotab.png">
+  <link rel="icon" href="logotab.png">  
 </head>
 
 <body>
@@ -59,20 +59,20 @@
                             <fieldset>
                                 <div class="form-group">
                                    <label for="exampleInputEmail1">Email</label>
-                                   <input class="form-control" placeholder="Ingrese Email" id="login-email" name="email" value="ni.co55@hotmail.com" type="email" autofocus="" maxlength="50" required>
+                                   <input class="form-control input" placeholder="Ingrese Email" id="login-email" name="email" value="ni.co55@hotmail.com" type="email" autofocus="" maxlength="50" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña <a href="LINK A OLVIDE CONTRASEÑA">(Olvide mi contraseña)</a></label>
-                                    <input class="form-control" value="12345678" placeholder="Contraseña" id="login-pass" name="password" type="password"  maxlength="18" required>
+                                    <input class="form-control input" value="12345678" placeholder="Contraseña" id="login-pass" name="password" type="password"  maxlength="18" required>
                                 </div>
                                 %{-- <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Recordarme
                                     </label>
                                 </div> --}%
-                                <a class="btn btn-sm btn-success" style="font-size:medium;" onclick="crearParametros()">Ingresar</a>
+                                <a id="submit" class="btn btn-sm btn-success" style="font-size:medium;" onclick="crearParametros()">Ingresar</a>
 
-                                <a class="btn btn-sm btn-primary" style="font-size:medium;" onclick="probando()">ACA</a>
+                                <a id="submit" class="btn btn-sm btn-primary" style="font-size:medium;" onclick="probando()">ACA</a>
 
                             </fieldset>
                         </form>

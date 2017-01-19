@@ -3,9 +3,20 @@ x=$(document)
 x.ready(inicializarEventosLogin);
 
 function inicializarEventosLogin(){
+	
+	//simula que con un enter, el usuario apreta el boton "ingresar"
+
+	$('.input').keypress(function(e) {
+     if(e.which == 13) {
+           $(this).blur();
+           $('#submit').focus().click();
+        }
+   });
+
 	var x;
 	x=$("#btnLogin");
 	x.click(crearParametros);
+
 }
 function crearParametros(){
 	var email;

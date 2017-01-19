@@ -11,6 +11,8 @@ $(document).ready(function(){
     });
     */
     /* Esta es la funcion que hace que se pinte una celda*/
+
+
         
     $("#tbUsuario tr td").one("click",function() {
         var dia;

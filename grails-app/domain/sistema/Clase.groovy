@@ -44,7 +44,12 @@ class Clase {
 	}
 
 	//Obtener el día de la fecha de la clase
-	def getfechaDia(){
+	def getDia(){
+		return(this.dia)
+	}
+
+	def getFecha(){
+		return(this.fecha)
 	}
 
 	boolean hayLugar(){

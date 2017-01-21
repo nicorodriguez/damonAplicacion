@@ -110,7 +110,9 @@ ${servicio.nombreservicio}
     <select class="form-control" id="modalidad">
           <option value="0" disabled selected>-- Seleccionar --</option>
           <g:each var="servicio" in="${servicioLista}">
+          <% if ("${servicio.nombreservicio}" != "Profesor"){ %>
           <option value="${servicio.nombreservicio}">${servicio.nombreservicio}</option>
+          <% } %>
         </g:each>
     </select>
       <br>

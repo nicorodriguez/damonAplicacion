@@ -3,6 +3,7 @@ import seguridad.Usuario
 import seguridad.Rol
 import seguridad.Servicio
 import sistema.Clase
+import sistema.Tipousuario
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
@@ -53,7 +54,7 @@ class CalendarController {
 
     @Transactional
     def crearClase(){
-        /*
+        
         //Nota: traer los profesores disponibles del servidor con email y nombre, luego al crear la clase pasar sólo el email por parametro
 
         try{
@@ -80,9 +81,20 @@ class CalendarController {
             Tipousuario tipo1 = Tipousuario.findByNombre(tipoUsuario)
 
             //Verifico que no existe una clase en ese dia, horario y con dicho tipo
-            Clase class = Clase.findByFechaAndHorarioAndTipo(fechaDate,horaDate,tipo1)
+            Clase clasevieja = Clase.findAllByFechaAndHorario(fechaDate,horaDate)
 
-            if (class){
+            // Clase clasevieja = Clase.findByFechaAndHorarioAndTipo(fechaDate,horaDate,tipo1)
+
+            Boolean existeClase = false
+
+            for (Clase item: clasevieja){
+                if (clasevieja.tipo == tipo1){
+                    existeClase = true
+                    break;
+                }
+            }
+
+            if (existeClase){
                 println("CrearClase - Clase ya creada en ese fecha, horario y con ese tipo")
                 render("false")
             }
@@ -102,12 +114,12 @@ class CalendarController {
 
             render ("false")
         }
-        */
+        
     }
 
     
     def anotarseClase(){
-        /*
+        
         try{
             println("AnotarseClase - Voy a buscar los parametros")
 
@@ -150,26 +162,45 @@ class CalendarController {
                     //Verifico que haya lugar en la clase
                     if (!clasee.hayLugar()){
                         println("AnotarseClase - Clase llena")
-                        println("Cantidad Actual: " + clasee.cantidadActual "= Cantidad Max: " + clasee.cantidadMax)
+                        println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
                         render("false")
                     }
                     else{
                         println("AnotarseClase - Clase con lugar disponible")
-                        println("Cantidad Actual: " + clasee.cantidadActual "= Cantidad Max: " + clasee.cantidadMax)
+                        println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
 
-                        Int cantAct = clasee.aumentarCapActual()
-                        println("Nueva Cantidad Actual = " + cantAct)
+                        boolean resultadoCreditos = usuario.hayCreditos()
 
-                        //Agrego Usuario a la lista de anotados:
-                        boolean resultado = clasee.agregarUsuarioALista(usuario)
+                        if (resultadoCreditos){
+                            Integer cantAct = clasee.aumentarCapActual()
 
-                        if (!resultado){
-                            println("AnotarseClase - No se pudo agregar a la lista")
-                            render("false")
+                            println("Nueva Cantidad Actual de Clase = " + cantAct)
+
+                            Boolean resuCreditos = usuario.disminuirCreditos()
+
+                            if (resuCreditos){
+                                println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+                                
+                                //Agrego Usuario a la lista de anotados:
+                                boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
+                                                    
+                                if (!resultadoFinal){
+                                    println("AnotarseClase - No se pudo agregar a la lista")
+                                    render("false")
+                                }
+                                else{
+                                    println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
+                                    render("true")
+                                }
+                            }
+                            else{
+                                println("AnotarseClase - No se pudo disminuir los creditos")
+                                render("false")
+                            }
                         }
                         else{
-                            println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
-                            render("true")
+                            println("AnotarseClase - No se anoto al usuario porque no tiene creditos")
+                            render("false")
                         }
                     }
                 }
@@ -183,7 +214,7 @@ class CalendarController {
             render ("false")
         }
 
-        */
+        
     }
 
 }

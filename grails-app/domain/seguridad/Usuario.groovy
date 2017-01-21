@@ -12,6 +12,7 @@ class Usuario {
 	String apellido
 	String sexo
 	String estado = 'p'
+	Integer creditosActuales
 	Rol rol
 	Servicio servicio
 	Tipousuario tipo
@@ -29,6 +30,7 @@ class Usuario {
 		this.rol = r
 		this.servicio = s
 		this.tipo = t
+		this.creditosActuales = s.cantidadcreditos
 	}
 
 	static mapping = {
@@ -119,6 +121,7 @@ class Usuario {
 			return false
 		}
 	}
+
 	String setRol(Rol s){
 		try{
 			this.rol = s
@@ -129,27 +132,107 @@ class Usuario {
 			println(e)
 		}
 	}
-	String setServicio(Servicio s){
+
+	Boolean setServicio(Usuario usuarioPrivilegiado, Usuario usuarioACambiar, Servicio s){
 		try{
-			this.servicio = s
-			return("true")
+			Rol r = usuarioPrivilegiado.getRol()
+			String nombreR = r.getNombrerol()
+			if (nombreR == "ROL_ADMIN"){
+				if (usuarioACambiar.servicio != s){
+					usuarioACambiar.servicio = s
+					println("Se cambio el Servicio con Exito")
+					return(true)
+				}
+				else{
+					println("El Usuario ya tiene dicho servicio!")
+					return(false)
+				}
+			}
+			else{
+				println("No tiene el rol necesario para cambiar el servicio!")
+				return(false)
+			}
 		}
 		catch(Exception e){
 			println("PROBLEMA")
 			println(e)
 		}
 	}
-	Boolean setTipo(Usuario u, Tipousuario t){
-		Rol r = u.getRol()
+	
+	Boolean setTipo(Usuario usuarioPrivilegiado, Usuario usuarioACambiar, Tipousuario t){
+		Rol r = usuarioPrivilegiado.getRol()
 		String nombreR = r.getNombrerol()
 		if (nombreR == "ROL_ADMIN"){
-			this.tipo = t
-			println("Se cambio el Tipo de Usuario con Exito")
-			return true
+			if (usuarioACambiar.tipo != t){
+				usuarioACambiar.tipo = t
+				println("Se cambio el Tipo de Usuario con Exito")
+				return(true)
+			}
+			else{
+				println("El Usuario ya tiene dicho tipo!")
+				return(false)
+			}
 		}
 		else{
-			println("No tiene el rol necesario!")
-			return false
+			println("No tiene el rol necesario para cambiar el tipo de usuario!")
+			return(false)
+		}
+	}
+
+	Boolean hayCreditos(){
+		if (this.creditosActuales > 0){
+			println("Creditos distintos a cero!")
+			println("Creditos Actuales: "+this.creditosActuales)
+			return(true)
+		}
+		else{
+			println("Creditos iguales a cero!")
+			println("Creditos Actuales: "+this.creditosActuales)
+			return(false)
+		}
+
+	}
+
+	Boolean disminuirCreditos(){
+		if (this.creditosActuales > 0){
+			this.creditosActuales = this.creditosActuales - 1
+			println("Se disminuyo los créditos correctamente!")
+			println("Creditos Actuales: "+this.creditosActuales)
+			return(true)
+		}
+		else{
+			println("No se disminuyo los creditos porque son iguales a cero!")
+			println("Creditos Actuales: "+this.creditosActuales)
+			return(false)
+		}
+	}
+
+	Boolean aumentarCreditos(){
+		if ((this.creditosActuales < this.servicio.cantidadcreditos) && (this.creditosActuales >= 0)){
+			this.creditosActuales = this.creditosActuales + 1
+			println("Se aumento los creditos correctamente!")
+			println("Creditos Actuales: "+this.creditosActuales)
+			return(true)
+		}
+		else{
+			println("No se aumento los créditos porque la cantidad actual es la cantidad maxima o menor que cero!")
+			println("Creditos Actuales: "+this.creditosActuales)
+			return(false)
+		}
+	}
+
+	Boolean resetarCreditos(Usuario usuarioPrivilegiado, Usuario usuarioACambiar){
+		Rol r = usuarioPrivilegiado.getRol()
+		String nombreR = r.getNombrerol()
+		if (nombreR == "ROL_ADMIN"){
+			Integer creditosResetear = usuarioACambiar.servicio.cantidadcreditos
+			usuarioACambiar.creditosActuales = creditosResetear
+			println("Se resetearon los creditos del usuario")
+			return(true)
+		}
+		else{
+			println("No tiene el rol necesario para resetear los creditos del usuario!")
+			return(false)
 		}
 	}
 

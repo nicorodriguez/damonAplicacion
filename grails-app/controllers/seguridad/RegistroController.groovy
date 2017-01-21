@@ -80,6 +80,11 @@ class RegistroController {
     def modificarSexo(){
         try{
             Usuario admin = Usuario.findByEmail("ni.co55@hotmail.com")
+
+            Usuario adminNuevo = Usuario.get(admin.id)
+            adminNuevo.nombre = "Nico2"
+
+            adminNuevo.save(flush: true)
         }
         catch(Exception e){
             println("PROBLEMA")

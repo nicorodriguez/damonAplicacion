@@ -22,10 +22,10 @@
    <!-- Latest compiled and minified JavaScript -->
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="jquery.ui.datepicker-es.js"></script>
+ 
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
 	<asset:stylesheet src="estiloCalendar.css"/>
@@ -238,7 +238,7 @@
                       </div>
                       <div class="form-group">
                           <label>Fecha</label>
-                          <input type="text" id="fecha" name="fecha" />
+                          <input type="text" id="datepicker" name="fecha" />
                       </div>
                     </div>
                 </div>
@@ -308,12 +308,14 @@
 </footer>
 
 <script>
-        $( document ).ready(function() {
-            $('#fecha').datepicker({
-              minDate: "0",
-              maxDate: "7d"
-            });
-        });
+$(function () {
+$.datepicker.setDefaults($.datepicker.regional["ar"]);
+$("#datepicker").datepicker({
+  dateFormat: "dd/mm/yy",
+  minDate: "0D",
+  maxDate: "+7D"
+});
+});
     </script>
 </body>
 </html>

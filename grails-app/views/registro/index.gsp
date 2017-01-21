@@ -125,7 +125,7 @@ ${servicio.nombreservicio}
 </div>
 </div>
 <hr>
-  <dir class="alert alert-danger" id="error"><p class="text-center">Verifique los campos en rojo</p></dir>
+  <dir class="alert alert-danger" id="error"><p class="text-center"><b>¡Error!</b> Haz algunos cambios antes de volver a enviar el formulario.</p></dir>
 <footer class="container-fluid text">
   <p>
       <div class="footer-right">

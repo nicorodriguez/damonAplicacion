@@ -8,7 +8,7 @@
 	<body>
 		<g:if env="development">
 			<!--<g:renderException exception="${exception}" />-->
-			<h1> ANDATE A LA PUTA - DICE DIEGO</h1>
+			<h1> ERROR!</h1>
 		</g:if>
 		<g:else>
 			<ul class="errors">

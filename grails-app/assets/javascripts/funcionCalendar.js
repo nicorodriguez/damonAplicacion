@@ -18,7 +18,7 @@ $(document).ready(function(){
         var dia;
         var primero;
         var hora;
-        var ptr
+        var ptr;
 
         /* Trae la celda seleccionada con un click y le cambia el fondo */
         $(this).css('background-color','#369');
@@ -28,9 +28,10 @@ $(document).ready(function(){
         dia=$("#tbUsuario tr").first().children('td').eq(posicion).text(); /* Trae dia */
         hora=$(this).parent().children('td').first().text(); /* Trae hora */
         
-        $(this).disabled
-        diahora= "Anotado " + dia + " " + hora + "hs"
-        $("#anotado li").first().append("<li>" + diahora + "</li>")
+        $(this).disabled;
+        // $(this).datepicker($.datepicker.regional['es']);
+        diahora= "Anotado " + dia + " " + hora + "hs";
+        $("#anotado li").first().append("<li>" + diahora + "</li>");
 
         /* Funcion para que inhabilite el evento click de los dias y los horarios*/
         
@@ -39,29 +40,36 @@ $(document).ready(function(){
        
     /*Sacamos evento onclick*/    
     $(".semana").children().unbind("click");
-    $(".horarios").unbind("click")
+    $(".horarios").unbind("click");
 
     });
 
 function crearClase() {
-    var dia,horario,profesor,fecha,tipo
+    var dia;
+    var horario;
+    var profesor;
+    var fecha;
+    var tipo;
+    var cantidad;
 
-    dia=$("#dias").val()
-    horario=$("#horario").val()
-    profesor=$("#profesor").val()
-    tipo=$("#tipo").val()
-    fecha=$("#fecha").val()
+    dia=$("#dias").val();
+    horario=$("#horario").val();
+    profesor=$("#profesor").val();
+    tipo=$("#tipo").val();
+    fecha=$("#fecha").val();
+    cantidad=$("#cant").val();
 
-    envioDatos(dia,horario,profesor,tipo,fecha);  
+    envioDatos(dia,horario,profesor,tipo,fecha,cantidad);  
 }
 
-function envioDatos(dia,horario,profesor,tipo,fecha){
+function envioDatos(dia,horario,profesor,tipo,fecha,cantidad){
     var datos = {
         dia: dia,  
         horario: horario,
         profe: profesor,
         tipous: tipo,
-        fecha: fecha
+        fecha: fecha,
+        cantmax: cantidad
     };
     $.post( "/damonAplicacion/calendar/crearClase", datos).done(function( resp ){
         console.log(resp);

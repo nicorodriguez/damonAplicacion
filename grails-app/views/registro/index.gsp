@@ -100,13 +100,6 @@ ${servicio.nombreservicio}
         <option value="3">Pase libre</option>
     </select> --}%
 
-    %{-- <select class="form-control" id="modalidad">
-          <option value="0" disabled selected>-- Seleccionar --</option>
-          <g:each var="servicio" in="${servicioLista}">
-          <option value="1">${servicio.nombreservicio}</option>
-        </g:each>
-    </select> --}%
-
     <select class="form-control" id="modalidad">
           <option value="0" disabled selected>-- Seleccionar --</option>
           <g:each var="servicio" in="${servicioLista}">

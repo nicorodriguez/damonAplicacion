@@ -1,12 +1,16 @@
 <%@ page import="session.SessionManager" %>
 <%@ page import="seguridad.Usuario" %>
 <%@ page import="seguridad.Rol" %>
+<%@ page import="sistema.Tipousuario" %>
 <% def smgr = new SessionManager(request.session) %>
 <% def usuario = smgr.getCurrentUser() %>
 <% def nombre = usuario.getNombre() %>
 <% def apellido = usuario.getApellido() %>
 <% def rol = smgr.getCurrentRol() %>
 <% def nombreRol = rol.nombrerol %>
+<% def rolProf = Rol.findByNombrerol("ROL_PROF") %>
+<% def profesores = Usuario.findAllByRol(rolProf) %>
+<% def tipousuariosLista = Tipousuario.getAll() %>
 
 <!DOCTYPE html>
 <html>
@@ -170,7 +174,11 @@
                   <h4 class="modal-title" id="myModalLabel">Crear Clase</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                      %{-- <div class="form-group">
+                          <label>Fecha</label>
+                          <input type="text" id="datepicker" name="fecha" />
+                      </div> --}%
+                      <div class="form-group">
                         <label for="dias">Dia</label>
                         <select class="form-control" id="dias">
                           <option disabled selected>-- Seleccionar --</option>
@@ -179,7 +187,7 @@
                           <option>Miercoles</option>
                           <option>Jueves</option>
                           <option>Viernes</option>
-                          <option>Sabados</option>
+                          <option>Sabado</option>
                           <option>Domingo</option>
                         </select>
                       </div>
@@ -222,23 +230,31 @@
                           <label for="email">Profesor</label>
                           <select class="form-control" id="profesor">
                               <option value="0" disabled selected>-- Seleccionar --</option>
-                              <option value="1">David</option>
-                              <option value="2">Herni</option>
-                              <option value="3">China</option>
+                              <g:each var="profesor" in="${profesores}">
+                              <option value="${profesor.email}">${profesor.nombre}</option>
+                              </g:each>
                           </select>
                         </div>
                         <div class="form-group">
                           <label for="email">Tipo de Usuarios</label>
                           <select class="form-control" id="tipo">
                               <option value="0" disabled selected>-- Seleccionar --</option>
-                              <option value="1">KIDS</option>
-                              <option value="2">CROSSFITERO</option>
-                              <option value="3">ATLETA</option>
+                              <g:each var="tipos" in="${tipousuariosLista}">
+                              <% if ("${tipos.nombre}" != "PENDIENTE"){ %>
+                                <% if ("${tipos.nombre}" != "ADMIN"){ %>
+                                  <option value="${tipos.nombre}">${tipos.nombre}</option>
+                                <% } %>
+                              <% } %>
+                              </g:each>
                           </select>
                       </div>
                       <div class="form-group">
                           <label>Fecha</label>
                           <input type="text" id="datepicker" name="fecha" />
+                      </div>
+                      <div class="form-group nom">
+                        <label for="cantidad">Cantidad Máxima:</label>
+                        <input type="text" class="form-control" id="cant" placeholder="Ingresar cantidad" maxlength="2" required>
                       </div>
                     </div>
                 </div>
@@ -253,7 +269,7 @@
 
           </div>
       <div class="col-md-3" id="clases">
-        %{-- <% if (nombreRol == "ROL_ADMIN"){ %> --}%
+
         <% if (nombreRol == "ROL_ADMIN"){ %>
         
           <div>

@@ -65,22 +65,29 @@ class CalendarController {
             String fecha = request.getParameter("fecha")
             String horario = request.getParameter("horario")
             String profeEmail = request.getParameter("profe")
-            String tipoUsuario = request.getParameter("tipo")
-            Integer maxCantidad = request.getParameter("cantmax")
+            String tipoUsuario = request.getParameter("tipous")
+            String cantString = request.getParameter("cantmax")
+            Integer maxCantidad = cantString.toInteger()
+
+            println("Recibi los parametros: -> "+dia+", "+fecha+", "+horario+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
 
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
+            println("CrearClase - Voy a parsear las date")
             Date diaDate = Date.parse( 'EEEE', dia )
             Date fechaDate = Date.parse( 'dd/MM/yyyy', fecha )
             Date horaDate = Date.parse( 'hh:mm', horario )
 
             //Traer los profesores de la base de datos verifica que existe
+            println("CrearClase - Voy a buscar el Profesor")
             Usuario prof = Usuario.findByEmail(profeEmail)
 
             //Traer los tipos de la base de datos verifica que existen
+            println("CrearClase - Voy a buscar el Tipo de Usuario")
             Tipousuario tipo1 = Tipousuario.findByNombre(tipoUsuario)
 
             //Verifico que no existe una clase en ese dia, horario y con dicho tipo
+            println("CrearClase - Voy a ver si existe una clase igual")
             Clase clasevieja = Clase.findAllByFechaAndHorario(fechaDate,horaDate)
 
             // Clase clasevieja = Clase.findByFechaAndHorarioAndTipo(fechaDate,horaDate,tipo1)

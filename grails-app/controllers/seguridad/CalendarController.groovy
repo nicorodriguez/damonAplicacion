@@ -137,6 +137,8 @@ class CalendarController {
             String usuarioEmail = request.getParameter("usuarioemail")
             String tipoClase = request.getParameter("tipoclase")
 
+            println("Recibi los parametros: -> "+dia+", "+fecha+", "+horario+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
+
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
             Date diaDate = Date.parse( 'EEEE', dia )
@@ -222,6 +224,91 @@ class CalendarController {
         }
 
         
+    }
+
+    def desanotarseClase(){
+
+        try{
+
+            println("DesanotarseClase - Voy a buscar los parametros")
+
+            // Capturo datos de post de formulario
+            String dia = request.getParameter("dia")
+            String fecha = request.getParameter("fecha")
+            String horario = request.getParameter("horario")
+            String usuarioEmail = request.getParameter("usuarioemail")
+            String tipoClase = request.getParameter("tipoclase")
+
+            println("Recibi los parametros: -> "+dia+", "+fecha+", "+horario+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
+
+            //Verificar las fechas en las funciones de javascript
+            //Paso las fechas de strings a date
+            Date diaDate = Date.parse( 'EEEE', dia )
+            Date fechaDate = Date.parse( 'dd/MM/yyyy', fecha )
+            Date horaDate = Date.parse( 'hh:mm', horario )
+
+            //Traigo los datos de la clase:
+            Clase clasee = Clase.findByFechaAndHorarioAndTipo(fechaDate,horaDate,tipoClase)
+            
+            //Verifico que exista la clase
+            if (!clasee){
+                println("DesanotarseClase - Clase inexistenete en esa fecha, horario y con ese tipo")
+                render("false")
+            }
+            else{
+                //Traer los datos del usuario:
+                Usuario usuario = Usuario.findByEmail(usuarioEmail)
+
+                //Traigo el tipo del usuario
+                Tipousuario tipoUsuario = usuario.tipo
+
+                //Comparo el tipo de usuario con el tipo de la clase
+                if (tipoUsuario != tipoClase){
+                    println("DesanotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
+                    render("false")
+                }
+                else{
+                    println("DesanotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
+
+                    println("DesanotarseClase - Clase con lugar disponible")
+                    println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+
+                    Integer cantAct = clasee.disminuirCapActual()()
+
+                    println("Nueva Cantidad Actual de Clase = " + cantAct)
+
+                    Boolean resuCreditos = usuario.aumentarCreditos()
+
+                    if (resuCreditos){
+                        println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+                                
+                        //Elimino Usuario a la lista de anotados:
+                        boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario)
+                                                    
+                        if (!resultadoFinal){
+                            println("DesanotarseClase - No se eliminar de la lista")
+                            render("false")
+                        }
+                        else{
+                            println("DesanotarseClase - SE ELIMINO SATISFACTORIAMENTE")
+                            render("true")
+                        }
+                    }
+                    else{
+                        println("DesanotarseClase - No se pudo aumentar los creditos")
+                        render("false")
+                    }
+                }
+            }
+            
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+
     }
 
 }

@@ -121,10 +121,15 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 		console.log(resp);
 		if(resp == "true"){
 			alert("Usuario creado satisfactoriamente");
-			$(location).attr('href', 'http://localhost:8080/damonAplicacion/');
+			// $(location).attr('href', 'http://localhost:8080/damonAplicacion/');
 		}
 		else{
-			alert("Usuario no creado");
+			if (resp == "existe"){
+				alert("Email en uso, por favor ingrese otro");
+			}
+			else{
+				alert("Usuario no creado");
+			}
 		}
 	});
 	

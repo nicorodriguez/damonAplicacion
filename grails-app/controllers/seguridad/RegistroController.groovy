@@ -44,7 +44,7 @@ class RegistroController {
 
             if (u){
                 println("Usuario ya creado")
-                render("false")
+                render ("existe")
             }
             else{
 
@@ -62,9 +62,9 @@ class RegistroController {
                 def a = usuariorol.usuariosrol
                 println(a)
 
-                redirect  (controller: "login" , action:"index")
+                // redirect  (controller: "login" , action:"index")
 
-    	        //render ("true")
+    	        render ("true")
             }
     	}
     	catch(Exception e){

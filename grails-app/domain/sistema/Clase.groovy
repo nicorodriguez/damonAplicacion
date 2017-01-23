@@ -62,15 +62,24 @@ class Clase {
 	}
 
 	int aumentarCapActual(){
-		println("cantidad anterior: " + this.cantidadActual)
+		println("AumentarCapActual -> cantidad anterior: " + this.cantidadActual)
 		this.cantidadActual = this.cantidadActual + 1
-		println("canidad siguiente: " + this.cantidadActual)
+		println("AumentarCapActual -> cantidad siguiente: " + this.cantidadActual)
+		return(this.cantidadActual)
+	}
+
+	int disminuirCapActual(){
+		println("DisminuirCapActual -> cantidad anterior: " + this.cantidadActual)
+		this.cantidadActual = this.cantidadActual - 1
+		println("DisminuirCapActual -> cantidad siguiente: " + this.cantidadActual)
 		return(this.cantidadActual)
 	}
 
 	boolean agregarUsuarioALista(Usuario u){
 		try{
+			println("AgregarUsuarioALista - Se inicia el proceso")
 			this.anotados << u
+			println("AgregarUsuarioALista - Se agrego al usuario: "+u.nombre+" Satisfactoriamente")
 			return(true)
 		}
 		catch(Exception e){
@@ -80,4 +89,29 @@ class Clase {
             return(false)
         }
 	}
+
+
+	boolean eliminarUsuarioDeLista(Usuario u){
+		try{
+			println("EliminarUsuarioDeLista - Se inicia el proceso")
+			String emailUser = u.email
+			this.anotados.removeAll{ anotados -> anotados.usuario.email == emailUser
+			}
+			println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
+			return(true)
+		}
+		catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            return(false)
+        }
+	}
+	// Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
+ //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])
+    
+    
+ //    c.pedidos.removeAll{ pedidos-> 
+ //        pedidos.producto.id == id
+ //    }
 }

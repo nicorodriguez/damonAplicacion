@@ -50,7 +50,7 @@ function crearClase() {
     envioDatos(profesor,tipo,fecha,cantidad);  
 }
 
-function envioDatos(horario,profesor,tipo,fecha,cantidad){
+function envioDatos(profesor,tipo,fecha,cantidad){
     var datos = { 
         profe: profesor,
         tipous: tipo,

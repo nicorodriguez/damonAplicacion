@@ -19,7 +19,7 @@ $(document).ready(function(){
         $(this).disabled;
         // $(this).datepicker($.datepicker.regional['es']);
         diahora= "Anotado " + dia + " " + hora + "hs";
-        $("#anotado li").first().append("<li>" + diahora + " " +  '<button type="button" class="desanotarme"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>' + "</li>");
+        $("#anotado li").first().append("<li>" + diahora + " " + '<button type="button" class="desanotarme"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>' + "</li>");
 
         /* Funcion para que inhabilite el evento click de los dias y los horarios*/
         

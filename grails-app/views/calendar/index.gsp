@@ -32,7 +32,9 @@
  
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
-	<asset:stylesheet src="estiloCalendar.css"/>
+	<asset:stylesheet src="estiloCalendar.css"/> 
+
+  <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 	<title>Damon | Calendario</title>
 </head>
@@ -250,7 +252,7 @@
                       </div>
                       <div class="form-group">
                           <label>Fecha</label>
-                          <input type="text" id="datepicker" name="fecha" />
+                          <input type="text" id="fecha" name="fecha" />
                       </div>
                       <div class="form-group nom">
                         <label for="cantidad">Cantidad Máxima:</label>
@@ -344,7 +346,7 @@ $(function () {
   yearSuffix: ''
   };
 $.datepicker.setDefaults($.datepicker.regional["es"]);
-$("#datepicker").datepicker({
+$("#fecha").datepicker({
   dateFormat: "dd/mm/yy",
   minDate: "0D",
   maxDate: "+7D"

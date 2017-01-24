@@ -43,15 +43,15 @@ function crearClase() {
     horario=$("#horario").val();
     profesor=$("#profesor").val();
     tipo=$("#tipo").val();
-    fecha=$("#fecha").val();
+    fecha1=$("#fecha").val();
+    fecha= fecha1 + " " + horario
     cantidad=$("#cant").val();
 
-    envioDatos(dia,horario,profesor,tipo,fecha,cantidad);  
+    envioDatos(profesor,tipo,fecha,cantidad);  
 }
 
 function envioDatos(horario,profesor,tipo,fecha,cantidad){
     var datos = { 
-        horario: horario,
         profe: profesor,
         tipous: tipo,
         fecha: fecha,

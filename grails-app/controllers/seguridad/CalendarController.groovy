@@ -91,24 +91,13 @@ class CalendarController {
 
             //Verifico que no existe una clase en ese dia, horario y con dicho tipo
             println("CrearClase - Voy a ver si existe una clase igual")
-            // Clase clasevieja = Clase.findAllByFechaAndHorario(fechaDate,horaDate)
+            Clase clasevieja = Clase.findByFechaHorarioAndTipo(fechaDate,tipo1)
 
-            // Clase clasevieja = Clase.findByFechaAndHorarioAndTipo(fechaDate,horaDate,tipo1)
-
-            // Boolean existeClase = false
-
-            // for (Clase item: clasevieja){
-            //     if (clasevieja.tipo == tipo1){
-            //         existeClase = true
-            //         break;
-            //     }
-            // }
-
-            // if (clasevieja){
-            //     println("CrearClase - Clase ya creada en ese fecha, horario y con ese tipo")
-            //     render("false")
-            // }
-            // else{
+            if (clasevieja){
+                println("CrearClase - Clase ya creada en ese fecha, horario y con ese tipo")
+                render("false")
+            }
+            else{
                 Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
 
                 // Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
@@ -118,7 +107,7 @@ class CalendarController {
 
                 println("CrearClase - CLASE CREADA SATISFACTORIAMENTE")
                 render("true")
-        //     }
+            }
         }
         catch(Exception e){
             println("PROBLEMA")

@@ -123,39 +123,39 @@
                                     </tr>
                                     <tr>
                                        <td class="horarios">14:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                                     <tr>
                                        <td class="horarios">15:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                                     <tr>
                                        <td class="horarios">16:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                                     <tr>
                                        <td class="horarios">17:00</td>
-                                       <td>Columna 2</td>
-                                       <td>Columna 3</td>
-                                       <td>Columna 4</td>
-                                       <td>Columna 5</td>
-                                       <td>Columna 6</td>
-                                       <td>Columna 7</td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
+                                       <td></td>
                                     </tr>
                               </table>                                
                         </div>
@@ -180,19 +180,21 @@
                           <label>Fecha</label>
                           <input type="text" id="datepicker" name="fecha" />
                       </div> --}%
+                  <!-- Sacamos los dias por que ya los traeria el datepicker    
                       <div class="form-group">
                         <label for="dias">Dia</label>
                         <select class="form-control" id="dias">
                           <option disabled selected>-- Seleccionar --</option>
                           <option>Lunes</option>
                           <option>Martes</option>
-                          <option>Miercoles</option>
+                          <option>Miércoles</option>
                           <option>Jueves</option>
                           <option>Viernes</option>
-                          <option>Sabado</option>
+                          <option>Sábado</option>
                           <option>Domingo</option>
                         </select>
                       </div>
+                  -->
                       <div class="form-group">
                         <label for="horario">Horario</label>
                         <select class="form-control" id="horario">
@@ -347,7 +349,7 @@ $(function () {
   };
 $.datepicker.setDefaults($.datepicker.regional["es"]);
 $("#fecha").datepicker({
-  dateFormat: "dd/mm/yy",
+  dateFormat: "DD dd/mm/yy",
   minDate: "0D",
   maxDate: "+7D"
 });

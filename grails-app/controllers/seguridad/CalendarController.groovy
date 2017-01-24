@@ -65,10 +65,15 @@ class CalendarController {
             String profeEmail = request.getParameter("profe")
             String tipoUsuario = request.getParameter("tipous")
             String cantString = request.getParameter("cantmax")
+            
+            println("Recibi los parametros: -> "+fecha+", "+profeEmail+", "+tipoUsuario)
+            println("FECHA: "+fecha)
+            println("PROFESOR: "+profeEmail)
+            println("TIPO USUARIO: "+tipoUsuario)
+            println("CANT MAX: "+cantString)
+
             Integer maxCantidad = cantString.toInteger()
-
-            println("Recibi los parametros: -> "+fecha+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
-
+            println("Cant Max: "+maxCantidad)
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
             println("CrearClase - Voy a parsear la date")

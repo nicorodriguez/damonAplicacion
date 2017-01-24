@@ -3,11 +3,14 @@ import seguridad.Usuario
 import seguridad.Rol
 import seguridad.Servicio
 import sistema.Tipousuario
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpSession
+import grails.transaction.Transactional
 
 class Clase {
 
-	Date dia
-	Date fecha
+	Date diaSemana
+	Date fechas
 	Date horario
 	Usuario profe
 	Tipousuario tipo
@@ -18,8 +21,8 @@ class Clase {
 
 	Clase(Date dia1, Date fecha1, Date horario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
 		this()
-		this.dia = dia1
-		this.fecha = fecha1
+		this.diaSemana = dia1
+		this.fechas = fecha1
 		this.horario = horario1
 		this.profe = profe1
 		this.tipo = tipo1
@@ -45,19 +48,19 @@ class Clase {
 
 	//Obtener el día de la fecha de la clase
 	def getDia(){
-		return(this.dia)
+		return(this.diaSemana)
 	}
 
 	def getFecha(){
-		return(this.fecha)
+		return(this.fechas)
 	}
 
 	boolean hayLugar(){
 		if (this.cantidadActual < this.cantidadMax){
-			return(true);
+			return(true)
 		}
 		else{
-			return(false);
+			return(false)
 		}
 	}
 
@@ -91,22 +94,22 @@ class Clase {
 	}
 
 
-	boolean eliminarUsuarioDeLista(Usuario u){
-		try{
-			println("EliminarUsuarioDeLista - Se inicia el proceso")
-			String emailUser = u.email
-			this.anotados.removeAll{ anotados -> anotados.usuario.email == emailUser
-			}
-			println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
-			return(true)
-		}
-		catch(Exception e){
-            println("PROBLEMA")
-            println(e)
+	// boolean eliminarUsuarioDeLista(Usuario u){
+	// 	try{
+	// 		println("EliminarUsuarioDeLista - Se inicia el proceso")
+	// 		String emailUser = u.email
+	// 		this.anotados.removeAll{ anotados -> anotados.usuario.email == emailUser
+	// 		}
+	// 		println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
+	// 		return(true)
+	// 	}
+	// 	catch(Exception e){
+ //            println("PROBLEMA")
+ //            println(e)
 
-            return(false)
-        }
-	}
+ //            return(false)
+ //        }
+	// }
 	// Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
  //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])
     

@@ -9,9 +9,7 @@ import grails.transaction.Transactional
 
 class Clase {
 
-	Date diaSemana
-	Date fechas
-	Date horario
+	Date fechaHorario
 	Usuario profe
 	Tipousuario tipo
 	Integer cantidadMax
@@ -19,11 +17,9 @@ class Clase {
 	static hasMany = [anotados: Usuario]
 	static belongsTo = Usuario
 
-	Clase(Date dia1, Date fecha1, Date horario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
+	Clase(Date fechaHorario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
 		this()
-		this.diaSemana = dia1
-		this.fechas = fecha1
-		this.horario = horario1
+		this.fechaHorario = fechaHorario1
 		this.profe = profe1
 		this.tipo = tipo1
 		this.cantidadMax = cantidadMax1
@@ -47,13 +43,13 @@ class Clase {
 	}
 
 	//Obtener el día de la fecha de la clase
-	def getDia(){
-		return(this.diaSemana)
-	}
+	// def getDia(){
+	// 	return(this.fechaHorario)
+	// }
 
-	def getFecha(){
-		return(this.fechas)
-	}
+	// def getFecha(){
+	// 	return(this.fechaHorario)
+	// }
 
 	boolean hayLugar(){
 		if (this.cantidadActual < this.cantidadMax){

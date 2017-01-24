@@ -61,28 +61,20 @@ class CalendarController {
             println("CrearClase - Voy a buscar los parametros")
 
             // Capturo datos de post de formulario
-            String dia = request.getParameter("dia")
             String fecha = request.getParameter("fecha")
-            String horario = request.getParameter("horario")
             String profeEmail = request.getParameter("profe")
             String tipoUsuario = request.getParameter("tipous")
             String cantString = request.getParameter("cantmax")
             Integer maxCantidad = cantString.toInteger()
 
-            println("Recibi los parametros: -> "+dia+", "+fecha+", "+horario+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
+            println("Recibi los parametros: -> "+fecha+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
 
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
-            println("CrearClase - Voy a parsear las date")
-            Date diaDate = Date.parse( "EEEE", dia )
-            Date fechaDate = Date.parse( "dd/MM/yyyy", fecha )
-            Date horaDate = Date.parse( "hh:mm", horario )
+            println("CrearClase - Voy a parsear la date")
+            Date fechaDate = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha )
 
-            // def formatoNuevo = new SimpleDateFormat("EEEE")
-            // def formatoNuevo2 = new SimpleDateFormat("dd/MM/yyyy")
-            // def formatoNuevo3 = new SimpleDateFormat("hh:mm")
-
-            println("CrearClase -> "+diaDate+", "+fechaDate+", "+horaDate)
+            println("CrearClase -> "+fechaDate)
 
             //Traer los profesores de la base de datos verifica que existe
             println("CrearClase - Voy a buscar el Profesor")
@@ -112,7 +104,7 @@ class CalendarController {
             //     render("false")
             // }
             // else{
-                Clase clasee = new Clase(diaDate,fechaDate,horaDate,prof,tipo1,maxCantidad)
+                Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
 
                 // Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
                 clasee.inicializarTablaAnotados()

@@ -69,8 +69,8 @@ ${servicio.nombreservicio}
     <div class="form-group">
       <label for="Sexo">Sexo:</label>
     <div class="checkbox">
-       <label class="radio-inline"><input type="radio" name="optradio" required class="sexo">Femenino</label>
-       <label class="radio-inline"><input type="radio" name="optradio" required class="sexo">Masculino</label> 
+       <label class="radio-inline"><input type="radio" name="optradio" required class="sexo" value="F">Femenino</label>
+       <label class="radio-inline"><input type="radio" name="optradio" required class="sexo" value="M">Masculino</label> 
     </div>      
     </div>
     <div class="form-group pass">

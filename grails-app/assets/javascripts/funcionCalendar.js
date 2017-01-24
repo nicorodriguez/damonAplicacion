@@ -1,18 +1,6 @@
 
 $(document).ready(function(){
-
-    /*
-    $("#tbUsuario tr").click(function(){
-        $(this).css('background-color','black');
-        $(this).css('color','white');
-        $("#acciones").fadeIn('slow');
-        var a = $(".td1:first").val();
-        alert(a);
-    });
-    */
     /* Esta es la funcion que hace que se pinte una celda*/
-
-
         
     $("#tbUsuario tr td").one("click",function() {
         var dia;
@@ -31,7 +19,7 @@ $(document).ready(function(){
         $(this).disabled;
         // $(this).datepicker($.datepicker.regional['es']);
         diahora= "Anotado " + dia + " " + hora + "hs";
-        $("#anotado li").first().append("<li>" + diahora + "</li>");
+        $("#anotado li").first().append("<li>" + diahora + " " +  '<button type="button" class="desanotarme"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>' + "</li>");
 
         /* Funcion para que inhabilite el evento click de los dias y los horarios*/
         

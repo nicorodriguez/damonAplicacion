@@ -6,6 +6,7 @@ import sistema.Tipousuario
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
+import java.text.SimpleDateFormat
 
 class Clase {
 
@@ -42,14 +43,34 @@ class Clase {
 		this.anotados = []
 	}
 
-	//Obtener el día de la fecha de la clase
-	// String getDia(){
-	// 	return(this.fechaHorario)
-	// }
+	String getDia(){
+		def formatoDia = new SimpleDateFormat("EEEE")
+        String diaa = formatoDia.format(this.fechaHorario)
+        println(diaa)
+		return(diaa)
+	}
 
-	// String getFecha(){
-	// 	return(this.fechaHorario)
-	// }
+	String getDiaFecha(){
+		def formatoDiaFecha = new SimpleDateFormat("EEEE - dd")
+        String diafecha = formatoDiaFecha.format(this.fechaHorario)
+        println(diafecha)
+		return(diafecha)
+	}
+
+	String getFecha(){
+		def formatoFecha = new SimpleDateFormat("dd/MM/yyyy")
+        String fechaa = formatoFecha.format(this.fechaHorario)
+        println(fechaa)
+		return(fechaa)
+	}
+
+	String getHora(){
+		def formatoHora = new SimpleDateFormat("hh:mm")
+        String horaa = formatoHora.format(this.fechaHorario)
+        println(horaa)
+		return(horaa)
+
+	}
 
 	boolean hayLugar(){
 		if (this.cantidadActual < this.cantidadMax){

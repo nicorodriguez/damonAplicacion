@@ -1,6 +1,7 @@
 import seguridad.*
 import sistema.*
 import grails.transaction.Transactional
+import java.text.SimpleDateFormat
 
 @Transactional
 class BootStrap {
@@ -64,11 +65,23 @@ class BootStrap {
         administradorRol.agregarUsuario(usuarioPrueba)
         administradorRol.save(flush: true)
      	
-        // Clase clase1 = new Clase(,,)
+        String fecha1 = 'Jueves 26/01/2017 08:00'
+        Date fechaDate1 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha1 )
+        Clase clase1 = new Clase(fechaDate1,profesor,tipoUsuario3,30)
+        clase1.inicializarTablaAnotados()
+        clase1.save(flush: true)
+        
+        String fecha2 = 'Jueves 26/01/2017 08:00'
+        Date fechaDate2 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha2 )
+        Clase clase2 = new Clase(fechaDate2,profesor,tipoUsuario2,20)
+        clase2.inicializarTablaAnotados()
+        clase2.save(flush: true)
 
-        // Clase clase2 = new Clase(,,)
-
-        // Clase clase3 = new Clase(,,)
+        String fecha3 = 'Martes 24/01/2017 09:00'
+        Date fechaDate3 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha3 )
+        Clase clase3 = new Clase(fechaDate3,profesor,tipoUsuario3,15)
+        clase3.inicializarTablaAnotados()
+        clase3.save(flush: true)
     	
     }
     def destroy = {

@@ -2,6 +2,7 @@
 <%@ page import="seguridad.Usuario" %>
 <%@ page import="seguridad.Rol" %>
 <%@ page import="sistema.Tipousuario" %>
+<%@ page import="sistema.Clase" %>
 <% def smgr = new SessionManager(request.session) %>
 <% def usuario = smgr.getCurrentUser() %>
 <% def nombre = usuario.getNombre() %>
@@ -11,6 +12,8 @@
 <% def rolProf = Rol.findByNombrerol("ROL_PROF") %>
 <% def profesores = Usuario.findAllByRol(rolProf) %>
 <% def tipousuariosLista = Tipousuario.getAll() %>
+<% def claseLista = Clase.getAll() %>
+
 
 <!DOCTYPE html>
 <html>
@@ -61,7 +64,53 @@
   </div>
 </nav>
 
-   <div class="row">
+<div class="row">
+            <div class="col-md-7" id="calendario">
+               <div class="panel panel-primary" id="panel1">
+                     <div class="panel-heading">Calendario</div>
+                        <div sclass="panel-body">
+                              <table class="table" id="tbUsuario">
+                                <thead>
+                                  <tr>
+                                    <th>Horario</th>
+                                    <th>Lunes</th>
+                                    <th>Martes</th>
+                                    <th>Miércoles</th>
+                                    <th>Jueves</th>
+                                    <th>Viernes</th>
+                                    <th>Sábados</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  %{-- <g:each var="clase" in="${claseLista.sort{it.fechaHorario}}"> --}%
+                                  <g:each var="clase" in="${claseLista.sort{it.getHora()}}">
+                                    <tr class="semana">
+                                      %{-- <th scope="row">${claseLista}</th> --}%
+                                       <td>${clase.getHora()}</td>
+                                       %{-- <td>${clase.getDia()}</td> --}%
+                                       <td> <g:if test="${clase.getDia()=="lunes"}"> ${clase.tipo.nombre} </g:if></td>
+                                       <td> <g:if test="${clase.getDia()=="martes"}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td> <g:if test="${clase.getDia()=="miércoles"}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td> <g:if test="${clase.getDia()=="jueves"}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td> <g:if test="${clase.getDia()=="viernes"}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td> <g:if test="${clase.getDia()=="sábados"}"> ${clase.tipo.nombre} </g:if> </td>
+                                    </tr>
+                                  </g:each>
+                                  </tbody>
+                              </table>                                
+                        </div>
+                     </div>
+
+      %{-- <g:each var="pedido" in="${pedidosCarrito}">
+        <div class="col s3" id="productonombre">${pedido.producto.nombre} </div>
+            <div class="col s3" id="preciosprod">${pedido.producto.precio} </div>
+            <div class="col s3" id="cantidadprod">${pedido.cantidad} </div>
+            <div class="col s3" id="delete-elem">
+              <span id="${pedido.producto.id}" class="delete-elem"><i class="material-icons">delete</i></span>
+          </div>
+      </g:each> --}%
+
+   %{-- <div class="row">
             <div class="col-md-7" id="calendario">
                <div class="panel panel-primary" id="panel1">
                      <div class="panel-heading">Calendario</div>
@@ -159,7 +208,7 @@
                                     </tr>
                               </table>                                
                         </div>
-                     </div>
+                     </div> --}%
 
 
                       

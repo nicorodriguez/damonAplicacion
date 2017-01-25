@@ -43,11 +43,11 @@ class Clase {
 	}
 
 	//Obtener el día de la fecha de la clase
-	// def getDia(){
+	// String getDia(){
 	// 	return(this.fechaHorario)
 	// }
 
-	// def getFecha(){
+	// String getFecha(){
 	// 	return(this.fechaHorario)
 	// }
 

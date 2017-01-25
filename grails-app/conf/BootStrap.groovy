@@ -64,6 +64,11 @@ class BootStrap {
         administradorRol.agregarUsuario(usuarioPrueba)
         administradorRol.save(flush: true)
      	
+        // Clase clase1 = new Clase(,,)
+
+        // Clase clase2 = new Clase(,,)
+
+        // Clase clase3 = new Clase(,,)
     	
     }
     def destroy = {

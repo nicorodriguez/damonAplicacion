@@ -50,7 +50,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      %{-- <img src="assets\images\favicon.ico" class="img-rounded" width="45" height="45"> --}%      
+     <asset:image src="logo.png" class="img-rounded" width="45" height="45"/>    
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -176,25 +176,6 @@
                   <h4 class="modal-title" id="myModalLabel">Crear Clase</h4>
                 </div>
                 <div class="modal-body">
-                      %{-- <div class="form-group">
-                          <label>Fecha</label>
-                          <input type="text" id="datepicker" name="fecha" />
-                      </div> --}%
-                  <!-- Sacamos los dias por que ya los traeria el datepicker    
-                      <div class="form-group">
-                        <label for="dias">Dia</label>
-                        <select class="form-control" id="dias">
-                          <option disabled selected>-- Seleccionar --</option>
-                          <option>Lunes</option>
-                          <option>Martes</option>
-                          <option>Miércoles</option>
-                          <option>Jueves</option>
-                          <option>Viernes</option>
-                          <option>Sábado</option>
-                          <option>Domingo</option>
-                        </select>
-                      </div>
-                  -->
                       <div class="form-group">
                         <label for="horario">Horario</label>
                         <select class="form-control" id="horario">

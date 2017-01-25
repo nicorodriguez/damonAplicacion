@@ -68,5 +68,61 @@ function envioDatos(profesor,tipo,fecha,cantidad){
         }
     });
 }
+/*
+function prepararDatos(){
 
+    horario=$("#horario").val();
+    fecha1=$("#fecha").val();
+    fecha= fecha1 + " " + horario
 
+    anotarse(horario,fecha1)
+
+}
+
+function anotarse(horario,fecha){
+    var datos = {
+        horario: horario,
+        fecha: fecha
+    };
+  $.post( "/damonAplicacion/calendar/anotarse", datos).done(function( resp ){
+    console.log(resp);
+    if(resp == "true"){
+        alert("Se anoto correctamente");
+        $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+    }
+    else{
+        alert("Hubo un inconveniente al querer anotarse, intentelo nuevamente.");
+    }
+});
+
+}
+
+function prepararDatos(){
+
+    horario=$("#horario").val();
+    fecha1=$("#fecha").val();
+    fecha= fecha1 + " " + horario
+
+    desanotarse(horario,fecha1)
+
+}
+
+function desanotarse(horario,fecha){
+    var datos = {
+        horario: horario,
+        fecha: fecha
+    };
+  $.post( "/damonAplicacion/calendar/desanotarse", datos).done(function( resp ){
+    console.log(resp);
+    if(resp == "true"){
+        alert("Se anoto correctamente");
+        $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+    }
+    else{
+        alert("Hubo un inconveniente al querer desanotarse, intentelo nuevamente.");
+    }
+});
+
+}
+
+*/

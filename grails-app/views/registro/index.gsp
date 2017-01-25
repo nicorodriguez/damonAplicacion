@@ -36,7 +36,7 @@ ${servicio.nombreservicio}
         <span class="icon-bar"></span>
       </button>
 
-      <!--<img src="logo.png" class="img-rounded" width="45" height="45">-->      
+      <asset:image src="logo.png" class="img-rounded" width="45" height="45"/>      
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">

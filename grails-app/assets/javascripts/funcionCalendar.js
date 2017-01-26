@@ -68,6 +68,19 @@ function envioDatos(profesor,tipo,fecha,cantidad){
         }
     });
 }
+function anotarse(tipousuario,fecha,hora){
+    var tipous
+    var fec
+    var hor
+
+    tipous = tipousuario
+    fec = fecha
+    hor = hora
+
+    console.log(tipous)
+    console.log(fec)
+    console.log(hor)
+}
 /*
 function prepararDatos(){
 
@@ -78,6 +91,7 @@ function prepararDatos(){
     anotarse(horario,fecha1)
 
 }
+
 
 function anotarse(horario,fecha){
     var datos = {

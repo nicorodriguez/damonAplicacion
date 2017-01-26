@@ -82,6 +82,18 @@ class BootStrap {
         Clase clase3 = new Clase(fechaDate3,profesor,tipoUsuario3,15)
         clase3.inicializarTablaAnotados()
         clase3.save(flush: true)
+
+        String fecha4 = 'Miércoles 25/01/2017 08:00'
+        Date fechaDate4 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha4 )
+        Clase clase4 = new Clase(fechaDate4,profesor,tipoUsuario3,15)
+        clase4.inicializarTablaAnotados()
+        clase4.save(flush: true)
+
+        String fecha5 = 'Viernes 27/01/2017 10:00'
+        Date fechaDate5 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha5 )
+        Clase clase5 = new Clase(fechaDate5,profesor,tipoUsuario3,15)
+        clase5.inicializarTablaAnotados()
+        clase5.save(flush: true)
     	
     }
     def destroy = {

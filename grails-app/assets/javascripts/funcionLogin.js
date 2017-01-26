@@ -63,7 +63,7 @@ function enviaJSON(email1,password1){
 
 function probando(){
 	// $.post("/damonAplicacion/calendar/formatHora")
-	$.post("/damonAplicacion/registro/modificarSexo")
+	$.post("/damonAplicacion/calendar/probar")
 } 
 
 /*

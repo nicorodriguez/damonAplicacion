@@ -13,7 +13,14 @@
 <% def profesores = Usuario.findAllByRol(rolProf) %>
 <% def tipousuariosLista = Tipousuario.getAll() %>
 <% def claseLista = Clase.getAll() %>
-
+<%  def listaHora = []
+    for (Clase item: claseLista){
+      def clase3 = Clase.get(item.id)
+      def hora1 = clase3.getHora()
+      listaHora << hora1   
+    }
+    def listaHora1 = listaHora.unique()
+%>
 
 <!DOCTYPE html>
 <html>
@@ -82,19 +89,70 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  %{-- <g:each var="clase" in="${claseLista.sort{it.fechaHorario}}"> --}%
-                                  <g:each var="clase" in="${claseLista.sort{it.getHora()}}">
+                                   <g:each var="horarios" in="${listaHora1}"> %{-- ,{it.getDia()} --}%
+                                   %{-- <g:each var="clase" in="${claseLista}"> --}%
+                                  %{-- <g:each var="clase" in="${claseLista.sort{it.getHora()}}"> --}%
                                     <tr class="semana">
+                                      
                                       %{-- <th scope="row">${claseLista}</th> --}%
-                                       <td>${clase.getHora()}</td>
-                                       %{-- <td>${clase.getDia()}</td> --}%
-                                       <td> <g:if test="${clase.getDia()=="lunes"}"> ${clase.tipo.nombre} </g:if></td>
-                                       <td> <g:if test="${clase.getDia()=="martes"}"> ${clase.tipo.nombre} </g:if> </td>
-                                       <td> <g:if test="${clase.getDia()=="miércoles"}"> ${clase.tipo.nombre} </g:if> </td>
-                                       <td> <g:if test="${clase.getDia()=="jueves"}"> ${clase.tipo.nombre} </g:if> </td>
-                                       <td> <g:if test="${clase.getDia()=="viernes"}"> ${clase.tipo.nombre} </g:if> </td>
-                                       <td> <g:if test="${clase.getDia()=="sábados"}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td>${horarios}</td>
+                                       <td>
+                                       <g:each var="clase" in="${claseLista}">
+                                       <g:if test="${clase.getDia()=="lunes" && clase.getHora()==horarios}">
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       </g:if>
+                                       </g:each>
+                                       </td>
+                                       <td>
+                                       <g:each var="clase" in="${claseLista}">
+                                       <g:if test="${clase.getDia()=="martes" && clase.getHora()==horarios}">
+                                       ${clase.tipo.nombre}
+                                       </g:if>
+                                       </g:each>
+                                       </td>
+                                       <td>
+                                       <g:each var="clase" in="${claseLista}">
+                                       <g:if test="${clase.getDia()=="miércoles" && clase.getHora()==horarios}">
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
+                                       ${clase.tipo.nombre}
+                                       </a>
+                                       </g:if>
+                                       </g:each>
+                                       </td>
+                                       <td>
+                                       <g:each var="clase" in="${claseLista}">
+                                       <g:if test="${clase.getDia()=="jueves" && clase.getHora()==horarios}">
+                                       ${clase.tipo.nombre}
+                                       </g:if>
+                                       </g:each>
+                                       </td>
+                                       <td>
+                                       <g:each var="clase" in="${claseLista}">
+                                       <g:if test="${clase.getDia()=="viernes" && clase.getHora()==horarios}">
+                                       ${clase.tipo.nombre}
+                                       </g:if>
+                                       </g:each>
+                                       </td>
+                                       <td>
+                                       <g:each var="clase" in="${claseLista}">
+                                       <g:if test="${clase.getDia()=="sábados" && clase.getHora()==horarios}">
+                                       ${clase.tipo.nombre}
+                                       </g:if>
+                                       </g:each>
+                                       </td>
+
+                                       %{-- <td> <g:if test="${clase.getDia()=="martes" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td> <g:if test="${clase.getDia()=="miércoles" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td>
+                                       <g:if test="${clase.getDia()=="jueves" && clase.getHora()==horarios}">
+                                       ${clase.tipo.nombre}  
+                                       </g:if>
+                                       </td> --}%
+                                      %{--  <td> <g:if test="${clase.getDia()=="viernes" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td>
+                                       <td> <g:if test="${clase.getDia()=="sábados" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td> --}%
+                                       %{-- </g:each> --}%
                                     </tr>
+                                   %{--  </g:each> --}%
                                   </g:each>
                                   </tbody>
                               </table>                                

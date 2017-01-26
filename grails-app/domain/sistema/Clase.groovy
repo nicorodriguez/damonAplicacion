@@ -46,28 +46,28 @@ class Clase {
 	String getDia(){
 		def formatoDia = new SimpleDateFormat("EEEE")
         String diaa = formatoDia.format(this.fechaHorario)
-        println(diaa)
+        // println(diaa)
 		return(diaa)
 	}
 
 	String getDiaFecha(){
 		def formatoDiaFecha = new SimpleDateFormat("EEEE - dd")
         String diafecha = formatoDiaFecha.format(this.fechaHorario)
-        println(diafecha)
+        // println(diafecha)
 		return(diafecha)
 	}
 
 	String getFecha(){
 		def formatoFecha = new SimpleDateFormat("dd/MM/yyyy")
         String fechaa = formatoFecha.format(this.fechaHorario)
-        println(fechaa)
+        // println(fechaa)
 		return(fechaa)
 	}
 
 	String getHora(){
 		def formatoHora = new SimpleDateFormat("hh:mm")
         String horaa = formatoHora.format(this.fechaHorario)
-        println(horaa)
+        // println(horaa)
 		return(horaa)
 
 	}

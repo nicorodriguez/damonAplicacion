@@ -56,4 +56,4 @@ devDb.trace.db
 devDb.trace.db
 
 target/
-
+test/

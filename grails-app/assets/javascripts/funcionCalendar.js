@@ -1,25 +1,8 @@
 
 $(document).ready(function(){
-    /* Esta es la funcion que hace que se pinte una celda*/
-        
-    $("#tbUsuario tr td").one("click",function() {
-        var dia;
-        var primero;
-        var hora;
-        var ptr;
-
-        /* Trae la celda seleccionada con un click y le cambia el fondo */
-        $(this).css('background-color','#369');
-        $(this).css('color','white');
-        
-        posicion=$(this).index();
-        dia=$("#tbUsuario tr").first().children('td').eq(posicion).text(); /* Trae dia */
-        hora=$(this).parent().children('td').first().text(); /* Trae hora */
-        
-        $(this).disabled;
-        // $(this).datepicker($.datepicker.regional['es']);
+    
         diahora= "Anotado " + dia + " " + hora + "hs";
-        $("#anotado li").first().append("<li>" + diahora + " " + '<button type="button" class="desanotarme"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>' + "</li>");
+        $("#anotado li").first().append("<li>" + diahora + " " + '<a onclick="anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>' + "</li>");
 
         /* Funcion para que inhabilite el evento click de los dias y los horarios*/
         
@@ -30,7 +13,7 @@ $(document).ready(function(){
     $(".semana").children().unbind("click");
     $(".horarios").unbind("click");
 
-    });
+
 
 function crearClase() {
     var dia;
@@ -69,18 +52,51 @@ function envioDatos(profesor,tipo,fecha,cantidad){
     });
 }
 function anotarse(tipousuario,fecha,hora){
-    var tipous
-    var fec
-    var hor
+    var td
+    var dia;
+    var primero;
+    var ptr;
+    var hora;
 
-    tipous = tipousuario
-    fec = fecha
-    hor = hora
+    
+    td= $(event.target)
+    td.css('color','#FFFFFF')
+    
+    posicion= td.eq()
+    dia=$('#dias').eq(posicion).text(); 
+    hora=td.parent().children('td').first().text()
+    diahora= "Anotado " + dia + " " + hora + "hs"
+    $("#anotado li").first().append("<li>" + diahora + " " + '<a onclick="anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>' + "</li>");
 
-    console.log(tipous)
-    console.log(fec)
-    console.log(hor)
+        /*
+        posicion=$(this).index();
+        dia=$("#tbUsuario tr").first().children('td').eq(posicion).text(); // Trae dia //
+        hora=$(this).parent().children('td').first().text(); // Trae hora //
+        */
+    
+    alert("llegue")
+
+ }
+   
+/* Lo comento temporalmente ya que no esta el metodo anotarse.
+    var datos = {
+        tipousuario: tipousuario,
+        fecha:fecha,
+        hora:hora
+    }    
+  $.post( "/damonAplicacion/calendar/anotarse", datos).done(function( resp ){
+        console.log(resp);
+        if(resp == "true"){
+            alert("Anotado satisfactoriamente");
+            $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+        }
+        else{
+            alert("Hubo un inconveniente, no pudo anotarse");
+        }
+    });
+
 }
+*/
 /*
 function prepararDatos(){
 

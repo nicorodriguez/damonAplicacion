@@ -38,7 +38,7 @@
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
-<script src="jquery.ui.datepicker-es.js"></script>
+
  
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
@@ -88,25 +88,21 @@
                                     <th>Sábados</th>
                                   </tr>
                                 </thead>
-                                <tbody>
-                                   <g:each var="horarios" in="${listaHora1}"> %{-- ,{it.getDia()} --}%
-                                   %{-- <g:each var="clase" in="${claseLista}"> --}%
-                                  %{-- <g:each var="clase" in="${claseLista.sort{it.getHora()}}"> --}%
+                                <tbody id="tbUsuario">
+                                   <g:each var="horarios" in="${listaHora1}">
                                     <tr class="semana">
-                                      
-                                      %{-- <th scope="row">${claseLista}</th> --}%
                                        <td>${horarios}</td>
                                        <td>
                                        <g:each var="clase" in="${claseLista}">
                                        <g:if test="${clase.getDia()=="lunes" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a class="modal" onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista}">
                                        <g:if test="${clase.getDia()=="martes" && clase.getHora()==horarios}">
-                                       ${clase.tipo.nombre}
+                                       <a  onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
@@ -122,154 +118,30 @@
                                        <td>
                                        <g:each var="clase" in="${claseLista}">
                                        <g:if test="${clase.getDia()=="jueves" && clase.getHora()==horarios}">
-                                       ${clase.tipo.nombre}
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista}">
                                        <g:if test="${clase.getDia()=="viernes" && clase.getHora()==horarios}">
-                                       ${clase.tipo.nombre}
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista}">
                                        <g:if test="${clase.getDia()=="sábados" && clase.getHora()==horarios}">
-                                       ${clase.tipo.nombre}
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>
-                                       </td>
-
-                                       %{-- <td> <g:if test="${clase.getDia()=="martes" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td>
-                                       <td> <g:if test="${clase.getDia()=="miércoles" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td>
-                                       <td>
-                                       <g:if test="${clase.getDia()=="jueves" && clase.getHora()==horarios}">
-                                       ${clase.tipo.nombre}  
-                                       </g:if>
-                                       </td> --}%
-                                      %{--  <td> <g:if test="${clase.getDia()=="viernes" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td>
-                                       <td> <g:if test="${clase.getDia()=="sábados" && clase.getHora()==horarios}"> ${clase.tipo.nombre} </g:if> </td> --}%
-                                       %{-- </g:each> --}%
+                                       </td>                              
                                     </tr>
-                                   %{--  </g:each> --}%
                                   </g:each>
                                   </tbody>
                               </table>                                
                         </div>
                      </div>
-
-      %{-- <g:each var="pedido" in="${pedidosCarrito}">
-        <div class="col s3" id="productonombre">${pedido.producto.nombre} </div>
-            <div class="col s3" id="preciosprod">${pedido.producto.precio} </div>
-            <div class="col s3" id="cantidadprod">${pedido.cantidad} </div>
-            <div class="col s3" id="delete-elem">
-              <span id="${pedido.producto.id}" class="delete-elem"><i class="material-icons">delete</i></span>
-          </div>
-      </g:each> --}%
-
-   %{-- <div class="row">
-            <div class="col-md-7" id="calendario">
-               <div class="panel panel-primary" id="panel1">
-                     <div class="panel-heading">Calendario</div>
-                        <div sclass="panel-body">
-                              <table class="table" id="tbUsuario">
-                                    <tr class="semana">
-                                       <td></td>
-                                       <td>Lunes</td>
-                                       <td>Martes</td>
-                                       <td>Miércoles</td>
-                                       <td>Jueves</td>
-                                       <td>Viernes</td>
-                                       <td>Sábados</td>
-                                    </tr>
-                                    <tr>
-                                       <td class="horarios">9:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                           			<tr>
-                                       <td class="horarios">10:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                           			<tr>
-                                       <td class="horarios">11:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                           			<tr>
-                                       <td class="horarios">12:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                                    <tr>
-                                       <td class="horarios">13:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                                    <tr>
-                                       <td class="horarios">14:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                                    <tr>
-                                       <td class="horarios">15:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                                    <tr>
-                                       <td class="horarios">16:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                                    <tr>
-                                       <td class="horarios">17:00</td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                       <td></td>
-                                    </tr>
-                              </table>                                
-                        </div>
-                     </div> --}%
-
-
-                      
 
          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Crear Clase</button>
 

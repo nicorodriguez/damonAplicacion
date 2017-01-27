@@ -57,3 +57,4 @@ devDb.trace.db
 
 target/
 test/
+devDb.trace.db.old

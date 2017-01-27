@@ -16,8 +16,9 @@ class Usuario {
 	Rol rol
 	Servicio servicio
 	Tipousuario tipo
-	static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 	static hasMany = [inscriptoclases: Clase]
+	static belongsTo = [Rol, Servicio, Tipousuario, Clase]
+	// static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 
 	Usuario(String email1, String password1, String nombre1, String apellido1, String sexo1, Rol r, Servicio s, Tipousuario t){
 		this()
@@ -31,6 +32,7 @@ class Usuario {
 		this.servicio = s
 		this.tipo = t
 		this.creditosActuales = s.cantidadcreditos
+		this.inscriptoclases = []
 	}
 
 	static mapping = {
@@ -97,6 +99,9 @@ class Usuario {
 	}
 	String setPassword(String s){
 		this.password = s
+	}
+	String setInscriptoClases(){
+		this.inscriptoclases = []
 	}
 	Boolean setEstado(Usuario u, String e){
 		int longitud = e.length()
@@ -308,6 +313,22 @@ class Usuario {
 		}
 	}
 
+	boolean agregarUsuarioAInscriptos(Clase c){
+		try{
+			println("AgregarUsuarioALista - Se inicia el proceso")
+			this.inscriptoclases << c
+			println("AgregarUsuarioALista - Se agrego al usuario: "+c+" Satisfactoriamente")
+			println(c)
+			// this.save(flush: true)
+			return(true)
+		}
+		catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            return(false)
+        }
+	}
 
 
 }

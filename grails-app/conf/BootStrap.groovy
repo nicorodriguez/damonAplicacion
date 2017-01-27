@@ -61,6 +61,9 @@ class BootStrap {
 
         Usuario profesor = new Usuario("jaja@hotmail.com","12345678","David","Sangali","Masculino",profRole,serv4,tipoUsuario5)
         profesor.save(flush: true)
+
+        Usuario alumnoCross = new Usuario("juju@hotmail.com","12345678","Lucas","Galetti","Masculino",usuarioRol,serv1,tipoUsuario3)
+        alumnoCross.save(flush: true)
         
         administradorRol.agregarUsuario(usuarioPrueba)
         administradorRol.save(flush: true)

@@ -16,7 +16,6 @@ class Clase {
 	Integer cantidadMax
 	Integer cantidadActual = 0
 	static hasMany = [anotados: Usuario]
-	static belongsTo = Usuario
 
 	Clase(Date fechaHorario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
 		this()
@@ -100,6 +99,8 @@ class Clase {
 			println("AgregarUsuarioALista - Se inicia el proceso")
 			this.anotados << u
 			println("AgregarUsuarioALista - Se agrego al usuario: "+u.nombre+" Satisfactoriamente")
+			println(anotados)
+			// this.save(flush: true)
 			return(true)
 		}
 		catch(Exception e){

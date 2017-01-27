@@ -133,11 +133,18 @@ class CalendarController {
 
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
-            println("CrearClase - Voy a parsear la date")
+            println("AnotarseClase - Voy a parsear la date")
             Date fechaDate = Date.parse( 'dd/MM/yyyy hh:mm', fecha )
 
+            //Voy a buscar el tipo de Clase
+            Tipousuario tipoClasePosta = Tipousuario.findByNombre(tipoClase)
+
+            println("TipoClase: "+tipoClasePosta.nombre)
+            println(tipoClasePosta)
+
             //Traigo los datos de la clase:
-            Clase clasee = Clase.findByFechaAndHorarioAndTipo(fechaDate,tipoClase)
+            println("AnotarseClase - Voy a ver si existe la clase")
+            Clase clasee = Clase.findByFechaHorarioAndTipo(fechaDate,tipoClasePosta)
             
             //Verifico que exista la clase
             if (!clasee){
@@ -152,8 +159,11 @@ class CalendarController {
                 //Traigo el tipo del usuario
                 Tipousuario tipoUsuario = usuario.tipo
 
+                println("TipoUsuario: "+tipoUsuario.nombre)
+                println(tipoUsuario)
+
                 //Comparo el tipo de usuario con el tipo de la clase
-                if (tipoUsuario != tipoClase){
+                if (tipoUsuario.nombre != tipoClasePosta.nombre){
                     println("AnotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
                     render("false")
                 }
@@ -181,6 +191,9 @@ class CalendarController {
 
                             if (resuCreditos){
                                 println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+
+                                boolean resuu = usuario.agregarUsuarioAInscriptos(clasee)
+                                println(resuu)
                                 
                                 //Agrego Usuario a la lista de anotados:
                                 boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
@@ -191,6 +204,9 @@ class CalendarController {
                                 }
                                 else{
                                     println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
+
+                                    clasee.save(flush: true)
+
                                     render("true")
                                 }
                             }

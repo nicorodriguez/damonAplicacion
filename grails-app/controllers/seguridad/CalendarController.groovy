@@ -4,7 +4,7 @@ import seguridad.Rol
 import seguridad.Servicio
 import sistema.Clase
 import sistema.Tipousuario
-//import sistema.Establecimiento  Comente esto por que tiraba un error y no arrancaba la aplicacion.
+import sistema.Establecimiento
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional

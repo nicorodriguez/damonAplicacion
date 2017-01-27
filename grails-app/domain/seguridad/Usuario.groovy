@@ -122,6 +122,78 @@ class Usuario {
 		}
 	}
 
+	// Boolean setEstadoValido(Usuario u, String e){
+	// 	int longitud = e.length()
+	// 	println("Compruebo si el nuevo estado es longitud 1")
+
+	// 	if (longitud == 1){
+	// 		println("Longitud correcta")
+
+	// 		Rol r = u.getRol()
+	// 		String nombreR = r.getNombrerol()
+	// 		if (nombreR == "ROL_ADMIN"){
+	// 			this.estado = e
+	// 			println("Se cambio el estado con exito")
+	// 		}
+	// 		else{
+	// 			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+	// 			return false
+	// 		}
+	// 	}
+	// 	else{
+	// 		println("Longitud incorrecta")
+	// 		return false
+	// 	}
+	// }
+
+	// Boolean setEstadoActivo(Usuario u, String e){
+	// 	int longitud = e.length()
+	// 	println("Compruebo si el nuevo estado es longitud 1")
+
+	// 	if (longitud == 1){
+	// 		println("Longitud correcta")
+
+	// 		Rol r = u.getRol()
+	// 		String nombreR = r.getNombrerol()
+	// 		if (nombreR == "ROL_ADMIN"){
+	// 			this.estado = e
+	// 			println("Se cambio el estado con exito")
+	// 		}
+	// 		else{
+	// 			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+	// 			return false
+	// 		}
+	// 	}
+	// 	else{
+	// 		println("Longitud incorrecta")
+	// 		return false
+	// 	}
+	// }
+
+	// Boolean setEstadoInactivo(Usuario u, String e){
+	// 	int longitud = e.length()
+	// 	println("Compruebo si el nuevo estado es longitud 1")
+
+	// 	if (longitud == 1){
+	// 		println("Longitud correcta")
+
+	// 		Rol r = u.getRol()
+	// 		String nombreR = r.getNombrerol()
+	// 		if (nombreR == "ROL_ADMIN"){
+	// 			this.estado = e
+	// 			println("Se cambio el estado con exito")
+	// 		}
+	// 		else{
+	// 			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+	// 			return false
+	// 		}
+	// 	}
+	// 	else{
+	// 		println("Longitud incorrecta")
+	// 		return false
+	// 	}
+	// }
+
 	String setRol(Rol s){
 		try{
 			this.rol = s

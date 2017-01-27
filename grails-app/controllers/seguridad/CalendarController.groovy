@@ -120,191 +120,226 @@ class CalendarController {
     }
 
     
-    // def anotarseClase(){
+    def anotarseClase(){
         
-    //     try{
-    //         println("AnotarseClase - Voy a buscar los parametros")
+        try{
+            println("AnotarseClase - Voy a buscar los parametros")
 
-    //         // Capturo datos de post de formulario
-    //         String dia = request.getParameter("dia")
-    //         String fecha = request.getParameter("fecha")
-    //         String horario = request.getParameter("horario")
-    //         String usuarioEmail = request.getParameter("usuarioemail")
-    //         String tipoClase = request.getParameter("tipoclase")
+            // Capturo datos de post de formulario
+            String fecha = request.getParameter("fechahor")
+            String tipoClase = request.getParameter("tipoclase")
 
-    //         println("Recibi los parametros: -> "+dia+", "+fecha+", "+horario+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
+            println("Recibi los parametros: -> "+fecha+", "+tipoClase)
 
-    //         //Verificar las fechas en las funciones de javascript
-    //         //Paso las fechas de strings a date
-    //         Date diaDate = Date.parse( 'EEEE', dia )
-    //         Date fechaDate = Date.parse( 'dd/MM/yyyy', fecha )
-    //         Date horaDate = Date.parse( 'hh:mm', horario )
+            //Verificar las fechas en las funciones de javascript
+            //Paso las fechas de strings a date
+            println("CrearClase - Voy a parsear la date")
+            Date fechaDate = Date.parse( 'dd/MM/yyyy hh:mm', fecha )
 
-    //         //Traigo los datos de la clase:
-    //         Clase clasee = Clase.findByFechaAndHorarioAndTipo(fechaDate,horaDate,tipoClase)
+            //Traigo los datos de la clase:
+            Clase clasee = Clase.findByFechaAndHorarioAndTipo(fechaDate,tipoClase)
             
-    //         //Verifico que exista la clase
-    //         if (!clasee){
-    //             println("AnotarseClase - Clase inexistenete en esa fecha, horario y con ese tipo")
-    //             render("false")
-    //         }
-    //         else{
-    //             //Traer los datos del usuario:
-    //             Usuario usuario = Usuario.findByEmail(usuarioEmail)
+            //Verifico que exista la clase
+            if (!clasee){
+                println("AnotarseClase - Clase inexistenete en esa fecha, horario y con ese tipo")
+                render("false")
+            }
+            else{
+                //Traer los datos del usuario:
+                def smgr = new SessionManager(request.session)
+                Usuario usuario = smgr.getCurrentUser()
 
-    //             //Traigo el tipo del usuario
-    //             Tipousuario tipoUsuario = usuario.tipo
+                //Traigo el tipo del usuario
+                Tipousuario tipoUsuario = usuario.tipo
 
-    //             //Comparo el tipo de usuario con el tipo de la clase
-    //             if (tipoUsuario != tipoClase){
-    //                 println("AnotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
-    //                 render("false")
-    //             }
-    //             else{
-    //                 println("AnotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
+                //Comparo el tipo de usuario con el tipo de la clase
+                if (tipoUsuario != tipoClase){
+                    println("AnotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
+                    render("false")
+                }
+                else{
+                    println("AnotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
 
-    //                 //Verifico que haya lugar en la clase
-    //                 if (!clasee.hayLugar()){
-    //                     println("AnotarseClase - Clase llena")
-    //                     println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
-    //                     render("false")
-    //                 }
-    //                 else{
-    //                     println("AnotarseClase - Clase con lugar disponible")
-    //                     println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                    //Verifico que haya lugar en la clase
+                    if (!clasee.hayLugar()){
+                        println("AnotarseClase - Clase llena")
+                        println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                        render("lleno")
+                    }
+                    else{
+                        println("AnotarseClase - Clase con lugar disponible")
+                        println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
 
-    //                     boolean resultadoCreditos = usuario.hayCreditos()
+                        boolean resultadoCreditos = usuario.hayCreditos()
 
-    //                     if (resultadoCreditos){
-    //                         Integer cantAct = clasee.aumentarCapActual()
+                        if (resultadoCreditos){
+                            Integer cantAct = clasee.aumentarCapActual()
 
-    //                         println("Nueva Cantidad Actual de Clase = " + cantAct)
+                            println("Nueva Cantidad Actual de Clase = " + cantAct)
 
-    //                         Boolean resuCreditos = usuario.disminuirCreditos()
+                            Boolean resuCreditos = usuario.disminuirCreditos()
 
-    //                         if (resuCreditos){
-    //                             println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+                            if (resuCreditos){
+                                println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
                                 
-    //                             //Agrego Usuario a la lista de anotados:
-    //                             boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
+                                //Agrego Usuario a la lista de anotados:
+                                boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
                                                     
-    //                             if (!resultadoFinal){
-    //                                 println("AnotarseClase - No se pudo agregar a la lista")
-    //                                 render("false")
-    //                             }
-    //                             else{
-    //                                 println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
-    //                                 render("true")
-    //                             }
-    //                         }
-    //                         else{
-    //                             println("AnotarseClase - No se pudo disminuir los creditos")
-    //                             render("false")
-    //                         }
-    //                     }
-    //                     else{
-    //                         println("AnotarseClase - No se anoto al usuario porque no tiene creditos")
-    //                         render("false")
-    //                     }
-    //                 }
-    //             }
-    //         }
+                                if (!resultadoFinal){
+                                    println("AnotarseClase - No se pudo agregar a la lista")
+                                    render("false")
+                                }
+                                else{
+                                    println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
+                                    render("true")
+                                }
+                            }
+                            else{
+                                println("AnotarseClase - No se pudo disminuir los creditos")
+                                render("false")
+                            }
+                        }
+                        else{
+                            println("AnotarseClase - No se anoto al usuario porque no tiene creditos")
+                            render("creditos")
+                        }
+                    }
+                }
+            }
             
-    //     }
-    //     catch(Exception e){
-    //         println("PROBLEMA")
-    //         println(e)
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
 
-    //         render ("false")
-    //     }
+            render ("false")
+        }
 
         
-    // }
+    }
 
-    // def desanotarseClase(){
+    def desanotarseClase(){
 
-    //     try{
+        try{
 
-    //         println("DesanotarseClase - Voy a buscar los parametros")
+            println("DesanotarseClase - Voy a buscar los parametros")
 
-    //         // Capturo datos de post de formulario
-    //         String dia = request.getParameter("dia")
-    //         String fecha = request.getParameter("fecha")
-    //         String horario = request.getParameter("horario")
-    //         String usuarioEmail = request.getParameter("usuarioemail")
-    //         String tipoClase = request.getParameter("tipoclase")
+            // Capturo datos de post de formulario
+            String fecha = request.getParameter("fechahor")
+            String tipoClase = request.getParameter("tipoclase")
 
-    //         println("Recibi los parametros: -> "+dia+", "+fecha+", "+horario+", "+profeEmail+", "+tipoUsuario+", "+maxCantidad)
+            println("Recibi los parametros: -> "+fecha+", "+tipoClase)
 
-    //         //Verificar las fechas en las funciones de javascript
-    //         //Paso las fechas de strings a date
-    //         Date diaDate = Date.parse( 'EEEE', dia )
-    //         Date fechaDate = Date.parse( 'dd/MM/yyyy', fecha )
-    //         Date horaDate = Date.parse( 'hh:mm', horario )
 
-    //         //Traigo los datos de la clase:
-    //         Clase clasee = Clase.findByFechaAndHorarioAndTipo(fechaDate,horaDate,tipoClase)
+            //Verificar las fechas en las funciones de javascript
+            //Paso las fechas de strings a date
+            println("CrearClase - Voy a parsear la date")
+            Date fechaDate = Date.parse( 'dd/MM/yyyy hh:mm', fecha )
+
+            //Traigo los datos de la clase:
+            Clase clasee = Clase.findByFechaAndHorarioAndTipo(fechaDate,tipoClase)
             
-    //         //Verifico que exista la clase
-    //         if (!clasee){
-    //             println("DesanotarseClase - Clase inexistenete en esa fecha, horario y con ese tipo")
-    //             render("false")
-    //         }
-    //         else{
-    //             //Traer los datos del usuario:
-    //             Usuario usuario = Usuario.findByEmail(usuarioEmail)
+            //Verifico que exista la clase
+            if (!clasee){
+                println("DesanotarseClase - Clase inexistenete en esa fecha, horario y con ese tipo")
+                render("false")
+            }
+            else{
+               //Traer los datos del usuario:
+                def smgr = new SessionManager(request.session)
+                Usuario usuario = smgr.getCurrentUser()
 
-    //             //Traigo el tipo del usuario
-    //             Tipousuario tipoUsuario = usuario.tipo
+                //Traigo el tipo del usuario
+                Tipousuario tipoUsuario = usuario.tipo
 
-    //             //Comparo el tipo de usuario con el tipo de la clase
-    //             if (tipoUsuario != tipoClase){
-    //                 println("DesanotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
-    //                 render("false")
-    //             }
-    //             else{
-    //                 println("DesanotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
+                //Comparo el tipo de usuario con el tipo de la clase
+                if (tipoUsuario != tipoClase){
+                    println("DesanotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
+                    render("false")
+                }
+                else{
+                    println("DesanotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
 
-    //                 println("DesanotarseClase - Clase con lugar disponible")
-    //                 println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                    println("DesanotarseClase - Clase con lugar disponible")
+                    println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
 
-    //                 Integer cantAct = clasee.disminuirCapActual()()
+                    Integer cantAct = clasee.disminuirCapActual()()
 
-    //                 println("Nueva Cantidad Actual de Clase = " + cantAct)
+                    println("Nueva Cantidad Actual de Clase = " + cantAct)
 
-    //                 Boolean resuCreditos = usuario.aumentarCreditos()
+                    Boolean resuCreditos = usuario.aumentarCreditos()
 
-    //                 if (resuCreditos){
-    //                     println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+                    if (resuCreditos){
+                        println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
                                 
-    //                     //Elimino Usuario a la lista de anotados:
-    //                     boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario)
+                        //Elimino Usuario a la lista de anotados:
+                        boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario)
                                                     
-    //                     if (!resultadoFinal){
-    //                         println("DesanotarseClase - No se eliminar de la lista")
-    //                         render("false")
-    //                     }
-    //                     else{
-    //                         println("DesanotarseClase - SE ELIMINO SATISFACTORIAMENTE")
-    //                         render("true")
-    //                     }
-    //                 }
-    //                 else{
-    //                     println("DesanotarseClase - No se pudo aumentar los creditos")
-    //                     render("false")
-    //                 }
-    //             }
-    //         }
+                        if (!resultadoFinal){
+                            println("DesanotarseClase - No se eliminar de la lista")
+                            render("false")
+                        }
+                        else{
+                            println("DesanotarseClase - SE ELIMINO SATISFACTORIAMENTE")
+                            render("true")
+                        }
+                    }
+                    else{
+                        println("DesanotarseClase - No se pudo aumentar los creditos")
+                        render("false")
+                    }
+                }
+            }
             
-    //     }
-    //     catch(Exception e){
-    //         println("PROBLEMA")
-    //         println(e)
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
 
-    //         render ("false")
-    //     }
+            render ("false")
+        }
 
-    // }
+    }
+
+    def listarClases(){
+        //Para ver las clases desde el panel de control del admin
+    }
+
+    def listarClasesAnotadas(){
+        //Para ver las clases desde la vista de usuario
+
+        try{
+            println("ListarClasesAnotadas - Voy a buscar los datos del usuario")
+
+            def smgr = new SessionManager(request.session)
+            Usuario usuario = smgr.getCurrentUser()
+
+            def listaDeClases = []
+
+            Tipousuario tipo = usuario.tipo
+
+            def claseLista = Clase.findAllByTipo(tipo)
+
+            for (Clase item: claseLista){
+                boolean b = item.anotados.contains(usuario)
+
+                if (b){
+                    listaDeClases << item.id
+                }
+            }
+
+            return(listaDeClases)
+
+            render("true")
+
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
 
 
     def probar(){

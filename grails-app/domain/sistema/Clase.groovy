@@ -111,22 +111,23 @@ class Clase {
 	}
 
 
-	// boolean eliminarUsuarioDeLista(Usuario u){
-	// 	try{
-	// 		println("EliminarUsuarioDeLista - Se inicia el proceso")
-	// 		String emailUser = u.email
-	// 		this.anotados.removeAll{ anotados -> anotados.usuario.email == emailUser
-	// 		}
-	// 		println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
-	// 		return(true)
-	// 	}
-	// 	catch(Exception e){
- //            println("PROBLEMA")
- //            println(e)
+	boolean eliminarUsuarioDeLista(Usuario u){
+		try{
+			println("EliminarUsuarioDeLista - Se inicia el proceso")
+			String emailUser = u.email
+			this.anotados.removeAll{ anotados -> anotados.usuario.email == emailUser
+			}
+			println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
+			return(true)
+		}
+		catch(Exception e){
+            println("PROBLEMA")
+            println(e)
 
- //            return(false)
- //        }
-	// }
+            return(false)
+        }
+	}
+	
 	// Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
  //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])
     

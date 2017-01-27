@@ -1,12 +1,3 @@
-
-$(document).ready(function(){}); 
-       
-    /*Sacamos evento onclick*/    
-    $(".semana").children().unbind("click");
-    $(".horarios").unbind("click");
-
-
-
 function crearClase() {
     var dia;
     var horario;
@@ -47,10 +38,11 @@ function envioDatos(profesor,tipo,fecha,cantidad){
 
 function anotarse(tipoclase,fecha,hora){
     var td
+    var tr
 
     // Cambio el color de la letra (despues tengo que pintar la celda.)
     td= $(event.target)
-    td.css('color','#FFFFFF')
+    td.css('background-color','#555555');
 
     fechahor= fecha + " " + hora;
    
@@ -75,9 +67,8 @@ function anotarse(tipoclase,fecha,hora){
     });
  }
 
-
-
     /*
+
     posicion= td.parents()
     dia=$('#dias').eq(posicion).text(); 
     hora=td.parent().children('td').first().text()

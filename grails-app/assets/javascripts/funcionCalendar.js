@@ -1,13 +1,5 @@
 
-$(document).ready(function(){
-    
-        diahora= "Anotado " + dia + " " + hora + "hs";
-        $("#anotado li").first().append("<li>" + diahora + " " + '<a onclick="anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>' + "</li>");
-
-        /* Funcion para que inhabilite el evento click de los dias y los horarios*/
-        
-
-    }); 
+$(document).ready(function(){}); 
        
     /*Sacamos evento onclick*/    
     $(".semana").children().unbind("click");
@@ -34,6 +26,7 @@ function crearClase() {
 }
 
 function envioDatos(profesor,tipo,fecha,cantidad){
+
     var datos = { 
         profe: profesor,
         tipous: tipo,
@@ -51,92 +44,50 @@ function envioDatos(profesor,tipo,fecha,cantidad){
         }
     });
 }
-function anotarse(tipousuario,fecha,hora){
-    var td
-    var dia;
-    var primero;
-    var ptr;
-    var hora;
 
-    
+function anotarse(tipoclase,fecha,hora){
+    var td
+
+    // Cambio el color de la letra (despues tengo que pintar la celda.)
     td= $(event.target)
     td.css('color','#FFFFFF')
-    
-    posicion= td.eq()
-    dia=$('#dias').eq(posicion).text(); 
-    hora=td.parent().children('td').first().text()
-    diahora= "Anotado " + dia + " " + hora + "hs"
-    $("#anotado li").first().append("<li>" + diahora + " " + '<a onclick="anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>' + "</li>");
 
-        /*
-        posicion=$(this).index();
-        dia=$("#tbUsuario tr").first().children('td').eq(posicion).text(); // Trae dia //
-        hora=$(this).parent().children('td').first().text(); // Trae hora //
-        */
-    
-    alert("llegue")
-
- }
+    fechahor= fecha + " " + hora;
    
-/* Lo comento temporalmente ya que no esta el metodo anotarse.
     var datos = {
-        tipousuario: tipousuario,
-        fecha:fecha,
-        hora:hora
-    }    
-  $.post( "/damonAplicacion/calendar/anotarse", datos).done(function( resp ){
+        tipoclase: tipoclase,
+        fechahor: fechahor
+    }
+
+        $.post( "/damonAplicacion/calendar/anotarseClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
             alert("Anotado satisfactoriamente");
             $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+        }else if (resp == "creditos"){
+            alert("Creditos insuficientes");
+        }else if (resp == "lleno"){
+            alert("La clase se encuentra lleno")
         }
         else{
             alert("Hubo un inconveniente, no pudo anotarse");
         }
     });
+ }
 
-}
-*/
+
+
+    /*
+    posicion= td.parents()
+    dia=$('#dias').eq(posicion).text(); 
+    hora=td.parent().children('td').first().text()
+    diahora= "Anotado " + dia + " " + hora + "hs"
+    $("#anotado li").first().append("<li>" + diahora + " " + '<a onclick="anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>' + "</li>");
+
+    */
+
+
 /*
-function prepararDatos(){
-
-    horario=$("#horario").val();
-    fecha1=$("#fecha").val();
-    fecha= fecha1 + " " + horario
-
-    anotarse(horario,fecha1)
-
-}
-
-
-function anotarse(horario,fecha){
-    var datos = {
-        horario: horario,
-        fecha: fecha
-    };
-  $.post( "/damonAplicacion/calendar/anotarse", datos).done(function( resp ){
-    console.log(resp);
-    if(resp == "true"){
-        alert("Se anoto correctamente");
-        $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
-    }
-    else{
-        alert("Hubo un inconveniente al querer anotarse, intentelo nuevamente.");
-    }
-});
-
-}
-
-function prepararDatos(){
-
-    horario=$("#horario").val();
-    fecha1=$("#fecha").val();
-    fecha= fecha1 + " " + horario
-
-    desanotarse(horario,fecha1)
-
-}
-
 function desanotarse(horario,fecha){
     var datos = {
         horario: horario,

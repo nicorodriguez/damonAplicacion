@@ -1,4 +1,5 @@
 package sistema
+import session.SessionManager
 import seguridad.Usuario
 import seguridad.Rol
 import seguridad.Servicio
@@ -128,6 +129,8 @@ class Clase {
             return(false)
         }
 	}
+
+	
 	
 	// Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
  //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])

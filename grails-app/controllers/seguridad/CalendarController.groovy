@@ -357,26 +357,14 @@ class CalendarController {
         }
     }
 
+    
+
 
     def probar(){
 
         def claseLista = Clase.getAll()
 
         println(claseLista)
-
-        // def clase3 = Clase.get(claseLista)
-
-        // println(clase3)
-
-        // def clasee2 = claseLista.sort{it.getHora()}
-
-        // println(clasee2)
-
-        // def claseLista.groupBy({it.tipo})
-
-        // claseLista.groupBy({it.fechaHorario})
-
-        // .getHora()
 
         def lista = []
 
@@ -392,10 +380,6 @@ class CalendarController {
         def lista2 = lista.unique()
 
         println(lista2)
-
-        // println(claseLista.getHora())
-
-        // groupBy{it.fechaHorario}
 
     }
 

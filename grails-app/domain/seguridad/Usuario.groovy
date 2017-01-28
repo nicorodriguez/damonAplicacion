@@ -3,6 +3,7 @@ import seguridad.Rol
 import seguridad.Servicio
 import sistema.Tipousuario
 import sistema.Clase
+import session.SessionManager
 
 class Usuario {
 
@@ -126,6 +127,28 @@ class Usuario {
 			return false
 		}
 	}
+
+	// def clasesDisponibles(){
+
+ //        def smgr = new SessionManager(request.session)
+        
+ //        Usuario usuario = smgr.getCurrentUser()
+ //        Rol rol = smgr.getCurrentRol() 
+ //        String nombreRol = rol.getNombrerol()
+ //        Tipousuario tipo = usuario.tipo
+ //        def lista = []
+
+ //        if ((nombreRol == "ROL_ADMIN") || (nombreRol == "ROL_PROF")){
+ //            lista = Clase.getAll()
+ //            return(lista)
+ //        }
+ //        else{
+ //            if (nombreRol == "ROL_USUARIO"){
+ //                lista = Clase.findAllByTipo(tipo)
+ //                return(lista)
+ //            }
+ //        }
+ //    }
 
 	// Boolean setEstadoValido(Usuario u, String e){
 	// 	int longitud = e.length()

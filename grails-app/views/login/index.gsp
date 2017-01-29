@@ -36,9 +36,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
-        <li><a href="#" id="ntext" class="color-me">¿Quiénes Somos?</a></li>
-        <li><a href="#" class="color-me">Gimnasios</a></li>
-        <li><a href="#" class="color-me">Contacto</a></li>
+        <li><a href="/damonAplicacion/login/quienes" id="ntext" class="color-me">¿Quiénes Somos?</a></li>
+        <li><a href="/damonAplicacion/login/" class="color-me">Gimnasios</a></li>
+        <li><a href="/damonAplicacion/login/contacto" class="color-me">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/damonAplicacion/registro/index" class="color-me"><span class="glyphicon glyphicon-user"></span> Registrate</a></li>

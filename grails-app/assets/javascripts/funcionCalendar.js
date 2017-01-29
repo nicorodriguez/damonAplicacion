@@ -67,6 +67,26 @@ function anotarse(tipoclase,fecha,hora){
     });
  }
 
+ function desaotarse(tipoclase,fecha,hora){
+
+      var datos = {
+        tipoclase: tipoclase,
+        fechahor: fechahor
+    }
+
+        $.post( "/damonAplicacion/calendar/anotarseClase", datos).done(function( resp ){
+        console.log(resp);
+        if(resp == "true"){
+            alert("Desanotado satisfactoriamente");
+            $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar')
+        }
+        else{
+            alert("No pudo desanotarse, se produjo algun error.");
+        }
+    });
+
+ }
+
     /*
 
     posicion= td.parents()

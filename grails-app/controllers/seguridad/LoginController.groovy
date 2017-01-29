@@ -103,4 +103,12 @@ class LoginController {
         render smgr.isActive()
     }
 
+    def contacto(){
+        render(view:'contacto')
+    }
+
+    def quienes(){
+        render(view:'quienes')
+    }
+
 }

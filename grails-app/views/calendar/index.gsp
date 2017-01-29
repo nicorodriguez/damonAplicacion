@@ -234,7 +234,7 @@
                         </div>
                      </div>
                      </g:if>
-
+                      <object form="index.gsp" data="${g.resource(file:'botones.html')}"></object>
          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Crear Clase</button>
 
 
@@ -341,6 +341,9 @@
           <div>
           <button type="button" class="btn btn-primary btn-lg">Servicios</button>
           </div>
+   
+        </div>
+
 
         <% } %>
 

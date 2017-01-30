@@ -288,6 +288,9 @@ class CalendarController {
                     if (resuCreditos){
                         println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
                                 
+                        boolean resuu = usuario.eliminarUsuarioDeInscriptos(clasee)
+                        println(resuu)
+
                         //Elimino Usuario a la lista de anotados:
                         boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario)
                                                     

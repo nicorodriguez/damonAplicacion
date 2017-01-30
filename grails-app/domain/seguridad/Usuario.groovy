@@ -14,6 +14,7 @@ class Usuario {
 	String sexo
 	String estado = 'p'
 	Integer creditosActuales
+	Date fechaVencimientoCred
 	Rol rol
 	Servicio servicio
 	Tipousuario tipo
@@ -104,6 +105,17 @@ class Usuario {
 	String setInscriptoClases(){
 		this.inscriptoclases = []
 	}
+	Boolean esPrivilegiado(){
+		Rol r = this.getRol()
+		String nombreR = r.getNombrerol()
+		if (nombreR == "ROL_ADMIN"){
+			return(true)
+		}
+		else{
+			return(false)
+		}
+	}
+
 	Boolean setEstado(Usuario u, String e){
 		int longitud = e.length()
 		println("Compruebo si el nuevo estado es longitud 1")
@@ -235,9 +247,8 @@ class Usuario {
 
 	Boolean setServicio(Usuario usuarioPrivilegiado, Usuario usuarioACambiar, Servicio s){
 		try{
-			Rol r = usuarioPrivilegiado.getRol()
-			String nombreR = r.getNombrerol()
-			if (nombreR == "ROL_ADMIN"){
+			Boolean esPriv = usuarioPrivilegiado.esPrivilegiado()
+			if (esPriv){
 				if (usuarioACambiar.servicio != s){
 					usuarioACambiar.servicio = s
 					println("Se cambio el Servicio con Exito")
@@ -321,12 +332,13 @@ class Usuario {
 		}
 	}
 
-	Boolean resetarCreditos(Usuario usuarioPrivilegiado, Usuario usuarioACambiar){
+	Boolean resetarCreditos(Usuario usuarioPrivilegiado){
 		Rol r = usuarioPrivilegiado.getRol()
 		String nombreR = r.getNombrerol()
 		if (nombreR == "ROL_ADMIN"){
-			Integer creditosResetear = usuarioACambiar.servicio.cantidadcreditos
-			usuarioACambiar.creditosActuales = creditosResetear
+			Integer creditosResetear = this.servicio.cantidadcreditos
+			this.creditosActuales = creditosResetear
+			this.fechaVencimientoCred = new Date()
 			println("Se resetearon los creditos del usuario")
 			return(true)
 		}
@@ -340,9 +352,28 @@ class Usuario {
 		try{
 			println("AgregarUsuarioALista - Se inicia el proceso")
 			this.inscriptoclases << c
-			println("AgregarUsuarioALista - Se agrego al usuario: "+c+" Satisfactoriamente")
+			println("AgregarUsuarioALista - Se agrego la clase: "+c+" Satisfactoriamente")
 			println(c)
-			// this.save(flush: true)
+			this.save(flush: true)
+			return(true)
+		}
+		catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            return(false)
+        }
+	}
+
+	boolean eliminarUsuarioDeInscriptos(Clase c){
+		try{
+			println("EliminarUsuarioDeInscriptos - Se inicia el proceso")
+			Integer idClase = c.id
+			this.inscriptoclases.removeAll{ inscriptoclases -> inscriptoclases.clase.id == idClase
+			}
+			println("EliminarUsuarioDeInscriptos - Se elimino la clase: "+c+" Satisfactoriamente")
+			println(c)
+			this.save(flush: true)
 			return(true)
 		}
 		catch(Exception e){

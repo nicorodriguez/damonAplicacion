@@ -92,24 +92,9 @@
 </div>
 
 <div class="row">
-
-   <div class="col-lg-12 col-md-12 col-sm-12">
-
-     SOME TEXT SOME TEXT SOME TEXT SOME TEXT
-     SOME TEXT SOME TEXT SOME TEXT SOME TEXT
-
-     <iframe src="http://youtube.com/...."></iframe>
-
-     SOME TEXT SOME TEXT SOME TEXT SOME TEXT
-     SOME TEXT SOME TEXT SOME TEXT SOME TEXT
-
-     <iframe src="http://youtube.com/...."></iframe>
-
-
-     SOME TEXT SOME TEXT SOME TEXT SOME TEXT
-     SOME TEXT SOME TEXT SOME TEXT SOME TEXT
-
-     <iframe src="http://youtube.com/...."></iframe> 
+<div class="embed-responsive embed-responsive-4by3">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=LI_0iBFxoto&t=1043s"></iframe>
+</div>
 
    </div>
 

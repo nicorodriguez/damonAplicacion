@@ -360,8 +360,9 @@ class CalendarController {
         }
     }
 
-    
-
+    def guiaEjercicio(){
+        render(view:'guiaEjercicio')
+    }
 
     def probar(){
 

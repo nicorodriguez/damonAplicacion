@@ -52,6 +52,7 @@ function enviaJSON(email1,password1){
 	$.post( "/damonAplicacion/login/loguearse", parametros).done(function( resp ){
 		console.log(resp);
 		if(resp == 1){
+			// $.post("/damonAplicacion/login/relocalizar")
 			window.location.href = '/damonAplicacion/calendar/index';
 		}
 		else{

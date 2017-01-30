@@ -108,7 +108,9 @@ class Usuario {
 		this.inscriptoclases = []
 	}
 	Boolean esPrivilegiado(){
-		Rol r = this.getRol()
+		def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+		Rol r = u.getRol()
 		String nombreR = r.getNombrerol()
 		if (nombreR == "ROL_ADMIN"){
 			return(true)
@@ -125,125 +127,101 @@ class Usuario {
 		if (longitud == 1){
 			println("Longitud correcta")
 
-			Rol r = u.getRol()
-			String nombreR = r.getNombrerol()
-			if (nombreR == "ROL_ADMIN"){
-				this.estado = e
+			Boolean esPriv = this.esPrivilegiado()
+
+			if (esPriv){
+				u.estado = e
 				println("Se cambio el estado con exito")
+				return(true)
 			}
 			else{
 				println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
-				return false
+				return(false)
 			}
 		}
 		else{
 			println("Longitud incorrecta")
+			return(false)
+		}
+	}
+
+	Boolean setEstadoValido(Usuario u){
+
+		Boolean esPriv = this.esPrivilegiado()
+
+		if (esPriv){
+			u.estado = 'v'
+			println("Se cambio el estado a Valido con exito")
+			return(true)
+		}
+		else{
+			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+			return(false)
+		}
+	}
+
+	Boolean setEstadoActivo(Usuario u){
+
+		Boolean esPriv = this.esPrivilegiado()
+
+		if (esPriv){
+			u.estado = 'a'
+			println("Se cambio el estado a Activo con exito")
+		}
+		else{
+			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
 			return false
 		}
 	}
 
-	// def clasesDisponibles(){
+	def buscarInactivos(){
+		def listaUsuariosAct = Usuario.findAllByEstado('a')
+		def listaUsuariosVal = Usuario.findAllByEstado('v')
 
- //        def smgr = new SessionManager(request.session)
-        
- //        Usuario usuario = smgr.getCurrentUser()
- //        Rol rol = smgr.getCurrentRol() 
- //        String nombreRol = rol.getNombrerol()
- //        Tipousuario tipo = usuario.tipo
- //        def lista = []
 
- //        if ((nombreRol == "ROL_ADMIN") || (nombreRol == "ROL_PROF")){
- //            lista = Clase.getAll()
- //            return(lista)
- //        }
- //        else{
- //            if (nombreRol == "ROL_USUARIO"){
- //                lista = Clase.findAllByTipo(tipo)
- //                return(lista)
- //            }
- //        }
+	}
+
+	// import java.text.SimpleDateFormat;
+ //    import java.util.*;
+	// public static String compareDateTimes(Date date1, Date date2){
+ //            if (date1.after(date2)) return "date1 is after date2";    
+
+ //            if (date1.before(date2)) return "date1 is before date2";
+
+ //            if (date1.equals(date2)) return "date1 is equal to date2";
  //    }
 
-	// Boolean setEstadoValido(Usuario u, String e){
-	// 	int longitud = e.length()
-	// 	println("Compruebo si el nuevo estado es longitud 1")
+	//Tolerancia de 90 dias para pasar de activo a inactivo
+	//Tolerancia de 30 dias para pasar de valido a inactivo
+	//Date fechaAct = new Date()
+	//Date tresMesesDesp = fechaAct + 90.days
+	//1.year
+	//30.minutes
 
-	// 	if (longitud == 1){
-	// 		println("Longitud correcta")
+	Boolean setEstadoInactivo(Usuario u){
 
-	// 		Rol r = u.getRol()
-	// 		String nombreR = r.getNombrerol()
-	// 		if (nombreR == "ROL_ADMIN"){
-	// 			this.estado = e
-	// 			println("Se cambio el estado con exito")
-	// 		}
-	// 		else{
-	// 			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
-	// 			return false
-	// 		}
-	// 	}
-	// 	else{
-	// 		println("Longitud incorrecta")
-	// 		return false
-	// 	}
-	// }
+		Boolean esPriv = this.esPrivilegiado()
 
-	// Boolean setEstadoActivo(Usuario u, String e){
-	// 	int longitud = e.length()
-	// 	println("Compruebo si el nuevo estado es longitud 1")
+		if (esPriv){
+			u.estado = 'i'
+			println("Se cambio el estado a inactivo con exito")
+			return(true)
+		}
+		else{
+			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+			return(false)
+		}
+	}
 
-	// 	if (longitud == 1){
-	// 		println("Longitud correcta")
-
-	// 		Rol r = u.getRol()
-	// 		String nombreR = r.getNombrerol()
-	// 		if (nombreR == "ROL_ADMIN"){
-	// 			this.estado = e
-	// 			println("Se cambio el estado con exito")
-	// 		}
-	// 		else{
-	// 			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
-	// 			return false
-	// 		}
-	// 	}
-	// 	else{
-	// 		println("Longitud incorrecta")
-	// 		return false
-	// 	}
-	// }
-
-	// Boolean setEstadoInactivo(Usuario u, String e){
-	// 	int longitud = e.length()
-	// 	println("Compruebo si el nuevo estado es longitud 1")
-
-	// 	if (longitud == 1){
-	// 		println("Longitud correcta")
-
-	// 		Rol r = u.getRol()
-	// 		String nombreR = r.getNombrerol()
-	// 		if (nombreR == "ROL_ADMIN"){
-	// 			this.estado = e
-	// 			println("Se cambio el estado con exito")
-	// 		}
-	// 		else{
-	// 			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
-	// 			return false
-	// 		}
-	// 	}
-	// 	else{
-	// 		println("Longitud incorrecta")
-	// 		return false
-	// 	}
-	// }
-
-	String setRol(Rol s){
+	Boolean setRol(Rol s){
 		try{
 			this.rol = s
-			return("true")
+			return(true)
 		}
 		catch(Exception e){
 			println("PROBLEMA")
 			println(e)
+			return(false)
 		}
 	}
 
@@ -272,10 +250,11 @@ class Usuario {
 		}
 	}
 	
-	Boolean setTipo(Usuario usuarioPrivilegiado, Usuario usuarioACambiar, Tipousuario t){
-		Rol r = usuarioPrivilegiado.getRol()
-		String nombreR = r.getNombrerol()
-		if (nombreR == "ROL_ADMIN"){
+	Boolean setTipo(Usuario usuarioACambiar, Tipousuario t){
+		
+		Boolean esPriv = this.esPrivilegiado()
+
+		if (esPriv){
 			if (usuarioACambiar.tipo != t){
 				usuarioACambiar.tipo = t
 				println("Se cambio el Tipo de Usuario con Exito")
@@ -340,7 +319,8 @@ class Usuario {
 		if (nombreR == "ROL_ADMIN"){
 			Integer creditosResetear = this.servicio.cantidadcreditos
 			this.creditosActuales = creditosResetear
-			this.fechaVencimientoCred = new Date()
+			Date fechaActual = new Date()
+			this.fechaVencimientoCred = fechaActual + 30.days
 			println("Se resetearon los creditos del usuario")
 			return(true)
 		}

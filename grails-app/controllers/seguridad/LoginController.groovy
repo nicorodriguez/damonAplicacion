@@ -67,6 +67,35 @@ class LoginController {
 
     }
 
+    def relocalizar(){
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+
+        if (u){
+            def r = u.getRol()
+            String nombreRol = r.getNombrerol()
+            if (nombreRol == "ROL_USUARIO"){
+                redirect  (controller: "calendar" , action:"index")
+            }
+            else{
+                if (nombreRol == "ROL_ADMIN"){
+                    // redirect  (controller: "calendar" , action:"index")
+                }
+                else{
+                    if (nombreRol == "ROL_PROF"){
+                        // redirect  (controller: "calendar" , action:"index")
+                    }
+                    else{
+                        println("ERROR")
+                    }
+                }
+            }
+        }
+        else{
+            render(view: 'index')
+        }
+    }
+
     /*
         Agregar al login la verificacion de que el usuario ya verificó su cuenta:
             if (usuario.estado =! 'p'){

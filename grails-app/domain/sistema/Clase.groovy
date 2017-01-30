@@ -95,6 +95,13 @@ class Clase {
 		return(this.cantidadActual)
 	}
 
+	int calcularCapActual(){
+		println("CalcularCapActual -> cantidad: " + this.cantidadActual)
+		this.cantidadActual = this.anotados.size()
+		println("CalcularCapActual -> cantidad nueva: " + this.cantidadActual)
+		return(this.cantidadActual)
+	}
+
 	boolean agregarUsuarioALista(Usuario u){
 		try{
 			println("AgregarUsuarioALista - Se inicia el proceso")

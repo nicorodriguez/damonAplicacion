@@ -183,9 +183,6 @@ class CalendarController {
                         boolean resultadoCreditos = usuario.hayCreditos()
 
                         if (resultadoCreditos){
-                            Integer cantAct = clasee.aumentarCapActual()
-
-                            println("Nueva Cantidad Actual de Clase = " + cantAct)
 
                             Boolean resuCreditos = usuario.disminuirCreditos()
 
@@ -204,6 +201,10 @@ class CalendarController {
                                 }
                                 else{
                                     println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
+
+                                    Integer cantAct = clasee.calcularCapActual()
+
+                                    println("Nueva Cantidad Actual de Clase = " + cantAct)
 
                                     clasee.save(flush: true)
 
@@ -279,10 +280,6 @@ class CalendarController {
                     println("DesanotarseClase - Clase con lugar disponible")
                     println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
 
-                    Integer cantAct = clasee.disminuirCapActual()()
-
-                    println("Nueva Cantidad Actual de Clase = " + cantAct)
-
                     Boolean resuCreditos = usuario.aumentarCreditos()
 
                     if (resuCreditos){
@@ -300,6 +297,13 @@ class CalendarController {
                         }
                         else{
                             println("DesanotarseClase - SE ELIMINO SATISFACTORIAMENTE")
+
+                            Integer cantAct = clasee.calcularCapActual()
+
+                            println("Nueva Cantidad Actual de Clase = " + cantAct)
+
+                            clasee.save(flush: true)
+
                             render("true")
                         }
                     }

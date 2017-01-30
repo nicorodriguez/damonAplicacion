@@ -55,7 +55,7 @@
   <!-- Esto es lo que se importa localmente en la aplicacion -->
   <asset:javascript src="jquery.js"/>
   <asset:stylesheet src="estilosLogin.css"/>
-  <asset:javascript src="funcionLogin.js"/>
+  
 
   <link rel="icon" href="logotab.png">  
 </head>
@@ -89,14 +89,71 @@
   </div>
 </nav>
 
-</div>
-
 <div class="row">
-<div class="embed-responsive embed-responsive-4by3">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=LI_0iBFxoto&t=1043s"></iframe>
-</div>
 
+  <div class="videos">
+  <p class="tvideos">Doble Unders</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/Zyvusyli-UU"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Burpee</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/TU8QYVW0gDU"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Jumping Jacks</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/iSSAk4XCsRA"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Clean</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/EKRiW9Yt3Ps"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Clean & Jerk</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/8miqQQJEsO0"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Clean & Pull</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/1WuSiyM-knI"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Hang Clean</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/eVWbmwSg5CE"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Snatch</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/UBc5N_-xdqo"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">KB Clean</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/cPYfiwpUeSE"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">KB Snatch</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/6l2Iu26oWW8"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">KB Push Press</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/_jXUPoIjBKU"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Squats</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/UXJrBgI2RxA"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Pistols</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/PxNHR5K8610"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Kipping Pull Up's</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/YKJvwfZ4sWo"></iframe>
+  </div>
+  <div class="videos">
+  <p class="tvideos">Muscle Up</p>
+  <iframe align="left" width="400" height="300" src="https://www.youtube.com/embed/zBPQrMCQYiE"></iframe>
+  </div>
    </div>
+
+</div>
 
 </div>
 

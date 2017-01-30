@@ -22,6 +22,16 @@
     body{
     margin: 0 0 1px;
     }
+    .videos{
+      display: inline-block;
+      padding-left: 2.5em;
+      padding-bottom: 1em;
+    }
+
+    .tvideos{
+      font-size: 1.2em;
+      font-weight: bold; 
+    }
     /* Set black background color, white text and some padding */
     footer {
       margin: 0;

@@ -14,7 +14,7 @@ class Usuario {
 	String sexo
 	String estado = 'p'
 	Integer creditosActuales
-	Date fechaVencimientoCred
+	// Date fechaVencimientoCred
 	Rol rol
 	Servicio servicio
 	Tipousuario tipo
@@ -332,21 +332,21 @@ class Usuario {
 		}
 	}
 
-	Boolean resetarCreditos(Usuario usuarioPrivilegiado){
-		Rol r = usuarioPrivilegiado.getRol()
-		String nombreR = r.getNombrerol()
-		if (nombreR == "ROL_ADMIN"){
-			Integer creditosResetear = this.servicio.cantidadcreditos
-			this.creditosActuales = creditosResetear
-			this.fechaVencimientoCred = new Date()
-			println("Se resetearon los creditos del usuario")
-			return(true)
-		}
-		else{
-			println("No tiene el rol necesario para resetear los creditos del usuario!")
-			return(false)
-		}
-	}
+	// Boolean resetarCreditos(Usuario usuarioPrivilegiado){
+	// 	Rol r = usuarioPrivilegiado.getRol()
+	// 	String nombreR = r.getNombrerol()
+	// 	if (nombreR == "ROL_ADMIN"){
+	// 		Integer creditosResetear = this.servicio.cantidadcreditos
+	// 		this.creditosActuales = creditosResetear
+	// 		this.fechaVencimientoCred = new Date()
+	// 		println("Se resetearon los creditos del usuario")
+	// 		return(true)
+	// 	}
+	// 	else{
+	// 		println("No tiene el rol necesario para resetear los creditos del usuario!")
+	// 		return(false)
+	// 	}
+	// }
 
 	boolean agregarUsuarioAInscriptos(Clase c){
 		try{

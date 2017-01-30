@@ -1,4 +1,4 @@
-<%@ page import="session.SessionManager" %>
+%{-- <%@ page import="session.SessionManager" %>
 <%@ page import="seguridad.Usuario" %>
 <%@ page import="seguridad.Rol" %>
 <%@ page import="sistema.Tipousuario" %>
@@ -128,4 +128,4 @@
 </html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}%

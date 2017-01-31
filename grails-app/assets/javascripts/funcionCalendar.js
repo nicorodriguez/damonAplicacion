@@ -67,8 +67,12 @@ function anotarse(tipoclase,fecha,hora){
     });
  }
 
- function desaotarse(tipoclase,fecha,hora){
-
+ function desanotarse(tipoclase,fecha,hora){
+    console.log(tipoclase)
+    console.log(fecha)
+    console.log(hora)
+    
+    /* Recordar Descomentar cuando ande lo demas.
       var datos = {
         tipoclase: tipoclase,
         fechahor: fechahor
@@ -84,6 +88,7 @@ function anotarse(tipoclase,fecha,hora){
             alert("No pudo desanotarse, se produjo algun error.");
         }
     });
+    */
 
  }
 

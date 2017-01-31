@@ -159,7 +159,7 @@
          
           </div>
 
-      <div class="col-md-3" id="clases">
+      <div class="col-md-4" id="clases">
 
         
          <div class="panel panel-info">
@@ -168,7 +168,7 @@
                                     <nav>
                                           <ul id="anotado">
                                           <g:each var="claseanotado" in="${listaClases}">
-                                          <li><p>Anotado dia:<bold> ${claseanotado.getDia()} </bold> hora: <bold>${claseanotado.getHora()}</bold></p></li>
+                                          <li><p id="clasesAnotadas">Anotado dia: <span id="mayus"> ${claseanotado.getDia()} </span> hora:<span id="mayus"> ${claseanotado.getHora()} </span> <a onclick='desanotarse("${claseanotado.tipo.nombre}","${claseanotado.getFecha()}","${claseanotado.getHora()}")'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> </p></li>
                                           </g:each>
                                           </ul>
                                     </nav>

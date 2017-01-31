@@ -72,6 +72,15 @@ h2{
 margin-left: 2em;
 }
 
+#clasesAnotadas{
+  text-transform: capitalize;
+}
+
+#mayus{
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 #tbUsuario{
 	margin:0;
 }

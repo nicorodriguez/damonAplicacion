@@ -76,8 +76,15 @@
     </ul>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/damonAplicacion/calendar/misDatos" class="color-me"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido}</a></li>
+        <!--<li><a href="/damonAplicacion/calendar/misDatos" class="color-me"><span class="glyphicon glyphicon-user"></span></a></li> -->
+        <li><a class="color-me dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+            <li><a data-toggle="modal" href="#nuevoprofesor">Nuevo Profesor</a></li>
+            <li><a data-toggle="modal" href="#listaprofesor">Listar Profesores</a></li>
+            <li><a data-toggle="modal" href="#eliminarprofesor">Eliminar Profesor</a></li>
+            </ul>
         <li><a href="#" id="botonLogout" class="color-me"><span class="glyphicon glyphicon-user"></span>Cerrar Sesión</a></li>
+          </div>
       </ul>
     </div>
   </div>

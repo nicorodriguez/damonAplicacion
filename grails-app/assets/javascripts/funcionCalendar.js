@@ -58,14 +58,21 @@ function anotarse(tipoclase,fecha,hora){
             $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
         }else if (resp == "creditos"){
             alert("Creditos insuficientes");
+            window.location.reload();
         }else if (resp == "lleno"){
-            alert("La clase se encuentra lleno")
+            alert("La clase se encuentra lleno");
+            window.location.reload();
+        }else if (resp == "yaanotado"){
+            alert("Ya te encuentras anotado en dicha clase");
+            window.location.reload();
         }
         else{
             alert("Hubo un inconveniente, no pudo anotarse");
         }
     });
  }
+
+// window.location.reload();
 
  function desaotarse(tipoclase,fecha,hora){
 

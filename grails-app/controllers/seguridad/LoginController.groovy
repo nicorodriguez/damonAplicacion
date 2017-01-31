@@ -9,25 +9,29 @@ import session.SessionManager
 
 class LoginController {
 
+    // def index(){
+    //     render(view: 'index')
+    // }
+
     def index(){
-    	def smgr = new SessionManager(request.session)
+        def smgr = new SessionManager(request.session)
         def u = smgr.getCurrentUser()
         if (u){
             def r = u.getRol()
             String nombreRol = r.getNombrerol()
             if (nombreRol == "ROL_USUARIO"){
                 render("USUARIO")
-                redirect  (controller: "calendar" , action:"ver")
+                redirect  (controller: "calendar" , action:"index")
             }
             else{
                 if (nombreRol == "ROL_ADMIN"){
                     render("ADMIN")
-                    redirect  (controller: "adminview" , action:"ver")
+                    redirect  (controller: "adminview" , action:"index")
                 }
                 else{
                     if (nombreRol == "ROL_PROF"){
                         render("PROF")
-                        redirect  (controller: "profview" , action:"ver")
+                        redirect  (controller: "profview" , action:"index")
                     }
                     else{
                         println("ERROR")
@@ -38,10 +42,6 @@ class LoginController {
         else{
             render(view: 'index')
         }
-    }
-
-    def ver(){
-        render(view: 'index')
     }
 
     def loguearse(){

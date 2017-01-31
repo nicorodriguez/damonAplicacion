@@ -13,6 +13,10 @@ import java.text.SimpleDateFormat
 
 class CalendarController {
 
+    // def index(){
+    //     render(view: 'index')
+    // }
+
     def index(){
         def smgr = new SessionManager(request.session)
         def u = smgr.getCurrentUser()
@@ -24,16 +28,12 @@ class CalendarController {
             }
             else{
                 smgr.eliminarSesion()
-                redirect(controller: "login" , action:"ver")
+                redirect(controller: "login" , action:"index")
             }
         }
         else{
-            redirect(controller: "login" , action:"ver")
+            redirect(controller: "login" , action:"index")
         }
-    }
-
-    def ver(){
-        render(view: 'index')
     }
 
     def misDatos(){

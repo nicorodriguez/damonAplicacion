@@ -13,8 +13,12 @@ import java.text.SimpleDateFormat
 
 class ProfviewController{
 
+	// def index(){
+ //        render(view: 'index')
+	// }
+
 	def index(){
-		def smgr = new SessionManager(request.session)
+        def smgr = new SessionManager(request.session)
     	def u = smgr.getCurrentUser()
     	if (u){
     		def rol = u.getRol()
@@ -24,16 +28,12 @@ class ProfviewController{
     		}
     		else{
         		smgr.eliminarSesion()
-    			redirect(controller: "login" , action:"ver")
+    			redirect(controller: "login" , action:"index")
     		}
     	}
     	else{
-            redirect(controller: "login" , action:"ver")
+            redirect(controller: "login" , action:"index")
     	}
-	}
-
-	def ver(){
-        render(view: 'index')
     }
     
 }

@@ -13,8 +13,12 @@ import java.text.SimpleDateFormat
 
 class AdminviewController {
 
+	// def index(){
+ //        render(view: 'index')
+	// }
+
 	def index(){
-		println("entre a la pag del index")
+        println("entre a la pag del index")
 		def smgr = new SessionManager(request.session)
     	def u = smgr.getCurrentUser()
     	if (u){
@@ -26,16 +30,12 @@ class AdminviewController {
     		}
     		else{
         		smgr.eliminarSesion()
-    			redirect(controller: "login" , action:"ver")
+    			redirect(controller: "login" , action:"index")
     		}
     	}
     	else{
-            redirect(controller: "login" , action:"ver")
+            redirect(controller: "login" , action:"index")
     	}
-	}
-
-	def ver(){
-        render(view: 'index')
     }
 
 }

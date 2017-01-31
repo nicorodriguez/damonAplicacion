@@ -12,18 +12,8 @@
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
 
-  def rolProf = Rol.findByNombrerol("ROL_PROF") 
-  def profesores = Usuario.findAllByRol(rolProf) 
-
-  def tipousuariosLista = Tipousuario.getAll()
-
-  def tipoUsuarioActual = usuario.tipo
-
-  def claseLista1 = Clase.getAll()
+  def claseLista1 = Clase.findAllByProfe(usuario)
   
-  def claseLista2 = Clase.findAllByTipo(tipoUsuarioActual)
-  
-
   def listaHora1 = []
   for (Clase item: claseLista1){
     def clase1 = Clase.get(item.id)
@@ -31,14 +21,6 @@
     listaHora1 << hora1   
   }
   def listaHoraP1 = listaHora1.unique()
-
-  def listaHora2 = []
-  for (Clase item: claseLista2){
-    def clase2 = Clase.get(item.id)
-    def hora2 = clase2.getHora()
-    listaHora2 << hora2  
-  }
-  def listaHoraP2 = listaHora2.unique()
 %>
 
 <!DOCTYPE html>
@@ -65,7 +47,7 @@
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
-	<title>Damon | Profesor </title>
+	<title>Damon | Profesor</title>
 </head>
 <body>
 
@@ -97,80 +79,8 @@
 
 <div class="row">
             <div class="col-md-7" id="calendario">
-            <g:if test="${nombreRol=="ROL_USUARIO"}">
-               <div class="panel panel-primary" id="panel1">
-                     <div class="panel-heading">Calendario</div>
-                        <div sclass="panel-body">
-                              <table class="table" id="tbUsuario">
-                                <thead>
-                                  <tr>
-                                    <th>Horario</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábados</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="tbUsuario">
-                                   <g:each var="horarios" in="${listaHoraP2}">
-                                    <tr class="semana">
-                                       <td>${horarios}</td>
-                                       <td>
-                                       <g:each var="clase" in="${claseLista2}">
-                                       <g:if test="${clase.getDia()=="lunes" && clase.getHora()==horarios}">
-                                       <a class="modal" onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
-                                       </g:if>
-                                       </g:each>
-                                       </td>
-                                       <td>
-                                       <g:each var="clase" in="${claseLista2}">
-                                       <g:if test="${clase.getDia()=="martes" && clase.getHora()==horarios}">
-                                       <a  onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
-                                       </g:if>
-                                       </g:each>
-                                       </td>
-                                       <td>
-                                       <g:each var="clase" in="${claseLista2}">
-                                       <g:if test="${clase.getDia()=="miércoles" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
-                                       ${clase.tipo.nombre}
-                                       </a>
-                                       </g:if>
-                                       </g:each>
-                                       </td>
-                                       <td>
-                                       <g:each var="clase" in="${claseLista2}">
-                                       <g:if test="${clase.getDia()=="jueves" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
-                                       </g:if>
-                                       </g:each>
-                                       </td>
-                                       <td>
-                                       <g:each var="clase" in="${claseLista2}">
-                                       <g:if test="${clase.getDia()=="viernes" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
-                                       </g:if>
-                                       </g:each>
-                                       </td>
-                                       <td>
-                                       <g:each var="clase" in="${claseLista2}">
-                                       <g:if test="${clase.getDia()=="sábados" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
-                                       </g:if>
-                                       </g:each>
-                                       </td>                              
-                                    </tr>
-                                  </g:each>
-                                  </tbody>
-                              </table>                                
-                        </div>
-                     </div>
-                </g:if>
-                  <g:if test="${nombreRol == "ROL_ADMIN" || nombreRol == "ROL_PROF"}">
                   <div class="panel panel-primary" id="panel1">
-                     <div class="panel-heading">Calendario</div>
+                     <div class="panel-heading">Calendario - Profesor</div>
                         <div sclass="panel-body">
                               <table class="table" id="tbUsuario">
                                 <thead>
@@ -238,134 +148,8 @@
                               </table>                                
                         </div>
                      </div>
-                     </g:if>
-
-         
-
-
-         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Crear Clase</button>
-          <!-- Modal -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Crear Clase</h4>
-                </div>
-                <div class="modal-body">
-                      <div class="form-group">
-                        <label for="horario">Horario</label>
-                        <select class="form-control" id="horario">
-                            <option>-- Seleccionar --</option>
-                            <option>08:00</option>
-                            <option>08:30</option>
-                            <option>09:00</option>
-                            <option>09:30</option>
-                            <option>10:00</option>
-                            <option>10:30</option>
-                            <option>11:00</option>
-                            <option>11:30</option>
-                            <option>12:00</option>
-                            <option>12:30</option>
-                            <option>13:00</option>
-                            <option>13:30</option>
-                            <option>14:00</option>
-                            <option>14:30</option>
-                            <option>15:00</option>
-                            <option>15:30</option>
-                            <option>16:00</option>
-                            <option>16:30</option>
-                            <option>17:00</option>
-                            <option>17:30</option>
-                            <option>18:00</option>
-                            <option>18:30</option>
-                            <option>19:00</option>
-                            <option>19:30</option>
-                            <option>20:00</option>
-                            <option>20:30</option>
-                            <option>21:00</option>
-                            <option>21:30</option>
-                            <option>22:00</option>
-                            <option>22:30</option>
-                        </select>
-                        <div class="form-group">
-                          <label for="email">Profesor</label>
-                          <select class="form-control" id="profesor">
-                              <option value="0" disabled selected>-- Seleccionar --</option>
-                              <g:each var="profesor" in="${profesores}">
-                              <option value="${profesor.email}">${profesor.nombre}</option>
-                              </g:each>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Tipo de Usuarios</label>
-                          <select class="form-control" id="tipo">
-                              <option value="0" disabled selected>-- Seleccionar --</option>
-                              <g:each var="tipos" in="${tipousuariosLista}">
-                              <% if ("${tipos.nombre}" != "PENDIENTE"){ %>
-                                <% if ("${tipos.nombre}" != "ADMIN"){ %>
-                                  <option value="${tipos.nombre}">${tipos.nombre}</option>
-                                <% } %>
-                              <% } %>
-                              </g:each>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label>Fecha</label>
-                          <input type="text" id="fecha" name="fecha" />
-                      </div>
-                      <div class="form-group nom">
-                        <label for="cantidad">Cantidad Máxima:</label>
-                        <input type="text" class="form-control" id="cant" placeholder="Ingresar cantidad" maxlength="2" required>
-                      </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                  <button type="button" class="btn btn-primary" onclick="crearClase()">Crear Clase</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Fin de Modal -->
-
           </div>
 
-      <div class="col-md-3" id="clases">
-
-        <% if (nombreRol == "ROL_ADMIN"){ %>
-        
-          <div>
-          <button type="button" class="btn btn-primary btn-lg">Usuarios</button>
-          </div>
-          <div>
-          <button type="button" class="btn btn-primary btn-lg">Profesores</button>
-          </div>
-          <div>
-          <button type="button" class="btn btn-primary btn-lg">Clases</button>
-          </div>
-          <div>
-          <button type="button" class="btn btn-primary btn-lg">Servicios</button>
-          </div>
-   
-        </div>
-
-
-        <% } %>
-
-        <% if (nombreRol == "ROL_USUARIO"){ %>
-
-         <div class="panel panel-info">
-                     <div class="panel-heading">Clases Anotadas</div>
-                        <div class="panel-body">      
-                                    <nav>
-                                          <ul id="anotado">
-                                          <li></li>
-                                          </ul>
-                                    </nav>
-                              </div>
-         </div>       
-         <% } %>
 
       </div>   
 	</div>

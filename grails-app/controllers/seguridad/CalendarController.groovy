@@ -13,17 +13,28 @@ import java.text.SimpleDateFormat
 
 class CalendarController {
 
-    def index() {
-    	def smgr = new SessionManager(request.session)
-    	def u = smgr.getCurrentUser()
-    	if (u){
-    		render(view: 'index')
-    	}
-    	else{
-            redirect(controller: "login" , action:"index")
-    		//redirect(url: "http://localhost:8080/damonAplicacion/")
-    	}
-	}
+    def index(){
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            def rol = u.getRol()
+            String nombreRol = rol.getNombrerol()
+            if (nombreRol == "ROL_USUARIO"){
+                render(view: 'index')
+            }
+            else{
+                smgr.eliminarSesion()
+                redirect(controller: "login" , action:"ver")
+            }
+        }
+        else{
+            redirect(controller: "login" , action:"ver")
+        }
+    }
+
+    def ver(){
+        render(view: 'index')
+    }
 
     def misDatos(){
         redirect(controller: "usuario" , action:"misDatos")
@@ -279,6 +290,7 @@ class CalendarController {
 
                     println("DesanotarseClase - Clase con lugar disponible")
                     println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                    
 
                     Boolean resuCreditos = usuario.aumentarCreditos()
 

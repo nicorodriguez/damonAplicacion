@@ -2,17 +2,25 @@ package seguridad
 import seguridad.Usuario
 import seguridad.Rol
 import seguridad.Servicio
+import sistema.Clase
 import sistema.Tipousuario
+import sistema.Establecimiento
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
 import session.SessionManager
+import java.text.SimpleDateFormat
 
 class RegistroController {
 
     def index(){
-    	render(view: 'index')
+            render(view: 'index')
     }
+    
+
+    // def ver(){
+    //     render(view: 'index')
+    // }
 
     @Transactional
     def crearUsuario(){

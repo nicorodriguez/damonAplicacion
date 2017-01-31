@@ -13,11 +13,35 @@ class LoginController {
     	def smgr = new SessionManager(request.session)
         def u = smgr.getCurrentUser()
         if (u){
-            redirect  (controller: "calendar" , action:"index")
+            def r = u.getRol()
+            String nombreRol = r.getNombrerol()
+            if (nombreRol == "ROL_USUARIO"){
+                render("USUARIO")
+                redirect  (controller: "calendar" , action:"ver")
+            }
+            else{
+                if (nombreRol == "ROL_ADMIN"){
+                    render("ADMIN")
+                    redirect  (controller: "adminview" , action:"ver")
+                }
+                else{
+                    if (nombreRol == "ROL_PROF"){
+                        render("PROF")
+                        redirect  (controller: "profview" , action:"ver")
+                    }
+                    else{
+                        println("ERROR")
+                    }
+                }
+            }
         }
         else{
             render(view: 'index')
         }
+    }
+
+    def ver(){
+        render(view: 'index')
     }
 
     def loguearse(){
@@ -75,15 +99,18 @@ class LoginController {
             def r = u.getRol()
             String nombreRol = r.getNombrerol()
             if (nombreRol == "ROL_USUARIO"){
-                redirect  (controller: "calendar" , action:"index")
+                render("USUARIO")
+                // redirect  (controller: "calendar" , action:"index")
             }
             else{
                 if (nombreRol == "ROL_ADMIN"){
-                    // redirect  (controller: "calendar" , action:"index")
+                    render("ADMIN")
+                    // redirect  (controller: "adminview" , action:"index")
                 }
                 else{
                     if (nombreRol == "ROL_PROF"){
-                        // redirect  (controller: "calendar" , action:"index")
+                        render("PROF")
+                        // redirect  (controller: "profview" , action:"index")
                     }
                     else{
                         println("ERROR")

@@ -52,8 +52,24 @@ function enviaJSON(email1,password1){
 	$.post( "/damonAplicacion/login/loguearse", parametros).done(function( resp ){
 		console.log(resp);
 		if(resp == 1){
-			// $.post("/damonAplicacion/login/relocalizar")
-			window.location.href = '/damonAplicacion/calendar/index';
+			$.post("/damonAplicacion/login/relocalizar").done(function( resp1 ){
+				console.log(resp1);
+				if (resp1 == "ADMIN"){
+					window.location.href = '/damonAplicacion/adminview/index';
+				}
+				else{
+					if (resp1 == "PROF"){
+						window.location.href = '/damonAplicacion/profview/index';
+					}
+					else{
+						if (resp1 == "USUARIO"){
+							window.location.href = '/damonAplicacion/calendar/index';
+						}
+					}
+				}
+
+			});
+			// window.location.href = '/damonAplicacion/calendar/index';
 		}
 		else{
 			alert("Email o Contraseña incorrectos")

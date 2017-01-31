@@ -65,7 +65,7 @@
     </div>
      <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
+        <li class="active"><a href="/damonAplicacion/profview" class="color-me">Inicio</a></li>
         <li class="active"><a href="/damonAplicacion/calendar/guiaEjercicio" class="color-me">Guias ejercicios</a></li>
     </ul>
     <div class="collapse navbar-collapse" id="myNavbar">

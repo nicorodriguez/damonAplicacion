@@ -72,7 +72,7 @@
     </div>
      <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
+        <li class="active"><a href="/damonAplicacion/adminview" class="color-me">Inicio</a></li>
     </ul>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">

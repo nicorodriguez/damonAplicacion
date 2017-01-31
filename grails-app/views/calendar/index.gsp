@@ -18,6 +18,7 @@
   def tipoUsuarioActual = usuario.tipo
   
   def claseLista2 = Clase.findAllByTipo(tipoUsuarioActual)
+  def clasesanotadas = clas.findByUsuario(usuario)
 
   def listaHora2 = []
   for (Clase item: claseLista2){
@@ -70,7 +71,7 @@
     </div>
      <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
+        <li class="active"><a href="/damonAplicacion/calendar" class="color-me">Inicio</a></li>
         <li class="active"><a href="/damonAplicacion/calendar/guiaEjercicio" class="color-me">Guias ejercicios</a></li>
     </ul>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -165,7 +166,7 @@
                         <div class="panel-body">      
                                     <nav>
                                           <ul id="anotado">
-                                          <li></li>
+                                          <li><g:each var="anotado" in="${clasesanotadas}"></li>
                                           </ul>
                                     </nav>
                               </div>

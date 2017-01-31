@@ -181,56 +181,66 @@ class CalendarController {
                 else{
                     println("AnotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
 
-                    //Verifico que haya lugar en la clase
-                    if (!clasee.hayLugar()){
-                        println("AnotarseClase - Clase llena")
-                        println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
-                        render("lleno")
-                    }
-                    else{
-                        println("AnotarseClase - Clase con lugar disponible")
-                        println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                    println("AnotarseClase - Voy a verificar que no se encuentre ya anotado")
+                    // Boolean anotado = usuario.yaAnotado(clasee)
+                    if (!usuario.yaAnotado(clasee)){
+                        println("AnotarseClase - No se encuentra anotado a la clase -- Continuo")
 
-                        boolean resultadoCreditos = usuario.hayCreditos()
+                        //Verifico que haya lugar en la clase
+                        if (!clasee.hayLugar()){
+                            println("AnotarseClase - Clase llena")
+                            println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                            render("lleno")
+                        }
+                        else{
+                            println("AnotarseClase - Clase con lugar disponible")
+                            println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
 
-                        if (resultadoCreditos){
+                            boolean resultadoCreditos = usuario.hayCreditos()
 
-                            Boolean resuCreditos = usuario.disminuirCreditos()
+                            if (resultadoCreditos){
 
-                            if (resuCreditos){
-                                println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+                                Boolean resuCreditos = usuario.disminuirCreditos()
 
-                                boolean resuu = usuario.agregarUsuarioAInscriptos(clasee)
-                                println(resuu)
-                                
-                                //Agrego Usuario a la lista de anotados:
-                                boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
-                                                    
-                                if (!resultadoFinal){
-                                    println("AnotarseClase - No se pudo agregar a la lista")
-                                    render("false")
+                                if (resuCreditos){
+                                    println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+
+                                    boolean resuu = usuario.agregarUsuarioAInscriptos(clasee)
+                                    println(resuu)
+                                    
+                                    //Agrego Usuario a la lista de anotados:
+                                    boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
+                                                        
+                                    if (!resultadoFinal){
+                                        println("AnotarseClase - No se pudo agregar a la lista")
+                                        render("false")
+                                    }
+                                    else{
+                                        println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
+
+                                        Integer cantAct = clasee.calcularCapActual()
+
+                                        println("Nueva Cantidad Actual de Clase = " + cantAct)
+
+                                        clasee.save(flush: true)
+
+                                        render("true")
+                                    }
                                 }
                                 else{
-                                    println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
-
-                                    Integer cantAct = clasee.calcularCapActual()
-
-                                    println("Nueva Cantidad Actual de Clase = " + cantAct)
-
-                                    clasee.save(flush: true)
-
-                                    render("true")
+                                    println("AnotarseClase - No se pudo disminuir los creditos")
+                                    render("false")
                                 }
                             }
                             else{
-                                println("AnotarseClase - No se pudo disminuir los creditos")
-                                render("false")
+                                println("AnotarseClase - No se anoto al usuario porque no tiene creditos")
+                                render("creditos")
                             }
                         }
-                        else{
-                            println("AnotarseClase - No se anoto al usuario porque no tiene creditos")
-                            render("creditos")
-                        }
+                    }
+                    else{
+                        println("AnotarseClase - No se anoto al usuario porque ya se encuentra anotado")
+                        render("yaanotado")
                     }
                 }
             }

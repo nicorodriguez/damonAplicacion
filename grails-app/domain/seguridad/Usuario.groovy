@@ -354,7 +354,7 @@ class Usuario {
 			}
 			println("EliminarUsuarioDeInscriptos - Se elimino la clase: "+c+" Satisfactoriamente")
 			println(c)
-			this.save(flush: true)
+			// this.save(flush: true)
 			return(true)
 		}
 		catch(Exception e){
@@ -363,6 +363,27 @@ class Usuario {
 
             return(false)
         }
+	}
+
+	boolean yaAnotado(Clase c){
+
+		println("YaAnotado - Se inicia el proceso")
+		Integer idClase = c.id
+		println(c)
+		println(this.inscriptoclases)
+		Clase resu = this.inscriptoclases.find{it.id == idClase}
+		if (resu){
+			println(resu)
+			boolean a = true
+			println(a)
+			return(a)
+		}
+		else{
+			println(resu)
+			boolean a = false
+			println(a)
+			return(a)
+		}
 	}
 
 

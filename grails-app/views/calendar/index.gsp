@@ -18,7 +18,8 @@
   def tipoUsuarioActual = usuario.tipo
   
   def claseLista2 = Clase.findAllByTipo(tipoUsuarioActual)
-  def clasesanotadas = clas.findByUsuario(usuario)
+  
+  def listaClases = usuario.inscriptoclases
 
   def listaHora2 = []
   for (Clase item: claseLista2){
@@ -166,7 +167,9 @@
                         <div class="panel-body">      
                                     <nav>
                                           <ul id="anotado">
-                                          <li><g:each var="anotado" in="${clasesanotadas}"></li>
+                                          <g:each var="claseanotado" in="${listaClases}">
+                                          <li><p>Anotado dia:<bold> ${claseanotado.getDia()} </bold> hora: <bold>${claseanotado.getHora()}</bold></p></li>
+                                          </g:each>
                                           </ul>
                                     </nav>
                               </div>

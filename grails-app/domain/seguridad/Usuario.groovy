@@ -336,7 +336,6 @@ class Usuario {
 			this.inscriptoclases << c
 			println("AgregarUsuarioALista - Se agrego la clase: "+c+" Satisfactoriamente")
 			println(c)
-			this.save(flush: true)
 			return(true)
 		}
 		catch(Exception e){

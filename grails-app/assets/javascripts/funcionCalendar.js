@@ -88,7 +88,8 @@ function anotarse(tipoclase,fecha,hora){
         console.log(resp);
         if(resp == "true"){
             alert("Desanotado satisfactoriamente");
-            $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar')
+            window.location.reload();
+            // $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar')
         }
         else{
             alert("No pudo desanotarse, se produjo algun error.");

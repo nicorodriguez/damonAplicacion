@@ -318,7 +318,7 @@ class CalendarController {
                         // println(resuu)
 
                         //Elimino Usuario a la lista de anotados:
-                        boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario)
+                        boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario,clasee)
                                                     
                         if (!resultadoFinal){
                             println("DesanotarseClase - No se eliminar de la lista")

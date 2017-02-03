@@ -44,7 +44,7 @@ class Usuario {
 		rol lazy: false
 		servicio lazy: false
 		tipo lazy: false
-		inscriptoclases lazy: false
+		inscriptoclases cascade:"all,delete-orphan", lazy: false
 		version false
 	}
 
@@ -350,8 +350,15 @@ class Usuario {
 		try{
 			println("EliminarUsuarioDeInscriptos - Se inicia el proceso")
 			Integer idClase = c.id
-			this.inscriptoclases.removeAll{ inscriptoclases -> inscriptoclases.clase.id == idClase
-			}
+			// this.inscriptoclases.removeAll{ inscriptoclases -> inscriptoclases.clase.id == idClase
+			// }
+
+			println(this.inscriptoclases)
+			this.removeFromInscriptoclases(c);
+			// this.inscriptoclases.remove(c)
+			// this.inscriptoclases.remove{ inscriptoclases -> inscriptoclases.usuario.email == emailUser
+			// }
+			println(this.inscriptoclases)
 			println("EliminarUsuarioDeInscriptos - Se elimino la clase: "+c+" Satisfactoriamente")
 			println(c)
 			// this.save(flush: true)

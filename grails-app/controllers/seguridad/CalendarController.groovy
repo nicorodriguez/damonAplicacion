@@ -216,11 +216,11 @@ class CalendarController {
                                         render("false")
                                     }
                                     else{
-                                        println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
-
                                         Integer cantAct = clasee.calcularCapActual()
 
                                         println("Nueva Cantidad Actual de Clase = " + cantAct)
+
+                                        println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
 
                                         clasee.save(flush: true)
 
@@ -271,11 +271,18 @@ class CalendarController {
 
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
-            println("CrearClase - Voy a parsear la date")
+            println("desanotarseClase - Voy a parsear la date")
             Date fechaDate = Date.parse( 'dd/MM/yyyy hh:mm', fecha )
 
+            //Voy a buscar el tipo de Clase
+            Tipousuario tipoClasePosta = Tipousuario.findByNombre(tipoClase)
+
+            println("TipoClase: "+tipoClasePosta.nombre)
+            println(tipoClasePosta)
+
             //Traigo los datos de la clase:
-            Clase clasee = Clase.findByFechaAndHorarioAndTipo(fechaDate,tipoClase)
+            println("desanotarseClase - Voy a buscar la clase")
+            Clase clasee = Clase.findByFechaHorarioAndTipo(fechaDate,tipoClasePosta)
             
             //Verifico que exista la clase
             if (!clasee){
@@ -291,7 +298,7 @@ class CalendarController {
                 Tipousuario tipoUsuario = usuario.tipo
 
                 //Comparo el tipo de usuario con el tipo de la clase
-                if (tipoUsuario != tipoClase){
+                if (tipoUsuario.nombre != tipoClasePosta.nombre){
                     println("DesanotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
                     render("false")
                 }
@@ -307,8 +314,8 @@ class CalendarController {
                     if (resuCreditos){
                         println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
                                 
-                        boolean resuu = usuario.eliminarUsuarioDeInscriptos(clasee)
-                        println(resuu)
+                        // boolean resuu = usuario.eliminarUsuarioDeInscriptos(clasee)
+                        // println(resuu)
 
                         //Elimino Usuario a la lista de anotados:
                         boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario)

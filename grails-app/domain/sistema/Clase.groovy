@@ -29,7 +29,7 @@ class Clase {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
-		anotados lazy: false
+		anotados cascade:"all,delete-orphan", lazy: false
 		version false
 	}
 
@@ -124,8 +124,18 @@ class Clase {
 		try{
 			println("EliminarUsuarioDeLista - Se inicia el proceso")
 			String emailUser = u.email
-			this.anotados.removeAll{ anotados -> anotados.usuario.email == emailUser
-			}
+			println(this.anotados)
+			// this.anotados.remove(u)
+			this.removeFromAnotados(u);
+			u.eliminarUsuarioDeInscriptos(this)
+			// this.anotados.remove{ anotados -> anotados.usuario.email == emailUser
+			// }
+			this.anotados.find{it.email == emailUser}.each { it.delete(flush:true, failOnError:true) }
+			// DomainClass.findAll().each { it.delete(flush:true, failOnError:true) }
+			// this.anotados.executeUpdate("delete Usuario where email = (:em)",
+   			 //               [em:emailUser])
+			// this.save(flush: true)
+			println(this.anotados)
 			println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
 			return(true)
 		}

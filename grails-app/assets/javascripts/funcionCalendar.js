@@ -58,8 +58,13 @@ function anotarse(tipoclase,fecha,hora){
             $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
         }else if (resp == "creditos"){
             alert("Creditos insuficientes");
+            window.location.reload();
         }else if (resp == "lleno"){
-            alert("La clase se encuentra lleno")
+            alert("La clase se encuentra lleno");
+            window.location.reload();
+        }else if (resp == "yaanotado"){
+            alert("Ya te encuentras anotado a dicha clase");
+            window.location.reload();
         }
         else{
             alert("Hubo un inconveniente, no pudo anotarse");
@@ -71,14 +76,15 @@ function anotarse(tipoclase,fecha,hora){
     console.log(tipoclase)
     console.log(fecha)
     console.log(hora)
+
+    fechahor= fecha + " " + hora;
     
-    /* Recordar Descomentar cuando ande lo demas.
       var datos = {
         tipoclase: tipoclase,
         fechahor: fechahor
     }
 
-        $.post( "/damonAplicacion/calendar/anotarseClase", datos).done(function( resp ){
+        $.post( "/damonAplicacion/calendar/desanotarseClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
             alert("Desanotado satisfactoriamente");
@@ -88,7 +94,6 @@ function anotarse(tipoclase,fecha,hora){
             alert("No pudo desanotarse, se produjo algun error.");
         }
     });
-    */
 
  }
 

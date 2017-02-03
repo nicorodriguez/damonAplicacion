@@ -79,9 +79,8 @@
         <!--<li><a href="/damonAplicacion/calendar/misDatos" class="color-me"><span class="glyphicon glyphicon-user"></span></a></li> -->
         <li><a class="color-me dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-            <li><a data-toggle="modal" href="#nuevoprofesor">Nuevo Profesor</a></li>
-            <li><a data-toggle="modal" href="#listaprofesor">Listar Profesores</a></li>
-            <li><a data-toggle="modal" href="#eliminarprofesor">Eliminar Profesor</a></li>
+            <li><a data-toggle="modal" href="/damonAplicacion/adminview/misDatos">Mis Datos</a></li>
+            <li><a data-toggle="modal" href="/damonAplicacion/adminview/panelControl">Panel de Control</a></li>
             </ul>
         <li><a href="#" id="botonLogout" class="color-me"><span class="glyphicon glyphicon-user"></span>Cerrar Sesión</a></li>
           </div>

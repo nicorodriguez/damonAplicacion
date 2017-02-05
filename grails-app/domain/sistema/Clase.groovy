@@ -1,12 +1,14 @@
 package sistema
-import session.SessionManager
 import seguridad.Usuario
 import seguridad.Rol
 import seguridad.Servicio
+import sistema.Clase
 import sistema.Tipousuario
+import sistema.Establecimiento
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
+import session.SessionManager
 import java.text.SimpleDateFormat
 
 class Clase {
@@ -121,7 +123,7 @@ class Clase {
         }
 	}
 
-
+	@Transactional
 	boolean eliminarUsuarioDeLista(Usuario u, Clase c){
 		try{
 			println("EliminarUsuarioDeLista - Se inicia el proceso")
@@ -134,11 +136,11 @@ class Clase {
 			// u.eliminarUsuarioDeInscriptos(this)
 			// this.anotados.remove{ anotados -> anotados.usuario.email == emailUser
 			// }
-			this.anotados.find{it.email == emailUser}.each { it.delete(flush:true, failOnError:true) }
+			// this.anotados.find{it.email == emailUser}.each { it.delete(flush:true, failOnError:true) }
 			// DomainClass.findAll().each { it.delete(flush:true, failOnError:true) }
 			// this.anotados.executeUpdate("delete Usuario where email = (:em)",
    			 //               [em:emailUser])
-			this.save(flush: true)
+			this.delete(flush: true)
 			
 			println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
 			return(true)

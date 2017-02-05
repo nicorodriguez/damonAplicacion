@@ -130,7 +130,7 @@ class CalendarController {
         
     }
 
-    
+    @Transactional
     def anotarseClase(){
         
         try{
@@ -256,6 +256,7 @@ class CalendarController {
         
     }
 
+    @Transactional
     def desanotarseClase(){
 
         try{

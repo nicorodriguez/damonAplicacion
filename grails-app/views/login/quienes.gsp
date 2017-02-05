@@ -118,7 +118,6 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
         <li><a href="/damonAplicacion/login/quienes" id="ntext" class="color-me">¿Quiénes Somos?</a></li>
-        <li><a href="/damonAplicacion/login/" class="color-me">Gimnasios</a></li>
         <li><a href="/damonAplicacion/login/contacto" class="color-me">Contacto</a></li>
       </ul>
       </ul>
@@ -130,18 +129,16 @@
   </div>
 </nav>
 
-  <div>
+  <div class="container-fluid">
 
       <div>
       <h1 align="center">Quienes Somos?</h1>
 
             <div class="col-sm-4">
         <div class="w3-center" style="max-width:800px">
-          <img class="mySlides" src="box.jpg" style="width:100%">
-          <img class="mySlides" src="box2.jpg" style="width:100%">
-          <img class="mySlides" src="box3.jpg" style="width:100%">
+          <asset:image src="box.jpg" width="435" height="300"/>
         </div>
-
+        <!--
         <div class="w3-center" align="center">
           <div class="w3-section">
             <button class="w3-btn" onclick="plusDivs(-1)">❮ Anterior</button>
@@ -151,10 +148,11 @@
           <button class="w3-btn demo" onclick="currentDiv(2)">2</button> 
           <button class="w3-btn demo" onclick="currentDiv(3)">3</button> 
         </div>
+        -->
       </div>
       
       <div class="col-sm-7">
-      <p> En Damon es un box de Crossfit, aquie el entrenamiento se basa en los movimientos funcionales, es decir, movimientos utilizados en la vida cotidiana. Lo único que necesitamos es tu motivación. En nuestro Box no encontrarás máquinas, no las utilizamos porque creemos que no hay máquina mejor que tu cuerpo; y con eso trabajamos. Aprenderás a moverte, a saltar, a correr y a levantar pesos, te sentirás fuerte, ágil, rápido y más vivo que nunca. Nuestra motivación es tu mejora.</p>
+      <p> En Damon es un box de Crossfit, aqui el entrenamiento se basa en los movimientos funcionales, es decir, movimientos utilizados en la vida cotidiana. Lo único que necesitamos es tu motivación. En nuestro Box no encontrarás máquinas, no las utilizamos porque creemos que no hay máquina mejor que tu cuerpo; y con eso trabajamos. Aprenderás a moverte, a saltar, a correr y a levantar pesos, te sentirás fuerte, ágil, rápido y más vivo que nunca. Nuestra motivación es tu mejora.</p>
       
       <p> Damon es un espacio para hacer sentir tu cuerpo como nunca lo has sentido. Tenemos anillas, cuerdas, cajas de salto, barras y discos, trineos, pelotas medicinales, kettlebells y mucho más para que disfrutes de nuestras instalaciones. Nuestros entrenadores te ayudarán en todo el proceso de aprendizaje, queremos enseñarte tu potencial y no hay otra manera posible de hacerlo.</p>
 
@@ -165,9 +163,10 @@
   </div>
 
 
+ </div>
 <div id="footer"></div>
 <hr>
-<!-- <footer class="container-fluid text">
+<footer class="container-fluid text">
   <p>
       <div class="footer-right">
         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -178,16 +177,15 @@
       </div>
 
       <div class="footer-left">
+        <!-- <p><a href="#"><span class="glyphicon glyphicon-envelope"></span></a>Envelope icon as a link: </p> -->
         <p><span class="glyphicon glyphicon-pushpin"></span> Av. Siempre Viva </p>
         <p><span class="glyphicon glyphicon-phone"></span> 03489-567893 </p>
         <p><span class="glyphicon glyphicon-envelope"></span> damon@damon.com </p>
 
         <p>Ing. Sistemas de Informacion - UTN FRD &copy; 2016</p>
-      </div>
-
-      </p>
+     
+  </p>
 </footer>
--->
 
 </body>
 </html>

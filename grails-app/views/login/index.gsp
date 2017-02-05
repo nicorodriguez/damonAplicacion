@@ -37,7 +37,6 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="/damonAplicacion" class="color-me">Inicio</a></li>
         <li><a href="/damonAplicacion/login/quienes" id="ntext" class="color-me">¿Quiénes Somos?</a></li>
-        <li><a href="/damonAplicacion/login/" class="color-me">Gimnasios</a></li>
         <li><a href="/damonAplicacion/login/contacto" class="color-me">Contacto</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -86,6 +85,7 @@
 
 <div id="footer"></div>
 <hr>
+
 <footer class="container-fluid text">
   <p>
       <div class="footer-right">

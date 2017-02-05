@@ -38,4 +38,14 @@ class AdminviewController {
     	}
     }
 
+    def misDatos()
+    {
+        render(view:'misDatos')
+    }
+
+    def panelDeControl()
+    {
+        render(view:'panelDeControl')
+    }
+
 }

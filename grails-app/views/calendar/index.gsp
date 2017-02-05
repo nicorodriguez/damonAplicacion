@@ -167,7 +167,7 @@
                         <div class="panel-body">      
                                     <nav>
                                           <ul id="anotado">
-                                          <g:each var="claseanotado" in="${listaClases}">
+                                          <g:each var="claseanotado" in="${listaClases.sort{it.fechaHorario}}">
                                           <li><p id="clasesAnotadas">Anotado dia: <span id="mayus"> ${claseanotado.getDia()} </span> hora:<span id="mayus"> ${claseanotado.getHora()} </span> <a onclick='desanotarse("${claseanotado.tipo.nombre}","${claseanotado.getFecha()}","${claseanotado.getHora()}")'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> </p></li>
                                           </g:each>
                                           </ul>

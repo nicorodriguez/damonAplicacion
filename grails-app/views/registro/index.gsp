@@ -19,7 +19,6 @@ ${servicio.nombreservicio}
   <asset:stylesheet src="estilosRegistro.css"/>
   <asset:javascript src="funcionRegistro.js"/>
   <asset:javascript src="bootbox.min.js"/>
-  <!--<link rel="icon" href="logotab.png">-->
 
 </head>
 <body>
@@ -116,6 +115,7 @@ ${servicio.nombreservicio}
     </div>
   </form>
 </div>
+
 </div>
 <hr>
   <dir class="alert alert-danger" id="error"><p class="text-center"><b>¡Error!</b> Haz algunos cambios antes de volver a enviar el formulario.</p></dir>

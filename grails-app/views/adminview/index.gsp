@@ -81,7 +81,7 @@
         <li><a class="color-me dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido} <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" href="/damonAplicacion/adminview/misDatos">Mis Datos</a></li>
-            <li><a data-toggle="modal" href="/damonAplicacion/adminview/panelControl">Panel de Control</a></li>
+            <li><a data-toggle="modal" href="/damonAplicacion/adminview/panelDeControl">Panel de Control</a></li>
             </ul>
         <li><a href="#" id="botonLogout" class="color-me"><span class="glyphicon glyphicon-user"></span>Cerrar Sesión</a></li>
           </div>
@@ -114,14 +114,14 @@
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getDia()=="lunes" && clase.getHora()==horarios}">
-                                       <a class="modal" onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a class="modal" onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getDia()=="martes" && clase.getHora()==horarios}">
-                                       <a  onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a  onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
@@ -129,7 +129,7 @@
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getDia()=="miércoles" && clase.getHora()==horarios}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
-                                       ${clase.tipo.nombre}
+                                       ${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}
                                        </a>
                                        </g:if>
                                        </g:each>
@@ -137,21 +137,21 @@
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getDia()=="jueves" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getDia()=="viernes" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getDia()=="sábados" && clase.getHora()==horarios}">
-                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</a>
                                        </g:if>
                                        </g:each>
                                        </td>                              
@@ -169,7 +169,7 @@
       <div class="col-md-3" id="clases">
        
           <div class="btn-group-vertical">
-          <div class="btn-group">
+          <div class="btn-group botones">
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" href="#modalhabilitarusuario">Habilitar Usuario</a></li>

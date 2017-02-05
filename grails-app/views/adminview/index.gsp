@@ -174,6 +174,7 @@
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" href="#modalhabilitarusuario">Habilitar Usuario</a></li>
             <li><a data-toggle="modal" href="#modallistarusuario">Listar Usuarios</a></li>
+            <li><a data-toggle="modal" href="#modalcambiarserv">Cambiar Servicio</a></li>
             <li><a data-toggle="modal" href="#modalcambiarcat">Cambiar Categoria</a></li>
             </ul>
           </div>
@@ -294,6 +295,7 @@
               </div>
             </div>
           </div>
+
   <!-- Modal modalhabilitarusuario -->
   <div class="modal fade" id="modalhabilitarusuario" role="dialog">
     <div class="modal-dialog">
@@ -334,14 +336,14 @@
     </div>
   </div>
 
-  <!-- Modal modalcambiarcat -->
-  <div class="modal fade" id="modalcambiarcat" role="dialog">
+  <!-- Modal modalcambiarserv -->
+  <div class="modal fade" id="modalcambiarserv" role="dialog">
     <div class="modal-dialog">
-      <!-- Modal modalcambiarcat content-->
+      <!-- Modal modalcambiarserv content-->
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Cambiar Categoria</h4>
+          <h4 class="modal-title">Cambiar Servicio</h4>
         </div>
         <div class="modal-body">
           <form id="searchbox" action="">
@@ -380,6 +382,52 @@
     </div>
   </div>
 
+  <!-- Modal modalcambiarcat -->
+  <div class="modal fade" id="modalcambiarcat" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal modalcambiarcat content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cambiar Categoria</h4>
+        </div>
+        <div class="modal-body">
+          <form id="searchbox" action="">
+            <p>Buscar usuario por correo: <input id="search" type="email" size="35" placeholder="Escriba correo" required="">
+            <input id="submit" type="submit" value="Buscar"></p>
+          </form>
+          <form Name=cambiarcat>
+           <table style="width:100%">
+            <caption>Datos de Usuario</caption>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Categoria</th>
+            </tr>
+            <tr>
+              <td>Importar Nombre</td>
+              <td>Importar Apellido</td>
+              <td>    
+              <select class="form-control" id="sel1">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="0">Atleta</option>
+                <option value="1">Crossfitero</option>
+                <option value="3">Kid</option>
+              </select>
+              </td>
+            </tr>
+          </table>
+          <br>
+          <p align="center"><button type=button class="button button2" align="center"><b>CAMBIAR!</b></button></p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
     <!-- Modal nuevoprofesor -->
   <div class="modal fade" id="nuevoprofesor" role="dialog">
     <div class="modal-dialog">
@@ -406,7 +454,7 @@
             <tr>
               <td>Importar Nombre</td>
               <td>Importar Apellido</td>
-              <td>Importar Categoria(corss,atelta,kid)</td>
+              <td>Importar Categoria(cross,atleta,kid)</td>
             </tr>
           </table>
           <br>

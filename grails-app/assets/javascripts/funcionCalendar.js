@@ -28,7 +28,7 @@ function envioDatos(profesor,tipo,fecha,cantidad){
         console.log(resp);
         if(resp == "true"){
             alert("Clase creada satisfactoriamente");
-            $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+             window.location.reload();
         }
         else{
             alert("Clase no creada");
@@ -55,7 +55,9 @@ function anotarse(tipoclase,fecha,hora){
         console.log(resp);
         if(resp == "true"){
             alert("Anotado satisfactoriamente");
-            $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+            //Esto redirige a algun lado, no usar para la recarga de la pagina.
+            //$(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+            window.location.reload();
         }else if (resp == "creditos"){
             alert("Creditos insuficientes");
             window.location.reload();

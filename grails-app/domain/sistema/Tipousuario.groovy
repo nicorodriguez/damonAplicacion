@@ -1,11 +1,13 @@
 package sistema
 import seguridad.Usuario
+import sistema.Clase
 
 class Tipousuario {
 
 	String nombre
 	String abreviatura
 	static hasMany = [usuariostipo: Usuario]
+	// static belongsTo = Usuario
 
 	Tipousuario(String n, String a){
 		this()

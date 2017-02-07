@@ -60,7 +60,22 @@
       </ul>
          <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/damonAplicacion/calendar/misDatos" class="color-me"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido}</a></li>
+       <li><a class="color-me dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+            <% 
+            if (nombreRol == "ROL_USUARIO"){
+            %>
+            <li><a data-toggle="modal" href="/damonAplicacion/calendar/misDatos">Mis Datos</a></li>
+            <%
+            }
+            %>
+            <% if (nombreRol == "ROL_PROF"){
+            %>
+            <li><a data-toggle="modal" href="/damonAplicacion/profview/misDatos">Mis Datos</a></li>
+            <%
+            }
+            %>
+            </ul>
         <li><a href="#" id="botonLogout" class="color-me"><span class="glyphicon glyphicon-user"></span>Cerrar Sesión</a></li>
       </ul>
     </div>

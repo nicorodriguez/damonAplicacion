@@ -77,7 +77,10 @@
     </ul>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/damonAplicacion/calendar/misDatos" class="color-me"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido}</a></li>
+        <li><a class="color-me dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>${nombre} ${apellido} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+            <li><a data-toggle="modal" href="/damonAplicacion/calendar/misDatos">Mis Datos</a></li>
+            </ul>
         <li><a href="#" id="botonLogout" class="color-me"><span class="glyphicon glyphicon-user"></span>Cerrar Sesión</a></li>
       </ul>
     </div>
@@ -108,14 +111,14 @@
                                        <td>
                                        <g:each var="clase" in="${claseLista2}">
                                        <g:if test="${clase.getDia()=="lunes" && clase.getHora()==horarios}">
-                                       <a class="modal" onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista2}">
                                        <g:if test="${clase.getDia()=="martes" && clase.getHora()==horarios}">
-                                       <a  onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
+                                       <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>
                                        </td>
@@ -144,7 +147,7 @@
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista2}">
-                                       <g:if test="${clase.getDia()=="sábados" && clase.getHora()==horarios}">
+                                       <g:if test="${clase.getDia()=="sábado" && clase.getHora()==horarios}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>${clase.tipo.nombre}</a>
                                        </g:if>
                                        </g:each>

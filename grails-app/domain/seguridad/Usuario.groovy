@@ -20,6 +20,7 @@ class Usuario {
 	Servicio servicio
 	Tipousuario tipo
 	static hasMany = [inscriptoclases: Clase]
+	// static belongsTo = Clase
 	static belongsTo = [Rol, Servicio, Tipousuario, Clase]
 	// static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
 
@@ -44,7 +45,7 @@ class Usuario {
 		rol lazy: false
 		servicio lazy: false
 		tipo lazy: false
-		inscriptoclases cascade:"all-delete-orphan", lazy: false
+		inscriptoclases cascade:"all,delete-orphan", lazy: false
 		version false
 	}
 
@@ -354,10 +355,14 @@ class Usuario {
 			// }
 
 			println(this.inscriptoclases)
-			this.removeFromInscriptoclases(c)
-			// this.inscriptoclases.remove(c)
+			// this.removeFromInscriptoclases(c)
+			// c.discard()
+			// this.inscriptoclases.removeElement(c)
+			this.inscriptoclases -= c
+
 			// this.inscriptoclases.remove{ inscriptoclases -> inscriptoclases.usuario.email == emailUser
 			// }
+			// this.delete(flush: true)
 			println(this.inscriptoclases)
 			println("EliminarUsuarioDeInscriptos - Se elimino la clase: "+c+" Satisfactoriamente")
 			println(c)

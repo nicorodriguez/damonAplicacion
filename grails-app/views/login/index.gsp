@@ -58,7 +58,7 @@
                             <fieldset>
                                 <div class="form-group">
                                    <label for="exampleInputEmail1">Email</label>
-                                   <input class="form-control input" placeholder="Ingrese Email" id="login-email" name="email" value="ni.co55@hotmail.com" type="email" autofocus="" maxlength="50" required>
+                                   <input class="form-control input" placeholder="Ingrese Email" id="login-email" name="email" value="nico55@hotmail.com" type="email" autofocus="" maxlength="50" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña <a href="LINK A OLVIDE CONTRASEÑA">(Olvide mi contraseña)</a></label>
@@ -71,7 +71,7 @@
                                 </div> --}%
                                 <a id="submit" class="btn btn-sm btn-success" style="font-size:medium;" onclick="crearParametros()">Ingresar</a>
 
-                                <a id="submit" class="btn btn-sm btn-primary" style="font-size:medium;" onclick="probando()">ACA</a>
+                                %{-- <a id="submit" class="btn btn-sm btn-primary" style="font-size:medium;" onclick="probando()">ACA</a> --}%
 
                             </fieldset>
                         </form>

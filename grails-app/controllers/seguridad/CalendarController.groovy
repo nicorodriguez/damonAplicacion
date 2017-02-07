@@ -36,8 +36,14 @@ class CalendarController {
         }
     }
 
-    def misDatos(){
-        redirect(controller: "usuario" , action:"misDatos")
+    def misDatos()
+    {
+        render(view:'misDatos')
+    }
+
+    def panelDeControl()
+    {
+        render(view:'panelDeControl')
     }
 
     def formatHora(){
@@ -89,13 +95,13 @@ class CalendarController {
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
             println("CrearClase - Voy a parsear la date")
-            Date fechaDate = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha )
+            Date fechaDate = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha )
 
             println("CrearClase -> "+fechaDate)
 
             //Traer los profesores de la base de datos verifica que existe
-            println("CrearClase - Voy a buscar el Profesor")
-            Usuario prof = Usuario.findByEmail(profeEmail)
+            // println("CrearClase - Voy a buscar el Profesor")
+            // Usuario prof = Usuario.findByEmail(profeEmail)
 
             //Traer los tipos de la base de datos verifica que existen
             println("CrearClase - Voy a buscar el Tipo de Usuario")
@@ -110,7 +116,7 @@ class CalendarController {
                 render("false")
             }
             else{
-                Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
+                Clase clasee = new Clase(fechaDate,profeEmail,tipo1,maxCantidad)
 
                 // Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
                 clasee.inicializarTablaAnotados()
@@ -130,7 +136,7 @@ class CalendarController {
         
     }
 
-    @Transactional
+    // @Transactional
     def anotarseClase(){
         
         try{
@@ -145,7 +151,7 @@ class CalendarController {
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
             println("AnotarseClase - Voy a parsear la date")
-            Date fechaDate = Date.parse( 'dd/MM/yyyy hh:mm', fecha )
+            Date fechaDate = Date.parse( 'dd/MM/yyyy HH:mm', fecha )
 
             //Voy a buscar el tipo de Clase
             Tipousuario tipoClasePosta = Tipousuario.findByNombre(tipoClase)
@@ -163,92 +169,113 @@ class CalendarController {
                 render("false")
             }
             else{
-                //Traer los datos del usuario:
-                def smgr = new SessionManager(request.session)
-                Usuario usuario = smgr.getCurrentUser()
+                //Verifico que la es posible anotarse dependiendo de la fecha y la hora
+                boolean tiempoPosible = clasee.verificoTiempo()
 
-                //Traigo el tipo del usuario
-                Tipousuario tipoUsuario = usuario.tipo
+                if (tiempoPosible){
 
-                println("TipoUsuario: "+tipoUsuario.nombre)
-                println(tipoUsuario)
+                    println("AnotarseClase - Tiempo valido para anotarse")
 
-                //Comparo el tipo de usuario con el tipo de la clase
-                if (tipoUsuario.nombre != tipoClasePosta.nombre){
-                    println("AnotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
-                    render("false")
-                }
-                else{
-                    println("AnotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
+                    //Traer los datos del usuario:
+                    def smgr = new SessionManager(request.session)
+                    Usuario usuario = smgr.getCurrentUser()
 
-                    println("AnotarseClase - Voy a verificar que no se encuentre ya anotado")
-                    // Boolean anotado = usuario.yaAnotado(clasee)
-                    if (!usuario.yaAnotado(clasee)){
-                        println("AnotarseClase - No se encuentra anotado a la clase -- Continuo")
+                    //Traigo el tipo del usuario
+                    Tipousuario tipoUsuario = usuario.tipo
 
-                        //Verifico que haya lugar en la clase
-                        if (!clasee.hayLugar()){
-                            println("AnotarseClase - Clase llena")
-                            println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
-                            render("lleno")
-                        }
-                        else{
-                            println("AnotarseClase - Clase con lugar disponible")
-                            println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                    println("TipoUsuario: "+tipoUsuario.nombre)
+                    println(tipoUsuario)
 
-                            boolean resultadoCreditos = usuario.hayCreditos()
+                    //Comparo el tipo de usuario con el tipo de la clase
+                    if (tipoUsuario.nombre != tipoClasePosta.nombre){
+                        println("AnotarseClase - Tipo de clase y tipo de usuario no concuerdan!!")
+                        render("false")
+                    }
+                    else{
+                        println("AnotarseClase - Tipo de clase y tipo de usuario concuerdan -- Continuo")
 
-                            if (resultadoCreditos){
+                        println("AnotarseClase - Voy a verificar que no se encuentre ya anotado")
+                        // Boolean anotado = usuario.yaAnotado(clasee)
+                        if (!usuario.yaAnotado(clasee)){
+                            println("AnotarseClase - No se encuentra anotado a la clase -- Continuo")
 
-                                Boolean resuCreditos = usuario.disminuirCreditos()
+                            //Verifico que haya lugar en la clase
+                            if (!clasee.hayLugar()){
+                                println("AnotarseClase - Clase llena")
+                                println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
+                                render("lleno")
+                            }
+                            else{
+                                println("AnotarseClase - Clase con lugar disponible")
+                                println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
 
-                                if (resuCreditos){
-                                    println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+                                boolean resultadoCreditos = usuario.hayCreditos()
 
-                                    boolean resuu = usuario.agregarUsuarioAInscriptos(clasee)
-                                    println(resuu)
-                                    
-                                    //Agrego Usuario a la lista de anotados:
-                                    boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
-                                                        
-                                    if (!resultadoFinal){
-                                        println("AnotarseClase - No se pudo agregar a la lista")
-                                        render("false")
+                                if (resultadoCreditos){
+
+                                    Boolean resuCreditos = usuario.disminuirCreditos()
+
+                                    if (resuCreditos){
+                                        println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+
+                                        boolean resuu = usuario.agregarUsuarioAInscriptos(clasee)
+                                        println(resuu)
+                                        
+                                        // Agrego Usuario a la lista de anotados:
+                                        boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
+                                                            
+                                        if (!resultadoFinal){
+                                            println("AnotarseClase - No se pudo agregar a la lista")
+                                            render("false")
+                                        }
+                                        else{
+
+                                            Integer cantAct = clasee.calcularCapActual()
+
+                                            println("Nueva Cantidad Actual de Clase = " + cantAct)
+
+                                            def claseid = clasee.id
+                                            Clase claseaguardar = Clase.get(claseid)
+                                            claseaguardar.save(flush: true, failOnError: true)
+
+                                            println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
+
+                                            // clasee.merge(flush: true)
+
+                                            render("true")
+                                        }
                                     }
                                     else{
-                                        Integer cantAct = clasee.calcularCapActual()
-
-                                        println("Nueva Cantidad Actual de Clase = " + cantAct)
-
-                                        println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
-
-                                        clasee.save(flush: true)
-
-                                        render("true")
+                                        println("AnotarseClase - No se pudo disminuir los creditos")
+                                        render("false")
                                     }
                                 }
                                 else{
-                                    println("AnotarseClase - No se pudo disminuir los creditos")
-                                    render("false")
+                                    println("AnotarseClase - No se anoto al usuario porque no tiene creditos")
+                                    render("creditos")
                                 }
                             }
-                            else{
-                                println("AnotarseClase - No se anoto al usuario porque no tiene creditos")
-                                render("creditos")
-                            }
+                        }
+                        else{
+                            println("AnotarseClase - No se anoto al usuario porque ya se encuentra anotado")
+                            render("yaanotado")
                         }
                     }
-                    else{
-                        println("AnotarseClase - No se anoto al usuario porque ya se encuentra anotado")
-                        render("yaanotado")
-                    }
+                }
+                else{
+                    println("AnotarseClase - Ya no hay tiempo para anotarse")
+                    render("tarde")
                 }
             }
             
         }
         catch(Exception e){
+        // catch(ValidationException v){
             println("PROBLEMA")
             println(e)
+
+            // println("VALIDACION")
+            // println(v)
 
             render ("false")
         }
@@ -256,7 +283,7 @@ class CalendarController {
         
     }
 
-    @Transactional
+    // @Transactional
     def desanotarseClase(){
 
         try{
@@ -273,7 +300,7 @@ class CalendarController {
             //Verificar las fechas en las funciones de javascript
             //Paso las fechas de strings a date
             println("desanotarseClase - Voy a parsear la date")
-            Date fechaDate = Date.parse( 'dd/MM/yyyy hh:mm', fecha )
+            Date fechaDate = Date.parse( 'dd/MM/yyyy HH:mm', fecha )
 
             //Voy a buscar el tipo de Clase
             Tipousuario tipoClasePosta = Tipousuario.findByNombre(tipoClase)
@@ -284,6 +311,8 @@ class CalendarController {
             //Traigo los datos de la clase:
             println("desanotarseClase - Voy a buscar la clase")
             Clase clasee = Clase.findByFechaHorarioAndTipo(fechaDate,tipoClasePosta)
+
+            
             
             //Verifico que exista la clase
             if (!clasee){
@@ -314,12 +343,15 @@ class CalendarController {
 
                     if (resuCreditos){
                         println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
-                                
-                        // boolean resuu = usuario.eliminarUsuarioDeInscriptos(clasee)
-                        // println(resuu)
+                        
+                        def claseid = clasee.id
+                        Clase claseaguardar = Clase.get(claseid)
+
+                        boolean resuu = usuario.eliminarUsuarioDeInscriptos(claseaguardar)
+                        println(resuu)
 
                         //Elimino Usuario a la lista de anotados:
-                        boolean resultadoFinal = clasee.eliminarUsuarioDeLista(usuario,clasee)
+                        boolean resultadoFinal = claseaguardar.eliminarUsuarioDeLista(usuario)
                                                     
                         if (!resultadoFinal){
                             println("DesanotarseClase - No se eliminar de la lista")
@@ -328,11 +360,11 @@ class CalendarController {
                         else{
                             println("DesanotarseClase - SE ELIMINO SATISFACTORIAMENTE")
 
-                            Integer cantAct = clasee.calcularCapActual()
+                            // Integer cantAct = clasee.calcularCapActual()
 
-                            println("Nueva Cantidad Actual de Clase = " + cantAct)
+                            // println("Nueva Cantidad Actual de Clase = " + cantAct)
 
-                            clasee.save(flush: true)
+                            // clasee.save(flush: true)
 
                             render("true")
                         }

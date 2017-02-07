@@ -6,6 +6,7 @@ class Servicio {
 	String nombreservicio
 	Integer cantidadcreditos
 	static hasMany = [usuariosserv: Usuario]
+	// static belongsTo = Usuario
 
 	Servicio(String nombre, Integer cant){
 		this()

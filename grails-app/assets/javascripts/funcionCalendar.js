@@ -67,6 +67,9 @@ function anotarse(tipoclase,fecha,hora){
         }else if (resp == "yaanotado"){
             alert("Ya te encuentras anotado a dicha clase");
             window.location.reload();
+        }else if (resp == "tarde"){
+            alert("Ya es tarde para anotarse a dicha clase");
+            window.location.reload();
         }
         else{
             alert("Hubo un inconveniente, no pudo anotarse");

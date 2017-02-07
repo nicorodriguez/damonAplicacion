@@ -56,47 +56,75 @@ class BootStrap {
         tipoUsuario5.inicializarTablaTipo()
         tipoUsuario5.save(flush: true)
 
-        Usuario usuarioPrueba = new Usuario("ni.co55@hotmail.com","12345678","Nico","Rodriguez","Masculino",administradorRol,serv3,tipoUsuario5)
+        Usuario usuarioPrueba = new Usuario("nico55@hotmail.com","12345678","Nico","Rodriguez","Masculino",administradorRol,serv3,tipoUsuario5)
         usuarioPrueba.save(flush: true)
 
-        Usuario profesor = new Usuario("jaja@hotmail.com","12345678","David","Sangali","Masculino",profRole,serv4,tipoUsuario5)
+        Usuario profesor = new Usuario("davids@hotmail.com","12345678","David","Sangali","Masculino",profRole,serv4,tipoUsuario5)
         profesor.save(flush: true)
 
-        Usuario alumnoCross = new Usuario("juju@hotmail.com","12345678","Lucas","Galetti","Masculino",usuarioRol,serv1,tipoUsuario3)
+        Usuario alumnoCross = new Usuario("lucasg@hotmail.com","12345678","Lucas","Galetti","Masculino",usuarioRol,serv1,tipoUsuario3)
         alumnoCross.save(flush: true)
         
         administradorRol.agregarUsuario(usuarioPrueba)
         administradorRol.save(flush: true)
+        usuarioRol.agregarUsuario(alumnoCross)
+        usuarioRol.save(flush: true)
+        profRole.agregarUsuario(profesor)
+        profRole.save(flush: true)
      	
-        String fecha1 = 'Jueves 26/01/2017 08:00'
-        Date fechaDate1 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha1 )
-        Clase clase1 = new Clase(fechaDate1,profesor,tipoUsuario3,30)
+        String fecha1 = 'Jueves 09/02/2017 08:00'
+        Date fechaDate1 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha1 )
+        Clase clase1 = new Clase(fechaDate1,profesor.email,tipoUsuario3,30)
         clase1.inicializarTablaAnotados()
         clase1.save(flush: true)
         
-        String fecha2 = 'Jueves 26/01/2017 08:00'
-        Date fechaDate2 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha2 )
-        Clase clase2 = new Clase(fechaDate2,profesor,tipoUsuario2,20)
+        String fecha2 = 'Jueves 09/02/2017 08:00'
+        Date fechaDate2 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha2 )
+        Clase clase2 = new Clase(fechaDate2,profesor.email,tipoUsuario2,20)
         clase2.inicializarTablaAnotados()
         clase2.save(flush: true)
 
-        String fecha3 = 'Martes 24/01/2017 09:00'
-        Date fechaDate3 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha3 )
-        Clase clase3 = new Clase(fechaDate3,profesor,tipoUsuario3,15)
+        String fecha3 = 'Martes 07/02/2017 09:00'
+        Date fechaDate3 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha3 )
+        Clase clase3 = new Clase(fechaDate3,profesor.email,tipoUsuario3,15)
         clase3.inicializarTablaAnotados()
         clase3.save(flush: true)
 
-        String fecha4 = 'Miércoles 25/01/2017 08:00'
-        Date fechaDate4 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha4 )
-        Clase clase4 = new Clase(fechaDate4,profesor,tipoUsuario3,15)
+        String fecha4 = 'Miércoles 08/02/2017 08:00'
+        Date fechaDate4 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha4 )
+        Clase clase4 = new Clase(fechaDate4,profesor.email,tipoUsuario3,15)
         clase4.inicializarTablaAnotados()
         clase4.save(flush: true)
 
-        String fecha5 = 'Viernes 27/01/2017 10:00'
-        Date fechaDate5 = Date.parse( 'EEEE dd/MM/yyyy hh:mm', fecha5 )
-        Clase clase5 = new Clase(fechaDate5,profesor,tipoUsuario3,15)
+        String fecha5 = 'Viernes 10/02/2017 10:00'
+        Date fechaDate5 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha5 )
+        Clase clase5 = new Clase(fechaDate5,profesor.email,tipoUsuario3,15)
         clase5.inicializarTablaAnotados()
         clase5.save(flush: true)
+
+        String fecha6 = 'Viernes 10/02/2017 10:00'
+        Date fechaDate6 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha6 )
+        Clase clase6 = new Clase(fechaDate6,profesor.email,tipoUsuario2,15)
+        clase6.inicializarTablaAnotados()
+        clase6.save(flush: true)
+
+        String fecha7 = 'Lunes 06/02/2017 15:00'
+        Date fechaDate7 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha7 )
+        Clase clase7 = new Clase(fechaDate7,profesor.email,tipoUsuario4,20)
+        clase7.inicializarTablaAnotados()
+        clase7.save(flush: true)
+
+        String fecha8 = 'Sábado 11/02/2017 18:00'
+        Date fechaDate8 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha8 )
+        Clase clase8 = new Clase(fechaDate8,profesor.email,tipoUsuario4,20)
+        clase8.inicializarTablaAnotados()
+        clase8.save(flush: true)
+
+        String fecha9 = 'Lunes 06/02/2017 15:00'
+        Date fechaDate9 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha9 )
+        Clase clase9 = new Clase(fechaDate9,profesor.email,tipoUsuario3,20)
+        clase9.inicializarTablaAnotados()
+        clase9.save(flush: true)
     	
     }
     def destroy = {

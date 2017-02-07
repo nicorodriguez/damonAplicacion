@@ -35,5 +35,15 @@ class ProfviewController{
             redirect(controller: "login" , action:"index")
     	}
     }
+
+    def misDatos()
+    {
+        render(view:'misDatos')
+    }
+
+    def panelDeControl()
+    {
+        render(view:'panelDeControl')
+    }
     
 }

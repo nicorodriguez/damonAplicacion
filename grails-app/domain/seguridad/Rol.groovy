@@ -5,6 +5,7 @@ class Rol {
 
 	String nombrerol
 	static hasMany = [usuariosrol: Usuario]
+	// static belongsTo = Usuario
 
 	Rol(String nombre){
 		this()

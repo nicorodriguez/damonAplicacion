@@ -10,17 +10,19 @@ import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
 import session.SessionManager
 import java.text.SimpleDateFormat
+import java.util.*
+import groovy.time.TimeCategory
 
 class Clase {
 
 	Date fechaHorario
-	Usuario profe
+	String profe
 	Tipousuario tipo
 	Integer cantidadMax
 	Integer cantidadActual = 0
 	static hasMany = [anotados: Usuario]
 
-	Clase(Date fechaHorario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
+	Clase(Date fechaHorario1, String profe1, Tipousuario tipo1, Integer cantidadMax1){
 		this()
 		this.fechaHorario = fechaHorario1
 		this.profe = profe1
@@ -31,13 +33,14 @@ class Clase {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
-		anotados cascade:"all-delete-orphan", lazy: false
+		anotados cascade:"all,delete-orphan", lazy: false
 		version false
 	}
 
 	// cascade:"all,delete-orphan"
 
     static constraints = {
+    	fechaHorario nullable: false, blank: false, maxSize: 50
     	profe nullable: false, blank: false, maxSize: 50
     	tipo nullable: false, blank: false, maxSize: 50
     	cantidadMax nullable: false, blank: false, minSize: 1, maxSize: 50
@@ -45,6 +48,12 @@ class Clase {
 
     def inicializarTablaAnotados(){
 		this.anotados = []
+	}
+
+	def getProf(){
+		emailProf = this.profe
+		Usuario prof = Usuario.findByEmail(emailProf)
+		return(prof)
 	}
 
 	String getDia(){
@@ -69,11 +78,18 @@ class Clase {
 	}
 
 	String getHora(){
-		def formatoHora = new SimpleDateFormat("hh:mm")
+		def formatoHora = new SimpleDateFormat("HH:mm")
         String horaa = formatoHora.format(this.fechaHorario)
         // println(horaa)
 		return(horaa)
 
+	}
+
+	String getNumdia(){
+		def formatoNumdia = new SimpleDateFormat("u")
+        String numm = formatoNumdia.format(this.fechaHorario)
+        // println(horaa)
+		return(numm)
 	}
 
 	boolean hayLugar(){
@@ -84,6 +100,29 @@ class Clase {
 			return(false)
 		}
 	}
+
+	boolean verificoTiempo(){
+		Date fechaAct = new Date()
+		println("fechaAct: "+fechaAct)
+
+		// def formatocambiar = new SimpleDateFormat("dd/MM/yyyy - hh:mm")
+		// def fechacambiar = formatocambiar.format(this.fechaHorario)
+
+		use(TimeCategory){
+			def treintaMin = this.fechaHorario - 30.minutes
+			println(treintaMin)
+
+			if ((fechaAct.equals(treintaMin)) || (fechaAct.before(treintaMin))){
+				println("Fecha y Hora Valida")
+				return(true)
+			}
+			else{
+				println("Fecha y Hora No Valida")
+				return(false)
+			}
+		}
+	}
+
 
 	int aumentarCapActual(){
 		println("AumentarCapActual -> cantidad anterior: " + this.cantidadActual)
@@ -110,8 +149,10 @@ class Clase {
 		try{
 			println("AgregarUsuarioALista - Se inicia el proceso")
 			this.anotados << u
+			// this.addToAnotados(u).save(flush: true)
 			println("AgregarUsuarioALista - Se agrego al usuario: "+u.nombre+" Satisfactoriamente")
-			println(anotados)
+			println(this.anotados)
+			// return(lista)
 			// this.save(flush: true)
 			return(true)
 		}
@@ -122,17 +163,27 @@ class Clase {
             return(false)
         }
 	}
+	// @Transactional
 
-	@Transactional
-	boolean eliminarUsuarioDeLista(Usuario u, Clase c){
+	boolean eliminarUsuarioDeLista(Usuario u){
 		try{
 			println("EliminarUsuarioDeLista - Se inicia el proceso")
 			String emailUser = u.email
 			println(this.anotados)
+
 			// this.anotados.remove(u)
-			u.inscriptoclases.remove(c)
-			c.anotados.remove(u)
+			// u.inscriptoclases.remove(c)
+			this.removeFromAnotados(u)
+			// u.discard()
+			// this.anotados.removeElement(u)
+
+			// this.anotados -= u
+
+			this.save(flush: true)
 			println(this.anotados)
+
+			Integer cantAct = this.calcularCapActual()
+			println("Nueva Cantidad Actual de Clase = " + cantAct)
 			// u.eliminarUsuarioDeInscriptos(this)
 			// this.anotados.remove{ anotados -> anotados.usuario.email == emailUser
 			// }
@@ -140,7 +191,7 @@ class Clase {
 			// DomainClass.findAll().each { it.delete(flush:true, failOnError:true) }
 			// this.anotados.executeUpdate("delete Usuario where email = (:em)",
    			 //               [em:emailUser])
-			this.delete(flush: true)
+			// this.anotados.save(flush: true)
 			
 			println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
 			return(true)
@@ -155,11 +206,11 @@ class Clase {
 
 	
 	
-	// Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
- //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])
+	// // Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
+ // //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])
     
     
- //    c.pedidos.removeAll{ pedidos-> 
- //        pedidos.producto.id == id
- //    }
+ // //    c.pedidos.removeAll{ pedidos-> 
+ // //        pedidos.producto.id == id
+ // //    }
 }

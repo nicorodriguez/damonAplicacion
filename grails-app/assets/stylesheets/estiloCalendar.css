@@ -1,19 +1,55 @@
 
-tr th{
-	border-style: solid;
-	border-width: 2px;
-	border-color: #104050;
-  padding:0px;
-  margin: 0px;
-}
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    }
+    th, td {
+    padding: 5px;
+    text-align: center;
+    }
 
-td{
-	border-style: solid;
-	border-width: 2px;
-	border-color: #104050;
-  padding:0px;
-  width: 1em;
-}
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+
+    .button1 {
+    background-color: #ffff4d; /* shelou */
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+
+    .button3 {
+    background-color: #8c1aff; /* Violet */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    }
+    
+    .button2:hover {
+    box-shadow: 0 10px 14px 0 rgba(0,0,0,0.24),0 15px 48px 0 rgba(0,0,0,0.19);
+    }
 
 a{
   padding:0px;
@@ -56,16 +92,20 @@ h1{
 .left{
 	float:left;
 }
-
+.botones{
+  padding-top:2.5em;
+}
 
 h2{
 	padding: 0.5em;
 	margin: 0;
-	background-color: #5A74A8; 
+	text-align: center;
+
 }
 
 #calendario{
 	margin-left: 3em;
+  padding-bottom: 5em;
 }
 
 #clases{
@@ -122,7 +162,7 @@ margin-left: 2em;
 
 footer {
       margin: 0;
-      background-color: #337ab7;
+      background-color: #5A74A8;
       color: white;
       width: 100%;
       bottom: 0;
@@ -155,4 +195,7 @@ footer {
   line-height: 35px;
 
   margin-left: 3px;
+}
+.container-fluid{
+  background-color:#5A74A8; 
 }

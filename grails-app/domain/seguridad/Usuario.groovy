@@ -168,10 +168,11 @@ class Usuario {
 		if (esPriv){
 			u.estado = 'a'
 			println("Se cambio el estado a Activo con exito")
+			return(true)
 		}
 		else{
 			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
-			return false
+			return(false)
 		}
 	}
 

@@ -36,6 +36,10 @@ class BootStrap {
         serv4.inicializarTablaServ()
         serv4.save(flush: true)
 
+        // Servicio serv5 = new Servicio("Admin",0)
+        // serv5.inicializarTablaServ()
+        // serv5.save(flush: true)
+
         Tipousuario tipoUsuario1 = new Tipousuario("PENDIENTE","P")
         tipoUsuario1.inicializarTablaTipo()
         tipoUsuario1.save(flush: true)
@@ -56,7 +60,11 @@ class BootStrap {
         tipoUsuario5.inicializarTablaTipo()
         tipoUsuario5.save(flush: true)
 
-        Usuario usuarioPrueba = new Usuario("nico55@hotmail.com","12345678","Nico","Rodriguez","Masculino",administradorRol,serv3,tipoUsuario5)
+        // Tipousuario tipoUsuario6 = new Tipousuario("PROFESOR","PR")
+        // tipoUsuario6.inicializarTablaTipo()
+        // tipoUsuario6.save(flush: true)
+
+        Usuario usuarioPrueba = new Usuario("nico55@hotmail.com","12345678","Nico","Rodriguez","Masculino",administradorRol,serv4,tipoUsuario5)
         usuarioPrueba.save(flush: true)
 
         Usuario profesor = new Usuario("davids@hotmail.com","12345678","David","Sangali","Masculino",profRole,serv4,tipoUsuario5)

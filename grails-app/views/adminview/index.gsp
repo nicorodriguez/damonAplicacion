@@ -3,6 +3,7 @@
 <%@ page import="seguridad.Rol" %>
 <%@ page import="sistema.Tipousuario" %>
 <%@ page import="sistema.Clase" %>
+<%@ page import="seguridad.Servicio" %>
 <% 
   def smgr = new SessionManager(request.session) 
   def usuario = smgr.getCurrentUser() 
@@ -25,13 +26,14 @@
   for (Clase item: claseLista1){
     def clase1 = Clase.get(item.id)
     def hora1 = clase1.getHora()
-    def dia1 = clase1.getDia()
-    def num1 = clase1.getNumdia()
     listaHora1 << hora1
-    // println(dia1)
-    // println(num1)
   }
   def listaHoraP1 = listaHora1.unique()
+
+  def listaServ = Servicio.getAll()
+  def listaTipo = Tipousuario.getAll()
+  def listaUser = Usuario.getAll()
+
 %>
 
 <!DOCTYPE html>
@@ -184,7 +186,7 @@
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Profesores <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" href="#nuevoprofesor">Nuevo Profesor</a></li>
-            <li><a data-toggle="modal" href="#listaprofesor">Listar Profesores</a></li>
+            <li><a data-toggle="modal" href="#listarprofes">Listar Profesores</a></li>
             <li><a data-toggle="modal" href="#eliminarprofesor">Eliminar Profesor</a></li>
             </ul>
           </div>
@@ -192,7 +194,7 @@
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Servicios <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" href="#nuevoservicio">Nuevo Servicio</a></li>
-            <li><a data-toggle="modal" href="#">Listar Servicios</a></li>
+            <li><a data-toggle="modal" href="#listarservicios">Listar Servicios</a></li>
             <li><a data-toggle="modal" href="#eliminarservicio">Eliminar Servicio</a></li>
            </ul>
           </div>
@@ -338,6 +340,41 @@
     </div>
   </div>
 
+  <!-- Modal modallistarusuario -->
+  <div class="modal fade" id="modallistarusuario" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal modallistarusuario content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Lista de Usuarios</h4>
+        </div>
+        <div class="modal-body">
+           <table style="width:100%">
+            <caption>Datos de los Usuario</caption>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Categoria</th>
+              <th>Servicio</th>
+            </tr>
+            <g:each var="us" in="${listaUser}">
+            <tr>
+              <td>${us.nombre}</td>
+              <td>${us.apellido}</td>
+              <td>${us.tipo.nombre}</td>
+              <td>${us.servicio.nombreservicio}</td>
+            </tr>
+            </g:each>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal modalcambiarserv -->
   <div class="modal fade" id="modalcambiarserv" role="dialog">
     <div class="modal-dialog">
@@ -470,6 +507,37 @@
     </div>
   </div>
 
+  <!-- Modal listarprofes -->
+  <div class="modal fade" id="listarprofes" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal listarprofes content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Lista de Profesores</h4>
+        </div>
+        <div class="modal-body">
+           <table style="width:100%">
+            <caption>Datos de los Profesores</caption>
+            <tr>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Categoria</th>
+            </tr>
+            <tr>
+              <td>Importar Nombre</td>
+              <td>Importar Apellido</td>
+              <td>Importar Categoria</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
       <!-- Modal eliminarprofesor -->
   <div class="modal fade" id="eliminarprofesor" role="dialog">
     <div class="modal-dialog">
@@ -528,6 +596,38 @@
           <br>
           <p align="center"><button type="button" class="button3 button2" align="center"><b>CREAR!</b></button></p>
           </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal listarservicios -->
+  <div class="modal fade" id="listarservicios" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal listarservicios content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Lista de Servicios</h4>
+        </div>
+        <div class="modal-body">
+           <table style="width:100%">
+            <tr>
+              <th>Nombre Servicio</th>
+              <th>Creditos</th>
+            </tr>
+            <g:each var="serv" in="${listaServ}">
+            <g:if test="${serv.nombreservicio!="Profesor"}">
+            <tr>
+              <td>${serv.nombreservicio}</td>
+              <td>${serv.cantidadcreditos}</td>
+            </tr>
+            </g:if>
+            </g:each>
+          </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

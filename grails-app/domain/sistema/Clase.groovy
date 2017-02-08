@@ -148,7 +148,7 @@ class Clase {
 	boolean agregarUsuarioALista(Usuario u){
 		try{
 			println("AgregarUsuarioALista - Se inicia el proceso")
-			this.anotados << u
+			this.anotados.add(u)
 			// this.addToAnotados(u).save(flush: true)
 			println("AgregarUsuarioALista - Se agrego al usuario: "+u.nombre+" Satisfactoriamente")
 			println(this.anotados)
@@ -171,9 +171,10 @@ class Clase {
 			String emailUser = u.email
 			println(this.anotados)
 
-			// this.anotados.remove(u)
+			this.anotados.remove(u)
 			// u.inscriptoclases.remove(c)
-			this.removeFromAnotados(u)
+			// this.removeFromAnotados(u)
+			println(this.anotados)
 			// u.discard()
 			// this.anotados.removeElement(u)
 

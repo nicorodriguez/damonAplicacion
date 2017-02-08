@@ -48,4 +48,76 @@ class AdminviewController {
         render(view:'panelDeControl')
     }
 
+    // def habilitarUsuario(){
+
+    //     String emailUsuario = request.getParameter("email")
+
+    //     Usuario u = Usuario.findByEmail(emailUsuario)
+
+    //     String est = u.estado
+
+    //     if (est == 'a'){
+
+    //         println("Usuario ya Activo")
+
+    //         render("yalotiene")
+    //     }
+    //     else{
+    //         boolean resu = this.setEstadoActivo()
+
+    //         if (resu){
+    //             render("true")
+    //         }
+    //         else{
+    //             render("false")
+    //         }
+    //     }
+    // }
+
+    // def cambiarSer(){
+
+    //     String emailUsuario = request.getParameter("email")
+    //     String serNombre = request.getParameter("nomser")
+
+    //     Usuario u = Usuario.findByEmail(emailUsuario)
+    //     Servicio s = Servicio.findByNombreservicio(serNombre)
+
+    //     if (u.servicio.nombreservicio == s.nombreservicio){
+    //         println("El usuario ya tenia ese servicio")
+    //         render("yalotiene")
+    //     }
+    //     else{
+    //         boolean resu = this.setServicio(s)
+    //         if (resu){
+    //             render("true")
+    //         }
+    //         else{
+    //             render("false")
+    //         }
+    //     }
+    // }
+
+    // def cambiarCat(){
+
+    //     String emailUsuario = request.getParameter("email")
+    //     String catNombre = request.getParameter("nomcat")
+
+    //     Usuario u = Usuario.findByEmail(emailUsuario)
+    //     Tipousuario t = Tipousuario.findByNombre(catNombre)
+
+    //     if (u.tipo.nombre == t.nombre){
+    //         println("El usuario ya pertenecia a esta categoria")
+    //         render("yalotiene")
+    //     }
+    //     else{
+    //         boolean resu = this.setTipo(t)
+    //         if (resu){
+    //             render("true")
+    //         }
+    //         else{
+    //             render("false")
+    //         }
+    //     }
+    // }
+
 }

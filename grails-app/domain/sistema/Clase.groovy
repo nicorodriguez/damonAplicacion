@@ -85,6 +85,13 @@ class Clase {
 
 	}
 
+	String getNumdiafecha(){
+		def formatoNumdiafecha = new SimpleDateFormat("dd")
+        String numdf = formatoNumdiafecha.format(this.fechaHorario)
+        // println(horaa)
+		return(numdf)
+	}
+
 	String getNumdia(){
 		def formatoNumdia = new SimpleDateFormat("u")
         String numm = formatoNumdia.format(this.fechaHorario)

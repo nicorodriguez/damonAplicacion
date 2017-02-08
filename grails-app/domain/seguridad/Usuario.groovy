@@ -87,6 +87,13 @@ class Usuario {
 	Tipousuario getTipo(){
 		return tipo
 	}
+	String getNumdiaactual(){
+		Date actual = new Date()
+		def formatoNumdiaactual = new SimpleDateFormat("u")
+        String numda = formatoNumdiaactual.format(actual)
+        // println(horaa)
+		return(numda)
+	}
 
 
 	//Setters

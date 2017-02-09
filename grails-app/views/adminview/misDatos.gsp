@@ -1,3 +1,25 @@
+<SCRIPT LANGUAGE="Javascript">
+function GetParam(name)
+{
+var start=location.search.indexOf("?"+name+"=");
+if (start<0) start=location.search.indexOf("&"+name+"=");
+if (start<0) return '';
+start += name.length+2;
+var end=location.search.indexOf("&",start)-1;
+if (end<0) end=location.search.length;
+var result=location.search.substring(start,end);
+var result='';
+for(var i=start;i<=end;i++) {
+var c=location.search.charAt(i);
+result=result+(c=='+'?' ':c);
+}
+return unescape(result);
+}
+var aa=GetParam("myvar");
+var aa = string(aa)
+var bb = string(aa);
+</SCRIPT>
+
 <%@ page import="session.SessionManager" %>
 <%@ page import="seguridad.Usuario" %>
 <%@ page import="seguridad.Rol" %>
@@ -12,8 +34,15 @@
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
 
+  def bb = aa;
+
+  def usuarioEncontrado = Usuario.findByEmail(bb)
+  println(usuarioEncontrado.nombre)
+
   def rolProf = Rol.findByNombrerol("ROL_PROF") 
   def profesores = Usuario.findAllByRol(rolProf) 
+
+  //def us = findByNombre(aa) 
 
   def tipoUsuarioActual = usuario.tipo
   
@@ -391,5 +420,10 @@
       </div>
   </p>
 </footer>
+
+<script type="text/javascript">
+  alert(usuarioEncontrado.nombre)
+</script>
+
 </body>
 </html>

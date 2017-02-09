@@ -58,6 +58,7 @@
   <asset:javascript src="funcionCalendar.js"/>
 	<asset:stylesheet src="estiloCalendar.css"/>
   <asset:stylesheet src="estiloAdminView.css"/> 
+  <asset:javascript src="probando.js"/>
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
@@ -103,7 +104,7 @@
                         <div sclass="panel-body">
                               <table class="table" id="tbUsuario">
                                 <thead>
-                                  <tr>
+                                  <tr id="prueba">
                                     <th>Horario</th>
                                     <th>Lunes</th>
                                     <th>Martes</th>
@@ -176,7 +177,7 @@
           <div class="btn-group botones">
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
-            <li><a data-toggle="modal" href="#modalhabilitarusuario">Habilitar Usuario</a></li>
+            <li><a data-toggle="modal" href="/damonAplicacion/adminview/misDatos">Habilitar Usuario</a></li>
             <li><a data-toggle="modal" href="#modallistarusuario">Listar Usuarios</a></li>
             <li><a data-toggle="modal" href="#modalcambiarserv">Cambiar Servicio</a></li>
             <li><a data-toggle="modal" href="#modalcambiarcat">Cambiar Categoria</a></li>

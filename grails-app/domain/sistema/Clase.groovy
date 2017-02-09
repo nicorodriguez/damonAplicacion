@@ -33,7 +33,7 @@ class Clase {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
-		anotados cascade:"all,delete-orphan", lazy: false
+		anotados lazy: false
 		version false
 	}
 
@@ -155,7 +155,10 @@ class Clase {
 	boolean agregarUsuarioALista(Usuario u){
 		try{
 			println("AgregarUsuarioALista - Se inicia el proceso")
-			this.anotados.add(u)
+			// this.anotados.add(u)
+
+			this.anotados << u
+
 			// this.addToAnotados(u).save(flush: true)
 			println("AgregarUsuarioALista - Se agrego al usuario: "+u.nombre+" Satisfactoriamente")
 			println(this.anotados)
@@ -176,19 +179,32 @@ class Clase {
 		try{
 			println("EliminarUsuarioDeLista - Se inicia el proceso")
 			String emailUser = u.email
-			println(this.anotados)
 
-			this.anotados.remove(u)
+			println("EliminarUsuarioDeLista - "+this.anotados)
+
+			def lista = []
+			// this.anotados.remove(u)
+			// lista = this.anotados - u
+			// this.anotados = lista
 			// u.inscriptoclases.remove(c)
 			// this.removeFromAnotados(u)
-			println(this.anotados)
+			// this.anotados = []
+			println("Usuario: "+ u)
+			boolean b
+			b = this.anotados.contains(u)
+			if (b){
+				println("entre")
+				this.anotados.removeElement(u)
+			}
+
+			println("EliminarUsuarioDeLista - "+this.anotados)
 			// u.discard()
-			// this.anotados.removeElement(u)
+			
 
 			// this.anotados -= u
 
-			this.save(flush: true)
-			println(this.anotados)
+			// this.save(flush: true)
+			// println(this.anotados)
 
 			Integer cantAct = this.calcularCapActual()
 			println("Nueva Cantidad Actual de Clase = " + cantAct)
@@ -200,6 +216,8 @@ class Clase {
 			// this.anotados.executeUpdate("delete Usuario where email = (:em)",
    			 //               [em:emailUser])
 			// this.anotados.save(flush: true)
+			// this.saveOrUpdate()
+			this.save(flush: true, failOnError: true)
 			
 			println("EliminarUsuarioDeLista - Se elimino al usuario: "+u.nombre+" Satisfactoriamente")
 			return(true)
@@ -212,9 +230,20 @@ class Clase {
         }
 	}
 
-	
-	
-	// // Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
+
+	def estaAnotado(Usuario u){
+
+		boolean a = false
+		a = this.anotados.contains(u)
+
+		if (a){
+			return(true)
+		}
+
+		return(false)
+	}
+
+	// Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
  // //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])
     
     

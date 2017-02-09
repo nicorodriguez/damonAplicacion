@@ -12,21 +12,40 @@
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
 
-  def rolProf = Rol.findByNombrerol("ROL_PROF") 
-  def profesores = Usuario.findAllByRol(rolProf) 
+
+  // def rolProf = Rol.findByNombrerol("ROL_PROF") 
+  // def profesores = Usuario.findAllByRol(rolProf) 
 
   def tipoUsuarioActual = usuario.tipo
   
   def claseLista2 = Clase.findAllByTipo(tipoUsuarioActual)
-  
-  def listaClases = usuario.inscriptoclases
 
+  def claseAnot = []
   def listaHora2 = []
+
   for (Clase item: claseLista2){
     def clase2 = Clase.get(item.id)
     def hora2 = clase2.getHora()
-    listaHora2 << hora2  
+    listaHora2 << hora2
+    def listaClasee = []
+    listaClasee = clase2.anotados
+    
+    for (Usuario item2: listaClasee){
+      busid = item2.id
+      if (busid.equals(usuario.id)){
+        claseAnot << clase2
+      }
+    }
   }
+    // a = clase2.anotados.contains(usuario)
+    // println(a)
+    // if (a){
+    //   claseAnot.add(clase2)
+    //   println(clase2)
+    // }
+
+  def claseAnotP = claseAnot.unique()
+  
   def listaHoraP2 = listaHora2.unique()
 
   def numDia = usuario.getNumdiaactual()
@@ -206,8 +225,10 @@
                         <div class="panel-body">      
                                     <nav>
                                           <ul id="anotado">
-                                          <g:each var="claseanotado" in="${listaClases.sort{it.fechaHorario}}">
+                                          <g:each var="claseanotado" in="${claseAnotP.sort{it.fechaHorario}}">
+                                          %{-- <g:if test="${claseanotado.estaAnotado(usuario)==true}"> --}%
                                           <li><p id="clasesAnotadas">Anotado dia: <span id="mayus"> ${claseanotado.getDia()} ${claseanotado.getNumdiafecha()} </span> hora:<span id="mayus"> ${claseanotado.getHora()} </span> <a onclick='desanotarse("${claseanotado.tipo.nombre}","${claseanotado.getFecha()}","${claseanotado.getHora()}")'><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> </p></li>
+                                          %{-- </g:if> --}%
                                           </g:each>
                                           </ul>
                                     </nav>

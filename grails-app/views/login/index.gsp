@@ -71,7 +71,7 @@
                                 </div> --}%
                                 <a id="submit" class="btn btn-sm btn-success" style="font-size:medium;" onclick="crearParametros()">Ingresar</a>
 
-                                %{-- <a id="submit" class="btn btn-sm btn-primary" style="font-size:medium;" onclick="probando()">ACA</a> --}%
+                                <a id="submit" class="btn btn-sm btn-primary" style="font-size:medium;" onclick="probando()">ACA</a>
 
                             </fieldset>
                         </form>

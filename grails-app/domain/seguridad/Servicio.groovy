@@ -22,7 +22,7 @@ class Servicio {
 
     static constraints = {
     	nombreservicio nullable: false, blank: false,  unique: true
-    	cantidadcreditos nullable: false, blank: false,  unique: true
+    	cantidadcreditos nullable: false, blank: false
     }
 
     //Getters

@@ -19,10 +19,8 @@ class Usuario {
 	Rol rol
 	Servicio servicio
 	Tipousuario tipo
-	static hasMany = [inscriptoclases: Clase]
-	// static belongsTo = Clase
 	static belongsTo = [Rol, Servicio, Tipousuario, Clase]
-	// static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario]
+	// static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario, clase: Clase]
 
 	Usuario(String email1, String password1, String nombre1, String apellido1, String sexo1, Rol r, Servicio s, Tipousuario t){
 		this()
@@ -37,7 +35,6 @@ class Usuario {
 		this.servicio = s
 		this.tipo = t
 		this.creditosActuales = s.cantidadcreditos
-		this.inscriptoclases = []
 	}
 
 	static mapping = {
@@ -111,9 +108,6 @@ class Usuario {
 	}
 	String setPassword(String s){
 		this.password = s
-	}
-	String setInscriptoClases(){
-		this.inscriptoclases = []
 	}
 	Boolean esPrivilegiado(){
 		def smgr = new SessionManager(request.session)
@@ -339,72 +333,73 @@ class Usuario {
 		}
 	}
 
-	boolean agregarUsuarioAInscriptos(Clase c){
-		try{
-			println("AgregarUsuarioALista - Se inicia el proceso")
-			this.inscriptoclases << c
-			println("AgregarUsuarioALista - Se agrego la clase: "+c+" Satisfactoriamente")
-			println(c)
-			return(true)
-		}
-		catch(Exception e){
-            println("PROBLEMA")
-            println(e)
 
-            return(false)
-        }
-	}
+	// boolean agregarUsuarioAInscriptos(Clase c){
+	// 	try{
+	// 		println("AgregarUsuarioALista - Se inicia el proceso")
+	// 		this.inscriptoclases << c
+	// 		println("AgregarUsuarioALista - Se agrego la clase: "+c+" Satisfactoriamente")
+	// 		println(c)
+	// 		return(true)
+	// 	}
+	// 	catch(Exception e){
+ //            println("PROBLEMA")
+ //            println(e)
 
-	boolean eliminarUsuarioDeInscriptos(Clase c){
-		try{
-			println("EliminarUsuarioDeInscriptos - Se inicia el proceso")
-			Integer idClase = c.id
-			// this.inscriptoclases.removeAll{ inscriptoclases -> inscriptoclases.clase.id == idClase
-			// }
+ //            return(false)
+ //        }
+	// }
 
-			println(this.inscriptoclases)
-			// this.removeFromInscriptoclases(c)
-			// c.discard()
-			// this.inscriptoclases.removeElement(c)
-			this.inscriptoclases -= c
+	// boolean eliminarUsuarioDeInscriptos(Clase c){
+	// 	try{
+	// 		println("EliminarUsuarioDeInscriptos - Se inicia el proceso")
+	// 		Integer idClase = c.id
+	// 		// this.inscriptoclases.removeAll{ inscriptoclases -> inscriptoclases.clase.id == idClase
+	// 		// }
 
-			// this.inscriptoclases.remove{ inscriptoclases -> inscriptoclases.usuario.email == emailUser
-			// }
-			// this.delete(flush: true)
-			println(this.inscriptoclases)
-			println("EliminarUsuarioDeInscriptos - Se elimino la clase: "+c+" Satisfactoriamente")
-			println(c)
+	// 		println(this.inscriptoclases)
+	// 		// this.removeFromInscriptoclases(c)
+	// 		// c.discard()
+	// 		// this.inscriptoclases.removeElement(c)
+	// 		this.inscriptoclases -= c
+
+	// 		// this.inscriptoclases.remove{ inscriptoclases -> inscriptoclases.usuario.email == emailUser
+	// 		// }
+	// 		// this.delete(flush: true)
+	// 		println(this.inscriptoclases)
+	// 		println("EliminarUsuarioDeInscriptos - Se elimino la clase: "+c+" Satisfactoriamente")
+	// 		println(c)
 			
-			return(true)
-		}
-		catch(Exception e){
-            println("PROBLEMA")
-            println(e)
+	// 		return(true)
+	// 	}
+	// 	catch(Exception e){
+ //            println("PROBLEMA")
+ //            println(e)
 
-            return(false)
-        }
-	}
+ //            return(false)
+ //        }
+	// }
 
-	boolean yaAnotado(Clase c){
+	// boolean yaAnotado(Clase c){
 
-		println("YaAnotado - Se inicia el proceso")
-		Integer idClase = c.id
-		println(c)
-		println(this.inscriptoclases)
-		Clase resu = this.inscriptoclases.find{it.id == idClase}
-		if (resu){
-			println(resu)
-			boolean a = true
-			println(a)
-			return(a)
-		}
-		else{
-			println(resu)
-			boolean a = false
-			println(a)
-			return(a)
-		}
-	}
+	// 	println("YaAnotado - Se inicia el proceso")
+	// 	Integer idClase = c.id
+	// 	println(c)
+	// 	println(this.inscriptoclases)
+	// 	Clase resu = this.inscriptoclases.find{it.id == idClase}
+	// 	if (resu){
+	// 		println(resu)
+	// 		boolean a = true
+	// 		println(a)
+	// 		return(a)
+	// 	}
+	// 	else{
+	// 		println(resu)
+	// 		boolean a = false
+	// 		println(a)
+	// 		return(a)
+	// 	}
+	// }
 
 
 }

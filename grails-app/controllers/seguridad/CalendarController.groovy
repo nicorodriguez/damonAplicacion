@@ -13,10 +13,6 @@ import java.text.SimpleDateFormat
 
 class CalendarController {
 
-    // def index(){
-    //     render(view: 'index')
-    // }
-
     def index(){
         def smgr = new SessionManager(request.session)
         def u = smgr.getCurrentUser()
@@ -196,7 +192,8 @@ class CalendarController {
 
                         println("AnotarseClase - Voy a verificar que no se encuentre ya anotado")
                         // Boolean anotado = usuario.yaAnotado(clasee)
-                        if (!usuario.yaAnotado(clasee)){
+                        // !usuario.yaAnotado(clasee)
+                        if (true){
                             println("AnotarseClase - No se encuentra anotado a la clase -- Continuo")
 
                             //Verifico que haya lugar en la clase
@@ -217,9 +214,6 @@ class CalendarController {
 
                                     if (resuCreditos){
                                         println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
-
-                                        boolean resuu = usuario.agregarUsuarioAInscriptos(clasee)
-                                        println(resuu)
                                         
                                         // Agrego Usuario a la lista de anotados:
                                         boolean resultadoFinal = clasee.agregarUsuarioALista(usuario)
@@ -234,9 +228,12 @@ class CalendarController {
 
                                             println("Nueva Cantidad Actual de Clase = " + cantAct)
 
-                                            def claseid = clasee.id
-                                            Clase claseaguardar = Clase.get(claseid)
-                                            claseaguardar.save(flush: true, failOnError: true)
+                                            // def claseid = clasee.id
+                                            // Clase claseaguardar = Clase.get(claseid)
+                                            // claseaguardar.save(flush: true, failOnError: true)
+
+                                            clasee.merge(flush: true, failOnError: true)
+                                            // clasee.save(flush: true, failOnError: true)
 
                                             println("AnotarseClase - SE AGREGO SATISFACTORIAMENTE")
 
@@ -347,8 +344,8 @@ class CalendarController {
                         def claseid = clasee.id
                         Clase claseaguardar = Clase.get(claseid)
 
-                        boolean resuu = usuario.eliminarUsuarioDeInscriptos(claseaguardar)
-                        println(resuu)
+                        // boolean resuu = usuario.eliminarUsuarioDeInscriptos(claseaguardar)
+                        // println(resuu)
 
                         //Elimino Usuario a la lista de anotados:
                         boolean resultadoFinal = claseaguardar.eliminarUsuarioDeLista(usuario)
@@ -396,8 +393,10 @@ class CalendarController {
         try{
             println("ListarClasesAnotadas - Voy a buscar los datos del usuario")
 
-            def smgr = new SessionManager(request.session)
-            Usuario usuario = smgr.getCurrentUser()
+            // def smgr = new SessionManager(request.session)
+            // Usuario usuario = smgr.getCurrentUser()
+
+            Usuario usuario = Usuario.findByEmail("lucasg@hotmail.com")
 
             def listaDeClases = []
 
@@ -409,20 +408,21 @@ class CalendarController {
                 boolean b = item.anotados.contains(usuario)
 
                 if (b){
-                    listaDeClases << item.id
+                    listaDeClases << item
                 }
             }
 
-            return(listaDeClases)
+            println(listaDeClases)
+            // return(listaDeClases)
 
-            render("true")
+            // render("true")
 
         }
         catch(Exception e){
             println("PROBLEMA")
             println(e)
 
-            render ("false")
+            // render ("false")
         }
     }
 

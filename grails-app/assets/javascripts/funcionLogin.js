@@ -80,7 +80,7 @@ function enviaJSON(email1,password1){
 
 function probando(){
 	// $.post("/damonAplicacion/calendar/formatHora")
-	$.post("/damonAplicacion/calendar/probar")
+	$.post("/damonAplicacion/calendar/listarClasesAnotadas")
 } 
 
 /*

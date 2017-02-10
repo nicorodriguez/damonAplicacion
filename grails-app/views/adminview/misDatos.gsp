@@ -15,9 +15,7 @@ result=result+(c=='+'?' ':c);
 }
 return unescape(result);
 }
-var aa=GetParam("myvar");
-var aa = string(aa)
-var bb = string(aa);
+var aa=GetParam('myvar');
 </SCRIPT>
 
 <%@ page import="session.SessionManager" %>
@@ -34,10 +32,8 @@ var bb = string(aa);
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
 
-  def bb = aa;
-
-  def usuarioEncontrado = Usuario.findByEmail(bb)
-  println(usuarioEncontrado.nombre)
+  //def usuarioEncontrado = Usuario.findByEmail(bb)
+  //println(usuarioEncontrado.nombre)
 
   def rolProf = Rol.findByNombrerol("ROL_PROF") 
   def profesores = Usuario.findAllByRol(rolProf) 

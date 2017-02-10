@@ -27,7 +27,12 @@
       padding-left: 2.5em;
       padding-bottom: 1em;
     }
-
+    .titulos{
+        background-color: #325372;
+        color:#ffffff;
+        font-size: 30px;
+        text-align: center; 
+    }
     .tvideos{
       font-size: 1.2em;
       font-weight: bold; 

@@ -129,7 +129,7 @@
                         <div sclass="panel-body">
                               <table class="table" id="tbUsuario">
                                 <thead>
-                                  <tr id="prueba">
+                                  <tr>
                                     <th>Horario</th>
                                     <g:each var="dia" in="${listadiasP}">
                                     <th>${dia}</th>

@@ -5,6 +5,9 @@ import sistema.Tipousuario
 import sistema.Clase
 import session.SessionManager
 import java.text.SimpleDateFormat
+import javax.servlet.http.HttpServletRequest
+import javax.servlet.http.HttpSession
+import grails.transaction.Transactional
 
 class Usuario {
 
@@ -88,8 +91,41 @@ class Usuario {
 		Date actual = new Date()
 		def formatoNumdiaactual = new SimpleDateFormat("u")
         String numda = formatoNumdiaactual.format(actual)
-        // println(horaa)
 		return(numda)
+	}
+	def iniciarLunesAnt(){
+
+        Date fechaAct = new Date()
+
+        def formatoNumdia = new SimpleDateFormat("u")
+        String numm = formatoNumdia.format(fechaAct)
+
+        Integer numdia = numm.toInteger()
+
+        if (numdia == 1){
+        	// def formatoNumdiafecha = new SimpleDateFormat("dd")
+
+	        // String numdf = formatoNumdiafecha.format(fechaAct)
+
+			return(fechaAct)
+        }
+        else{
+        	Integer cantV = numdia - 1
+
+	        Date lunesAnt = fechaAct.minus(cantV)
+
+			// def formatoNumdiafecha = new SimpleDateFormat("dd")
+
+	  //       String numdf = formatoNumdiafecha.format(lunesAnt)
+
+			return(lunesAnt)
+        }
+    }
+    String getDiaFecha(Date ddd){
+		def formatoDiaFecha = new SimpleDateFormat("EEEE - dd")
+        String diafecha = formatoDiaFecha.format(ddd)
+        // println(diafecha)
+		return(diafecha)
 	}
 
 
@@ -109,7 +145,7 @@ class Usuario {
 	String setPassword(String s){
 		this.password = s
 	}
-	Boolean esPrivilegiado(){
+	boolean esPrivilegiado(){
 		def smgr = new SessionManager(request.session)
         def u = smgr.getCurrentUser()
 		Rol r = u.getRol()
@@ -122,57 +158,56 @@ class Usuario {
 		}
 	}
 
-	Boolean setEstado(Usuario u, String e){
-		int longitud = e.length()
-		println("Compruebo si el nuevo estado es longitud 1")
+	boolean setEstado(Usuario u, String est){
+		try{
+			int longitud = est.length()
+			println("Compruebo si el nuevo estado es longitud 1")
 
-		if (longitud == 1){
-			println("Longitud correcta")
+			if (longitud == 1){
+				println("Longitud correcta")
 
-			Boolean esPriv = this.esPrivilegiado()
-
-			if (esPriv){
-				u.estado = e
+				u.estado = est
 				println("Se cambio el estado con exito")
 				return(true)
 			}
 			else{
-				println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+				println("Longitud incorrecta")
 				return(false)
 			}
 		}
-		else{
-			println("Longitud incorrecta")
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
 			return(false)
 		}
 	}
 
-	Boolean setEstadoValido(Usuario u){
+	boolean setEstadoValido(Usuario u){
 
-		Boolean esPriv = this.esPrivilegiado()
+		try{
 
-		if (esPriv){
 			u.estado = 'v'
 			println("Se cambio el estado a Valido con exito")
 			return(true)
+
 		}
-		else{
-			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
 			return(false)
 		}
 	}
 
-	Boolean setEstadoActivo(Usuario u){
+	boolean setEstadoActivo(Usuario u){
 
-		Boolean esPriv = this.esPrivilegiado()
-
-		if (esPriv){
+		try{
 			u.estado = 'a'
 			println("Se cambio el estado a Activo con exito")
 			return(true)
 		}
-		else{
-			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
 			return(false)
 		}
 	}
@@ -253,23 +288,16 @@ class Usuario {
 		}
 	}
 	
-	Boolean setTipo(Usuario usuarioACambiar, Tipousuario t){
+	boolean setTipo(Usuario usuarioACambiar, Tipousuario t){
 		
-		Boolean esPriv = this.esPrivilegiado()
-
-		if (esPriv){
-			if (usuarioACambiar.tipo != t){
-				usuarioACambiar.tipo = t
-				println("Se cambio el Tipo de Usuario con Exito")
-				return(true)
-			}
-			else{
-				println("El Usuario ya tiene dicho tipo!")
-				return(false)
-			}
+		try{
+			usuarioACambiar.tipo = t
+			println("Se cambio el Tipo de Usuario con Exito")
+			return(true)
 		}
-		else{
-			println("No tiene el rol necesario para cambiar el tipo de usuario!")
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
 			return(false)
 		}
 	}

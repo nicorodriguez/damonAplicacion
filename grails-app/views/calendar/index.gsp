@@ -37,18 +37,38 @@
       }
     }
   }
-    // a = clase2.anotados.contains(usuario)
-    // println(a)
-    // if (a){
-    //   claseAnot.add(clase2)
-    //   println(clase2)
-    // }
 
   def claseAnotP = claseAnot.unique()
   
   def listaHoraP2 = listaHora2.unique()
 
   def numDia = usuario.getNumdiaactual()
+
+  Date lun = usuario.iniciarLunesAnt()
+
+  def listadias = []
+
+  String diafecha = usuario.getDiaFecha(lun)
+
+  listadias << diafecha
+  Date sig = lun.plus(1)
+  String diafecha1 = usuario.getDiaFecha(sig)
+  listadias << diafecha1
+  Date sig1 = lun.plus(2)
+  String diafecha2 = usuario.getDiaFecha(sig1)
+  listadias << diafecha2
+  Date sig2 = lun.plus(3)
+  String diafecha3 = usuario.getDiaFecha(sig2)
+  listadias << diafecha3
+  Date sig3 = lun.plus(4)
+  String diafecha4 = usuario.getDiaFecha(sig3)
+  listadias << diafecha4
+  Date sig4 = lun.plus(5)
+  String diafecha5 = usuario.getDiaFecha(sig4)
+  listadias << diafecha5
+
+  def listadiasP = listadias.unique()
+
 %>
 
 <!DOCTYPE html>
@@ -117,12 +137,9 @@
                                 <thead>
                                   <tr>
                                     <th>Horario</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábados</th>
+                                    <g:each var="dia" in="${listadiasP}">
+                                    <th>${dia}</th>
+                                    </g:each>
                                   </tr>
                                 </thead>
                                 <tbody id="tbUsuario">
@@ -135,7 +152,7 @@
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
                                        </g:if>
-                                       ${clase.tipo.nombre}
+                                       ${clase.tipo.nombre} ${clase.profe.nombre}
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        </a>
                                        </g:if>
@@ -148,7 +165,7 @@
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
                                        </g:if>
-                                       ${clase.tipo.nombre}
+                                       ${clase.tipo.nombre} ${clase.profe.nombre}
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        </a>
                                        </g:if>
@@ -161,7 +178,7 @@
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
                                        </g:if>
-                                       ${clase.tipo.nombre}
+                                       ${clase.tipo.nombre} ${clase.profe.nombre}
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        </a>
                                        </g:if>
@@ -174,7 +191,7 @@
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
                                        </g:if>
-                                       ${clase.tipo.nombre}
+                                       ${clase.tipo.nombre} ${clase.profe.nombre}
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        </a>
                                        </g:if>
@@ -187,7 +204,7 @@
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
                                        </g:if>
-                                       ${clase.tipo.nombre}
+                                       ${clase.tipo.nombre} ${clase.profe.nombre}
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        </a>
                                        </g:if>
@@ -200,7 +217,7 @@
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        <a onclick='anotarse("${clase.tipo.nombre}","${clase.getFecha()}","${clase.getHora()}")'>
                                        </g:if>
-                                       ${clase.tipo.nombre}
+                                       ${clase.tipo.nombre} ${clase.profe.nombre}
                                        <g:if test="${clase.getNumdia()>=numDia}">
                                        </a>
                                        </g:if>

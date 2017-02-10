@@ -16,13 +16,13 @@ import groovy.time.TimeCategory
 class Clase {
 
 	Date fechaHorario
-	String profe
+	Usuario profe
 	Tipousuario tipo
 	Integer cantidadMax
 	Integer cantidadActual = 0
 	static hasMany = [anotados: Usuario]
 
-	Clase(Date fechaHorario1, String profe1, Tipousuario tipo1, Integer cantidadMax1){
+	Clase(Date fechaHorario1, Usuario profe1, Tipousuario tipo1, Integer cantidadMax1){
 		this()
 		this.fechaHorario = fechaHorario1
 		this.profe = profe1
@@ -178,7 +178,7 @@ class Clase {
 	boolean eliminarUsuarioDeLista(Usuario u){
 		try{
 			println("EliminarUsuarioDeLista - Se inicia el proceso")
-			String emailUser = u.email
+			Usuario user = Usuario.get(u.id)
 
 			println("EliminarUsuarioDeLista - "+this.anotados)
 
@@ -189,12 +189,12 @@ class Clase {
 			// u.inscriptoclases.remove(c)
 			// this.removeFromAnotados(u)
 			// this.anotados = []
-			println("Usuario: "+ u)
+			println("Usuario: "+ user)
 			boolean b
-			b = this.anotados.contains(u)
+			b = this.anotados.contains(user)
 			if (b){
 				println("entre")
-				this.anotados.removeElement(u)
+				this.anotados.removeElement(user)
 			}
 
 			println("EliminarUsuarioDeLista - "+this.anotados)

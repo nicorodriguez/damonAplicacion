@@ -32,14 +32,16 @@ class CalendarController {
         }
     }
 
-    def misDatos()
-    {
+    def misDatos(){
         render(view:'misDatos')
     }
 
-    def panelDeControl()
-    {
+    def panelDeControl(){
         render(view:'panelDeControl')
+    }
+
+    def guiaEjercicio(){
+        render(view:'guiaEjercicio')
     }
 
     def formatHora(){
@@ -64,7 +66,6 @@ class CalendarController {
         //String fechaPosta = formatoNuevo.format(fechaOriginal)
         //NO OLVIDARSE DE AGREGAR ->    import java.text.SimpleDateFormat
     }
-
 
     @Transactional
     def crearClase(){
@@ -95,9 +96,9 @@ class CalendarController {
 
             println("CrearClase -> "+fechaDate)
 
-            //Traer los profesores de la base de datos verifica que existe
-            // println("CrearClase - Voy a buscar el Profesor")
-            // Usuario prof = Usuario.findByEmail(profeEmail)
+            Traer los profesores de la base de datos verifica que existe
+            println("CrearClase - Voy a buscar el Profesor")
+            Usuario prof = Usuario.findByEmail(profeEmail)
 
             //Traer los tipos de la base de datos verifica que existen
             println("CrearClase - Voy a buscar el Tipo de Usuario")
@@ -112,7 +113,7 @@ class CalendarController {
                 render("false")
             }
             else{
-                Clase clasee = new Clase(fechaDate,profeEmail,tipo1,maxCantidad)
+                Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
 
                 // Clase clasee = new Clase(fechaDate,prof,tipo1,maxCantidad)
                 clasee.inicializarTablaAnotados()
@@ -308,8 +309,6 @@ class CalendarController {
             //Traigo los datos de la clase:
             println("desanotarseClase - Voy a buscar la clase")
             Clase clasee = Clase.findByFechaHorarioAndTipo(fechaDate,tipoClasePosta)
-
-            
             
             //Verifico que exista la clase
             if (!clasee){
@@ -335,40 +334,48 @@ class CalendarController {
                     println("DesanotarseClase - Clase con lugar disponible")
                     println("Cantidad Actual: " + clasee.cantidadActual +"= Cantidad Max: " + clasee.cantidadMax)
                     
+                    boolean tiempoPosible = clasee.verificoTiempo()
 
-                    Boolean resuCreditos = usuario.aumentarCreditos()
+                    if (tiempoPosible){
 
-                    if (resuCreditos){
-                        println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
-                        
-                        def claseid = clasee.id
-                        Clase claseaguardar = Clase.get(claseid)
+                        Boolean resuCreditos = usuario.aumentarCreditos()
 
-                        // boolean resuu = usuario.eliminarUsuarioDeInscriptos(claseaguardar)
-                        // println(resuu)
+                        if (resuCreditos){
+                            println("Nueva Cantidad de Creditos Actual = " + usuario.creditosActuales)
+                            
+                            def claseid = clasee.id
+                            Clase claseaguardar = Clase.get(claseid)
 
-                        //Elimino Usuario a la lista de anotados:
-                        boolean resultadoFinal = claseaguardar.eliminarUsuarioDeLista(usuario)
-                                                    
-                        if (!resultadoFinal){
-                            println("DesanotarseClase - No se eliminar de la lista")
-                            render("false")
+                            // boolean resuu = usuario.eliminarUsuarioDeInscriptos(claseaguardar)
+                            // println(resuu)
+
+                            //Elimino Usuario a la lista de anotados:
+                            boolean resultadoFinal = claseaguardar.eliminarUsuarioDeLista(usuario)
+                                                        
+                            if (!resultadoFinal){
+                                println("DesanotarseClase - No se eliminar de la lista")
+                                render("false")
+                            }
+                            else{
+                                println("DesanotarseClase - SE ELIMINO SATISFACTORIAMENTE")
+
+                                // Integer cantAct = clasee.calcularCapActual()
+
+                                // println("Nueva Cantidad Actual de Clase = " + cantAct)
+
+                                // clasee.save(flush: true)
+
+                                render("true")
+                            }
                         }
                         else{
-                            println("DesanotarseClase - SE ELIMINO SATISFACTORIAMENTE")
-
-                            // Integer cantAct = clasee.calcularCapActual()
-
-                            // println("Nueva Cantidad Actual de Clase = " + cantAct)
-
-                            // clasee.save(flush: true)
-
-                            render("true")
+                            println("DesanotarseClase - No se pudo aumentar los creditos")
+                            render("false")
                         }
                     }
                     else{
-                        println("DesanotarseClase - No se pudo aumentar los creditos")
-                        render("false")
+                        println("DesanotarseClase - Ya no hay tiempo para desanotarse")
+                        render("tarde")
                     }
                 }
             }
@@ -383,74 +390,146 @@ class CalendarController {
 
     }
 
-    def listarClases(){
-        //Para ver las clases desde el panel de control del admin
+    // def resetearClases(){
+        
+    //     try{
+        
+    //         Date fechaAct = new Date()
+
+    //         if (posible){
+
+    //             fecha1
+    //             Date fechaDate = Date.parse( 'dd/MM/yyyy HH:mm', fecha1 )
+
+    //             def listaClases = Clase.getAll()
+
+    //             for(Clase item: listaClases){
+    //                 Clase clase1 = Clase.get(item.id)
+    //                 clase1.fechaHor
+
+
+
+    //             }
+
+
+    //         }
+    //         else{
+    //             println("No es posible ejecutar este metodo los dias que no sean sabado o domingo")
+    //         }
+    //     }
+        
+    //     catch(Exception e){
+    //         println("PROBLEMA")
+    //         println(e)
+
+    //         render ("false")
+    //     }
+    // }
+
+    // def listarClasesAnotadas(){
+    //     //Para ver las clases desde la vista de usuario
+
+    //     try{
+    //         println("ListarClasesAnotadas - Voy a buscar los datos del usuario")
+
+    //         // def smgr = new SessionManager(request.session)
+    //         // Usuario usuario = smgr.getCurrentUser()
+
+    //         Usuario usuario = Usuario.findByEmail("lucasg@hotmail.com")
+
+    //         def listaDeClases = []
+
+    //         Tipousuario tipo = usuario.tipo
+
+    //         def claseLista = Clase.findAllByTipo(tipo)
+
+    //         for (Clase item: claseLista){
+    //             boolean b = item.anotados.contains(usuario)
+
+    //             if (b){
+    //                 listaDeClases << item
+    //             }
+    //         }
+
+    //         println(listaDeClases)
+    //         // return(listaDeClases)
+
+    //         // render("true")
+
+    //     }
+    //     catch(Exception e){
+    //         println("PROBLEMA")
+    //         println(e)
+
+    //         // render ("false")
+    //     }
+    // }
+
+    def iniciarlun(){
+
+        Date fechaAct = new Date()
+
+        def formatoNumdia = new SimpleDateFormat("u")
+        String numm = formatoNumdia.format(fechaAct)
+
+        Integer numdia = numm.toInteger()
+
+        if (numdia == 1){
+            def formatoNumdiafecha2 = new SimpleDateFormat("dd")
+
+            String numdf = formatoNumdiafecha2.format(fechaAct)
+
+            println(fechaAct)
+            println(numdf)
+            // return(numdf)
+        }
+        else{
+            Integer cantV = nummdia - 1
+
+            Date lunesAnt = fechaAct.minus(cantV)
+
+            def formatoNumdiafecha1 = new SimpleDateFormat("dd")
+
+            String numdf = formatoNumdiafecha1.format(lunesAnt)
+
+            println(lunesAnt)
+            println(numdf)
+            // return(numdf)
+        }
+
     }
 
-    def listarClasesAnotadas(){
-        //Para ver las clases desde la vista de usuario
+    // def probar(){
 
-        try{
-            println("ListarClasesAnotadas - Voy a buscar los datos del usuario")
+    //     def claseLista = Clase.getAll()
 
-            // def smgr = new SessionManager(request.session)
-            // Usuario usuario = smgr.getCurrentUser()
+    //     println(claseLista)
 
-            Usuario usuario = Usuario.findByEmail("lucasg@hotmail.com")
+    //     def lista = []
 
-            def listaDeClases = []
+    //     for (Clase item: claseLista){
+    //         def clase3 = Clase.get(item.id)
+    //         def hora1 = clase3.getHora()
+    //         lista << hora1
+    //         println(hora1)
+    //     }
 
-            Tipousuario tipo = usuario.tipo
+    //     println(lista)
 
-            def claseLista = Clase.findAllByTipo(tipo)
+    //     def lista2 = lista.unique()
 
-            for (Clase item: claseLista){
-                boolean b = item.anotados.contains(usuario)
+    //     println(lista2)
 
-                if (b){
-                    listaDeClases << item
-                }
-            }
+    // }
 
-            println(listaDeClases)
-            // return(listaDeClases)
+    def probar2(){
 
-            // render("true")
+        Date fechaAct = new Date()
 
-        }
-        catch(Exception e){
-            println("PROBLEMA")
-            println(e)
+        Date semanaQviene = fechaAct.plus(7)
 
-            // render ("false")
-        }
-    }
-
-    def guiaEjercicio(){
-        render(view:'guiaEjercicio')
-    }
-
-    def probar(){
-
-        def claseLista = Clase.getAll()
-
-        println(claseLista)
-
-        def lista = []
-
-        for (Clase item: claseLista){
-            def clase3 = Clase.get(item.id)
-            def hora1 = clase3.getHora()
-            lista << hora1
-            println(hora1)
-        }
-
-        println(lista)
-
-        def lista2 = lista.unique()
-
-        println(lista2)
-
+        println("Dia Actual: "+fechaAct)
+        println("Dia Semana siguiente: "+semanaQviene)
     }
 
 }

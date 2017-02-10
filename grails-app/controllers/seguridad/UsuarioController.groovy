@@ -113,4 +113,31 @@ class UsuarioController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    // def lista() {
+    //     params.max = Math.min(params.max ? params.int('max') : 10, 100)
+    //     [usuarioInstanceList: Usuario.list(params), usuarioInstanceTotal: Usuario.count()]
+    // }
+
+    def list() {
+        params.max = Math.min(params.max ? params.int('max') : 5, 100)
+ 
+        def usuarioList = Usuario.createCriteria().list (params) {
+            if ( params.query ) {
+                ilike("email", "%${params.query}%")
+            }
+        }
+ 
+        [usuarioInstanceList: usuarioList, usuarioInstanceTotal: usuarioList.totalCount]
+    }
+
+
+//     <fieldset class="form">
+//     <g:form action="list" method="GET">
+//         <div class="fieldcontain">
+//             <label for="query">Search for tasks:</label>
+//             <g:textField name="query" value="${params.query}"/>
+//         </div>
+//     </g:form>
+// </fieldset>
 }

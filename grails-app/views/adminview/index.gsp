@@ -34,6 +34,31 @@
   def listaTipo = Tipousuario.getAll()
   def listaUser = Usuario.getAll()
 
+  Date lun = usuario.iniciarLunesAnt()
+
+  def listadias = []
+
+  String diafecha = usuario.getDiaFecha(lun)
+
+  listadias << diafecha
+  Date sig = lun.plus(1)
+  String diafecha1 = usuario.getDiaFecha(sig)
+  listadias << diafecha1
+  Date sig1 = lun.plus(2)
+  String diafecha2 = usuario.getDiaFecha(sig1)
+  listadias << diafecha2
+  Date sig2 = lun.plus(3)
+  String diafecha3 = usuario.getDiaFecha(sig2)
+  listadias << diafecha3
+  Date sig3 = lun.plus(4)
+  String diafecha4 = usuario.getDiaFecha(sig3)
+  listadias << diafecha4
+  Date sig4 = lun.plus(5)
+  String diafecha5 = usuario.getDiaFecha(sig4)
+  listadias << diafecha5
+
+  def listadiasP = listadias.unique()
+
 %>
 
 <!DOCTYPE html>
@@ -106,12 +131,9 @@
                                 <thead>
                                   <tr id="prueba">
                                     <th>Horario</th>
-                                    <th>Lunes</th>
-                                    <th>Martes</th>
-                                    <th>Miércoles</th>
-                                    <th>Jueves</th>
-                                    <th>Viernes</th>
-                                    <th>Sábados</th>
+                                    <g:each var="dia" in="${listadiasP}">
+                                    <th>${dia}</th>
+                                    </g:each>
                                   </tr>
                                 </thead>
                                 <tbody id="tbUsuario">
@@ -121,42 +143,42 @@
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getNumdia()=="1" && clase.getHora()==horarios}">
-                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</p>
+                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax} ${clase.profe.nombre}</p>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getNumdia()=="2" && clase.getHora()==horarios}">
-                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</p>
+                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax} ${clase.profe.nombre}</p>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getNumdia()=="3" && clase.getHora()==horarios}">
-                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</p>
+                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax} ${clase.profe.nombre}</p>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getNumdia()=="4" && clase.getHora()==horarios}">
-                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</p>
+                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax} ${clase.profe.nombre}</p>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getNumdia()=="5" && clase.getHora()==horarios}">
-                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</p>
+                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax} ${clase.profe.nombre}</p>
                                        </g:if>
                                        </g:each>
                                        </td>
                                        <td>
                                        <g:each var="clase" in="${claseLista1}">
                                        <g:if test="${clase.getNumdia()=="6" && clase.getHora()==horarios}">
-                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax}</p>
+                                       <p>${clase.tipo.nombre}: ${clase.cantidadActual}/${clase.cantidadMax} ${clase.profe.nombre}</p>
                                        </g:if>
                                        </g:each>
                                        </td>                              
@@ -706,6 +728,8 @@
 
       </div>   
 	</div>
+
+  
 
    <div id="footer"></div>
 <hr>

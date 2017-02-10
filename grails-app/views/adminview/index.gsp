@@ -729,7 +729,14 @@
       </div>   
 	</div>
 
-  
+  <fieldset class="form">
+     <g:form action="/damonAplicacion/usuario/list" method="GET">
+         <div class="fieldcontain">
+             <label for="query">Busqueda de Usuario por Email:</label>
+             <g:textField name="query" value="${params.query}"/>
+         </div>
+     </g:form>
+ </fieldset>
 
    <div id="footer"></div>
 <hr>

@@ -42,7 +42,9 @@ function anotarse(tipoclase,fecha,hora){
 
     // Cambio el color de la letra (despues tengo que pintar la celda.)
     td= $(event.target)
-    td.css('background-color','#555555');
+    td.css('color', '#FFFFFF')
+    td.parent().css('background-color','#337ab7');
+
 
     fechahor= fecha + " " + hora;
    

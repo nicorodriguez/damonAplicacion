@@ -380,7 +380,7 @@
             <g:form action="busquedaUsuario" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
                 <fieldset class="form" style="left: 7em; top: -0.75em;">
                     <div>
-                        <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
+                        <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;">
                     </div>
                 </fieldset>
                 <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
@@ -408,16 +408,16 @@
                  <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     
-                         <td><g:link action="show" id="${usuarioInstance.id}">${fieldValue(bean: usuarioInstance, field: "email")}</g:link></td>
+                         <td>${usuarioInstance.email}</td>
                     
                          <td>${usuarioInstance.nombre}</td>
                     
                          <td>${usuarioInstance.apellido}</td>
 
-                         <td><select id="algo">
-                         <option >${usuarioInstance.servicio.nombreservicio}</option>
+                         <td><select>
+                         <!--<option >${usuarioInstance.servicio.nombreservicio}</option>-->
                          <g:each in="${listaServ}" var="serv">
-                         <option>${serv.nombreservicio}</option>
+                         <option class="algo">${serv.nombreservicio}</option>
                          </g:each>
                          </select></td>
 
@@ -911,10 +911,6 @@ $("#fecha").datepicker({
        }
     });
 
-    function prueba(){
-      a=$("#algo");
-      alert(a)
-    }
     </script>
 </body>
 </html>

@@ -54,7 +54,14 @@
 a{
   padding:0px;
   margin: 0px
+}
 
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
 }
 
 header{

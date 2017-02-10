@@ -48,6 +48,19 @@ class AdminviewController {
         render(view:'panelDeControl')
     }
 
+    def busquedaUsuario(){
+        def listaFiltrada = Usuario.createCriteria().list(params) {
+            if(params.parametro){
+                ilike("email", "%${params.parametro}%")
+            }
+        
+        }
+        if(!listaFiltrada){
+            flash.message = "El usuario con email: ${params.parametro} no existe"
+        }
+        render view:"index", model:[listaFiltrada:listaFiltrada]
+    }
+
     // def habilitarUsuario(){
 
     //     String emailUsuario = request.getParameter("email")

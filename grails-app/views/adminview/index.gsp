@@ -373,7 +373,61 @@
           <h4 class="modal-title">Lista de Usuarios</h4>
         </div>
         <div class="modal-body">
-           <table style="width:100%">
+        <h1>Usuarios</h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:form action="busquedaUsuario" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+                <fieldset class="form" style="left: 7em; top: -0.75em;">
+                    <div>
+                        <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
+                    </div>
+                </fieldset>
+                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
+                
+            </g:form>
+            
+            <table>
+                <thead>
+                    <tr>
+                    
+                        <g:sortableColumn property="email" title="${message(code: 'usuario.email.label', default: 'Email')}" />
+                    
+                        <g:sortableColumn property="nombre" title="${message(code: 'usuario.nombre.label', default: 'Nombre')}" />
+                    
+                        <g:sortableColumn property="apellido" title="${message(code: 'usuario.apellido.label', default: 'Apellido')}" />
+
+                        <th></th>
+                                    
+                    </tr>
+                </thead>
+                <tbody>
+                 <g:if test="${!listaFiltrada }">
+                     <g:set var="listaFiltrada" value="${Usuario.list()}"></g:set>
+                 </g:if>
+                 <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
+                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                    
+                         <td><g:link action="show" id="${usuarioInstance.id}">${fieldValue(bean: usuarioInstance, field: "email")}</g:link></td>
+                    
+                         <td>${usuarioInstance.nombre}</td>
+                    
+                         <td>${usuarioInstance.apellido}</td>
+
+                         <td><select id="algo">
+                         <option >${usuarioInstance.servicio.nombreservicio}</option>
+                         <g:each in="${listaServ}" var="serv">
+                         <option>${serv.nombreservicio}</option>
+                         </g:each>
+                         </select></td>
+
+                         <td><a onclick="prueba()">Guardar!</a></td>
+                              
+                     </tr>
+                 </g:each>
+                 </tbody>
+             </table>
+           %{-- <table style="width:100%">
             <caption>Datos de los Usuario</caption>
             <tr>
               <th>Nombre</th>
@@ -389,8 +443,9 @@
               <td>${us.servicio.nombreservicio}</td>
             </tr>
             </g:each>
-          </table>
+          </table> --}%
         </div>
+        
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
@@ -729,14 +784,58 @@
       </div>   
 	</div>
 
-  <fieldset class="form">
-     <g:form action="/damonAplicacion/usuario/list" method="GET">
-         <div class="fieldcontain">
-             <label for="query">Busqueda de Usuario por Email:</label>
-             <g:textField name="query" value="${params.query}"/>
-         </div>
-     </g:form>
- </fieldset>
+  %{-- <h1>Usuarios</h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:form action="busquedaUsuario" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+                <fieldset class="form" style="left: 7em; top: -0.75em;">
+                    <div>
+                        <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
+                    </div>
+                </fieldset>
+                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
+                
+            </g:form>
+            
+            <table>
+                <thead>
+                    <tr>
+                    
+                        <g:sortableColumn property="email" title="${message(code: 'usuario.email.label', default: 'Email')}" />
+                    
+                        <g:sortableColumn property="nombre" title="${message(code: 'usuario.nombre.label', default: 'Nombre')}" />
+                    
+                        <g:sortableColumn property="apellido" title="${message(code: 'usuario.apellido.label', default: 'Apellido')}" />
+
+                        <th></th>
+                                    
+                    </tr>
+                </thead>
+                <tbody>
+                 <g:if test="${!listaFiltrada }">
+                     <g:set var="listaFiltrada" value="${Usuario.list()}"></g:set>
+                 </g:if>
+                 <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
+                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                    
+                         <td><g:link action="show" id="${usuarioInstance.id}">${fieldValue(bean: usuarioInstance, field: "email")}</g:link></td>
+                    
+                         <td>${usuarioInstance.nombre}</td>
+                    
+                         <td><select>
+                         <option>${usuarioInstance.apellido}</option>
+                         </select></td>
+
+                         <td>Guardar!</td>
+                    
+                        <td>${fieldValue(bean: usuarioInstance, field: "usuario")}</td>
+
+                    
+                     </tr>
+                 </g:each>
+                 </tbody>
+             </table>  --}%
 
    <div id="footer"></div>
 <hr>
@@ -812,6 +911,10 @@ $("#fecha").datepicker({
        }
     });
 
+    function prueba(){
+      a=$("#algo");
+      alert(a)
+    }
     </script>
 </body>
 </html>

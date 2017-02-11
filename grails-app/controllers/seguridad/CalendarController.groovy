@@ -5,6 +5,7 @@ import seguridad.Servicio
 import sistema.Clase
 import sistema.Tipousuario
 import sistema.Establecimiento
+import sistema.Comentario
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
@@ -436,6 +437,8 @@ class CalendarController {
                 }
 
                 userACambiar.save(flush: true, failOnError: true)
+
+                render("true")
             }
             else{
                 println("No tiene el rol necesario")
@@ -569,6 +572,28 @@ class CalendarController {
             // return(numdf)
         }
 
+    }
+
+    def nuevoComentario(){
+
+        String titulo = request.getParameter("titulo")
+        String descripcion = request.getParameter("descripcion")
+
+        Comentario c = new Comentario(titulo, descripcion)
+
+        c.save(flush: true, failOnError: true)
+
+    }
+
+    def borrarComentario(){
+
+        String id = request.getParameter("id")
+
+        Integer idComentario = id.toInteger()
+
+        Comentario c = Comentario.get(idComentario)
+
+        c.delete(flush: true, failOnError: true)
     }
 
     // def probar(){

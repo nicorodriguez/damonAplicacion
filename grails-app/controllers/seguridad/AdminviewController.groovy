@@ -89,13 +89,37 @@ class AdminviewController {
     //     render view:"index", model:[listaFiltrada:listaFiltrada]
     // }
 
-
-
-    def llego(){
-        def ser = serv.nombreservicio
-        println("llego")
-        println("Parametros: "+serv.nombreservicio)
+    def busquedaServicio(){
+        def listaFiltrada = Servicio.createCriteria().list(params) {
+            if(params.parametro){
+                ilike("nombreservicio", "%${params.parametro}%")
+            }
+        
+        }
+        if(!listaFiltrada){
+            flash.message = "El servicio de nombre: ${params.parametro} no existe!"
+        }
+        render view:"index", model:[listaFiltrada:listaFiltrada]
     }
+
+    def busquedaRol(){
+        def listaFiltrada = Rol.createCriteria().list(params) {
+            if(params.parametro){
+                ilike("nombrerol", "%${params.parametro}%")
+            }
+        
+        }
+        if(!listaFiltrada){
+            flash.message = "El rol de nombre: ${params.parametro} no existe!"
+        }
+        render view:"index", model:[listaFiltrada:listaFiltrada]
+    }
+
+    // def llego(){
+    //     def ser = serv.nombreservicio
+    //     println("llego")
+    //     println("Parametros: "+serv.nombreservicio)
+    // }
 
     // def habilitarUsuario(){
 

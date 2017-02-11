@@ -41,18 +41,7 @@ var aa=GetParam('myvar');
   //def us = findByNombre(aa) 
 
   def tipoUsuarioActual = usuario.tipo
-  
-  def claseLista2 = Clase.findAllByTipo(tipoUsuarioActual)
-  
-  def listaClases = usuario.inscriptoclases
 
-  def listaHora2 = []
-  for (Clase item: claseLista2){
-    def clase2 = Clase.get(item.id)
-    def hora2 = clase2.getHora()
-    listaHora2 << hora2  
-  }
-  def listaHoraP2 = listaHora2.unique()
 %>
 
 <!DOCTYPE html>

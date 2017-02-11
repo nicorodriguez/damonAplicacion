@@ -199,7 +199,7 @@
           <div class="btn-group botones">
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
-            <li><a data-toggle="modal" href="/damonAplicacion/adminview/misDatos">Habilitar Usuario</a></li>
+            <li><a data-toggle="modal" href="/damonAplicacion/adminview/adminUsuario">Habilitar Usuario</a></li>
             <li><a data-toggle="modal" href="#modallistarusuario">Listar Usuarios</a></li>
             <li><a data-toggle="modal" href="#modalcambiarserv">Cambiar Servicio</a></li>
             <li><a data-toggle="modal" href="#modalcambiarcat">Cambiar Categoria</a></li>

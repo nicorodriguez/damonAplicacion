@@ -37,6 +37,9 @@ class AdminviewController {
             redirect(controller: "login" , action:"index")
     	}
     }
+    def adminUsuario(){
+        render(view:'adminUsuario')
+    }
 
     def misDatos()
     {
@@ -100,6 +103,7 @@ class AdminviewController {
         }
         render view:"index", model:[listaFiltrada:listaFiltrada]
     }
+
 
     // def llego(){
     //     def ser = serv.nombreservicio

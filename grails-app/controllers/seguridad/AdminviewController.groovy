@@ -61,33 +61,6 @@ class AdminviewController {
         render view:"index", model:[listaFiltrada:listaFiltrada]
     }
 
-    // def busquedaProfesor(){
-    //     def listaFiltrada = Usuario.createCriteria().list(params) {
-    //         ilike("rol.nombrerol","ROL_PROF")
-    //         if(params.parametro){
-    //             ilike("email", "%${params.parametro}%")
-    //         }
-        
-    //     }
-    //     if(!listaFiltrada){
-    //         flash.message = "El profesor con email: ${params.parametro} no existe!"
-    //     }
-    //     render view:"index", model:[listaFiltrada:listaFiltrada]
-    // }
-
-    // def busquedaAdmin(){
-    //     def listaFiltrada = Usuario.createCriteria().list(params) {
-    //         ilike("rol.nombrerol","ROL_ADMIN")
-    //         if(params.parametro){
-    //             ilike("email", "%${params.parametro}%")
-    //         }
-        
-    //     }
-    //     if(!listaFiltrada){
-    //         flash.message = "El admin con email: ${params.parametro} no existe!"
-    //     }
-    //     render view:"index", model:[listaFiltrada:listaFiltrada]
-    // }
 
     def busquedaServicio(){
         def listaFiltrada = Servicio.createCriteria().list(params) {
@@ -111,6 +84,19 @@ class AdminviewController {
         }
         if(!listaFiltrada){
             flash.message = "El rol de nombre: ${params.parametro} no existe!"
+        }
+        render view:"index", model:[listaFiltrada:listaFiltrada]
+    }
+
+    def busquedaTipo(){
+        def listaFiltrada = Tipousuario.createCriteria().list(params) {
+            if(params.parametro){
+                ilike("nombre", "%${params.parametro}%")
+            }
+        
+        }
+        if(!listaFiltrada){
+            flash.message = "El tipousuario de nombre: ${params.parametro} no existe!"
         }
         render view:"index", model:[listaFiltrada:listaFiltrada]
     }

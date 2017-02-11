@@ -421,27 +421,28 @@
 
                          <td>
                           <select>
-                         <!--<option >${usuarioInstance.servicio.nombreservicio}</option>-->
+                          <option id="nombreservanterior">${usuarioInstance.servicio.nombreservicio}</option>
                             <g:each in="${listaServ}" var="serv">
-                              <option value="${serv.nombreservicio}">${serv.nombreservicio}</option>
+                              <option class="nombreserv">${serv.nombreservicio}</option>
                             </g:each>
                           </select>
                          </td>
 
                          <td>
                          <select>
+                          <option id="nombretipoanterior">${usuarioInstance.tipo.nombre}</option>
                           <g:each in="${listaTipo}" var="tip">
-                         <!--<option >${usuarioInstance.tipo.nombre}</option>-->
-                            <option value="${tip.nombre}">${tip.nombre}</option>
+                            <option class="nombretipo">${tip.nombre}</option>
                           </g:each>
                          </select>
                          </td>
 
                          <td>
                          <select>
-                           <option value="v">Validado</option>
-                           <option value="a">Activo</option>
-                           <option value="i">Inactivo</option>
+                           <option id="nombreestadoanterior">${usuarioInstance.estado}</option>
+                           <option class="estado">Validado</option>
+                           <option class="estado">Activo</option>
+                           <option class="estado">Inactivo</option>
                          </select>
                          </td>
                               
@@ -453,6 +454,8 @@
              <g:if test="${listaFiltrada.size()==1}">
              <button>Guardar!</button>
              </g:if>
+
+          </div>
            %{-- <table style="width:100%">
             <caption>Datos de los Usuario</caption>
             <tr>
@@ -470,7 +473,6 @@
             </tr>
             </g:each>
           </table> --}%
-        </div>
         
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -621,20 +623,89 @@
           <h4 class="modal-title">Lista de Profesores</h4>
         </div>
         <div class="modal-body">
-           <table style="width:100%">
-            <caption>Datos de los Profesores</caption>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Categoria</th>
-            </tr>
-            <tr>
-              <td>Importar Nombre</td>
-              <td>Importar Apellido</td>
-              <td>Importar Categoria</td>
-            </tr>
-          </table>
-        </div>
+        <h1>Usuarios</h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:form action="busquedaProfesor" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+                <fieldset class="form" style="left: 7em; top: -0.75em;">
+                    <div>
+                        <g:textField name="parametro" placeholder="Buscar profesor por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
+                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
+                    </div>
+                </fieldset>
+                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
+                
+            </g:form>
+            
+            <table>
+                <thead>
+                    <tr>
+                    
+                        <g:sortableColumn property="email" title="${message(code: 'usuario.email.label', default: 'Email')}" />
+                    
+                        <g:sortableColumn property="nombre" title="${message(code: 'usuario.nombre.label', default: 'Nombre')}" />
+                    
+                        <g:sortableColumn property="apellido" title="${message(code: 'usuario.apellido.label', default: 'Apellido')}" />
+
+                        <g:sortableColumn property="servicio" title="${message(code: 'usuario.servicio.label', default: 'Servicio')}" />
+
+                        <g:sortableColumn property="tipo" title="${message(code: 'usuario.tipo.label', default: 'Tipo')}" />
+
+                        <g:sortableColumn property="estado" title="${message(code: 'estado.apellido.label', default: 'Estado')}" />
+                                    
+                    </tr>
+                </thead>
+                <tbody>
+                 <g:if test="${!listaFiltrada }">
+                     <g:set var="listaFiltrada" value="${profesores}"></g:set>
+                 </g:if>
+                 <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
+                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                    
+                         <td>${usuarioInstance.email}</td>
+                    
+                         <td>${usuarioInstance.nombre}</td>
+                    
+                         <td>${usuarioInstance.apellido}</td>
+
+                         <td>
+                          <select>
+                          <option id="nombreservanterior">${usuarioInstance.servicio.nombreservicio}</option>
+                            <g:each in="${listaServ}" var="serv">
+                              <option class="nombreserv">${serv.nombreservicio}</option>
+                            </g:each>
+                          </select>
+                         </td>
+
+                         <td>
+                         <select>
+                          <option id="nombretipoanterior">${usuarioInstance.tipo.nombre}</option>
+                          <g:each in="${listaTipo}" var="tip">
+                            <option class="nombretipo">${tip.nombre}</option>
+                          </g:each>
+                         </select>
+                         </td>
+
+                         <td>
+                         <select>
+                           <option id="nombreestadoanterior">${usuarioInstance.estado}</option>
+                           <option class="estado">Validado</option>
+                           <option class="estado">Activo</option>
+                           <option class="estado">Inactivo</option>
+                         </select>
+                         </td>
+                              
+                     </tr>
+                 </g:each>
+                 </tbody>
+             </table>
+
+             <g:if test="${listaFiltrada.size()==1}">
+             <button>Guardar!</button>
+             </g:if>
+
+          </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>

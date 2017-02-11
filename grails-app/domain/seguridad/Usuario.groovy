@@ -158,15 +158,17 @@ class Usuario {
 		}
 	}
 
-	boolean setEstado(Usuario u, String est){
+	boolean setEstado(String est){
 		try{
+			println(this)
+			println(est)
 			int longitud = est.length()
 			println("Compruebo si el nuevo estado es longitud 1")
 
 			if (longitud == 1){
 				println("Longitud correcta")
 
-				u.estado = est
+				this.estado = est
 				println("Se cambio el estado con exito")
 				return(true)
 			}
@@ -182,11 +184,11 @@ class Usuario {
 		}
 	}
 
-	boolean setEstadoValido(Usuario u){
+	boolean setEstadoValido(){
 
 		try{
 
-			u.estado = 'v'
+			this.estado = 'v'
 			println("Se cambio el estado a Valido con exito")
 			return(true)
 
@@ -198,10 +200,10 @@ class Usuario {
 		}
 	}
 
-	boolean setEstadoActivo(Usuario u){
+	boolean setEstadoActivo(){
 
 		try{
-			u.estado = 'a'
+			this.estado = 'a'
 			println("Se cambio el estado a Activo con exito")
 			return(true)
 		}
@@ -236,22 +238,20 @@ class Usuario {
 	//1.year
 	//30.minutes
 
-	Boolean setEstadoInactivo(Usuario u){
-
-		Boolean esPriv = this.esPrivilegiado()
-
-		if (esPriv){
-			u.estado = 'i'
+	boolean setEstadoInactivo(){
+		try{
+			this.estado = 'i'
 			println("Se cambio el estado a inactivo con exito")
 			return(true)
 		}
-		else{
-			println("El usuario no tiene el rol requerido para cambiar el estado del usuario")
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
 			return(false)
 		}
 	}
 
-	Boolean setRol(Rol s){
+	boolean setRol(Rol s){
 		try{
 			this.rol = s
 			return(true)
@@ -263,35 +263,27 @@ class Usuario {
 		}
 	}
 
-	Boolean setServicio(Usuario usuarioPrivilegiado, Usuario usuarioACambiar, Servicio s){
+	boolean setServicio(Servicio s){
 		try{
-			Boolean esPriv = usuarioPrivilegiado.esPrivilegiado()
-			if (esPriv){
-				if (usuarioACambiar.servicio != s){
-					usuarioACambiar.servicio = s
-					println("Se cambio el Servicio con Exito")
-					return(true)
-				}
-				else{
-					println("El Usuario ya tiene dicho servicio!")
-					return(false)
-				}
-			}
-			else{
-				println("No tiene el rol necesario para cambiar el servicio!")
-				return(false)
-			}
+			println(this)
+			println(s)
+			this.servicio = s
+			println("Se cambio el Servicio con Exito")
+			return(true)
 		}
 		catch(Exception e){
 			println("PROBLEMA")
 			println(e)
+			return(false)
 		}
 	}
 	
-	boolean setTipo(Usuario usuarioACambiar, Tipousuario t){
+	boolean setTipo(Tipousuario t){
 		
 		try{
-			usuarioACambiar.tipo = t
+			println(this)
+			println(t)
+			this.tipo = t
 			println("Se cambio el Tipo de Usuario con Exito")
 			return(true)
 		}
@@ -361,73 +353,6 @@ class Usuario {
 		}
 	}
 
-
-	// boolean agregarUsuarioAInscriptos(Clase c){
-	// 	try{
-	// 		println("AgregarUsuarioALista - Se inicia el proceso")
-	// 		this.inscriptoclases << c
-	// 		println("AgregarUsuarioALista - Se agrego la clase: "+c+" Satisfactoriamente")
-	// 		println(c)
-	// 		return(true)
-	// 	}
-	// 	catch(Exception e){
- //            println("PROBLEMA")
- //            println(e)
-
- //            return(false)
- //        }
-	// }
-
-	// boolean eliminarUsuarioDeInscriptos(Clase c){
-	// 	try{
-	// 		println("EliminarUsuarioDeInscriptos - Se inicia el proceso")
-	// 		Integer idClase = c.id
-	// 		// this.inscriptoclases.removeAll{ inscriptoclases -> inscriptoclases.clase.id == idClase
-	// 		// }
-
-	// 		println(this.inscriptoclases)
-	// 		// this.removeFromInscriptoclases(c)
-	// 		// c.discard()
-	// 		// this.inscriptoclases.removeElement(c)
-	// 		this.inscriptoclases -= c
-
-	// 		// this.inscriptoclases.remove{ inscriptoclases -> inscriptoclases.usuario.email == emailUser
-	// 		// }
-	// 		// this.delete(flush: true)
-	// 		println(this.inscriptoclases)
-	// 		println("EliminarUsuarioDeInscriptos - Se elimino la clase: "+c+" Satisfactoriamente")
-	// 		println(c)
-			
-	// 		return(true)
-	// 	}
-	// 	catch(Exception e){
- //            println("PROBLEMA")
- //            println(e)
-
- //            return(false)
- //        }
-	// }
-
-	// boolean yaAnotado(Clase c){
-
-	// 	println("YaAnotado - Se inicia el proceso")
-	// 	Integer idClase = c.id
-	// 	println(c)
-	// 	println(this.inscriptoclases)
-	// 	Clase resu = this.inscriptoclases.find{it.id == idClase}
-	// 	if (resu){
-	// 		println(resu)
-	// 		boolean a = true
-	// 		println(a)
-	// 		return(a)
-	// 	}
-	// 	else{
-	// 		println(resu)
-	// 		boolean a = false
-	// 		println(a)
-	// 		return(a)
-	// 	}
-	// }
 
 
 }

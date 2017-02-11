@@ -56,9 +56,45 @@ class AdminviewController {
         
         }
         if(!listaFiltrada){
-            flash.message = "El usuario con email: ${params.parametro} no existe"
+            flash.message = "El usuario con email: ${params.parametro} no existe!"
         }
         render view:"index", model:[listaFiltrada:listaFiltrada]
+    }
+
+    // def busquedaProfesor(){
+    //     def listaFiltrada = Usuario.createCriteria().list(params) {
+    //         ilike("rol.nombrerol","ROL_PROF")
+    //         if(params.parametro){
+    //             ilike("email", "%${params.parametro}%")
+    //         }
+        
+    //     }
+    //     if(!listaFiltrada){
+    //         flash.message = "El profesor con email: ${params.parametro} no existe!"
+    //     }
+    //     render view:"index", model:[listaFiltrada:listaFiltrada]
+    // }
+
+    // def busquedaAdmin(){
+    //     def listaFiltrada = Usuario.createCriteria().list(params) {
+    //         ilike("rol.nombrerol","ROL_ADMIN")
+    //         if(params.parametro){
+    //             ilike("email", "%${params.parametro}%")
+    //         }
+        
+    //     }
+    //     if(!listaFiltrada){
+    //         flash.message = "El admin con email: ${params.parametro} no existe!"
+    //     }
+    //     render view:"index", model:[listaFiltrada:listaFiltrada]
+    // }
+
+
+
+    def llego(){
+        def ser = serv.nombreservicio
+        println("llego")
+        println("Parametros: "+serv.nombreservicio)
     }
 
     // def habilitarUsuario(){

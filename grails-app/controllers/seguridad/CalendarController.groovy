@@ -268,13 +268,8 @@ class CalendarController {
             
         }
         catch(Exception e){
-        // catch(ValidationException v){
             println("PROBLEMA")
             println(e)
-
-            // println("VALIDACION")
-            // println(v)
-
             render ("false")
         }
 
@@ -390,31 +385,108 @@ class CalendarController {
 
     }
 
+    def editarUsuario(){
+
+        try{
+            println("editarUsuario - Voy a buscar los parametros")
+
+            // Capturo datos de post de formulario
+            String email = request.getParameter("email")
+            String servicio = request.getParameter("servicio")
+            String tipo = request.getParameter("tipo")
+            String estado = request.getParameter("estado")
+
+            println("Recibi los parametros: -> "+email+", "+servicio+", "+tipo+", "+estado)
+
+            //Voy a buscar al usuario
+            Usuario usuario = Usuario.findByEmail(email)
+
+            boolean esPriv = usuario.esPrivilegiado()
+
+            if (esPriv){
+
+                //Voy a buscar el tipo a cambiar
+                Tipousuario tipocambiar = Tipousuario.findByNombre(tipo)
+
+                //Voy a buscar el servicio a cambiar
+                Servicio servcambiar = Servicio.findByNombreservicio(servicio)
+
+                //Busco el verdadero usuario
+                Usuario userACambiar = Usuario.get(usuario.id)
+
+                if (tipocambiar.nombre != userACambiar.tipo.nombre){
+                    boolean a = userACambiar.setTipo(tipocambiar)
+                    if(a){
+                        println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.tipo.nombre)
+                    }
+                }
+
+                if (servcambiar.nombreservicio != userACambiar.servicio.nombreservicio){
+                    boolean b = userACambiar.setServicio(servcambiar)
+                    if(b){
+                        println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.servicio.nombreservicio)
+                    }
+                }
+
+                if (estado != userACambiar.estado){
+                    boolean c = userACambiar.setEstado(estado)
+                    if(c){
+                        println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.estado)
+                    }
+                }
+
+                userACambiar.save(flush: true, failOnError: true)
+            }
+            else{
+                println("No tiene el rol necesario")
+                render("noadmin")
+            }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
     // def resetearClases(){
         
     //     try{
         
     //         Date fechaAct = new Date()
 
-    //         if (posible){
+    //         def formatoNumdia = new SimpleDateFormat("u")
+    //         String numm = formatoNumdia.format(fechaAct)
+    //         Integer numd = numm.toInteger()
+    
+    //         def formatoHora = new SimpleDateFormat("HH")
+    //         String hor = formatoHora.format(fechaAct)
+    //         Integer horaa = hor.toInteger()
+
+    //         boolean posibleDomLun = ((numd == 7) || (numd == 1))
+
+    //         boolean posibleSab = ((numd == 6) && (horaa > 20))
+
+    //         if (posibleSab || posibleDomLun){
 
     //             fecha1
-    //             Date fechaDate = Date.parse( 'dd/MM/yyyy HH:mm', fecha1 )
+    //    //       Date fechaDate = Date.parse( 'dd/MM/yyyy HH:mm', fecha1 )
 
     //             def listaClases = Clase.getAll()
 
     //             for(Clase item: listaClases){
     //                 Clase clase1 = Clase.get(item.id)
-    //                 clase1.fechaHor
-
-
-
+    //                 Date fechaClase = clase1.fechaHorario
+    //                 clase1.fechaHorario = fechaClase.plus(7)
+    //                 clase1.inicializarTablaAnotados()
+    //                 clase1.save(flush: true)
     //             }
 
 
     //         }
     //         else{
-    //             println("No es posible ejecutar este metodo los dias que no sean sabado o domingo")
+    //             println("No es posible ejecutar este metodo los dias que no sean sabado, domingo o lunes")
     //         }
     //     }
         

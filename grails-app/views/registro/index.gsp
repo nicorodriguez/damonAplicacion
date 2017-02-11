@@ -91,22 +91,14 @@ ${servicio.nombreservicio}
     <div class="form-group">
      <!-- <div class="col-sm-4" style="padding-left:0px"> -->
       <label for="email">Modalidad:</label>
-    
-    %{-- <select class="form-control" id="modalidad">
-        <option value="0" disabled selected>-- Seleccionar --</option>
-        <option value="1">2 veces por semana</option>
-        <option value="2">3 veces por semana</option>
-        <option value="3">Pase libre</option>
-    </select> --}%
-
-    <select class="form-control" id="modalidad">
+      <select class="form-control" id="modalidad">
           <option value="0" disabled selected>-- Seleccionar --</option>
           <g:each var="servicio" in="${servicioLista}">
-          <% if ("${servicio.nombreservicio}" != "Profesor"){ %>
+          <% if (("${servicio.nombreservicio}" != "Profesor") && ("${servicio.nombreservicio}" != "Admin")){ %>
           <option value="${servicio.nombreservicio}">${servicio.nombreservicio}</option>
           <% } %>
         </g:each>
-    </select>
+      </select>
       <br>
       <button type="submit" class="btn btn-sm btn-success" id="botonRegistrarse" style="font-size:medium;">Registrarme!</button>
       <a class="btn btn-sm btn-primary" style="font-size:medium;" href="/damonAplicacion">Volver</a>

@@ -191,14 +191,13 @@
 
       <div class="footer-left">
         <!-- <p><a href="#"><span class="glyphicon glyphicon-envelope"></span></a>Envelope icon as a link: </p> -->
-        <p><span class="glyphicon glyphicon-pushpin"></span> Av. Siempre Viva </p>
-        <p><span class="glyphicon glyphicon-phone"></span> 03489-567893 </p>
-        <p><span class="glyphicon glyphicon-envelope"></span> damon@damon.com </p>
-
-        <p>Ing. Sistemas de Informacion - UTN FRD &copy; 2016</p>
+        <p><font size="2"><span class="glyphicon glyphicon-pushpin"></span> San Martin 1171 | <span class="glyphicon glyphicon-phone"></span> 03489 42-0400 | <span class="glyphicon glyphicon-envelope"></span> damon@damon.com </font> </p>
+        <p><font size="2">Ing. Sistemas de Informacion - UTN FRD &copy; 2016</font></p>
       </div>
-  </p>
+
+      </p>
 </footer>
+
 
 <script>
 $(function () {

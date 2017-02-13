@@ -1,23 +1,3 @@
-<SCRIPT LANGUAGE="Javascript">
-function GetParam(name)
-{
-var start=location.search.indexOf("?"+name+"=");
-if (start<0) start=location.search.indexOf("&"+name+"=");
-if (start<0) return '';
-start += name.length+2;
-var end=location.search.indexOf("&",start)-1;
-if (end<0) end=location.search.length;
-var result=location.search.substring(start,end);
-var result='';
-for(var i=start;i<=end;i++) {
-var c=location.search.charAt(i);
-result=result+(c=='+'?' ':c);
-}
-return unescape(result);
-}
-var aa=GetParam('myvar');
-</SCRIPT>
-
 <%@ page import="session.SessionManager" %>
 <%@ page import="seguridad.Usuario" %>
 <%@ page import="seguridad.Rol" %>
@@ -333,6 +313,9 @@ var aa=GetParam('myvar');
           <form Name=Apellido>
             <p> Apellido : <input Name=NewName type="text" minlength="3" maxlength="16" required> </p>
             <input type=button onclick="ChangeName()" Value="Cambiar Apellido">
+            <div class="alert alert-danger ocultar">
+                <strong>Error!</strong> Las passwords no coiniciden, por favor verifique los Datos.
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -355,10 +338,13 @@ var aa=GetParam('myvar');
         </div>
         <div class="modal-body">
           <form Name=Password>
-            <p> Contraseña : <input Name=OldPassword type="Password" minlength="6" maxlength="18" required> </p>
-            <p> Nueva Contraseña : <input Name=NewPassword type="Password" minlength="6" maxlength="18" required> </p>
-            <p> Repita Nueva Contraseña : <input Name=NewPassword type="Password" minlength="6" maxlength="18" required=""> </p>
+            <p> Contraseña Anterior : <input id="apsw" Name=OldPassword type="Password" minlength="6" maxlength="18" required> </p>
+            <p> Nueva Contraseña : <input id="psw" Name=NewPassword type="Password" minlength="6" maxlength="18" required> </p>
+            <p> Repita Nueva Contraseña : <input Name=NewPassword type="Password" minlength="6" maxlength="18" required=""id="rpsw"> </p>
             <input type=button onclick="ChangePassword()" Value="Cambiar Contraseña">
+            <div class="alert alert-danger ocultar">
+                <strong>Error!</strong> Las passwords no coiniciden, por favor verifique los Datos.
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -395,14 +381,13 @@ var aa=GetParam('myvar');
 
       <div class="footer-left">
         <!-- <p><a href="#"><span class="glyphicon glyphicon-envelope"></span></a>Envelope icon as a link: </p> -->
-        <p><span class="glyphicon glyphicon-pushpin"></span> Av. Siempre Viva </p>
-        <p><span class="glyphicon glyphicon-phone"></span> 03489-567893 </p>
-        <p><span class="glyphicon glyphicon-envelope"></span> damon@damon.com </p>
-
-        <p>Ing. Sistemas de Informacion - UTN FRD &copy; 2016</p>
+        <p><font size="2"><span class="glyphicon glyphicon-pushpin"></span> San Martin 1171 | <span class="glyphicon glyphicon-phone"></span> 03489 42-0400 | <span class="glyphicon glyphicon-envelope"></span> damon@damon.com </font> </p>
+        <p><font size="2">Ing. Sistemas de Informacion - UTN FRD &copy; 2016</font></p>
       </div>
-  </p>
+
+      </p>
 </footer>
+
 
 <script type="text/javascript">
   alert(usuarioEncontrado.nombre)

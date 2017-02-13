@@ -11,7 +11,11 @@
   def nombreRol = rol.nombrerol 
 
   def nombre = usuario.getNombre()
-  def apellido = usuario.getApellido() 
+  def apellido = usuario.getApellido()
+
+  def listaServ = Servicio.getAll()
+  def listaTipo = Tipousuario.getAll()
+  def listaUser = Usuario.getAll() 
 %>
 
 <!DOCTYPE html>
@@ -34,7 +38,7 @@
  
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
-	<asset:stylesheet src="estiloCalendar.css"/> 
+  <asset:stylesheet src="adminUsuario.css"/> 
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
@@ -70,26 +74,26 @@
     </div>
   </div>
 </nav>
-
-<div class="row">
-     <h1>Usuarios</h1>
+    <div class="container">
+     <h2>Usuarios</h2>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:form action="busquedaUsuario" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+            <g:form action="busquedaUsuario" method="GET" >
                 <fieldset class="form" style="left: 7em; top: -0.75em;">
                     <div>
-                        <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
-                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
+                        %{-- <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/> --}%
+                        <p><input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;">
+                        <g:submitButton name="buscar" class="save" value="Buscar"/></p>
                     </div>
-                </fieldset>
-                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
-                
+                </fieldset>  
             </g:form>
-            
+          
             <table>
                 <thead>
                     <tr>
+
+                       <g:sortableColumn property="estado" title="${message(code: 'estado.apellido.label', default: 'Estado')}" />
                     
                         <g:sortableColumn property="email" title="${message(code: 'usuario.email.label', default: 'Email')}" />
                     
@@ -101,7 +105,7 @@
 
                         <g:sortableColumn property="tipo" title="${message(code: 'usuario.tipo.label', default: 'Tipo')}" />
 
-                        <g:sortableColumn property="estado" title="${message(code: 'estado.apellido.label', default: 'Estado')}" />
+
                                     
                     </tr>
                 </thead>
@@ -111,6 +115,14 @@
                  </g:if>
                  <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+
+                        <td>
+                         <select>
+                           <option value="v">Validado</option>
+                           <option value="a">Activo</option>
+                           <option value="i">Inactivo</option>
+                         </select>
+                         </td>
                     
                          <td>${usuarioInstance.email}</td>
                     
@@ -136,22 +148,18 @@
                          </select>
                          </td>
 
-                         <td>
-                         <select>
-                           <option value="v">Validado</option>
-                           <option value="a">Activo</option>
-                           <option value="i">Inactivo</option>
-                         </select>
-                         </td>
+
                               
                      </tr>
                  </g:each>
                  </tbody>
              </table>
-
+            <hr>
              <g:if test="${listaFiltrada.size()==1}">
              <button>Guardar!</button>
              <button>Resetear Creditos!</button>
+
+             <p align="center"><button>Guardar!</button></p>
              </g:if>
             </div>      
 

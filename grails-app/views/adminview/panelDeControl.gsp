@@ -6,6 +6,7 @@
 <% 
   def smgr = new SessionManager(request.session) 
   def usuario = smgr.getCurrentUser() 
+  def emailuser = usuario.getEmail()
   def rol = smgr.getCurrentRol() 
   def nombreRol = rol.nombrerol 
 
@@ -19,6 +20,8 @@
 
   def nombreTipo = tipo.nombre
   def nombreServ = serv.nombreservicio
+
+  def listaroles = Rol.getAll()
   
 %>
 
@@ -80,7 +83,7 @@
 </nav>
 
 <div class="row">
-           <table style="width:100%">
+           %{-- <table style="width:100%">
             <caption>Datos de Usuario</caption>
             <tr>
               <th>Nombre</th>
@@ -99,7 +102,69 @@
               </select>
               </td>
             </tr>
-          </table>
+          </table> --}%
+          <h1>Cambio de Roles</h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:form action="busquedaUsuario1" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+                <fieldset class="form" style="left: 7em; top: -0.75em;">
+                    <div>
+                        <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
+                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
+                    </div>
+                </fieldset>
+                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
+                
+            </g:form>
+            
+            <table>
+                <thead>
+                    <tr>
+                    
+                        <g:sortableColumn property="email" title="${message(code: 'usuario.email.label', default: 'Email')}" />
+                    
+                        <g:sortableColumn property="nombre" title="${message(code: 'usuario.nombre.label', default: 'Nombre')}" />
+                    
+                        <g:sortableColumn property="apellido" title="${message(code: 'usuario.apellido.label', default: 'Apellido')}" />
+
+                        <g:sortableColumn property="rol" title="${message(code: 'usuario.rol.label', default: 'Rol')}" />
+                                    
+                    </tr>
+                </thead>
+                <tbody>
+                 <g:if test="${!listaFiltrada }">
+                     <g:set var="listaFiltrada" value="${Usuario.list()}"></g:set>
+                 </g:if>
+                 <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
+                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                    
+                         <td>${usuarioInstance.email}</td>
+                    
+                         <td>${usuarioInstance.nombre}</td>
+                    
+                         <td>${usuarioInstance.apellido}</td>
+
+                         <td>
+                          <select>
+                            <option >${usuarioInstance.rol.nombrerol}</option>
+                            <g:each in="${listaroles}" var="roles">
+                              <option value="${rol.nombrerol}">${roles.nombrerol}</option>
+                            </g:each>
+                          </select>
+                         </td>
+                          
+                     </tr>
+                     </g:each>
+                 </tbody>
+             </table>
+
+            %{--<g:if test="${listaFiltrada.size()==1 && usuarioInstance.email != emailuser}"> --}%
+             <g:if test="${listaFiltrada.size()==1}">
+             <button>Guardar!</button>
+             </g:if>
+             %{-- </g:each> --}%
+            </div>      
           <br>
           <p align="center"><button type=button class="button button2" align="center"><b>CAMBIAR!</b></button></p>
         </div>

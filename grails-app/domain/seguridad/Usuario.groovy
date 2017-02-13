@@ -130,20 +130,60 @@ class Usuario {
 
 
 	//Setters
-	String setEmail(String s){
-		this.email = s
+	boolean setEmail(String s){
+		try{
+			this.email = s
+			return(true)
+		}
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
+			return(false)
+		}
 	}	
-	String setNombre(String s){
-		this.nombre = s
+	boolean setNombre(String s){
+		try{
+			this.nombre = s
+			return(true)
+		}
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
+			return(false)
+		}
 	}	
-	String setApellido(String s){
-		this.apellido = s
+	boolean setApellido(String s){
+		try{
+			this.apellido = s
+			return(true)
+		}
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
+			return(false)
+		}
 	}
-	String setSexo(String s){
-		this.sexo = s
+	boolean setSexo(String s){
+		try{
+			this.sexo = s
+			return(true)
+		}
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
+			return(false)
+		}
 	}
-	String setPassword(String s){
-		this.password = s
+	boolean setPassword(String s){
+		try{
+			this.password = s
+			return(true)
+		}
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
+			return(false)
+		}
 	}
 	boolean esPrivilegiado(){
 		def smgr = new SessionManager(request.session)
@@ -336,21 +376,24 @@ class Usuario {
 		}
 	}
 
-	Boolean resetarCreditos(Usuario usuarioPrivilegiado){
-		Rol r = usuarioPrivilegiado.getRol()
-		String nombreR = r.getNombrerol()
-		if (nombreR == "ROL_ADMIN"){
+	boolean resetarCreditos(){
+
+		try{
 			Integer creditosResetear = this.servicio.cantidadcreditos
 			this.creditosActuales = creditosResetear
-			Date fechaActual = new Date()
-			this.fechaVencimientoCred = fechaActual + 30.days
+			use(TimeCategory){
+				Date fechaActual = new Date()
+				this.fechaVencimientoCred = fechaActual + 30.days
+			}
 			println("Se resetearon los creditos del usuario")
 			return(true)
 		}
-		else{
-			println("No tiene el rol necesario para resetear los creditos del usuario!")
+		catch(Exception e){
+			println("PROBLEMA")
+			println(e)
 			return(false)
 		}
+		
 	}
 
 

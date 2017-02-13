@@ -560,44 +560,195 @@ class CalendarController {
     //     }
     // }
 
-    // def listarClasesAnotadas(){
-    //     //Para ver las clases desde la vista de usuario
+    def resetearCreds(){
 
-    //     try{
-    //         println("ListarClasesAnotadas - Voy a buscar los datos del usuario")
+        try{
+            String email = request.getParameter("email")
 
-    //         // def smgr = new SessionManager(request.session)
-    //         // Usuario usuario = smgr.getCurrentUser()
+            Usuario user = Usuario.findByEmail(email)
+            Usuario usuariocambiar = Usuario.get(user.id)
 
-    //         Usuario usuario = Usuario.findByEmail("lucasg@hotmail.com")
+            boolean b = usuariocambiar.resetarCreditos()
+            usuariocambiar.save(flush: true, failOnError: true)
 
-    //         def listaDeClases = []
+            if (b){
+                println("resetearCreds - Se resetearon los creditos con exito")
+                render("true")
+            }
+            else{
+                println("resetearCreds - Hubo un error al resetear")
+                render("false")
+            }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
 
-    //         Tipousuario tipo = usuario.tipo
+            render ("false")
+        }
+    }
 
-    //         def claseLista = Clase.findAllByTipo(tipo)
+    def cambiarNombre(){
 
-    //         for (Clase item: claseLista){
-    //             boolean b = item.anotados.contains(usuario)
+        try{
+            String email = request.getParameter("email")
+            String nomb = request.getParameter("nombre")
 
-    //             if (b){
-    //                 listaDeClases << item
-    //             }
-    //         }
+            Usuario user = Usuario.findByEmail(email)
+            Usuario usuariocambiar = Usuario.get(user.id)
 
-    //         println(listaDeClases)
-    //         // return(listaDeClases)
+            boolean b = usuariocambiar.setNombre(nomb)
+            usuariocambiar.save(flush: true, failOnError: true)
 
-    //         // render("true")
+            if (b){
+                println("cambiarNombre - Se cambio el nombre con exito")
+                render("true")
+            }
+            else{
+                println("cambiarNombre - Hubo un error al cambiar el nombre")
+                render("false")
+            }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
 
-    //     }
-    //     catch(Exception e){
-    //         println("PROBLEMA")
-    //         println(e)
+            render ("false")
+        }
+    }
 
-    //         // render ("false")
-    //     }
-    // }
+    def cambiarApellido(){
+        try{
+            String email = request.getParameter("email")
+            String apel = request.getParameter("apellido")
+
+            Usuario user = Usuario.findByEmail(email)
+            Usuario usuariocambiar = Usuario.get(user.id)
+
+            boolean b = usuariocambiar.setApellido(apel)
+            usuariocambiar.save(flush: true, failOnError: true)
+
+            if (b){
+                println("cambiarApellido - Se cambio el apellido con exito")
+                render("true")
+            }
+            else{
+                println("cambiarApellido - Hubo un error al cambiar el apellido")
+                render("false")
+            }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
+    def cambiarContrasenia(){
+        try{
+            String email = request.getParameter("email")
+            String passv = request.getParameter("contraseniav")
+            String passn = request.getParameter("contrasenian")
+
+            Usuario user = Usuario.findByEmail(email)
+            Usuario usuariocambiar = Usuario.get(user.id)
+
+            if (usuariocambiar.password == passv){
+
+                boolean b = usuariocambiar.setPassword(passn)
+                usuariocambiar.save(flush: true, failOnError: true)
+
+                if (b){
+                    println("cambiarContrasenia - Se cambio la contrasenia con exito")
+                    render("true")
+                }
+                else{
+                    println("cambiarContrasenia - Hubo un error al cambiar la contrasenia")
+                    render("false")
+                }
+            }
+            else{
+                println("cambiarContrasenia - no coincide la constrania vieja!")
+                render ("nocoincide")
+            }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
+    def cambiarRol(){
+        try{
+            String email = request.getParameter("email")
+            String rolnombre = request.getParameter("rol")
+
+            Usuario user = Usuario.findByEmail(email)
+            Rol r = Rol.findByNombrerol(rolnombre)
+
+            Usuario usuariocambiar = Usuario.get(user.id)
+            Rol rolcambiar = Rol.get(r.id)
+
+            if (rolcambiar.nombrerol == "ROL_ADMIN"){
+                Tipousuario tipocambiar = Tipousuario.findByNombre("ADMIN")
+                Servicio servcambiar = Servicio.findByNombreservicio("Admin")
+
+                boolean b = usuariocambiar.setRol(rolcambiar)
+                boolean c = usuariocambiar.setServicio(tipocambiar)
+                boolean d = usuariocambiar.setTipo(servcambiar)
+
+                usuariocambiar.save(flush: true, failOnError: true)
+
+            }
+            else{
+                if (rolcambiar.nombrerol == "ROL_PROF"){
+                    Tipousuario tipocambiar = Tipousuario.findByNombre("PROFESOR")
+                    Servicio servcambiar = Servicio.findByNombreservicio("Profesor")
+
+                    boolean b = usuariocambiar.setRol(rolcambiar)
+                    boolean c = usuariocambiar.setServicio(tipocambiar)
+                    boolean d = usuariocambiar.setTipo(servcambiar)
+
+                    usuariocambiar.save(flush: true, failOnError: true)
+                }
+                else{
+                    if (rolcambiar.nombrerol == "ROL_USUARIO"){
+                        Tipousuario tipocambiar = Tipousuario.findByNombre("CROSSFITERO")
+                        Servicio servcambiar = Servicio.findByNombreservicio("2 veces por semana")
+
+                        boolean b = usuariocambiar.setRol(rolcambiar)
+                        boolean c = usuariocambiar.setServicio(tipocambiar)
+                        boolean d = usuariocambiar.setTipo(servcambiar)
+
+                        usuariocambiar.save(flush: true, failOnError: true)
+                    }
+                    else{
+                        println("cambiarRol - Error en la busqueda del rol")
+                        render("false")
+                    }
+                }
+            }
+
+            if (b && c && d){
+                println("cambiarRol - Se cambio el rol con exito")
+                render("true")
+            }
+            else{
+                println("cambiarRol - Hubo un error al cambiar el rol")
+                render("false")
+            }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
 
     def iniciarlun(){
 

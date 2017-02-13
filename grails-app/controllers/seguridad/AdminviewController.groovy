@@ -70,6 +70,19 @@ class AdminviewController {
         render view:"adminUsuario", model:[listaFiltrada:listaFiltrada]
     }
 
+    def busquedaUsuario1(){
+        def listaFiltrada = Usuario.createCriteria().list(params) {
+            if(params.parametro){
+                ilike("email", "%${params.parametro}%")
+            }
+        
+        }
+        if(!listaFiltrada){
+            flash.message = "El usuario con email: ${params.parametro} no existe!"
+        }
+        render view:"panelDeControl", model:[listaFiltrada:listaFiltrada]
+    }
+
 
     def busquedaServicio(){
         def listaFiltrada = Servicio.createCriteria().list(params) {
@@ -84,18 +97,18 @@ class AdminviewController {
         render view:"adminServicio", model:[listaFiltrada:listaFiltrada]
     }
 
-    def busquedaRol(){
-        def listaFiltrada = Rol.createCriteria().list(params) {
-            if(params.parametro){
-                ilike("nombrerol", "%${params.parametro}%")
-            }
+    // def busquedaRol(){
+    //     def listaFiltrada = Rol.createCriteria().list(params) {
+    //         if(params.parametro){
+    //             ilike("nombrerol", "%${params.parametro}%")
+    //         }
         
-        }
-        if(!listaFiltrada){
-            flash.message = "El rol de nombre: ${params.parametro} no existe!"
-        }
-        render view:"index", model:[listaFiltrada:listaFiltrada]
-    }
+    //     }
+    //     if(!listaFiltrada){
+    //         flash.message = "El rol de nombre: ${params.parametro} no existe!"
+    //     }
+    //     render view:"index", model:[listaFiltrada:listaFiltrada]
+    // }
 
     def busquedaTipo(){
         def listaFiltrada = Tipousuario.createCriteria().list(params) {
@@ -229,78 +242,6 @@ class AdminviewController {
     //     def ser = serv.nombreservicio
     //     println("llego")
     //     println("Parametros: "+serv.nombreservicio)
-    // }
-
-    // def habilitarUsuario(){
-
-    //     String emailUsuario = request.getParameter("email")
-
-    //     Usuario u = Usuario.findByEmail(emailUsuario)
-
-    //     String est = u.estado
-
-    //     if (est == 'a'){
-
-    //         println("Usuario ya Activo")
-
-    //         render("yalotiene")
-    //     }
-    //     else{
-    //         boolean resu = this.setEstadoActivo()
-
-    //         if (resu){
-    //             render("true")
-    //         }
-    //         else{
-    //             render("false")
-    //         }
-    //     }
-    // }
-
-    // def cambiarSer(){
-
-    //     String emailUsuario = request.getParameter("email")
-    //     String serNombre = request.getParameter("nomser")
-
-    //     Usuario u = Usuario.findByEmail(emailUsuario)
-    //     Servicio s = Servicio.findByNombreservicio(serNombre)
-
-    //     if (u.servicio.nombreservicio == s.nombreservicio){
-    //         println("El usuario ya tenia ese servicio")
-    //         render("yalotiene")
-    //     }
-    //     else{
-    //         boolean resu = this.setServicio(s)
-    //         if (resu){
-    //             render("true")
-    //         }
-    //         else{
-    //             render("false")
-    //         }
-    //     }
-    // }
-
-    // def cambiarCat(){
-
-    //     String emailUsuario = request.getParameter("email")
-    //     String catNombre = request.getParameter("nomcat")
-
-    //     Usuario u = Usuario.findByEmail(emailUsuario)
-    //     Tipousuario t = Tipousuario.findByNombre(catNombre)
-
-    //     if (u.tipo.nombre == t.nombre){
-    //         println("El usuario ya pertenecia a esta categoria")
-    //         render("yalotiene")
-    //     }
-    //     else{
-    //         boolean resu = this.setTipo(t)
-    //         if (resu){
-    //             render("true")
-    //         }
-    //         else{
-    //             render("false")
-    //         }
-    //     }
     // }
 
 }

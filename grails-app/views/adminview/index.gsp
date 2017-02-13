@@ -201,8 +201,8 @@
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" href="/damonAplicacion/adminview/adminUsuario">Habilitar Usuario</a></li>
             <li><a data-toggle="modal" href="#modallistarusuario">Listar Usuarios</a></li>
-            <li><a data-toggle="modal" href="#modalcambiarserv">Cambiar Servicio</a></li>
-            <li><a data-toggle="modal" href="#modalcambiarcat">Cambiar Categoria</a></li>
+            <li><a data-toggle="modal" href="/damonAplicacion/adminview/adminServicio">Cambiar Servicio</a></li>
+            <li><a data-toggle="modal" href="/damonAplicacion/adminview/adminCategoria">Cambiar Categoria</a></li>
             </ul>
           </div>
           <div class="btn-group">

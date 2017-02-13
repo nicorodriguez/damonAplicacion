@@ -5,14 +5,12 @@ import sistema.Clase
 class Tipousuario {
 
 	String nombre
-	String abreviatura
 	static hasMany = [usuariostipo: Usuario]
 	// static belongsTo = Usuario
 
-	Tipousuario(String n, String a){
+	Tipousuario(String n){
 		this()
 		this.nombre = n
-		this.abreviatura = a
 	}
 
 	static mapping = {
@@ -22,7 +20,6 @@ class Tipousuario {
 
     static constraints = {
     	nombre nullable: false, blank: false,  unique: true
-    	abreviatura nullable: false, blank: false,  unique: true, minSize: 1, maxSize: 2
     }
 
     //Getters
@@ -30,17 +27,9 @@ class Tipousuario {
 		return nombre
 	}
 
-	String getAbreviatura(){
-		return abreviatura
-	}
-
 	//Setters
 	String setNombre(String s){
 		this.nombre = s
-	}
-
-	String setAbreviatura(String s){
-		this.abreviatura = s
 	}
 
 	def inicializarTablaTipo(){

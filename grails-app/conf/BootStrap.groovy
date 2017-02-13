@@ -40,34 +40,34 @@ class BootStrap {
         serv5.inicializarTablaServ()
         serv5.save(flush: true)
 
-        Tipousuario tipoUsuario1 = new Tipousuario("PENDIENTE","P")
+        Tipousuario tipoUsuario1 = new Tipousuario("PENDIENTE")
         tipoUsuario1.inicializarTablaTipo()
         tipoUsuario1.save(flush: true)
 
-        Tipousuario tipoUsuario2 = new Tipousuario("KIDS","K")
+        Tipousuario tipoUsuario2 = new Tipousuario("KIDS")
         tipoUsuario2.inicializarTablaTipo()
         tipoUsuario2.save(flush: true)
 
-        Tipousuario tipoUsuario3 = new Tipousuario("CROSSFITERO","C")
+        Tipousuario tipoUsuario3 = new Tipousuario("CROSSFITERO")
         tipoUsuario3.inicializarTablaTipo()
         tipoUsuario3.save(flush: true)
 
-        Tipousuario tipoUsuario4 = new Tipousuario("ATLETAS","AT")
+        Tipousuario tipoUsuario4 = new Tipousuario("ATLETAS")
         tipoUsuario4.inicializarTablaTipo()
         tipoUsuario4.save(flush: true)
 
-        Tipousuario tipoUsuario5 = new Tipousuario("ADMIN","AD")
+        Tipousuario tipoUsuario5 = new Tipousuario("ADMIN")
         tipoUsuario5.inicializarTablaTipo()
         tipoUsuario5.save(flush: true)
 
-        Tipousuario tipoUsuario6 = new Tipousuario("PROFESOR","PR")
+        Tipousuario tipoUsuario6 = new Tipousuario("PROFESOR")
         tipoUsuario6.inicializarTablaTipo()
         tipoUsuario6.save(flush: true)
 
-        Usuario usuarioPrueba = new Usuario("nico55@hotmail.com","12345678","Nico","Rodriguez","Masculino",administradorRol,serv4,tipoUsuario5)
+        Usuario usuarioPrueba = new Usuario("nico55@hotmail.com","12345678","Nico","Rodriguez","Masculino",administradorRol,serv5,tipoUsuario5)
         usuarioPrueba.save(flush: true)
 
-        Usuario profesor = new Usuario("davids@hotmail.com","12345678","David","Sangali","Masculino",profRole,serv5,tipoUsuario6)
+        Usuario profesor = new Usuario("davids@hotmail.com","12345678","David","Sangali","Masculino",profRole,serv4,tipoUsuario6)
         profesor.save(flush: true)
 
         Usuario alumnoCross = new Usuario("lucasg@hotmail.com","12345678","Lucas","Galetti","Masculino",usuarioRol,serv1,tipoUsuario3)

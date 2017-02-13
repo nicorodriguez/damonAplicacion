@@ -41,14 +41,20 @@ class AdminviewController {
         render(view:'adminUsuario')
     }
 
-    def misDatos()
-    {
+    def misDatos(){
         render(view:'misDatos')
     }
 
-    def panelDeControl()
-    {
+    def panelDeControl(){
         render(view:'panelDeControl')
+    }
+
+    def adminServicio(){
+        render(view: 'adminServicio')
+    }
+
+    def adminCategoria(){
+        render(view: 'adminCategoria')
     }
 
     def busquedaUsuario(){
@@ -61,7 +67,7 @@ class AdminviewController {
         if(!listaFiltrada){
             flash.message = "El usuario con email: ${params.parametro} no existe!"
         }
-        render view:"index", model:[listaFiltrada:listaFiltrada]
+        render view:"adminUsuario", model:[listaFiltrada:listaFiltrada]
     }
 
 
@@ -75,7 +81,7 @@ class AdminviewController {
         if(!listaFiltrada){
             flash.message = "El servicio de nombre: ${params.parametro} no existe!"
         }
-        render view:"index", model:[listaFiltrada:listaFiltrada]
+        render view:"adminServicio", model:[listaFiltrada:listaFiltrada]
     }
 
     def busquedaRol(){
@@ -101,7 +107,121 @@ class AdminviewController {
         if(!listaFiltrada){
             flash.message = "El tipousuario de nombre: ${params.parametro} no existe!"
         }
-        render view:"index", model:[listaFiltrada:listaFiltrada]
+        render view:"adminCategoria", model:[listaFiltrada:listaFiltrada]
+    }
+
+    def crearServ(){
+
+        try{
+
+            String nomb = request.getParameter("nomb")
+            String cred = request.getParameter("creditos")
+
+            Integer cantcred = cred.toInteger()
+
+            Servicio serviciocreado = Servicio.findByNombreservicio(nomb)
+
+            if (serviciocreado){
+                println("Servicio ya creado con dicho nombre")
+                render("yacreado")
+            }
+            else{
+                Servicio servnuevo = new Servicio(nomb,cantcred)
+                servnuevo.inicializarTablaServ()
+                servnuevo.save(flush: true)
+
+                render("true")
+            }
+
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
+    def crearTipo(){
+
+        try{
+
+            String nomb = request.getParameter("nomb")
+
+            Tipousuario tipocreado = Tipousuario.findByNombre(nomb)
+
+            if (tipocreado){
+                println("Tipo ya creado con dicho nombre")
+                render("yacreado")
+            }
+            else{
+                Tipousuario tipoNuevo = new Tipousuario(nomb)
+                tipoNuevo.inicializarTablaTipo()
+                tipoNuevo.save(flush: true)
+
+                render("true")
+            }
+
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
+    def eliminarServ(){
+        try{
+
+           String nomb = request.getParameter("nomb")
+
+           Servicio servicioexistente = Servicio.findByNombreservicio(nomb)
+
+           if (servicioexistente){
+                Servicio servborrar = Servicio.get()
+                servborrar.delete(flush: true, failOnError: true)
+                render("true")
+           }
+           else{
+                println("Servicio inexistente")
+                render("inexistente")
+           }
+
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
+    def eliminarTipo(){
+
+        try{
+
+           String nomb = request.getParameter("nomb")
+
+           Tipousuario tipoexistente = Tipousuario.findByNombre(nomb)
+
+           if (tipoexistente){
+                Tipousuario tipborrar = Tipousuario.get()
+                tipborrar.delete(flush: true, failOnError: true)
+                render("true")
+           }
+           else{
+                println("Tipo inexistente")
+                render("inexistente")
+           }
+
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
     }
 
 

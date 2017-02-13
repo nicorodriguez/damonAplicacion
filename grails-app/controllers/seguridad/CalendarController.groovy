@@ -134,6 +134,65 @@ class CalendarController {
         
     }
 
+    @Transactional
+    def eliminarClase(){
+        
+        //Nota: traer los profesores disponibles del servidor con email y nombre, luego al crear la clase pasar sólo el email por parametro
+
+        try{
+            println("EliminarClase - Voy a buscar los parametros")
+
+            // Capturo datos de post de formulario
+            String idclase = request.getParameter("id")
+            // String fecha = request.getParameter("fecha")
+            // String tipoUsuario = request.getParameter("tipous")
+            
+            // println("Recibi los parametros: -> "+fecha+", "+tipoUsuario)
+            // println("FECHA: "+fecha)
+            // println("TIPO USUARIO: "+tipoUsuario)
+
+            // //Verificar las fechas en las funciones de javascript
+            // //Paso las fechas de strings a date
+            // println("EliminarClase - Voy a parsear la date")
+            // Date fechaDate = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha )
+
+            // println("EliminarClase -> "+fechaDate)
+
+            // //Traer los tipos de la base de datos verifica que existen
+            // println("EliminarClase - Voy a buscar el Tipo de Usuario")
+            // Tipousuario tipo1 = Tipousuario.findByNombre(tipoUsuario)
+
+            //Verifico que no existe una clase en ese dia, horario y con dicho tipo
+            // println("EliminarClase - Voy a ver si existe la clase")
+            // Clase clasevieja = Clase.findByFechaHorarioAndTipo(fechaDate,tipo1)
+
+            println("EliminarClase - Voy a ver si existe la clase")
+            Clase clasevieja = Clase.findById(idclase)
+
+            if (clasevieja){
+                println("EliminarClase - Se encontro clase con esa fecha y con ese tipo")
+
+                Clase borrarclase = Clase.get(clasevieja.id)
+
+                borrarclase.delete(flush: true, failOnError: true)
+
+                println("EliminarClase - CLASE CREADA SATISFACTORIAMENTE")
+                render("true")
+            }
+            else{
+                println("EliminarClase - No se encontro una clase que cumpla la fecha y el tipo")
+                render("inexistente")
+            }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+        
+    }
+
     // @Transactional
     def anotarseClase(){
         

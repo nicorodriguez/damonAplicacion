@@ -160,20 +160,20 @@ class Usuario {
 
 	boolean setEstado(String est){
 		try{
-			println(this)
-			println(est)
+			// println(this)
+			// println(est)
 			int longitud = est.length()
-			println("Compruebo si el nuevo estado es longitud 1")
+			// println("Compruebo si el nuevo estado es longitud 1")
 
 			if (longitud == 1){
-				println("Longitud correcta")
+				// println("Longitud correcta")
 
 				this.estado = est
-				println("Se cambio el estado con exito")
+				// println("Se cambio el estado con exito")
 				return(true)
 			}
 			else{
-				println("Longitud incorrecta")
+				// println("Longitud incorrecta")
 				return(false)
 			}
 		}
@@ -265,10 +265,10 @@ class Usuario {
 
 	boolean setServicio(Servicio s){
 		try{
-			println(this)
-			println(s)
+			// println(this)
+			// println(s)
 			this.servicio = s
-			println("Se cambio el Servicio con Exito")
+			// println("Se cambio el Servicio con Exito")
 			return(true)
 		}
 		catch(Exception e){
@@ -281,10 +281,10 @@ class Usuario {
 	boolean setTipo(Tipousuario t){
 		
 		try{
-			println(this)
-			println(t)
+			// println(this)
+			// println(t)
 			this.tipo = t
-			println("Se cambio el Tipo de Usuario con Exito")
+			// println("Se cambio el Tipo de Usuario con Exito")
 			return(true)
 		}
 		catch(Exception e){

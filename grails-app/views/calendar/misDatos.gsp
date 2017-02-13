@@ -4,7 +4,7 @@
 <%@ page import="sistema.Tipousuario" %>
 <%@ page import="sistema.Clase" %>
 <% 
-  def smgr = new SessionManager(request.session) 
+    def smgr = new SessionManager(request.session) 
   def usuario = smgr.getCurrentUser() 
   def rol = smgr.getCurrentRol() 
   def nombreRol = rol.nombrerol 
@@ -12,10 +12,13 @@
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
 
-  def rolProf = Rol.findByNombrerol("ROL_PROF") 
-  def profesores = Usuario.findAllByRol(rolProf) 
+  def email = usuario.getEmail()
+  def sexo = usuario.getSexo()
+  def serv = usuario.getServ()
+  def tipo = usuario.getTipo()
 
-  def tipoUsuarioActual = usuario.tipo
+  def nombreTipo = tipo.nombre
+  def nombreServ = serv.nombreservicio
   
 %>
 
@@ -85,13 +88,13 @@
       <div id="Info">
         <p>
             <strong>Nombre:</strong>
-            <span>NAME</span>
+            <span>${nombre}</span>
             <button type="button" class="btn-default" data-toggle="modal" data-target="#modalnombre">Editar</button>
         </p>
         <br>
         <p>
             <strong>Apellido:</strong>
-            <span>NAME</span>
+            <span>${apellido}</span>
             <button type="button" class="btn-default" data-toggle="modal" data-target="#modalapellido">Editar</button>
         </p>
         <br>
@@ -258,12 +261,12 @@
         <br>
         <p>
             <strong>Servicio:</strong>
-            <span>3 Veces por semana <strong>(*)</strong></span>
+            <span>${nombreServ}<strong>(*)</strong></span>
         </p>
         <br>
         <p>
-            <strong>Tipo:</strong>
-            <span>Crossfitero <strong>(*)</strong></span>
+            <strong>Categoria:</strong>
+            <span>${nombreTipo}<strong>(*)</strong></span>
         </p>
         <br>
   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalcontraseña">Cambiar Contraseña</button>

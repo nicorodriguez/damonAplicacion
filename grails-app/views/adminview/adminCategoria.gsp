@@ -3,6 +3,7 @@
 <%@ page import="seguridad.Rol" %>
 <%@ page import="sistema.Tipousuario" %>
 <%@ page import="sistema.Clase" %>
+<%@ page import="seguridad.Servicio" %>
 <% 
   def smgr = new SessionManager(request.session) 
   def usuario = smgr.getCurrentUser() 
@@ -11,15 +12,6 @@
 
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
-
-  def email = usuario.getEmail()
-  def sexo = usuario.getSexo()
-  def serv = usuario.getServ()
-  def tipo = usuario.getTipo()
-
-  def nombreTipo = tipo.nombre
-  def nombreServ = serv.nombreservicio
-  
 %>
 
 <!DOCTYPE html>
@@ -41,12 +33,12 @@
 
  
   <asset:javascript src="funcionLogout.js"/>
-  <asset:javascript src="panelDeControl.js"/>
+  <asset:javascript src="funcionCalendar.js"/>
 	<asset:stylesheet src="estiloCalendar.css"/> 
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
-	<title>Damon | Panel de Control</title>
+	<title>Damon | Administrar Categoria</title>
 </head>
 <body>
 
@@ -64,7 +56,7 @@
     </div>
      <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/damonAplicacion/adminview" class="color-me">Inicio</a></li>
+        <li class="active"><a href="/damonAplicacion/adminview/index" class="color-me">Inicio</a></li>
     </ul>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -80,33 +72,52 @@
 </nav>
 
 <div class="row">
-           <table style="width:100%">
-            <caption>Datos de Usuario</caption>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Servicio</th>
-            </tr>
-            <tr>
-              <td>Importar Nombre</td>
-              <td>Importar Apellido</td>
-              <td>    
-              <select class="form-control" id="sel1">
-                <option value="" disabled selected>Seleccionar</option>
-                <option value="0">2 x Semana</option>
-                <option value="1">3 x Semana</option>
-                <option value="3">Libre</option>
-              </select>
-              </td>
-            </tr>
-          </table>
-          <br>
-          <p align="center"><button type=button class="button button2" align="center"><b>CAMBIAR!</b></button></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+     <h1>Usuarios</h1>
+            <g:if test="${flash.message}">
+                <div class="message" role="status">${flash.message}</div>
+            </g:if>
+            <g:form action="busquedaTipo" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+                <fieldset class="form" style="left: 7em; top: -0.75em;">
+                    <div>
+                        <g:textField name="parametro" placeholder="Buscar categoria por nombre" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
+                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
+                    </div>
+                </fieldset>
+                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
+                
+            </g:form>
+            
+            <table>
+                <thead>
+                    <tr>
+                    
+                        <g:sortableColumn property="nombre" title="${message(code: 'tipousuario.nombre.label', default: 'Nombre Categoria')}" />
+                                    
+                    </tr>
+                </thead>
+                <tbody>
+                 <g:if test="${!listaFiltrada }">
+                     <g:set var="listaFiltrada" value="${Tipousuario.list()}"></g:set>
+                 </g:if>
+                 <g:each in="${listaFiltrada}" status="i" var="tipoInstance">
+                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                    
+                         <td>${tipoInstance.nombre}</td>
+                             
+                     </tr>
+                 </g:each>
+                 </tbody>
+             </table>
+
+             <g:if test="${listaFiltrada.size()==1}">
+             <button>Guardar!</button>
+             </g:if>
+            </div>      
+
+
 </div>
+
+	</div>
 
    <div id="footer"></div>
 <hr>
@@ -122,13 +133,12 @@
 
       <div class="footer-left">
         <!-- <p><a href="#"><span class="glyphicon glyphicon-envelope"></span></a>Envelope icon as a link: </p> -->
-        <p><span class="glyphicon glyphicon-pushpin"></span> Av. Siempre Viva </p>
-        <p><span class="glyphicon glyphicon-phone"></span> 03489-567893 </p>
-        <p><span class="glyphicon glyphicon-envelope"></span> damon@damon.com </p>
-
-        <p>Ing. Sistemas de Informacion - UTN FRD &copy; 2016</p>
+        <p><font size="2"><span class="glyphicon glyphicon-pushpin"></span> San Martin 1171 | <span class="glyphicon glyphicon-phone"></span> 03489 42-0400 | <span class="glyphicon glyphicon-envelope"></span> damon@damon.com </font> </p>
+        <p><font size="2">Ing. Sistemas de Informacion - UTN FRD &copy; 2016</font></p>
       </div>
-  </p>
+
+      </p>
 </footer>
+
 </body>
 </html>

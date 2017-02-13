@@ -197,44 +197,27 @@
        
           <div class="btn-group-vertical">
           <div class="btn-group botones">
-          <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-            <li><a data-toggle="modal" href="/damonAplicacion/adminview/adminUsuario">Habilitar Usuario</a></li>
-            <li><a data-toggle="modal" href="#modallistarusuario">Listar Usuarios</a></li>
-            <li><a data-toggle="modal" href="/damonAplicacion/adminview/adminServicio">Cambiar Servicio</a></li>
-            <li><a data-toggle="modal" href="/damonAplicacion/adminview/adminCategoria">Cambiar Categoria</a></li>
-            </ul>
-          </div>
-          <div class="btn-group">
-          <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Profesores <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-            <li><a data-toggle="modal" href="#nuevoprofesor">Nuevo Profesor</a></li>
-            <li><a data-toggle="modal" href="#listarprofes">Listar Profesores</a></li>
-            <li><a data-toggle="modal" href="#eliminarprofesor">Eliminar Profesor</a></li>
-            </ul>
-          </div>
-          <div class="btn-group">
-          <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Servicios <span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu">
-            <li><a data-toggle="modal" href="#nuevoservicio">Nuevo Servicio</a></li>
-            <li><a data-toggle="modal" href="#listarservicios">Listar Servicios</a></li>
-            <li><a data-toggle="modal" href="#eliminarservicio">Eliminar Servicio</a></li>
-           </ul>
-          </div>
-          <div class="btn-group">
-          <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Clases <span class="caret"></span></button>
+            <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Clases <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" data-dismiss="modal" aria-label="Close" href="#crearClase">Nueva Clase</a></li>
-            <li><a data-toggle="modal" href="#">Listar Clases</a></li>
             <li><a data-toggle="modal" href="#">Eliminar Clase</a></li>
             </ul>
           </div>
           <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminUsuario'">Administrar Usuarios</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminUsuario'">Servicios</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminUsuario'">Categoria</button>
+          </div>
+          %{-- <div class="btn-group">
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Establecimiento <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
             <li><a data-toggle="modal" href="#cambiarcupo">Cupos por Categoria</a></li>
             </ul>
-          </div>
+          </div> --}%
           </div>
           </div>
 
@@ -323,163 +306,7 @@
             </div>
           </div>
 
-  <!-- Modal modalhabilitarusuario -->
-  <div class="modal fade" id="modalhabilitarusuario" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal modalhabilitarusuario content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Habilitar Usuario</h4>
-        </div>
-        <div class="modal-body">
-          <form id="searchbox" action="">
-            <p>Buscar usuario por correo: <input id="search" type="email" size="35" placeholder="Escriba correo" required="">
-            <input id="submit" type="submit" value="Buscar"></p>
-          </form>
 
-          <form Name=habilitarusuario>
-           <table style="width:100%">
-            <caption>Datos de Usuario</caption>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Servicio</th>
-            </tr>
-            <tr>
-              <td>Importar Nombre</td>
-              <td>Importar Apellido</td>
-              <td>Importar Servicio</td>
-            </tr>
-          </table>
-          <br>
-          <p align="center"><button type=button class="button button2" align="center"><b>HABILITAR!</b></button></p>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal modallistarusuario -->
-  <div class="modal fade" id="modallistarusuario" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal modallistarusuario content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Lista de Usuarios</h4>
-        </div>
-        <div class="modal-body">
-        <h1>Usuarios</h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <g:form action="busquedaUsuario" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
-                <fieldset class="form" style="left: 7em; top: -0.75em;">
-                    <div>
-                        <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
-                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
-                    </div>
-                </fieldset>
-                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
-                
-            </g:form>
-            
-            <table>
-                <thead>
-                    <tr>
-                    
-                        <g:sortableColumn property="email" title="${message(code: 'usuario.email.label', default: 'Email')}" />
-                    
-                        <g:sortableColumn property="nombre" title="${message(code: 'usuario.nombre.label', default: 'Nombre')}" />
-                    
-                        <g:sortableColumn property="apellido" title="${message(code: 'usuario.apellido.label', default: 'Apellido')}" />
-
-                        <g:sortableColumn property="servicio" title="${message(code: 'usuario.servicio.label', default: 'Servicio')}" />
-
-                        <g:sortableColumn property="tipo" title="${message(code: 'usuario.tipo.label', default: 'Tipo')}" />
-
-                        <g:sortableColumn property="estado" title="${message(code: 'estado.apellido.label', default: 'Estado')}" />
-                                    
-                    </tr>
-                </thead>
-                <tbody>
-                 <g:if test="${!listaFiltrada }">
-                     <g:set var="listaFiltrada" value="${Usuario.list()}"></g:set>
-                 </g:if>
-                 <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
-                     <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                    
-                         <td>${usuarioInstance.email}</td>
-                    
-                         <td>${usuarioInstance.nombre}</td>
-                    
-                         <td>${usuarioInstance.apellido}</td>
-
-                         <td>
-                          <select>
-                          <option id="nombreservanterior">${usuarioInstance.servicio.nombreservicio}</option>
-                            <g:each in="${listaServ}" var="serv">
-                              <option class="nombreserv">${serv.nombreservicio}</option>
-                            </g:each>
-                          </select>
-                         </td>
-
-                         <td>
-                         <select>
-                          <option id="nombretipoanterior">${usuarioInstance.tipo.nombre}</option>
-                          <g:each in="${listaTipo}" var="tip">
-                            <option class="nombretipo">${tip.nombre}</option>
-                          </g:each>
-                         </select>
-                         </td>
-
-                         <td>
-                         <select>
-                           <option id="nombreestadoanterior">${usuarioInstance.estado}</option>
-                           <option class="estado">Validado</option>
-                           <option class="estado">Activo</option>
-                           <option class="estado">Inactivo</option>
-                         </select>
-                         </td>
-                              
-                     </tr>
-                 </g:each>
-                 </tbody>
-             </table>
-
-             <g:if test="${listaFiltrada.size()==1}">
-             <button>Guardar!</button>
-             </g:if>
-
-          </div>
-           %{-- <table style="width:100%">
-            <caption>Datos de los Usuario</caption>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Categoria</th>
-              <th>Servicio</th>
-            </tr>
-            <g:each var="us" in="${listaUser}">
-            <tr>
-              <td>${us.nombre}</td>
-              <td>${us.apellido}</td>
-              <td>${us.tipo.nombre}</td>
-              <td>${us.servicio.nombreservicio}</td>
-            </tr>
-            </g:each>
-          </table> --}%
-        
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Modal modalcambiarserv -->
   <div class="modal fade" id="modalcambiarserv" role="dialog">

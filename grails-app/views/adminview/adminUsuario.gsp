@@ -151,6 +151,7 @@
 
              <g:if test="${listaFiltrada.size()==1}">
              <button>Guardar!</button>
+             <button>Resetear Creditos!</button>
              </g:if>
             </div>      
 

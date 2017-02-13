@@ -5,7 +5,8 @@
 <%@ page import="sistema.Clase" %>
 <% 
     def smgr = new SessionManager(request.session) 
-  def usuario = smgr.getCurrentUser() 
+  def user = smgr.getCurrentUser() 
+  def usuario = Usuario.get(user.id)
   def rol = smgr.getCurrentRol() 
   def nombreRol = rol.nombrerol 
 
@@ -99,7 +100,7 @@
             <button type="button" class="btn-default" data-toggle="modal" data-target="#modalapellido">Editar</button>
         </p>
         <br>
-        <div class="control-group">
+        %{-- <div class="control-group">
   <label for="dob-day" class="control-label">Fecha de Nacimiento</label>
   <div class="controls">
     <select name="dob-day" id="dob-day">
@@ -258,7 +259,7 @@
         <br>
         <p><strong>Altura (en cm): </strong> <input type="number" class="js-number" name="someid" maxlength="2" min="0" max="240" required="" /> <input type="submit" value="Cargar"></p>
         <br>
-        <p><strong>Peso (en Kg): </strong> <input type="number" class="js-number" name="someid" maxlength="2" min="0" max="240" required="" /> <input type="submit" value="Cargar"></p>
+        <p><strong>Peso (en Kg): </strong> <input type="number" class="js-number" name="someid" maxlength="2" min="0" max="240" required="" /> <input type="submit" value="Cargar"></p> --}%
         <br>
         <p>
             <strong>Servicio:</strong>
@@ -287,10 +288,10 @@
         </div>
         <div class="modal-body">
           <form Name=Nombre>
-            <p> Nombre : <input Name=NewName type="text" minlength="3" maxlength="16" required=""> </p>
+            <p> Nombre : <input Name=NewName type="text" minlength="3" maxlength="16" required="" id="nom"> </p>
             <input type=button onclick="envioNombre()" Value="Cambiar Nombre">
              <div class="alert alert-danger ocultar">
-                <strong>Error!</strong> Hubo algun inconveniente, no se pudo cambiar el apellido.
+                <strong>Error!</strong> Hubo algun inconveniente, no se pudo cambiar el nombre.
             </div>
           </form>
         </div>

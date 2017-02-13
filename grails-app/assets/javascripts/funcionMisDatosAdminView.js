@@ -73,7 +73,7 @@ x.ready(ocultocosas);
   function envioNombre(){
     var nom
 
-    nom=$("#nom").text()
+    nom=$("#nom").val()
 
     var datos ={
       nombre:nom
@@ -93,12 +93,12 @@ x.ready(ocultocosas);
 function envioApe(){
     var ape
 
-    ape=$("#ape").text()
+    ape=$("#ape").val()
 
     var datos ={
-      nombre:nom
+      apellido:ape
     }
-        $.post( "/damonAplicacion/calendar/cambiarApe", datos).done(function( resp ){
+        $.post( "/damonAplicacion/calendar/cambiarApellido", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
             alert("Apellido cambiado satisfactoriamente.");

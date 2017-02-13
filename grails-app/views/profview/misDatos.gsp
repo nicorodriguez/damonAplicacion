@@ -98,7 +98,7 @@
             <button type="button" class="btn-default" data-toggle="modal" data-target="#modalapellido">Editar</button>
         </p>
         <br>
-        <div class="control-group">
+        %{-- <div class="control-group">
   <label for="dob-day" class="control-label">Fecha de Nacimiento</label>
   <div class="controls">
     <select name="dob-day" id="dob-day">
@@ -257,7 +257,7 @@
         <br>
         <p><strong>Altura (en cm): </strong> <input type="number" class="js-number" name="someid" maxlength="2" min="0" max="240" required="" /> <input type="submit" value="Cargar"></p>
         <br>
-        <p><strong>Peso (en Kg): </strong> <input type="number" class="js-number" name="someid" maxlength="2" min="0" max="240" required="" /> <input type="submit" value="Cargar"></p>
+        <p><strong>Peso (en Kg): </strong> <input type="number" class="js-number" name="someid" maxlength="2" min="0" max="240" required="" /> <input type="submit" value="Cargar"></p> --}%
         <br>
         <p>
             <strong>Servicio:</strong>

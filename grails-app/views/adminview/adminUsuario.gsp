@@ -166,7 +166,7 @@
             <hr>
              <g:if test="${listaFiltrada.size()==1}">
              <button>Guardar!</button>
-             <button>Resetear Creditos!</button>
+             <button onclick="resetCreditos()">Resetear Creditos!</button>
 
              <p align="center"><button>Guardar!</button></p>
              </g:if>

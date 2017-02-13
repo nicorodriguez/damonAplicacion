@@ -65,7 +65,12 @@ x.ready(ocultocosas);
              window.location.reload();
         }
         else{
+          if(resp == "nocoincide"){
             $(".ocultar").show()
+          }
+          else{
+            $(".ocultar").show()
+          }
         }
     });
 }

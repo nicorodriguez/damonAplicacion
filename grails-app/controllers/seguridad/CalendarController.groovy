@@ -563,10 +563,9 @@ class CalendarController {
     def resetearCreds(){
 
         try{
-            String email = request.getParameter("email")
-
-            Usuario user = Usuario.findByEmail(email)
-            Usuario usuariocambiar = Usuario.get(user.id)
+            def smgr = new SessionManager(request.session) 
+            Usuario usuario = smgr.getCurrentUser()
+            Usuario usuariocambiar = Usuario.get(usuario.id)
 
             boolean b = usuariocambiar.resetarCreditos()
             usuariocambiar.save(flush: true, failOnError: true)
@@ -591,10 +590,11 @@ class CalendarController {
     def cambiarNombre(){
 
         try{
-            String email = request.getParameter("email")
             String nomb = request.getParameter("nombre")
 
-            Usuario user = Usuario.findByEmail(email)
+            def smgr = new SessionManager(request.session) 
+            Usuario usuario = smgr.getCurrentUser()
+            Usuario usuariocambiar = Usuario.get(usuario.id)
             Usuario usuariocambiar = Usuario.get(user.id)
 
             boolean b = usuariocambiar.setNombre(nomb)
@@ -619,11 +619,11 @@ class CalendarController {
 
     def cambiarApellido(){
         try{
-            String email = request.getParameter("email")
             String apel = request.getParameter("apellido")
 
-            Usuario user = Usuario.findByEmail(email)
-            Usuario usuariocambiar = Usuario.get(user.id)
+            def smgr = new SessionManager(request.session) 
+            Usuario usuario = smgr.getCurrentUser()
+            Usuario usuariocambiar = Usuario.get(usuario.id)
 
             boolean b = usuariocambiar.setApellido(apel)
             usuariocambiar.save(flush: true, failOnError: true)
@@ -647,12 +647,14 @@ class CalendarController {
 
     def cambiarContrasenia(){
         try{
-            String email = request.getParameter("email")
+
             String passv = request.getParameter("contraseniav")
             String passn = request.getParameter("contrasenian")
 
-            Usuario user = Usuario.findByEmail(email)
-            Usuario usuariocambiar = Usuario.get(user.id)
+            // Usuario user = Usuario.findByEmail(email)
+            def smgr = new SessionManager(request.session) 
+            Usuario usuario = smgr.getCurrentUser()
+            Usuario usuariocambiar = Usuario.get(usuario.id)
 
             if (usuariocambiar.password == passv){
 
@@ -683,13 +685,13 @@ class CalendarController {
 
     def cambiarRol(){
         try{
-            String email = request.getParameter("email")
             String rolnombre = request.getParameter("rol")
 
-            Usuario user = Usuario.findByEmail(email)
-            Rol r = Rol.findByNombrerol(rolnombre)
+            def smgr = new SessionManager(request.session) 
+            Usuario usuario = smgr.getCurrentUser()
+            Usuario usuariocambiar = Usuario.get(usuario.id)
 
-            Usuario usuariocambiar = Usuario.get(user.id)
+            Rol r = Rol.findByNombrerol(rolnombre)
             Rol rolcambiar = Rol.get(r.id)
 
             if (rolcambiar.nombrerol == "ROL_ADMIN"){

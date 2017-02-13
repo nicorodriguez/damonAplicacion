@@ -38,11 +38,11 @@ x.ready(ocultocosas);
 
       var apsw,psw,npsw
 
-      apsw=$("#apsw").text()
-      psw=$("#psw").text()
-      npsw=$("#rpsw").text()
+      apsw=$("#apsw").val()
+      psw=$("#psw").val()
+      npsw=$("#rpsw").val()
       if(psw == npsw){
-        envioPsw(apsw,psw,npsw)
+        envioPsw(apsw,psw)
       }
       else{
           $(".ocultar").show()
@@ -50,12 +50,13 @@ x.ready(ocultocosas);
 
     }
 
-    function envioPsw(apsw,psw,npsw){
+    function envioPsw(apsw,psw){
 
     var datos = {
+
       antpsw:apsw,
       pass:psw,
-      nuevpsw:npsw
+
     };
     $.post( "/damonAplicacion/calendar/cambiarContrasenia", datos).done(function( resp ){
         console.log(resp);
@@ -81,6 +82,26 @@ x.ready(ocultocosas);
         console.log(resp);
         if(resp == "true"){
             alert("Nombre cambiado satisfactoriamente.");
+             window.location.reload();
+        }
+        else{
+            $(".ocultar").show()
+        }
+    });
+  }
+
+function envioApe(){
+    var ape
+
+    ape=$("#ape").text()
+
+    var datos ={
+      nombre:nom
+    }
+        $.post( "/damonAplicacion/calendar/cambiarApe", datos).done(function( resp ){
+        console.log(resp);
+        if(resp == "true"){
+            alert("Apellido cambiado satisfactoriamente.");
              window.location.reload();
         }
         else{

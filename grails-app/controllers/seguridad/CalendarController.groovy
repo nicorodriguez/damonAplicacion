@@ -595,7 +595,6 @@ class CalendarController {
             def smgr = new SessionManager(request.session) 
             Usuario usuario = smgr.getCurrentUser()
             Usuario usuariocambiar = Usuario.get(usuario.id)
-            Usuario usuariocambiar = Usuario.get(user.id)
 
             boolean b = usuariocambiar.setNombre(nomb)
             usuariocambiar.save(flush: true, failOnError: true)

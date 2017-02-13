@@ -207,10 +207,10 @@
             <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminUsuario'">Administrar Usuarios</button>
           </div>
           <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminUsuario'">Servicios</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminServicio'">Servicios</button>
           </div>
           <div class="btn-group">
-            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminUsuario'">Categoria</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="window.location.href='/damonAplicacion/adminview/adminCategoria'">Categoria</button>
           </div>
           %{-- <div class="btn-group">
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Establecimiento <span class="caret"></span></button>

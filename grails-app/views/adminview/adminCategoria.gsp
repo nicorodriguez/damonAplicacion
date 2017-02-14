@@ -35,7 +35,7 @@
  
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
-	<asset:stylesheet src="estiloCalendar.css"/>
+	<asset:stylesheet src="adminUsuario.css"/>
   <asset:javascript src="adminServicio.js"/> 
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
@@ -73,22 +73,20 @@
   </div>
 </nav>
 
-<div class="row">
-     <h1>Usuarios</h1>
+<div class="container">
+     <h2>Categoria</h2>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:form action="busquedaTipo" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+            <g:form action="busquedaTipo" method="GET" >
                 <fieldset class="form" style="left: 7em; top: -0.75em;">
                     <div>
-                        <g:textField name="parametro" placeholder="Buscar categoria por nombre" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
-                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
+                        <p><input id="quiero" name="parametro" placeholder="Buscar servicio por nombre" maxlength="30" value="${params.parametro}" style="width: 52%;">
+                        <g:submitButton name="buscar" class="save" value="Buscar"/></p>
                     </div>
-                </fieldset>
-                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
-                
+                </fieldset>  
             </g:form>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -111,18 +109,73 @@
                  </tbody>
              </table>
 
-             <g:if test="${listaFiltrada.size()==1}">
+%{--              <g:if test="${listaFiltrada.size()==1}">
              <button onclick="crearCategoria()">Guardar!</button>
-             </g:if>
+             </g:if> --}%
             </div>      
-
-
 </div>
-
 	</div>
+  <hr>
+  <p align="center">
+  <button type="button" class="button button2" data-toggle="modal" data-target="#nuevaCategoria">Nueva Categoria</button>
+  <button type="button" class="button4 button2" data-toggle="modal" data-target="#eliminarCategoria">Eliminar Categoria</button>
+  </p>
 
-   <div id="footer"></div>
-<hr>
+
+      <!-- Modal nuevaCategoria -->
+  <div class="modal fade" id="nuevaCategoria" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal nuevaCategoria content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Nueva Categoria</h4>
+        </div>
+        <div class="modal-body">
+          <form Name=nuevoservicio action="">
+            <p> Nombre Categoria : <input Name=NewName type="text" minlength="4" maxlength="30" required="" size="50" /> </p>
+          </form>
+          <br>
+          <p align="center"><button type="button" class="button button2" align="center"><b>CREAR!</b></button></p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+        <!-- Modal eliminarCategoria -->
+  <div class="modal fade" id="eliminarCategoria" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal eliminarCategoria content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Eliminar Categoria</h4>
+        </div>
+        <div class="modal-body">
+          <form Name=eliminarCategoria action="">
+            <p> Nombre Categoria : <select class="form-control" id="sel1">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="0">ATLETA</option>
+                <option value="1">KIDS</option>
+                <option value="3">CROSSFITERO</option>
+              </select></p>
+          </form>
+          <br>
+          <p align="center"><button type="button" class="button4 button2" align="center"><b>ELIMINAR!</b></button></p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <footer class="container-fluid text">
   <p>
       <div class="footer-right">
@@ -130,7 +183,6 @@
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-github"></i></a>
-
       </div>
 
       <div class="footer-left">

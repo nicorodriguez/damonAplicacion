@@ -792,7 +792,7 @@
                  </tbody>
              </table>  --}%
 
-   <div id="footer"></div>
+  
 <hr>
 <footer class="container-fluid text">
   <p>

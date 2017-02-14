@@ -119,7 +119,7 @@
                  <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     
-                         <td id="email">${usuarioInstance.email}</td>
+                         <td id="emailPC">${usuarioInstance.email}</td>
                     
                          <td>${usuarioInstance.nombre}</td>
                     
@@ -127,9 +127,9 @@
 
                          <td>
                           <select>
-                            <option class="rol">${usuarioInstance.rol.nombrerol}</option>
+                            <option>${usuarioInstance.rol.nombrerol}</option>
                             <g:each in="${listaroles}" var="roles">
-                              <option class="rol" value="${rol.nombrerol}">${roles.nombrerol}</option>
+                              <option id="rol" value="${rol.nombrerol}">${roles.nombrerol}</option>
                             </g:each>
                           </select>
                          </td>

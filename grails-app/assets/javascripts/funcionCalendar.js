@@ -27,7 +27,7 @@ function envioDatos(profesor,tipo,fecha,cantidad){
     $.post( "/damonAplicacion/calendar/crearClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Clase creada satisfactoriamente");
+            alert("Clase creada satisfactoriamente.");
              window.location.reload();
         }
         else{
@@ -56,21 +56,21 @@ function anotarse(tipoclase,fecha,hora){
         $.post( "/damonAplicacion/calendar/anotarseClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Anotado satisfactoriamente");
+            alert("Anotado satisfactoriamente.");
             //Esto redirige a algun lado, no usar para la recarga de la pagina.
             //$(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
             window.location.reload();
         }else if (resp == "creditos"){
-            alert("Creditos insuficientes");
+            alert("Creditos insuficientes.");
             window.location.reload();
         }else if (resp == "lleno"){
-            alert("La clase se encuentra lleno");
+            alert("La clase se encuentra lleno.");
             window.location.reload();
         }else if (resp == "yaanotado"){
-            alert("Ya te encuentras anotado a dicha clase");
+            alert("Ya te encuentras anotado a dicha clase.");
             window.location.reload();
         }else if (resp == "tarde"){
-            alert("Ya es tarde para anotarse a dicha clase");
+            alert("Ya es tarde para anotarse a dicha clase.");
             window.location.reload();
         }
         else{

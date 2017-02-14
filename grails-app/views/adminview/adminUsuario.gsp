@@ -39,6 +39,7 @@
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
   <asset:stylesheet src="adminUsuario.css"/> 
+  <asset:javascript src="adminUsuario.js"/>
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
@@ -117,7 +118,7 @@
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                         <td>
-                         <select>
+                         <select id="estado">
                            <option value="${usuarioInstance.estado}">${usuarioInstance.estado}</option>
                            <option value="v">Validado</option>
                            <option value="a">Activo</option>
@@ -125,15 +126,15 @@
                          </select>
                          </td>
                     
-                         <td>${usuarioInstance.email}</td>
+                         <td id="email">${usuarioInstance.email}</td>
                     
-                         <td>${usuarioInstance.nombre}</td>
+                         <td id="nombre">${usuarioInstance.nombre}</td>
                     
-                         <td>${usuarioInstance.apellido}</td>
+                         <td id="apellido">${usuarioInstance.apellido}</td>
 
                          <td>
                           <select>
-                            <option>${usuarioInstance.servicio.nombreservicio}</option>
+                            <option id="tipo">${usuarioInstance.servicio.nombreservicio}</option>
                             <g:if test="${usuarioInstance.servicio.nombreservicio != "Admin" && usuarioInstance.servicio.nombreservicio != "Profesor"}">
                             <g:each in="${listaServ}" var="serv">
                             <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor" && serv.nombreservicio != usuarioInstance.servicio.nombreservicio}">                              
@@ -150,7 +151,7 @@
                           <g:if test="${usuarioInstance.tipo.nombre != "ADMIN" && usuarioInstance.tipo.nombre != "PROFESOR"}">
                           <g:each in="${listaTipo}" var="tip">
                             <g:if test="${tip.nombre != "ADMIN" && tip.nombre != "PROFESOR" && tip.nombre != "PENDIENTE" && tip.nombre != usuarioInstance.tipo.nombre}">
-                            <option value="${tip.nombre}">${tip.nombre}</option>
+                            <option id="tipo" value="${tip.nombre}">${tip.nombre}</option>
                             </g:if>
                           </g:each>
                           </g:if>
@@ -174,8 +175,12 @@
 
 
 </div>
-
-	</div>
+  <div>
+    <p>p: Pendiente</p>
+    <p>v: Validad</p>
+    <p>a: Activo</p>
+    <p>i: Inactivo</p>
+  </div>
 
    <div id="footer"></div>
 <hr>

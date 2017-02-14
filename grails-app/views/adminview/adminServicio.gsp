@@ -34,7 +34,8 @@
  
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
-	<asset:stylesheet src="estiloCalendar.css"/> 
+	<asset:stylesheet src="estiloCalendar.css"/>
+  <asset:javascript src="adminServicio.js"/> 
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
@@ -104,9 +105,9 @@
                  <g:each in="${listaFiltrada}" status="i" var="servicioInstance">
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     
-                         <td>${servicioInstance.nombreservicio}</td>
+                         <td id="nombre">${servicioInstance.nombreservicio}</td>
                     
-                         <td>${servicioInstance.cantidadcreditos}</td>
+                         <td id="cantCreditos">${servicioInstance.cantidadcreditos}</td>
                               
                      </tr>
                  </g:each>
@@ -114,7 +115,7 @@
              </table>
 
              <g:if test="${listaFiltrada.size()==1}">
-             <button>Guardar!</button>
+             <button onclick="crearServicio()">Crear Servicio!</button>
              </g:if>
             </div>      
 

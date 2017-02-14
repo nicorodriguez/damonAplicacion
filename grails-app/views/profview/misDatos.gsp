@@ -287,7 +287,10 @@
         <div class="modal-body">
           <form Name=Nombre>
             <p> Nombre : <input Name=NewName type="text" minlength="3" maxlength="16" required=""> </p>
-            <input type=button onclick="ChangeName()" Value="Cambiar Nombre">
+            <input type=button onclick="envioNombre()" Value="Cambiar Nombre">
+            <div class="alert alert-danger ocultar">
+                <strong>Error!</strong> Hubo algun inconveniente, no se pudo cambiar el nombre.
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -311,7 +314,10 @@
         <div class="modal-body">
           <form Name=Apellido>
             <p> Apellido : <input Name=NewName type="text" minlength="3" maxlength="16" required> </p>
-            <input type=button onclick="ChangeName()" Value="Cambiar Apellido">
+            <input type=button onclick="envioApe()" Value="Cambiar Apellido">
+            <div class="alert alert-danger ocultar">
+                <strong>Error!</strong> Hubo algun inconveniente, no se pudo cambiar el apellido.
+            </div>
           </form>
         </div>
         <div class="modal-footer">
@@ -334,10 +340,13 @@
         </div>
         <div class="modal-body">
           <form Name=Password>
-            <p> Contraseña : <input Name=OldPassword type="Password" minlength="6" maxlength="18" required> </p>
-            <p> Nueva Contraseña : <input Name=NewPassword type="Password" minlength="6" maxlength="18" required> </p>
-            <p> Repita Nueva Contraseña : <input Name=NewPassword type="Password" minlength="6" maxlength="18" required=""> </p>
+            <p> Contraseña : <input id="apsw" Name=OldPassword type="Password" minlength="6" maxlength="18" required> </p>
+            <p> Nueva Contraseña : <input id="psw" Name=NewPassword type="Password" minlength="6" maxlength="18" required> </p>
+            <p> Repita Nueva Contraseña : <input id="npsw" Name=NewPassword type="Password" minlength="6" maxlength="18" required=""> </p>
             <input type=button onclick="ChangePassword()" Value="Cambiar Contraseña">
+               <div class="alert alert-danger ocultar">
+                <strong>Error!</strong> Las passwords no coiniciden, por favor verifique los Datos.
+            </div>
           </form>
         </div>
         <div class="modal-footer">

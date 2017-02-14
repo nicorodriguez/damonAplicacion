@@ -113,10 +113,10 @@
                  </g:each>
                  </tbody>
              </table>
-
              <g:if test="${listaFiltrada.size()==1}">
              <button onclick="crearServicio()">Crear Servicio!</button>
              </g:if>
+
             </div>      
 
 

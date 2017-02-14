@@ -317,7 +317,12 @@
                 <div class="modal-body">
                           <label for="horario">Clase a eliminar: </label>
                         <select class="form-control" id="elimClase">
-                            <option>-- Seleccionar --</option>
+                            <option value="" disabled selected >-- Seleccionar --</option>
+                            <g:each var="claseee" in="${claseLista1.sort{it.tipo}}">
+                            <option value="${claseee.id}">
+                              Tipo: ${claseee.tipo.nombre} || Dia: ${claseee.getDiaFecha()} || Hora: ${claseee.getHora()}
+                            </option>
+                            </g:each>
                         </select>
                 </div>
                 <div class="modal-footer">

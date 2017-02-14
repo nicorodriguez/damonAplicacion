@@ -173,6 +173,9 @@ class CalendarController {
                 println("EliminarClase - Se encontro clase con esa fecha y con ese tipo")
 
                 Clase borrarclase = Clase.get(clasevieja.id)
+                borrarclase.inicializarTablaAnotados()
+                borrarclase.profe = null
+                borrarclase.save(flush: true, failOnError: true)
 
                 borrarclase.delete(flush: true, failOnError: true)
 

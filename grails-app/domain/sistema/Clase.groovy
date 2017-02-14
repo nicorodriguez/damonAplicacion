@@ -33,6 +33,7 @@ class Clase {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
+		profe cascade:"all,delete-orphan"
 		anotados lazy: false
 		version false
 	}
@@ -41,7 +42,7 @@ class Clase {
 
     static constraints = {
     	fechaHorario nullable: false, blank: false, maxSize: 50
-    	profe nullable: false, blank: false, maxSize: 50
+    	profe nullable: true, blank: false, maxSize: 50
     	tipo nullable: false, blank: false, maxSize: 50
     	cantidadMax nullable: false, blank: false, minSize: 1, maxSize: 50
     }

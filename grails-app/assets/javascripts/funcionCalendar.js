@@ -105,6 +105,36 @@ function anotarse(tipoclase,fecha,hora){
 
  }
 
+ function eliminarClase(){
+
+    var datos
+    datos = $("#elimClase").val();
+
+    var parametros = {
+        id:datos
+    }
+
+    $.post( "/damonAplicacion/calendar/eliminarClase", parametros).done(function( resp ){
+        console.log(resp);
+        if(resp == "true"){
+            alert("Clase eliminada satisfactoriamente");
+            window.location.reload();
+            // $(location).attr('href', 'http://localhost:8080/damonAplicacion/');
+        }
+        else{
+            if (resp == "inexistente"){
+                alert("La clase que quiere eliminar no existe");
+                window.location.reload();
+            }
+            else{
+                alert("Error Inesperado");
+                window.location.reload();
+            }
+        }
+    });
+    
+}
+
     /*
 
     posicion= td.parents()

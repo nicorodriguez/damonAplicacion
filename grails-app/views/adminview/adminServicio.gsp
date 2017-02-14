@@ -113,9 +113,10 @@
                  </tbody>
              </table>
 
-             <g:if test="${listaFiltrada.size()==1}">
+             
+%{--              <g:if test="${listaFiltrada.size()==1}">
              <button>Guardar!</button>
-             </g:if>
+             </g:if> --}%
             </div>      
 
 

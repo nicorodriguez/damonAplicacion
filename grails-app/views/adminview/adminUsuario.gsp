@@ -119,9 +119,9 @@
                         <td>
                          <select>
                            <option value="${usuarioInstance.estado}">${usuarioInstance.estado}</option>
-                           <option value="v">Validado</option>
-                           <option value="a">Activo</option>
-                           <option value="i">Inactivo</option>
+                           <option value="v">v</option>
+                           <option value="a">a</option>
+                           <option value="i">i</option>
                          </select>
                          </td>
                     
@@ -133,7 +133,9 @@
 
                          <td>
                           <select>
-                            <option>${usuarioInstance.servicio.nombreservicio}</option>
+                            <option value="${usuarioInstance.servicio.nombreservicio}">
+                            ${usuarioInstance.servicio.nombreservicio}
+                            </option>
                             <g:if test="${usuarioInstance.servicio.nombreservicio != "Admin" && usuarioInstance.servicio.nombreservicio != "Profesor"}">
                             <g:each in="${listaServ}" var="serv">
                             <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor" && serv.nombreservicio != usuarioInstance.servicio.nombreservicio}">                              
@@ -146,7 +148,7 @@
 
                          <td>
                          <select>
-                          <option >${usuarioInstance.tipo.nombre}</option>
+                          <option value="${usuarioInstance.tipo.nombre}">${usuarioInstance.tipo.nombre}</option>
                           <g:if test="${usuarioInstance.tipo.nombre != "ADMIN" && usuarioInstance.tipo.nombre != "PROFESOR"}">
                           <g:each in="${listaTipo}" var="tip">
                             <g:if test="${tip.nombre != "ADMIN" && tip.nombre != "PROFESOR" && tip.nombre != "PENDIENTE" && tip.nombre != usuarioInstance.tipo.nombre}">

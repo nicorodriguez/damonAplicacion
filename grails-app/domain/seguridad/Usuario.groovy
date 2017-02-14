@@ -45,7 +45,6 @@ class Usuario {
 		rol lazy: false
 		servicio lazy: false
 		tipo lazy: false
-		inscriptoclases cascade:"all,delete-orphan", lazy: false
 		version false
 	}
 

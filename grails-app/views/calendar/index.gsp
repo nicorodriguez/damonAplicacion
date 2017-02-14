@@ -244,7 +244,7 @@
                                           <ul id="anotado">
                                           <g:each var="claseanotado" in="${claseAnotP.sort{it.fechaHorario}}">
                                           %{-- <g:if test="${claseanotado.estaAnotado(usuario)==true}"> --}%
-                                          <li><p id="clasesAnotadas">Anotado dia: <span id="mayus"> ${claseanotado.getDia()} ${claseanotado.getNumdiafecha()} </span> hora:<span id="mayus"> ${claseanotado.getHora()} </span> <a onclick='desanotarse("${claseanotado.tipo.nombre}","${claseanotado.getFecha()}","${claseanotado.getHora()}")'><span class="glyphicon glyphicon-remove" aria-hidden="true" style="#FF0000"></span></a> </p></li>
+                                          <li><p id="clasesAnotadas">Anotado dia: <span id="mayus"> ${claseanotado.getDia()} ${claseanotado.getNumdiafecha()} </span> hora:<span id="mayus"> ${claseanotado.getHora()} </span> <a onclick='desanotarse("${claseanotado.tipo.nombre}","${claseanotado.getFecha()}","${claseanotado.getHora()}")'><span class="glyphicon glyphicon-remove" aria-hidden="true" style='#FF0000'></span></a> </p></li>
                                           %{-- </g:if> --}%
                                           </g:each>
                                           </ul>

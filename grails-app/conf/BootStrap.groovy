@@ -72,13 +72,26 @@ class BootStrap {
 
         Usuario alumnoCross = new Usuario("lucasg@hotmail.com","12345678","Lucas","Galetti","Masculino",usuarioRol,serv1,tipoUsuario3)
         alumnoCross.save(flush: true)
+
+        Usuario alumnoAtle = new Usuario("pabloa@hotmail.com","12345678","Pablo","Amigo","Masculino",usuarioRol,serv3,tipoUsuario4)
+        alumnoAtle.save(flush: true)
+
+        Usuario alumnoKid = new Usuario("denise@hotmail.com","12345678","Eduardo","Denis","Masculino",usuarioRol,serv2,tipoUsuario2)
+        alumnoKid.save(flush: true)
+
+        Usuario profesor2 = new Usuario("hernir@hotmail.com","12345678","Hernan","Romero","Masculino",profRole,serv4,tipoUsuario6)
+        profesor2.save(flush: true)
         
         administradorRol.agregarUsuario(usuarioPrueba)
         administradorRol.save(flush: true)
         usuarioRol.agregarUsuario(alumnoCross)
+        usuarioRol.agregarUsuario(alumnoAtle)
+        usuarioRol.agregarUsuario(alumnoKid)
         usuarioRol.save(flush: true)
         profRole.agregarUsuario(profesor)
+        profRole.agregarUsuario(profesor2)
         profRole.save(flush: true)
+
      	
         String fecha1 = 'Jueves 16/02/2017 08:00'
         Date fechaDate1 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha1 )
@@ -94,7 +107,7 @@ class BootStrap {
 
         String fecha3 = 'Martes 14/02/2017 09:00'
         Date fechaDate3 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha3 )
-        Clase clase3 = new Clase(fechaDate3,profesor,tipoUsuario3,15)
+        Clase clase3 = new Clase(fechaDate3,profesor2,tipoUsuario3,15)
         clase3.inicializarTablaAnotados()
         clase3.save(flush: true)
 
@@ -106,7 +119,7 @@ class BootStrap {
 
         String fecha5 = 'Viernes 17/02/2017 10:00'
         Date fechaDate5 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha5 )
-        Clase clase5 = new Clase(fechaDate5,profesor,tipoUsuario3,15)
+        Clase clase5 = new Clase(fechaDate5,profesor2,tipoUsuario3,15)
         clase5.inicializarTablaAnotados()
         clase5.save(flush: true)
 
@@ -118,13 +131,13 @@ class BootStrap {
 
         String fecha7 = 'Lunes 13/02/2017 15:00'
         Date fechaDate7 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha7 )
-        Clase clase7 = new Clase(fechaDate7,profesor,tipoUsuario4,20)
+        Clase clase7 = new Clase(fechaDate7,profesor2,tipoUsuario4,20)
         clase7.inicializarTablaAnotados()
         clase7.save(flush: true)
 
         String fecha8 = 'Sábado 18/02/2017 18:00'
         Date fechaDate8 = Date.parse( 'EEEE dd/MM/yyyy HH:mm', fecha8 )
-        Clase clase8 = new Clase(fechaDate8,profesor,tipoUsuario4,20)
+        Clase clase8 = new Clase(fechaDate8,profesor2,tipoUsuario4,20)
         clase8.inicializarTablaAnotados()
         clase8.save(flush: true)
 

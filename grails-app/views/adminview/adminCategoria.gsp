@@ -138,7 +138,7 @@
         </div>
         <div class="modal-body">
           <form Name=nuevoservicio action="">
-            <p> Nombre Categoria : <input Name=NewName type="text" minlength="4" maxlength="30" required="" size="50" /> </p>
+            <p> Nombre Categoria : <input id="nombre" Name=NewName type="text" minlength="4" maxlength="30" required="" size="50" /> </p>
           </form>
           <br>
           <p align="center"><button type="button" class="button button2" align="center"><b>CREAR!</b></button></p>
@@ -162,7 +162,7 @@
         </div>
         <div class="modal-body">
           <form Name=eliminarCategoria action="">
-            <p> Nombre Categoria : <select class="form-control" id="sel1">
+            <p> Nombre Categoria : <select class="form-control" id="nombCat">
                 <option value="" disabled selected>Seleccionar</option>
                 <g:each in="${listaTipo}" var="tip">
                   <g:if test="${tip.nombre != "ADMIN" && tip.nombre != "PROFESOR" && tip.nombre != "PENDIENTE"}">

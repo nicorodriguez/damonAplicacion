@@ -169,7 +169,7 @@
         </div>
         <div class="modal-body">
           <form Name=eliminarservicio action="">
-            <p> Nombre Servicio : <select class="form-control" id="sel1">
+            <p> Nombre Servicio : <select class="form-control" id="nomServ">
                 <option value="" disabled selected>Seleccionar</option>
                 <g:each in="${listaServ}" var="serv">
                     <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor"}">                      
@@ -179,7 +179,7 @@
               </select></p>
           </form>
           <br>
-          <p align="center"><button type="button" class="button4 button2" align="center"><b>ELIMINAR!</b></button></p>
+          <p align="center"><button onclick="eliminarServicio()" type="button" class="button4 button2" align="center"><b>ELIMINAR!</b></button></p>
 %{--           <p align="right"><font color="gray">* Esto dejara el servicio desactivado</font></p> --}%
           </form>
         </div>

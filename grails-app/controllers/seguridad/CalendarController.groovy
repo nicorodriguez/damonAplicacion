@@ -34,15 +34,25 @@ class CalendarController {
     }
 
     def misDatos(){
-        render(view:'misDatos')
-    }
-
-    def panelDeControl(){
-        render(view:'panelDeControl')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            render(view:'misDatos')
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
     def guiaEjercicio(){
-        render(view:'guiaEjercicio')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            render(view:'guiaEjercicio')
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
     def formatHora(){
@@ -97,7 +107,7 @@ class CalendarController {
 
             println("CrearClase -> "+fechaDate)
 
-            Traer los profesores de la base de datos verifica que existe
+            //Traer los profesores de la base de datos verifica que existe
             println("CrearClase - Voy a buscar el Profesor")
             Usuario prof = Usuario.findByEmail(profeEmail)
 

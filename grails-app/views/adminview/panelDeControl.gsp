@@ -5,7 +5,8 @@
 <%@ page import="sistema.Clase" %>
 <% 
   def smgr = new SessionManager(request.session) 
-  def usuario = smgr.getCurrentUser() 
+  def user = smgr.getCurrentUser()
+  def usuario = Usuario.get(user.id)
   def emailuser = usuario.getEmail()
   def rol = smgr.getCurrentRol() 
   def nombreRol = rol.nombrerol 

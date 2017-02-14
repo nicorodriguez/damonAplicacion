@@ -4,8 +4,9 @@
 <%@ page import="sistema.Tipousuario" %>
 <%@ page import="sistema.Clase" %>
 <% 
-    def smgr = new SessionManager(request.session) 
-  def usuario = smgr.getCurrentUser() 
+  def smgr = new SessionManager(request.session) 
+  def user = smgr.getCurrentUser()
+  def usuario = Usuario.get(user.id)
   def rol = smgr.getCurrentRol() 
   def nombreRol = rol.nombrerol 
 
@@ -270,7 +271,7 @@
         </p>
         <br>
   <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalcontraseña">Cambiar Contraseña</button>
-  <button type="button" class="btn btn-default">Volver</button>
+%{--   <button type="button" class="btn btn-default">Volver</button> --}%
 
 
 

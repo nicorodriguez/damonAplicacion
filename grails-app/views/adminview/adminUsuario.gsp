@@ -6,7 +6,8 @@
 <%@ page import="seguridad.Servicio" %>
 <% 
   def smgr = new SessionManager(request.session) 
-  def usuario = smgr.getCurrentUser() 
+  def user = smgr.getCurrentUser()
+  def usuario = Usuario.get(user.id)
   def rol = smgr.getCurrentRol() 
   def nombreRol = rol.nombrerol 
 

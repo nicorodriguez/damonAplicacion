@@ -75,6 +75,7 @@ function anotarse(tipoclase,fecha,hora){
         }
         else{
             alert("Hubo un inconveniente, no pudo anotarse");
+            window.location.reload();
         }
     });
  }
@@ -100,6 +101,7 @@ function anotarse(tipoclase,fecha,hora){
         }
         else{
             alert("No pudo desanotarse, se produjo algun error.");
+            window.location.reload();
         }
     });
 

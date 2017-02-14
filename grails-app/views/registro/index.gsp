@@ -1,11 +1,6 @@
 <%@ page import="seguridad.Servicio" %>
 <% def servicioLista= Servicio.getAll()%>
-%{-- 
-<% def servicioLista= Servicio.getAll()%>
-<g:each var="servicio" in="${servicioLista}">
-${servicio.nombreservicio}
-</g:each>
---}%
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

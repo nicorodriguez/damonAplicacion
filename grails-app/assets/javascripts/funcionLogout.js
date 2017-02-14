@@ -19,6 +19,7 @@ function logout(){
 		}
 		else{
 			alert("Error, usuario no encontrado");
+			$(location).attr('href', 'http://localhost:8080/damonAplicacion/');
 		}
 	});
 }

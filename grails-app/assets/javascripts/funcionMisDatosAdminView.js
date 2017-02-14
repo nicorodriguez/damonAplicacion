@@ -54,8 +54,8 @@ x.ready(ocultocosas);
 
     var datos = {
 
-      antpsw:apsw,
-      pass:psw,
+      contraseniav:apsw,
+      contrasenian:psw,
 
     };
     $.post( "/damonAplicacion/calendar/cambiarContrasenia", datos).done(function( resp ){

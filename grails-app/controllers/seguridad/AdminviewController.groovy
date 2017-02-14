@@ -13,48 +13,124 @@ import java.text.SimpleDateFormat
 
 class AdminviewController {
 
-	// def index(){
- //        render(view: 'index')
-	// }
-
 	def index(){
         println("entre a la pag del index")
-		def smgr = new SessionManager(request.session)
-    	def u = smgr.getCurrentUser()
-    	if (u){
-    		def rol = u.getRol()
-    		String nombreRol = rol.getNombrerol()
-    		if (nombreRol == "ROL_ADMIN"){
-    			println("voy a la pag del admin")
-    			render(view: 'index')
-    		}
-    		else{
-        		smgr.eliminarSesion()
-    			redirect(controller: "login" , action:"index")
-    		}
-    	}
-    	else{
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            def rol = u.getRol()
+            String nombreRol = rol.getNombrerol()
+            if (nombreRol == "ROL_ADMIN"){
+                println("voy a la pag del admin")
+                render(view: 'index')
+            }
+            else{
+                smgr.eliminarSesion()
+                redirect(controller: "login" , action:"index")
+            }
+        }
+        else{
             redirect(controller: "login" , action:"index")
-    	}
+        }
     }
     def adminUsuario(){
-        render(view:'adminUsuario')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            def rol = u.getRol()
+            String nombreRol = rol.getNombrerol()
+            if (nombreRol == "ROL_ADMIN"){
+                println("voy a la pag del adminUsuario")
+                render(view:'adminUsuario')
+            }
+            else{
+                smgr.eliminarSesion()
+                redirect(controller: "login" , action:"index")
+            }
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
     def misDatos(){
-        render(view:'misDatos')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            def rol = u.getRol()
+            String nombreRol = rol.getNombrerol()
+            if (nombreRol == "ROL_ADMIN"){
+                println("voy a la pag del misDatos")
+                render(view:'misDatos')
+            }
+            else{
+                smgr.eliminarSesion()
+                redirect(controller: "login" , action:"index")
+            }
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
     def panelDeControl(){
-        render(view:'panelDeControl')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            def rol = u.getRol()
+            String nombreRol = rol.getNombrerol()
+            if (nombreRol == "ROL_ADMIN"){
+                println("voy a la pag del panelDeControl")
+                render(view:'panelDeControl')
+            }
+            else{
+                smgr.eliminarSesion()
+                redirect(controller: "login" , action:"index")
+            }
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
     def adminServicio(){
-        render(view: 'adminServicio')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            def rol = u.getRol()
+            String nombreRol = rol.getNombrerol()
+            if (nombreRol == "ROL_ADMIN"){
+                println("voy a la pag del adminServicio")
+                render(view: 'adminServicio')
+            }
+            else{
+                smgr.eliminarSesion()
+                redirect(controller: "login" , action:"index")
+            }
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
     def adminCategoria(){
-        render(view: 'adminCategoria')
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            def rol = u.getRol()
+            String nombreRol = rol.getNombrerol()
+            if (nombreRol == "ROL_ADMIN"){
+                println("voy a la pag del panelDeControl")
+                render(view: 'adminCategoria')
+            }
+            else{
+                smgr.eliminarSesion()
+                redirect(controller: "login" , action:"index")
+            }
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
     def busquedaUsuario(){

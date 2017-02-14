@@ -13,10 +13,6 @@ import java.text.SimpleDateFormat
 
 class ProfviewController{
 
-	// def index(){
- //        render(view: 'index')
-	// }
-
 	def index(){
         def smgr = new SessionManager(request.session)
     	def u = smgr.getCurrentUser()
@@ -36,14 +32,16 @@ class ProfviewController{
     	}
     }
 
-    def misDatos()
-    {
-        render(view:'misDatos')
+    def misDatos(){
+        def smgr = new SessionManager(request.session)
+        def u = smgr.getCurrentUser()
+        if (u){
+            render(view:'misDatos')
+        }
+        else{
+            redirect(controller: "login" , action:"index")
+        }
     }
 
-    def panelDeControl()
-    {
-        render(view:'panelDeControl')
-    }
     
 }

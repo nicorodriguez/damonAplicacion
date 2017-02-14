@@ -139,7 +139,6 @@
 
                          <td>
                           <select>
-                            <option id="tipo">${usuarioInstance.servicio.nombreservicio}</option>
                             <option value="${usuarioInstance.servicio.nombreservicio}">
                             ${usuarioInstance.servicio.nombreservicio}
                             </option>
@@ -155,7 +154,9 @@
 
                          <td>
                          <select>
-                          <option value="${usuarioInstance.tipo.nombre}">${usuarioInstance.tipo.nombre}</option>
+                          <option value="${usuarioInstance.tipo.nombre}">
+                          ${usuarioInstance.tipo.nombre}
+                          </option>
                           <g:if test="${usuarioInstance.tipo.nombre != "ADMIN" && usuarioInstance.tipo.nombre != "PROFESOR"}">
                           <g:each in="${listaTipo}" var="tip">
                             <g:if test="${tip.nombre != "ADMIN" && tip.nombre != "PROFESOR" && tip.nombre != "PENDIENTE" && tip.nombre != usuarioInstance.tipo.nombre}">

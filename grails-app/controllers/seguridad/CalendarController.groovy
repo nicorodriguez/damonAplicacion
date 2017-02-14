@@ -576,8 +576,9 @@ class CalendarController {
     def resetearCreds(){
 
         try{
-            def smgr = new SessionManager(request.session) 
-            Usuario usuario = smgr.getCurrentUser()
+            String email = request.getParameter("email")
+            
+            Usuario usuario = Usuario.findByEmail(email)
             Usuario usuariocambiar = Usuario.get(usuario.id)
 
             boolean b = usuariocambiar.resetarCreditos()
@@ -698,9 +699,9 @@ class CalendarController {
     def cambiarRol(){
         try{
             String rolnombre = request.getParameter("rol")
+            String email = request.getParameter("email")
 
-            def smgr = new SessionManager(request.session) 
-            Usuario usuario = smgr.getCurrentUser()
+            Usuario usuario = Usuario.findByEmail(email)
             Usuario usuariocambiar = Usuario.get(usuario.id)
 
             Rol r = Rol.findByNombrerol(rolnombre)

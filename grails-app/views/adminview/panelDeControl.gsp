@@ -46,7 +46,7 @@
  
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="panelDeControl.js"/>
-	<asset:stylesheet src="estiloCalendar.css"/> 
+	<asset:stylesheet src="adminUsuario.css"/> 
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
@@ -83,42 +83,21 @@
   </div>
 </nav>
 
-<div class="row">
-           %{-- <table style="width:100%">
-            <caption>Datos de Usuario</caption>
-            <tr>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Servicio</th>
-            </tr>
-            <tr>
-              <td>Importar Nombre</td>
-              <td>Importar Apellido</td>
-              <td>    
-              <select class="form-control" id="sel1">
-                <option value="" disabled selected>Seleccionar</option>
-                <option value="0">2 x Semana</option>
-                <option value="1">3 x Semana</option>
-                <option value="3">Libre</option>
-              </select>
-              </td>
-            </tr>
-          </table> --}%
-          <h1>Cambio de Roles</h1>
+<div class="container">
+     <h2>Cambio de Roles</h2>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:form action="busquedaUsuario1" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+            <g:form action="busquedaUsuario1" method="GET" >
                 <fieldset class="form" style="left: 7em; top: -0.75em;">
                     <div>
-                        <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
-                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
+                        %{-- <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/> --}%
+                        <p><input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;">
+                        <g:submitButton name="buscar" class="save" value="Buscar"/></p>
                     </div>
-                </fieldset>
-                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
-                
+                </fieldset>  
             </g:form>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -169,13 +148,9 @@
           <br>
           <p align="center"><button type=button class="button button2" align="center"><b>CAMBIAR!</b></button></p>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+
 </div>
 
-   <div id="footer"></div>
-<hr>
 <footer class="container-fluid text">
   <p>
       <div class="footer-right">

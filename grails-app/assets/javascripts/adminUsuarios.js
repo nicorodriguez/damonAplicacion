@@ -1,4 +1,4 @@
-function envioDatos(){
+function editarUsuario(){
 
     var email,servicio
     var estado, tipo
@@ -26,9 +26,17 @@ function envioDatos(){
         }
     });
 }
-function resetCreditos(){   
 
-    $.post( "/damonAplicacion/calendar/resetearCreds", datos).done(function( resp ){
+function resetCreditos(){   
+    var email=$("#email").Val()
+
+    var datos={
+
+        email:email
+
+    }
+
+    $.post( "/damonAplicacion/calendar/resetearCreds",datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
             alert("Creditos Reeteados satisfactoriamente");

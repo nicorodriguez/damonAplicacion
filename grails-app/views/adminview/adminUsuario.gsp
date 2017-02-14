@@ -179,7 +179,7 @@
              </g:if>
             <hr>
              <g:if test="${listaFiltrada.size()==1}">
-             <p align="center"><button type="button" class="button button2">Guardar!</button></p>
+             <p align="center"><button onclick="editarUsuario()" type="button" class="button button2">Guardar!</button></p>
              </g:if>
             </div>      
 

@@ -144,11 +144,11 @@
         </div>
         <div class="modal-body">
           <form Name=nuevoservicio action="">
-            <p> Nombre Servicio : <input Name=NewName type="text" minlength="4" maxlength="18" required="" /> </p>
-            Cantidad de Creditos : <input type="number" class="js-number" name="someid" size="2" maxlength="2" min="0" max="31" required="" /> 
+            <p> Nombre Servicio : <input id="nombreServicio" Name=NewName type="text" minlength="4" maxlength="18" required="" /> </p>
+            Cantidad de Creditos : <input id="creditos" type="number" class="js-number" name="someid" size="2" maxlength="2" min="0" max="31" required="" /> 
           </form>
           <br>
-          <p align="center"><button type="button" class="button button2" align="center"><b>CREAR!</b></button></p>
+          <p align="center"><button onclick="crearServicio()" type="button" class="button button2" align="center"><b>CREAR!</b></button></p>
           </form>
         </div>
         <div class="modal-footer">
@@ -169,7 +169,7 @@
         </div>
         <div class="modal-body">
           <form Name=eliminarservicio action="">
-            <p> Nombre Servicio : <select class="form-control" id="nomServ">
+            <p> Nombre Servicio : <select class="form-control nomServ" >
                 <option value="" disabled selected>Seleccionar</option>
                 <g:each in="${listaServ}" var="serv">
                     <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor"}">                      

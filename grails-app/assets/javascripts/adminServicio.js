@@ -1,12 +1,13 @@
 function crearServicio(){
 
-    var nombre=$("#nombre").val()
+    var nombre=$("#nombreServicio").val()
     var creditos=$("#creditos").val()
 
     var datos = { 
         nomb: nombre,
         creditos:creditos
     };
+
     $.post( "/damonAplicacion/adminview/crearServ", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
@@ -26,7 +27,7 @@ function crearServicio(){
 }
 
 function eliminarServicio(){
-    var nomb=$("#nomServ:selected")
+    var nomb=$(".nomServ").val()
 
     var datos = {
         nomb:nomb

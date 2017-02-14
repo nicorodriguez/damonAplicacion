@@ -712,8 +712,8 @@ class CalendarController {
                 Servicio servcambiar = Servicio.findByNombreservicio("Admin")
 
                 boolean b = usuariocambiar.setRol(rolcambiar)
-                boolean c = usuariocambiar.setServicio(tipocambiar)
-                boolean d = usuariocambiar.setTipo(servcambiar)
+                boolean c = usuariocambiar.setServicio(servcambiar)
+                boolean d = usuariocambiar.setTipo(tipocambiar)
 
                 usuariocambiar.save(flush: true, failOnError: true)
 
@@ -724,8 +724,8 @@ class CalendarController {
                     Servicio servcambiar = Servicio.findByNombreservicio("Profesor")
 
                     boolean b = usuariocambiar.setRol(rolcambiar)
-                    boolean c = usuariocambiar.setServicio(tipocambiar)
-                    boolean d = usuariocambiar.setTipo(servcambiar)
+                    boolean c = usuariocambiar.setServicio(servcambiar)
+                    boolean d = usuariocambiar.setTipo(tipocambiar)
 
                     usuariocambiar.save(flush: true, failOnError: true)
                 }
@@ -735,8 +735,8 @@ class CalendarController {
                         Servicio servcambiar = Servicio.findByNombreservicio("2 veces por semana")
 
                         boolean b = usuariocambiar.setRol(rolcambiar)
-                        boolean c = usuariocambiar.setServicio(tipocambiar)
-                        boolean d = usuariocambiar.setTipo(servcambiar)
+                        boolean c = usuariocambiar.setServicio(servcambiar)
+                        boolean d = usuariocambiar.setTipo(tipocambiar)
 
                         usuariocambiar.save(flush: true, failOnError: true)
                     }

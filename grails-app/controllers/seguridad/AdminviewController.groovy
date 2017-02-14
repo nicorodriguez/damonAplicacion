@@ -268,7 +268,7 @@ class AdminviewController {
            Servicio servicioexistente = Servicio.findByNombreservicio(nomb)
 
            if (servicioexistente){
-                Servicio servborrar = Servicio.get()
+                Servicio servborrar = Servicio.get(servicioexistente.id)
                 servborrar.delete(flush: true, failOnError: true)
                 render("true")
            }
@@ -295,7 +295,7 @@ class AdminviewController {
            Tipousuario tipoexistente = Tipousuario.findByNombre(nomb)
 
            if (tipoexistente){
-                Tipousuario tipborrar = Tipousuario.get()
+                Tipousuario tipborrar = Tipousuario.get(tipoexistente.id)
                 tipborrar.delete(flush: true, failOnError: true)
                 render("true")
            }

@@ -167,22 +167,20 @@
                  </g:each>
                  </tbody>
              </table>
+             <br>
+            <g:if test="${listaFiltrada.size()==1}">
+             <button onclick="resetCreditos()">Resetear Creditos!</button>
+             </g:if>
             <hr>
              <g:if test="${listaFiltrada.size()==1}">
-             <button>Guardar!</button>
-             <button onclick="resetCreditos()">Resetear Creditos!</button>
-
-             <p align="center"><button>Guardar!</button></p>
+             <p align="center"><button type="button" class="button button2">Guardar!</button></p>
              </g:if>
             </div>      
 
 
 </div>
   <div>
-    <p>p: Pendiente</p>
-    <p>v: Validad</p>
-    <p>a: Activo</p>
-    <p>i: Inactivo</p>
+    <p>   Referencias Estado: p: Pendiente | v: Validado | a: Activo | i: Inactivo</p>
   </div>
 
    <div id="footer"></div>

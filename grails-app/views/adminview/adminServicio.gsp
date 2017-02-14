@@ -34,7 +34,7 @@
  
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
-	<asset:stylesheet src="estiloCalendar.css"/>
+	<asset:stylesheet src="adminUsuario.css"/>
   <asset:javascript src="adminServicio.js"/> 
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
@@ -72,20 +72,19 @@
   </div>
 </nav>
 
-<div class="row">
-     <h1>Servicios</h1>
+<div class="container">
+     <h2>Servicios</h2>
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <g:form action="busquedaServicio" method="GET" style="padding: 1em; border-radius: 0.6em; margin: 2em 2em 1em; width: 90%; border: 0.2em solid rgb(238, 238, 238); height: 2em;">
+            <g:form action="busquedaServicio" method="GET" >
                 <fieldset class="form" style="left: 7em; top: -0.75em;">
                     <div>
-                        <g:textField name="parametro" placeholder="Buscar servicio por nombre" maxlength="30" value="${params.parametro }" style="width: 52%;"/>
-                        %{-- <input id="quiero" name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro}" style="width: 52%;"> --}%
+                        %{-- <g:textField name="parametro" placeholder="Buscar usuario por email" maxlength="30" value="${params.parametro }" style="width: 52%;"/> --}%
+                        <p><input id="quiero" name="parametro" placeholder="Buscar servicio por nombre" maxlength="30" value="${params.parametro}" style="width: 52%;">
+                        <g:submitButton name="buscar" class="save" value="Buscar"/></p>
                     </div>
-                </fieldset>
-                <g:submitButton name="buscar" class="save" value="Buscar" style="position: relative; left: 37em; top: -3.65em;" />
-                
+                </fieldset>  
             </g:form>
             
             <table>
@@ -113,19 +112,75 @@
                  </g:each>
                  </tbody>
              </table>
-             <g:if test="${listaFiltrada.size()==1}">
-             <button onclick="crearServicio()">Crear Servicio!</button>
-             </g:if>
-
+%{--              <g:if test="${listaFiltrada.size()==1}">
+             <button onclick="crearServicio()">Guardar</button>
+             </g:if> --}%
             </div>      
-
-
 </div>
-
 	</div>
+  <hr>
+  <p align="center">
+  <button type="button" class="button button2" data-toggle="modal" data-target="#nuevoservicio">Nuevo Servicio</button>
+  <button type="button" class="button4 button2" data-toggle="modal" data-target="#eliminarservicio">Eliminar Servicio</button>
+  </p>
 
-   <div id="footer"></div>
-<hr>
+
+
+      <!-- Modal nuevoservicio -->
+  <div class="modal fade" id="nuevoservicio" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal nuevoservicio content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Nuevo Servicio</h4>
+        </div>
+        <div class="modal-body">
+          <form Name=nuevoservicio action="">
+            <p> Nombre Servicio : <input Name=NewName type="text" minlength="4" maxlength="18" required="" /> </p>
+            Cantidad de Creditos : <input type="number" class="js-number" name="someid" size="2" maxlength="2" min="0" max="31" required="" /> 
+          </form>
+          <br>
+          <p align="center"><button type="button" class="button button2" align="center"><b>CREAR!</b></button></p>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Modal eliminarservicio -->
+  <div class="modal fade" id="eliminarservicio" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal eliminarservicio content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Eliminar Servicio</h4>
+        </div>
+        <div class="modal-body">
+          <form Name=eliminarservicio action="">
+            <p> Nombre Servicio : <select class="form-control" id="sel1">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="0">2 x Semana</option>
+                <option value="1">3 x Semana</option>
+                <option value="3">Libre</option>
+              </select></p>
+          </form>
+          <br>
+          <p align="center"><button type="button" class="button4 button2" align="center"><b>ELIMINAR!</b></button></p>
+%{--           <p align="right"><font color="gray">* Esto dejara el servicio desactivado</font></p> --}%
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <footer class="container-fluid text">
   <p>
       <div class="footer-right">
@@ -147,3 +202,28 @@
 
 </body>
 </html>
+ <script>
+    $(".js-number").bind('keydown', function(e){
+       var targetValue = $(this).val();
+       if (e.which ===8 || e.which === 13 || e.which === 37 || e.which === 39 || e.which === 46) { return; }
+
+       if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) && targetValue.length < 2)  {
+          var c = String.fromCharCode(e.which);
+          var val = parseInt(c);
+          var textVal = parseInt(targetValue || "0");
+          var result = textVal + val;
+
+          if (result < 0 || result > 99) {
+             e.preventDefault();
+          }
+
+          if (targetValue === "0") {
+            $(this).val(val);
+            e.preventDefault();
+          }
+       }
+       else {
+           e.preventDefault();
+       }
+    });
+ </script>

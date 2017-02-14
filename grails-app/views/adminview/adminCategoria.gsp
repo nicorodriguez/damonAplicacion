@@ -13,6 +13,8 @@
 
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
+
+  def listaTipo = Tipousuario.getAll()
 %>
 
 <!DOCTYPE html>
@@ -100,11 +102,14 @@
                      <g:set var="listaFiltrada" value="${Tipousuario.list()}"></g:set>
                  </g:if>
                  <g:each in="${listaFiltrada}" status="i" var="tipoInstance">
+                  <g:if test="${tipoInstance.nombre != "ADMIN" && tipoInstance.nombre != "PROFESOR" && tipoInstance.nombre != "PENDIENTE"}">
+
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     
                          <td id="nombre">${tipoInstance.nombre}</td>
                              
                      </tr>
+                  </g:if>
                  </g:each>
                  </tbody>
              </table>
@@ -159,9 +164,11 @@
           <form Name=eliminarCategoria action="">
             <p> Nombre Categoria : <select class="form-control" id="sel1">
                 <option value="" disabled selected>Seleccionar</option>
-                <option value="0">ATLETA</option>
-                <option value="1">KIDS</option>
-                <option value="3">CROSSFITERO</option>
+                <g:each in="${listaTipo}" var="tip">
+                  <g:if test="${tip.nombre != "ADMIN" && tip.nombre != "PROFESOR" && tip.nombre != "PENDIENTE"}">
+                    <option id="tipo" value="${tip.nombre}">${tip.nombre}</option>
+                  </g:if>
+                </g:each>
               </select></p>
           </form>
           <br>

@@ -13,6 +13,8 @@
 
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido() 
+
+  def listaServ = Servicio.getAll()
 %>
 
 <!DOCTYPE html>
@@ -102,7 +104,10 @@
                  <g:if test="${!listaFiltrada }">
                      <g:set var="listaFiltrada" value="${Servicio.list()}"></g:set>
                  </g:if>
+
                  <g:each in="${listaFiltrada}" status="i" var="servicioInstance">
+                  <g:if test="${servicioInstance.nombreservicio != "Admin" && servicioInstance.nombreservicio != "Profesor"}">
+
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     
                          <td id="nombre">${servicioInstance.nombreservicio}</td>
@@ -110,6 +115,7 @@
                          <td id="cantCreditos">${servicioInstance.cantidadcreditos}</td>
                               
                      </tr>
+                  </g:if>
                  </g:each>
                  </tbody>
              </table>
@@ -165,9 +171,11 @@
           <form Name=eliminarservicio action="">
             <p> Nombre Servicio : <select class="form-control" id="sel1">
                 <option value="" disabled selected>Seleccionar</option>
-                <option value="0">2 x Semana</option>
-                <option value="1">3 x Semana</option>
-                <option value="3">Libre</option>
+                <g:each in="${listaServ}" var="serv">
+                    <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor"}">                      
+                        <option value="${serv.nombreservicio}">${serv.nombreservicio}</option>
+                  </g:if>
+                </g:each>
               </select></p>
           </form>
           <br>

@@ -13,6 +13,7 @@
 
   def nombre = usuario.getNombre()
   def apellido = usuario.getApellido()
+  def email = usuario.getEmail()
 
   def listaServ = Servicio.getAll()
   def listaTipo = Tipousuario.getAll()
@@ -115,7 +116,10 @@
                  <g:if test="${!listaFiltrada }">
                      <g:set var="listaFiltrada" value="${Usuario.list()}"></g:set>
                  </g:if>
+
                  <g:each in="${listaFiltrada}" status="i" var="usuarioInstance">
+
+                  <g:if test="${usuarioInstance.email != email}">
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                         <td>
@@ -165,6 +169,7 @@
 
                               
                      </tr>
+                  </g:if>
                  </g:each>
                  </tbody>
              </table>

@@ -127,9 +127,9 @@
 
                          <td>
                           <select>
-                            <option>${usuarioInstance.rol.nombrerol}</option>
+                            <option class="rol">${usuarioInstance.rol.nombrerol}</option>
                             <g:each in="${listaroles}" var="roles">
-                              <option id="rol" value="${rol.nombrerol}">${roles.nombrerol}</option>
+                              <option class="rol">${roles.nombrerol}</option>
                             </g:each>
                           </select>
                          </td>

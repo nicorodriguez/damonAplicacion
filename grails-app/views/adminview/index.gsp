@@ -84,7 +84,7 @@
   <asset:javascript src="funcionCalendar.js"/>
 	<asset:stylesheet src="estiloCalendar.css"/>
   <asset:stylesheet src="estiloAdminView.css"/> 
-  <asset:javascript src="probando.js"/>
+  <asset:javascript src="adminUsuarios.js"/>
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 

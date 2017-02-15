@@ -41,7 +41,7 @@
   <asset:javascript src="funcionLogout.js"/>
   <asset:javascript src="funcionCalendar.js"/>
   <asset:stylesheet src="adminUsuario.css"/> 
-  <asset:javascript src="adminUsuario.js"/>
+  <asset:javascript src="adminUsuarios.js"/>
 
   <script type="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
@@ -123,11 +123,11 @@
                      <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
                         <td>
-                         <select id="estado">
-                           <option value="${usuarioInstance.estado}">${usuarioInstance.estado}</option>
-                           <option value="v">v</option>
-                           <option value="a">a</option>
-                           <option value="i">i</option>
+                         <select>
+                           <option class="estado" value="${usuarioInstance.estado}">${usuarioInstance.estado}</option>
+                           <option class="estado" value="v">v</option>
+                           <option class="estado" value="a">a</option>
+                           <option class="estado" value="i">i</option>
                          </select>
                          </td>
                     
@@ -139,13 +139,13 @@
 
                          <td>
                           <select>
-                            <option value="${usuarioInstance.servicio.nombreservicio}">
+                            <option class="servicio" value="${usuarioInstance.servicio.nombreservicio}">
                             ${usuarioInstance.servicio.nombreservicio}
                             </option>
                             <g:if test="${usuarioInstance.servicio.nombreservicio != "Admin" && usuarioInstance.servicio.nombreservicio != "Profesor"}">
                             <g:each in="${listaServ}" var="serv">
                             <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor" && serv.nombreservicio != usuarioInstance.servicio.nombreservicio}">                              
-                              <option value="${serv.nombreservicio}">${serv.nombreservicio}</option>
+                              <option class="servicio" value="${serv.nombreservicio}">${serv.nombreservicio}</option>
                             </g:if>
                             </g:each>
                             </g:if>

@@ -287,8 +287,8 @@
         </div>
         <div class="modal-body">
           <form Name=Nombre>
-            <p> Nombre : <input Name=NewName type="text" minlength="3" maxlength="16" required=""> </p>
-            <input type=button onclick="ChangeName()" Value="Cambiar Nombre">
+            <p> Nombre : <input id="nom" Name=NewName type="text" minlength="3" maxlength="16" required=""> </p>
+            <input type="button" onclick="envioNombre()" Value="Cambiar Nombre">
           </form>
         </div>
         <div class="modal-footer">
@@ -312,7 +312,7 @@
         <div class="modal-body">
           <form Name=Apellido>
             <p> Apellido : <input Name=NewName type="text" minlength="3" maxlength="16" required> </p>
-            <input type=button onclick="ChangeName()" Value="Cambiar Apellido">
+            <input type="button" onclick="envioApe()" Value="Cambiar Apellido">
           </form>
         </div>
         <div class="modal-footer">

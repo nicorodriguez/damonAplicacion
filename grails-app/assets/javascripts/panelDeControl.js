@@ -1,6 +1,6 @@
 function cambiarRol(){   
     var email=$("#emailPC").text()
-    var rol=$("#rol").val()
+    var rol=$(".rol:selected").text()
 
     var datos = {
         rol:rol,

@@ -138,10 +138,10 @@
         </div>
         <div class="modal-body">
           <form Name=nuevoservicio action="">
-            <p> Nombre Categoria : <input id="nombre" Name=NewName type="text" minlength="4" maxlength="30" required="" size="50" /> </p>
+            <p> Nombre Categoria : <input id="nombreCat" Name=NewName type="text" minlength="4" maxlength="30" required="" size="50" /> </p>
           </form>
           <br>
-          <p align="center"><button type="button" class="button button2" align="center"><b>CREAR!</b></button></p>
+          <p align="center"><button onclick="crearCategoria()" type="button" class="button button2" align="center"><b>CREAR!</b></button></p>
           </form>
         </div>
         <div class="modal-footer">
@@ -172,7 +172,7 @@
               </select></p>
           </form>
           <br>
-          <p align="center"><button type="button" class="button4 button2" align="center"><b>ELIMINAR!</b></button></p>
+          <p align="center"><button onclick="eliminarC()" type="button" class="button4 button2" align="center"><b>ELIMINAR!</b></button></p>
           </form>
         </div>
         <div class="modal-footer">

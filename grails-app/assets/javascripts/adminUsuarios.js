@@ -3,10 +3,10 @@ function editarUsuario(){
     var email,servicio
     var estado, tipo
 
-    email=$("#email").val()
-    servicio=$("#servicio:selected").val()
-    estado=$("#estado:selected").val();
-    tipo=$("#tipo").val();
+    email=$("#email").text()
+    servicio=$(".servicio:selected").text()
+    estado=$(".estado:selected").val();
+    tipo=$("#tipo").text();
 
     var datos = { 
         email: email,
@@ -28,7 +28,7 @@ function editarUsuario(){
 }
 
 function resetCreditos(){   
-    var email=$("#email").Val()
+    var email=$("#email").text()
 
     var datos={
 

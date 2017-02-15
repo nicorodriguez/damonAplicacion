@@ -53,7 +53,7 @@ function eliminarServicio(){
 
 function crearCategoria(){
 
-    var nombre=$("#nombre");
+    var nombre=$("#nombreCat").val();
 
     var datos = { 
         nomb: nombre
@@ -76,9 +76,9 @@ function crearCategoria(){
     });
 }
 
-function eliminarCategoria(){
+function eliminarC(){
 
-    var nombre=$("#nombCat:selected");
+    var nombre=$("#nombCat").val();
 
     var datos = { 
         nomb: nombre

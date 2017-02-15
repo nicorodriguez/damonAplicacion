@@ -34,7 +34,7 @@
     }
 
 
-    function ChangePassword(){
+    function cambPsw(){
 
       var apsw,psw,npsw
 
@@ -78,7 +78,7 @@
   function envioNombre(){
     var nom
 
-    nom=$("#nom").val()
+    nom=$("#nom").text()
 
     var datos ={
       nombre:nom
@@ -98,7 +98,7 @@
 function envioApe(){
     var ape
 
-    ape=$("#ape").val()
+    ape=$("#ape").text()
 
     var datos ={
       apellido:ape

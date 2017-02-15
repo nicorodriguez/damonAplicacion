@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
 import session.SessionManager
 import java.text.SimpleDateFormat
+import java.util.*
+import groovy.time.TimeCategory
 
 class CalendarController {
 
@@ -474,49 +476,41 @@ class CalendarController {
             //Voy a buscar al usuario
             Usuario usuario = Usuario.findByEmail(email)
 
-            boolean esPriv = usuario.esPrivilegiado()
+            //Voy a buscar el tipo a cambiar
+            Tipousuario tipocambiar = Tipousuario.findByNombre(tipo)
 
-            if (esPriv){
+            //Voy a buscar el servicio a cambiar
+            Servicio servcambiar = Servicio.findByNombreservicio(servicio)
 
-                //Voy a buscar el tipo a cambiar
-                Tipousuario tipocambiar = Tipousuario.findByNombre(tipo)
+            //Busco el verdadero usuario
+            Usuario userACambiar = Usuario.get(usuario.id)
 
-                //Voy a buscar el servicio a cambiar
-                Servicio servcambiar = Servicio.findByNombreservicio(servicio)
-
-                //Busco el verdadero usuario
-                Usuario userACambiar = Usuario.get(usuario.id)
-
-                if (tipocambiar.nombre != userACambiar.tipo.nombre){
-                    boolean a = userACambiar.setTipo(tipocambiar)
-                    if(a){
-                        println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.tipo.nombre)
-                    }
+            if (tipocambiar.nombre != userACambiar.tipo.nombre){
+                boolean a = userACambiar.setTipo(tipocambiar)
+                if(a){
+                    println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.tipo.nombre)
                 }
-
-                if (servcambiar.nombreservicio != userACambiar.servicio.nombreservicio){
-                    boolean b = userACambiar.setServicio(servcambiar)
-                    if(b){
-                        println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.servicio.nombreservicio)
-                    }
-                }
-
-                if (estado != userACambiar.estado){
-                    boolean c = userACambiar.setEstado(estado)
-                    if(c){
-                        println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.estado)
-                    }
-                }
-
-                userACambiar.save(flush: true, failOnError: true)
-
-                render("true")
             }
-            else{
-                println("No tiene el rol necesario")
-                render("noadmin")
+
+            if (servcambiar.nombreservicio != userACambiar.servicio.nombreservicio){
+                boolean b = userACambiar.setServicio(servcambiar)
+                if(b){
+                    println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.servicio.nombreservicio)
+                }
             }
+
+            if (estado != userACambiar.estado){
+                boolean c = userACambiar.setEstado(estado)
+                if(c){
+                    println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.estado)
+                }
+            }
+
+            userACambiar.save(flush: true, failOnError: true)
+
+            render("true")
         }
+        
         catch(Exception e){
             println("PROBLEMA")
             println(e)
@@ -577,7 +571,7 @@ class CalendarController {
 
         try{
             String email = request.getParameter("email")
-            
+
             Usuario usuario = Usuario.findByEmail(email)
             Usuario usuariocambiar = Usuario.get(usuario.id)
 
@@ -707,13 +701,17 @@ class CalendarController {
             Rol r = Rol.findByNombrerol(rolnombre)
             Rol rolcambiar = Rol.get(r.id)
 
+            Boolean b
+            Boolean c
+            Boolean d
+
             if (rolcambiar.nombrerol == "ROL_ADMIN"){
                 Tipousuario tipocambiar = Tipousuario.findByNombre("ADMIN")
                 Servicio servcambiar = Servicio.findByNombreservicio("Admin")
 
-                boolean b = usuariocambiar.setRol(rolcambiar)
-                boolean c = usuariocambiar.setServicio(servcambiar)
-                boolean d = usuariocambiar.setTipo(tipocambiar)
+                b = usuariocambiar.setRol(rolcambiar)
+                c = usuariocambiar.setServicio(servcambiar)
+                d = usuariocambiar.setTipo(tipocambiar)
 
                 usuariocambiar.save(flush: true, failOnError: true)
 
@@ -723,9 +721,9 @@ class CalendarController {
                     Tipousuario tipocambiar = Tipousuario.findByNombre("PROFESOR")
                     Servicio servcambiar = Servicio.findByNombreservicio("Profesor")
 
-                    boolean b = usuariocambiar.setRol(rolcambiar)
-                    boolean c = usuariocambiar.setServicio(servcambiar)
-                    boolean d = usuariocambiar.setTipo(tipocambiar)
+                    b = usuariocambiar.setRol(rolcambiar)
+                    c = usuariocambiar.setServicio(servcambiar)
+                    d = usuariocambiar.setTipo(tipocambiar)
 
                     usuariocambiar.save(flush: true, failOnError: true)
                 }
@@ -734,9 +732,9 @@ class CalendarController {
                         Tipousuario tipocambiar = Tipousuario.findByNombre("CROSSFITERO")
                         Servicio servcambiar = Servicio.findByNombreservicio("2 veces por semana")
 
-                        boolean b = usuariocambiar.setRol(rolcambiar)
-                        boolean c = usuariocambiar.setServicio(servcambiar)
-                        boolean d = usuariocambiar.setTipo(tipocambiar)
+                        b = usuariocambiar.setRol(rolcambiar)
+                        c = usuariocambiar.setServicio(servcambiar)
+                        d = usuariocambiar.setTipo(tipocambiar)
 
                         usuariocambiar.save(flush: true, failOnError: true)
                     }

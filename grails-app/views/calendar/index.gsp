@@ -143,7 +143,7 @@
                                   </tr>
                                 </thead>
                                 <tbody id="tbUsuario">
-                                   <g:each var="horarios" in="${listaHoraP2.sort{a,b -> a < b}}">
+                                   <g:each var="horarios" in="${listaHoraP2}">
                                     <tr class="semana">
                                        <td>${horarios}</td>
                                        <td>

@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpSession
 import grails.transaction.Transactional
+import java.util.*
+import groovy.time.TimeCategory
 
 class Usuario {
 
@@ -197,7 +199,7 @@ class Usuario {
 		}
 	}
 
-	boolean setEstado(String est){
+	Boolean setEstado(String est){
 		try{
 			// println(this)
 			// println(est)
@@ -290,7 +292,7 @@ class Usuario {
 		}
 	}
 
-	boolean setRol(Rol s){
+	Boolean setRol(Rol s){
 		try{
 			this.rol = s
 			return(true)
@@ -302,7 +304,7 @@ class Usuario {
 		}
 	}
 
-	boolean setServicio(Servicio s){
+	Boolean setServicio(Servicio s){
 		try{
 			// println(this)
 			// println(s)
@@ -317,7 +319,7 @@ class Usuario {
 		}
 	}
 	
-	boolean setTipo(Tipousuario t){
+	Boolean setTipo(Tipousuario t){
 		
 		try{
 			// println(this)
@@ -382,7 +384,7 @@ class Usuario {
 			this.creditosActuales = creditosResetear
 			use(TimeCategory){
 				Date fechaActual = new Date()
-				this.fechaVencimientoCred = fechaActual + 30.days
+				this.fechaVenc = fechaActual + 30.days
 			}
 			println("Se resetearon los creditos del usuario")
 			return(true)

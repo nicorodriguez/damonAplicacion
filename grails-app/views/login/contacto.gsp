@@ -59,14 +59,13 @@
     color:white;
    }
 
-
-  /* #footer {
+  #footer {
     clear: both;
     position: relative;
     z-index: 10;
     height: 3em;
     margin-top: -3em;
-} */
+}
 
 .footer-left p{
   color:  #F8F8FF;

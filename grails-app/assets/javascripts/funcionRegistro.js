@@ -120,8 +120,10 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 	$.post( "/damonAplicacion/registro/crearUsuario", parametros).done(function( resp ){
 		console.log(resp);
 		if(resp == "true"){
+
 			alert("Usuario creado satisfactoriamente");
-			// $(location).attr('href', 'http://localhost:8080/damonAplicacion/');
+			
+		    $(location).attr('href', 'http://localhost:8080/damonAplicacion/');
 		}
 		else{
 			if (resp == "existe"){

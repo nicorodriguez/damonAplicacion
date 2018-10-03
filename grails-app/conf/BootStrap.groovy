@@ -64,22 +64,22 @@ class BootStrap {
         tipoUsuario6.inicializarTablaTipo()
         tipoUsuario6.save(flush: true)
 
-        Usuario usuarioPrueba = new Usuario("nico55@hotmail.com","12345678","Nico","Rodriguez","Masculino",administradorRol,serv5,tipoUsuario5)
+        Usuario usuarioPrueba = new Usuario("nico55@hotmail.com","12345678","Nico","Rodriguez","M",administradorRol,serv5,tipoUsuario5)
         usuarioPrueba.save(flush: true)
 
-        Usuario profesor = new Usuario("davids@hotmail.com","12345678","David","Sangali","Masculino",profRole,serv4,tipoUsuario6)
+        Usuario profesor = new Usuario("davids@hotmail.com","12345678","David","Sangali","M",profRole,serv4,tipoUsuario6)
         profesor.save(flush: true)
 
-        Usuario alumnoCross = new Usuario("lucasg@hotmail.com","12345678","Lucas","Galetti","Masculino",usuarioRol,serv1,tipoUsuario3)
+        Usuario alumnoCross = new Usuario("lucasg@hotmail.com","12345678","Lucas","Galetti","M",usuarioRol,serv1,tipoUsuario3)
         alumnoCross.save(flush: true)
 
-        Usuario alumnoAtle = new Usuario("pabloa@hotmail.com","12345678","Pablo","Amigo","Masculino",usuarioRol,serv3,tipoUsuario4)
+        Usuario alumnoAtle = new Usuario("pabloa@hotmail.com","12345678","Pablo","Amigo","M",usuarioRol,serv3,tipoUsuario4)
         alumnoAtle.save(flush: true)
 
-        Usuario alumnoKid = new Usuario("denise@hotmail.com","12345678","Eduardo","Denis","Masculino",usuarioRol,serv2,tipoUsuario2)
+        Usuario alumnoKid = new Usuario("denise@hotmail.com","12345678","Eduardo","Denis","M",usuarioRol,serv2,tipoUsuario2)
         alumnoKid.save(flush: true)
 
-        Usuario profesor2 = new Usuario("hernir@hotmail.com","12345678","Hernan","Romero","Masculino",profRole,serv4,tipoUsuario6)
+        Usuario profesor2 = new Usuario("hernir@hotmail.com","12345678","Hernan","Romero","M",profRole,serv4,tipoUsuario6)
         profesor2.save(flush: true)
         
         administradorRol.agregarUsuario(usuarioPrueba)

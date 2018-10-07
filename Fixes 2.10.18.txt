@@ -1,0 +1,6 @@
+-Se puede crear una clase un domingo. 
+-No deja editar los datos de usuario.(VERIFICAR CONECCION JS Y BACK-END)
+-Al crear una clase no se ordena por fecha de creacion. 
+-Crear una notificacion de que el usuario se creo satisfactoriamente y redirigir al Log in
+-Ver plugin de envio de emails.(Nico encontro el: mailplugin)
+-

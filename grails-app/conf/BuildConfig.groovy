@@ -12,13 +12,9 @@ grails.project.fork = [
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
 
     // configure settings for the test-app JVM, uses the daemon by default
-    test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
     // configure settings for the run-app JVM
-    run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
     // configure settings for the run-war JVM
-    war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
     // configure settings for the Console UI JVM
-    console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
 
 grails.project.dependency.resolver = "maven" // or ivy
@@ -51,6 +47,8 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+        //compile "org.grails.plugins:novamail:0.4.2"
+        
     }
 
     plugins {
@@ -62,6 +60,8 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.8'
         // asset-pipeline 2.0+ requires Java 7, use version 1.9.x with Java 6
         compile ":asset-pipeline:2.2.3"
+        //compile ":org.grails.plugins:mail:2.0.0"
+
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.18"
@@ -69,7 +69,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
 
         //Agrego El email sender como plugin de Grails.
-        compile 'org.grails.plugins:mail:2.0.0'
+        compile 'org.grails.plugins:mail:1.0.7'
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
         //compile ":less-asset-pipeline:1.10.0"

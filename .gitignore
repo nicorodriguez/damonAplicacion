@@ -60,3 +60,4 @@ test/
 devDb.trace.db.old
 target/work/plugins/mail-1.0.7/LICENSE
 target/work/plugins/mail-1.0.7/LICENSE
+grails-app/conf/Config.groovy

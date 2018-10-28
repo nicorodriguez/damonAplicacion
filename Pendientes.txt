@@ -1,0 +1,7 @@
+- Crear Todos los horarios de clase. 
+- Seguir cambiando los alerts. 
+- Checkstyle
+- Pruebas de JUNIT
+- Pruebas funcionales. 
+- Hacer que por lo menos envie el email el recuperar password (Crear gsp y metodo de controlador)
+- Falta poder updatear el estado del usuario y el tipo. Tiraba error. 

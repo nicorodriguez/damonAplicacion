@@ -24,7 +24,7 @@ class Usuario {
 	Rol rol
 	Servicio servicio
 	Tipousuario tipo
-	static belongsTo = [Rol, Servicio, Tipousuario, Clase]
+	static belongsTo = [Rol, Tipousuario, Servicio, Clase]
 	// static belongsTo = [rol: Rol, servicio: Servicio, tipo: Tipousuario, clase: Clase]
 
 	Usuario(String email1, String password1, String nombre1, String apellido1, String sexo1, Rol r, Servicio s, Tipousuario t){
@@ -48,6 +48,7 @@ class Usuario {
 		servicio lazy: false
 		tipo lazy: false
 		version false
+
 	}
 
 	static constraints = {

@@ -20,6 +20,10 @@ class BootStrap {
         profRole.inicializarTablaRol()
         profRole.save(flush: true)
             
+        Servicio serv0 = new Servicio("Pendiente",0)
+        serv0.inicializarTablaServ()
+        serv0.save(flush: true)
+
         Servicio serv1 = new Servicio("2 veces por semana",8)
         serv1.inicializarTablaServ()
         serv1.save(flush: true)

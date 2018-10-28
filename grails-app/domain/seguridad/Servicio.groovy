@@ -6,7 +6,6 @@ class Servicio {
 	String nombreservicio
 	Integer cantidadcreditos
 	static hasMany = [usuariosserv: Usuario]
-	// static belongsTo = Usuario
 
 	Servicio(String nombre, Integer cant){
 		this()
@@ -16,7 +15,7 @@ class Servicio {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
-		usuariosserv lazy: false
+		usuariosserv lazy: false, cascade:"all,delete-orphan"
 		version false
 	}
 
@@ -73,7 +72,7 @@ class Servicio {
 
 	def eliminarServ(){
 		String nombre = request.getParameter("nombre")
-
+		
 		Servicio serv1 = Servicio.findByNombreservicio(nombre)
 
 		if (serv1){

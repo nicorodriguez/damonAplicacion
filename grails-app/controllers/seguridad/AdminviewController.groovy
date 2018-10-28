@@ -266,10 +266,36 @@ class AdminviewController {
            String nomb = request.getParameter("nomb")
 
            Servicio servicioexistente = Servicio.findByNombreservicio(nomb)
+           Servicio pendiente = Servicio.findByNombreservicio("Pendiente")
 
-           if (servicioexistente){
-                Servicio servborrar = Servicio.get(servicioexistente.id)
-                servborrar.delete(flush: true, failOnError: true)
+           def listaUsuarioServicio = Usuario.findAllByServicio(servicioexistente)
+
+           println(pendiente)
+           println(pendiente.nombreservicio)
+           println(servicioexistente.nombreservicio)
+           println("LISTA")
+
+           // for (Usuario item : listaUsuarioServicio) {
+           //      Usuario usuarioModificar = Usuario.get(item.id)
+           //      println(usuarioModificar.nombre)
+           //      println(usuarioModificar.servicio)
+           // }
+
+           boolean resultado
+
+           for (Usuario item : listaUsuarioServicio) {
+                Usuario usuarioModificar = Usuario.get(item.id)
+                usuarioModificar.setServicio(pendiente)
+                usuarioModificar.save(flush: true, failOnError: true)
+                //usuarioModificar.discard();
+           }
+
+           if (servicioexistente != null){
+                // Servicio servborrar = Servicio.get(servicioexistente.id)
+                // servicioexistente = null
+                // servborrar.delete(flush: true, failOnError: true)
+
+                servicioexistente.delete(failOnError: true)
                 render("true")
            }
            else{

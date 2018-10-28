@@ -266,36 +266,16 @@ class AdminviewController {
            String nomb = request.getParameter("nomb")
 
            Servicio servicioexistente = Servicio.findByNombreservicio(nomb)
-           Servicio pendiente = Servicio.findByNombreservicio("Pendiente")
-
-           def listaUsuarioServicio = Usuario.findAllByServicio(servicioexistente)
-
-           println(pendiente)
-           println(pendiente.nombreservicio)
-           println(servicioexistente.nombreservicio)
-           println("LISTA")
-
-           // for (Usuario item : listaUsuarioServicio) {
-           //      Usuario usuarioModificar = Usuario.get(item.id)
-           //      println(usuarioModificar.nombre)
-           //      println(usuarioModificar.servicio)
-           // }
-
-           boolean resultado
-
-           for (Usuario item : listaUsuarioServicio) {
-                Usuario usuarioModificar = Usuario.get(item.id)
-                usuarioModificar.setServicio(pendiente)
-                usuarioModificar.save(flush: true, failOnError: true)
-                //usuarioModificar.discard();
-           }
-
+           
            if (servicioexistente != null){
+                
+                this.borrarRelacionesServicio(servicioexistente)
+
                 // Servicio servborrar = Servicio.get(servicioexistente.id)
                 // servicioexistente = null
                 // servborrar.delete(flush: true, failOnError: true)
 
-                servicioexistente.delete(failOnError: true)
+                servicioexistente.delete(flush: true, failOnError: true)
                 render("true")
            }
            else{
@@ -309,6 +289,24 @@ class AdminviewController {
             println(e)
 
             render ("false")
+        }
+    }
+
+    def borrarRelacionesServicio(Servicio servicioABorrar){
+
+        Servicio pendiente = Servicio.findByNombreservicio("Pendiente")
+
+        def listaUsuarioServicio = Usuario.findAllByServicio(servicioABorrar)
+
+        // println(pendiente)
+        // println(pendiente.nombreservicio)
+        // println(servicioexistente.nombreservicio)
+        // println("LISTA")
+
+        for (Usuario item : listaUsuarioServicio) {
+            Usuario usuarioModificar = Usuario.get(item.id)
+            usuarioModificar.setServicio(pendiente)
+            usuarioModificar.save(flush: true, failOnError: true)
         }
     }
 

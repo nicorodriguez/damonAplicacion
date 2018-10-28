@@ -351,10 +351,12 @@ class AdminviewController {
                 for (Clase item : listaClaseTipo) {
                     Clase claseModificar = Clase.get(item.id)
                     claseModificar.setTipo(pendiente)
+                    claseModificar.inicializarTablaAnotados()
+                    claseModificar.profe = null
                     claseModificar.save(flush: true, failOnError: true)
                 }
 
-                println("Usuarios Actualizados")
+                println("Usuarios/Clases Actualizados")
                 render ("true")
             }
             else{
@@ -378,13 +380,17 @@ class AdminviewController {
 
             Tipousuario tipoexistente = Tipousuario.findByNombre(nomb)
 
-            // Servicio servborrar = Servicio.get(servicioexistente.id)
-            // servicioexistente = null
-            // servborrar.delete(flush: true, failOnError: true)
+            Tipousuario pendiente = Tipousuario.findByNombre("PENDIENTE")
+            def listaClaseTipoBorrar = Clase.findAllByTipo(pendiente)
+
+            for (Clase item : listaClaseTipoBorrar) {
+                Clase claseModificar = Clase.get(item.id)
+                claseModificar.delete(flush: true, failOnError: true)
+            }
 
             tipoexistente.delete(flush: true, failOnError: true)
                 
-            println("Categoria Borrada")
+            println("Categoria/Clases Borrada")
             render("true")
         }
         catch(Exception e){

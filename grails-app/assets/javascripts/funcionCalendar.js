@@ -1,3 +1,15 @@
+var msj ="";
+
+var x;
+x=$(document);
+x.ready(inicializarEventosRegistro);
+
+function inicializarEventosRegistro()
+{
+    $("#error").hide();
+	$("#confirmar").hide();
+}
+
 function crearClase() {
     var dia;
     var horario;
@@ -27,10 +39,14 @@ function envioDatos(profesor,tipo,fecha,cantidad){
     $.post( "/damonAplicacion/calendar/crearClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Clase creada satisfactoriamente.");
+            msj = "Clase creada satisfactoriamente.";
+            setTimeout("showConfirm(msj)",5000);
+            //alert("Clase creada satisfactoriamente.");
              window.location.reload();
         }
         else{
+            msj = "Clase no creada";
+            setTimeout("showError()",5000);   
             alert("Clase no creada");
         }
     });
@@ -56,25 +72,32 @@ function anotarse(tipoclase,fecha,hora){
         $.post( "/damonAplicacion/calendar/anotarseClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Anotado satisfactoriamente.");
+            msj = "Anotado satisfactoriamente.";
+            //alert("Anotado satisfactoriamente.");
             //Esto redirige a algun lado, no usar para la recarga de la pagina.
             //$(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
+            
             window.location.reload();
         }else if (resp == "creditos"){
-            alert("Creditos insuficientes.");
+            msj = "Creditos insuficientes.";
+            //alert("Creditos insuficientes.");
             window.location.reload();
         }else if (resp == "lleno"){
-            alert("La clase se encuentra lleno.");
+            msj = "Creditos insuficientes.";
+            //alert("La clase se encuentra lleno.");
             window.location.reload();
         }else if (resp == "yaanotado"){
-            alert("Ya te encuentras anotado a dicha clase.");
+            msj =  "Ya te encuentras anotado a dicha clase.";          
+            //alert("Ya te encuentras anotado a dicha clase.");
             window.location.reload();
         }else if (resp == "tarde"){
-            alert("Ya es tarde para anotarse a dicha clase.");
+            msj = "Ya es tarde para anotarse a dicha clase.";
+            //alert("Ya es tarde para anotarse a dicha clase.");
             window.location.reload();
         }
         else{
-            alert("Hubo un inconveniente, no pudo anotarse");
+            msj = "Hubo un inconveniente, no pudo anotarse";
+            //alert("Hubo un inconveniente, no pudo anotarse");
             window.location.reload();
         }
     });

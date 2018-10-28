@@ -49,8 +49,11 @@
 </nav>
 
 <div class="container">
+
   <h2>Registro</h2>
   <form>
+  <div class="alert alert alert-success"  id="confirmar"><p class="text-center" id="confirmText"><b>¡Exito!</b> Se realizo el registro correctamente.</p></div>
+  <div class="alert alert-danger"  id="error"><p class="text-center" id="errorText"><b>¡Error!</b> Verifica los campos en rojo para poder continuar. .</p></div>
    <div class="col-sm-4" style="padding-left:0px">
     <div class="form-group nom">
       <label for="nombre">Nombre:</label> 
@@ -105,7 +108,7 @@
 
 </div>
 <hr>
-  <dir class="alert alert-danger" id="error"><p class="text-center"><b>¡Error!</b> Haz algunos cambios antes de volver a enviar el formulario.</p></dir>
+  
 <footer class="container-fluid text">
   <p>
       <div class="footer-right">

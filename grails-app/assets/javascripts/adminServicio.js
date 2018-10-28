@@ -27,7 +27,7 @@ function crearServicio(){
 }
 
 function eliminarServicio(){
-    var nomb=$(".nomServ").val()
+    var nomb=$(".nomServ").val();
 
     var datos = {
         nomb:nomb
@@ -36,16 +36,28 @@ function eliminarServicio(){
     $.post( "/damonAplicacion/adminview/eliminarServ", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Categoria eliminada satisfactoriamente.");
-             window.location.reload();
+
+            $.post( "/damonAplicacion/adminview/borrarRelacionesServicio", datos).done(function( resp ){
+                
+                if(resp == "true")
+                {
+                    alert("Servicio eliminadi satisfactoriamente.");
+                    window.location.reload();
+                }
+                else 
+                {
+                    alert("Ocurrio un error, no se pudo borrar el servicio");
+                    windows.location.reload();
+                }
+            });
         }
         else{
-            if (resp=="inexitente") {
-            alert("Categoria no existente.");
-        }
-        else{
-            alert("Hubo un inconveniente y no se elimino la Categoria.");
-        }
+                if (resp=="inexitente") {
+                alert("Categoria no existente.");
+                }
+                else{
+                    alert("Hubo un inconveniente y no se elimino la Categoria.");
+                }
         }
 
     });
@@ -76,6 +88,13 @@ function crearCategoria(){
     });
 }
 
+
+function quitarPendiente()
+{
+    // Aca podemos quitar todas las 
+    $("#selectServicio option[value='Pendiente']").remove();
+}
+
 function eliminarC(){
 
     var nombre=$("#nombCat").val();
@@ -87,15 +106,15 @@ function eliminarC(){
         console.log(resp);
         if(resp == "true"){
             alert("Categoria eliminada satisfactoriamente.");
-             window.location.reload();
+            window.location.reload();
         }
         else{
             if (resp=="inexitente") {
             alert("Categoria inexitente.");
-        }
-        else{
-            alert("Hubo un inconveniente y no se eliminó la Categoria.");
-        }
+            }
+            else{
+                alert("Hubo un inconveniente y no se eliminó la Categoria.");
+            }
         }
 
     });

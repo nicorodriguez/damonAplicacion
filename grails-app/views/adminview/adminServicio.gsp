@@ -44,7 +44,7 @@
 
 	<title>Damon | Administrar Servicio</title>
 </head>
-<body>
+<body onload="quitarPendiente()">
 
 <nav class="navbar navbar-dark bg-primary">
   <div class="container-fluid">
@@ -168,8 +168,8 @@
           <h4 class="modal-title">Eliminar Servicio</h4>
         </div>
         <div class="modal-body">
-          <form Name=eliminarservicio action="">
-            <p> Nombre Servicio : <select class="form-control nomServ" >
+          <form Name=eliminarservicio action="" > 
+            <p> Nombre Servicio : <select class="form-control nomServ" name="selectServicio" id="selectServicio" >
                 <option value="" disabled selected>Seleccionar</option>
                 <g:each in="${listaServ}" var="serv">
                     <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor"}">                      

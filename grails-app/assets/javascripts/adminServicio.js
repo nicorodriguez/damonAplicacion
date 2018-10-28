@@ -33,30 +33,30 @@ function eliminarServicio(){
         nomb:nomb
     }
 
-    $.post( "/damonAplicacion/adminview/eliminarServ", datos).done(function( resp ){
+    $.post( "/damonAplicacion/adminview/borrarRelacionesServicio", datos).done(function( resp ){
+        
         console.log(resp);
         if(resp == "true"){
 
-            $.post( "/damonAplicacion/adminview/borrarRelacionesServicio", datos).done(function( resp ){
+            $.post( "/damonAplicacion/adminview/eliminarServ", datos).done(function( resp ){
                 
                 if(resp == "true")
                 {
-                    alert("Servicio eliminadi satisfactoriamente.");
+                    alert("Servicio eliminado satisfactoriamente.");
                     window.location.reload();
                 }
                 else 
                 {
-                    alert("Ocurrio un error, no se pudo borrar el servicio");
-                    windows.location.reload();
+                    alert("Ocurrio un error, no se pudo borrar el Servicio");
                 }
             });
         }
         else{
-                if (resp=="inexitente") {
-                alert("Categoria no existente.");
+                if (resp=="inexistente") {
+                    alert("Servicio no inexistente.");
                 }
                 else{
-                    alert("Hubo un inconveniente y no se elimino la Categoria.");
+                    alert("Hubo un inconveniente y no se elimino la Servicio.");
                 }
         }
 
@@ -102,15 +102,26 @@ function eliminarC(){
     var datos = { 
         nomb: nombre
     };
-    $.post( "/damonAplicacion/adminview/eliminarTipo", datos).done(function( resp ){
+    $.post( "/damonAplicacion/adminview/borrarRelacionesTipo", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Categoria eliminada satisfactoriamente.");
-            window.location.reload();
+
+            $.post( "/damonAplicacion/adminview/eliminarTipo", datos).done(function( resp ){
+                
+                if(resp == "true")
+                {
+                    alert("Categoria eliminada satisfactoriamente.");
+                    window.location.reload();
+                }
+                else 
+                {
+                    alert("Ocurrio un error, no se pudo borrar el Categoria");
+                }
+            });
         }
         else{
-            if (resp=="inexitente") {
-            alert("Categoria inexitente.");
+            if (resp=="inexistente") {
+            alert("Categoria inexistente.");
             }
             else{
                 alert("Hubo un inconveniente y no se eliminó la Categoria.");

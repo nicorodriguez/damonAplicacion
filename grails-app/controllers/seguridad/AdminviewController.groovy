@@ -260,29 +260,38 @@ class AdminviewController {
         }
     }
 
-    def eliminarServ(){
+    def borrarRelacionesServicio(){
+
         try{
 
-           String nomb = request.getParameter("nomb")
+            String nomb = request.getParameter("nomb")
 
-           Servicio servicioexistente = Servicio.findByNombreservicio(nomb)
-           
-           if (servicioexistente != null){
-                
-                this.borrarRelacionesServicio(servicioexistente)
+            Servicio servicioexistente = Servicio.findByNombreservicio(nomb)
+            
+            if (servicioexistente != null){
 
-                // Servicio servborrar = Servicio.get(servicioexistente.id)
-                // servicioexistente = null
-                // servborrar.delete(flush: true, failOnError: true)
+                Servicio pendiente = Servicio.findByNombreservicio("Pendiente")
 
-                servicioexistente.delete(flush: true, failOnError: true)
-                render("true")
-           }
-           else{
+                def listaUsuarioServicio = Usuario.findAllByServicio(servicioexistente)
+
+                // println(pendiente)
+                // println(pendiente.nombreservicio)
+                // println(servicioexistente.nombreservicio)
+                // println("LISTA")
+
+                for (Usuario item : listaUsuarioServicio) {
+                    Usuario usuarioModificar = Usuario.get(item.id)
+                    usuarioModificar.setServicio(pendiente)
+                    usuarioModificar.save(flush: true, failOnError: true)
+                }
+
+                println("Usuarios Actualizados")
+                render ("true")
+            }
+            else{
                 println("Servicio inexistente")
                 render("inexistente")
            }
-
         }
         catch(Exception e){
             println("PROBLEMA")
@@ -292,21 +301,72 @@ class AdminviewController {
         }
     }
 
-    def borrarRelacionesServicio(Servicio servicioABorrar){
+    def eliminarServ(){
+        try{
 
-        Servicio pendiente = Servicio.findByNombreservicio("Pendiente")
+            String nomb = request.getParameter("nomb")
 
-        def listaUsuarioServicio = Usuario.findAllByServicio(servicioABorrar)
+            Servicio servicioexistente = Servicio.findByNombreservicio(nomb)
 
-        // println(pendiente)
-        // println(pendiente.nombreservicio)
-        // println(servicioexistente.nombreservicio)
-        // println("LISTA")
+            // Servicio servborrar = Servicio.get(servicioexistente.id)
+            // servicioexistente = null
+            // servborrar.delete(flush: true, failOnError: true)
 
-        for (Usuario item : listaUsuarioServicio) {
-            Usuario usuarioModificar = Usuario.get(item.id)
-            usuarioModificar.setServicio(pendiente)
-            usuarioModificar.save(flush: true, failOnError: true)
+            servicioexistente.delete(flush: true, failOnError: true)
+                
+            println("Servicio Borrado")
+            render("true")
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
+        }
+    }
+
+
+    def borrarRelacionesTipo(){
+
+        try{
+
+            String nomb = request.getParameter("nomb")
+
+            Tipousuario tipoexistente = Tipousuario.findByNombre(nomb)
+            
+            if (tipoexistente != null){
+
+                Tipousuario pendiente = Tipousuario.findByNombre("PENDIENTE")
+
+                def listaUsuarioTipo = Usuario.findAllByTipo(tipoexistente)
+
+                for (Usuario item : listaUsuarioTipo) {
+                    Usuario usuarioModificar = Usuario.get(item.id)
+                    usuarioModificar.setTipo(pendiente)
+                    usuarioModificar.save(flush: true, failOnError: true)
+                }
+
+                def listaClaseTipo = Clase.findAllByTipo(tipoexistente)
+
+                for (Clase item : listaClaseTipo) {
+                    Clase claseModificar = Clase.get(item.id)
+                    claseModificar.setTipo(pendiente)
+                    claseModificar.save(flush: true, failOnError: true)
+                }
+
+                println("Usuarios Actualizados")
+                render ("true")
+            }
+            else{
+                println("Tipo/Categoria inexistente")
+                render("inexistente")
+           }
+        }
+        catch(Exception e){
+            println("PROBLEMA")
+            println(e)
+
+            render ("false")
         }
     }
 
@@ -314,20 +374,18 @@ class AdminviewController {
 
         try{
 
-           String nomb = request.getParameter("nomb")
+            String nomb = request.getParameter("nomb")
 
-           Tipousuario tipoexistente = Tipousuario.findByNombre(nomb)
+            Tipousuario tipoexistente = Tipousuario.findByNombre(nomb)
 
-           if (tipoexistente){
-                Tipousuario tipborrar = Tipousuario.get(tipoexistente.id)
-                tipborrar.delete(flush: true, failOnError: true)
-                render("true")
-           }
-           else{
-                println("Tipo inexistente")
-                render("inexistente")
-           }
+            // Servicio servborrar = Servicio.get(servicioexistente.id)
+            // servicioexistente = null
+            // servborrar.delete(flush: true, failOnError: true)
 
+            tipoexistente.delete(flush: true, failOnError: true)
+                
+            println("Categoria Borrada")
+            render("true")
         }
         catch(Exception e){
             println("PROBLEMA")

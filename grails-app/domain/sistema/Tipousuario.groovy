@@ -15,6 +15,7 @@ class Tipousuario {
 
 	static mapping = {
 		//nombre column: "nombre", sqlType: "varchar", length: 46
+		usuariostipo lazy: false, cascade:"all,delete-orphan"
 		version false
 	}
 

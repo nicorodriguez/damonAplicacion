@@ -14,6 +14,7 @@ function editarUsuario(){
         tipo: tipo,
         estado: estado 
     };
+    
     $.post( "/damonAplicacion/calendar/editarUsuario", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){

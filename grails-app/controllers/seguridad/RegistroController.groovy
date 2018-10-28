@@ -70,13 +70,13 @@ class RegistroController {
                 def a = usuariorol.usuariosrol
                 println(a)
 
-                sendMail {
+               /* sendMail {
                    to "rodrigueznicolas.9319@gmail.com", email
                    subject "Hello John"
                    html '<h1>HELLO John</h1>'
-                };
+                };*/
 
-                // redirect  (controller: "login" , action:"index")
+                 redirect  (controller: "login" , action:"index")
             }
             render ("true");
     	}

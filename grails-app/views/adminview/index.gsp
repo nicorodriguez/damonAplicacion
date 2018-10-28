@@ -123,6 +123,10 @@
   </div>
 </nav>
 
+<div class="alert alert alert-success"  id="confirmar"><p class="text-center" id="confirmText"><b>¡Exito!</b> Se realizo el registro correctamente.</p></div>
+<div class="alert alert-danger"  id="error"><p class="text-center" id="errorText"><b>¡Error!</b> Verifica los campos en rojo para poder continuar. .</p></div>
+  
+
 <div class="row">
             <div class="col-md-7" id="calendario">
                   <div class="panel panel-primary" id="panel1">

@@ -6,8 +6,9 @@ x.ready(inicializarEventosRegistro);
 function inicializarEventosRegistro(){
 	
 	var x;
-	$('#error').hide()
 	x=$("#botonRegistrarse");
+	$("#error").hide();
+	$("#confirmar").hide();
 	x.click(checkname);
 
 }
@@ -21,13 +22,11 @@ function checkname(){
 	nom=nom.length
 	ape=ape.length
 
-	if ((ape != 0) && (nom !=0)){
+	if ((ape != 0) && (nom !=0)){ // Email ok.
 		checkemail();
 	}
 	else{
-		$('#error').show()
-		$(".nom").addClass("has-error");
-		return	false;	
+		$('#error').show() // Error en el correo.
 	}
 }
 
@@ -46,16 +45,12 @@ function checkemail(){
 	 		checkPsw();    	//si los emails coinciden va a chequear las psw
 	 	}
 	 	else{  //uno de los dos quedo en blanco
-	 		$(".correo").addClass("has-error");
-	 		$('#error').show()
-	 		return false;	 		
+			 $('#error').show()
 	 	}
 	}
 	else{	//si los emails no coinciden, ingreso 2 diferentes.
-		$(".correo").addClass("has-error");
 		$('#error').show()
-		return false;
-	}
+		}
 }
 
 function checkPsw(){
@@ -70,15 +65,11 @@ function checkPsw(){
 			checkmodalidad();
 		}
 		else{ 
-			$(".pass").addClass("has-error");
-			$('#error').show()
-			return	false;  //Ingreso mal las passwords
+			$("#error").show();
 		}
 	}
 	else{
-		$(".pass").addClass("has-error");  //ingreso password menor que la cantidad establecida
 		$('#error').show()
-		return false;
 	}	
 }
 
@@ -99,6 +90,8 @@ function checkmodalidad() {
 	sexo=$(".sexo:checked").val();
 	console.log(modalidad);
 
+	// ACa tengo que crear el parse para pasarle a Nico una sola letra. 
+	
 		if (modalidad=="0"){
 			alert("Se debe seleccionar la modalidad");
 			return false;
@@ -121,16 +114,23 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 		console.log(resp);
 		if(resp == "true"){
 
-			alert("Usuario creado satisfactoriamente");
 			
-		    $(location).attr('href', 'http://localhost:8080/damonAplicacion/');
+			$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
+			$("#error").show();
+				
+			$(location).attr('href', 'http://localhost:8080/damonAplicacion/');
+			return false;
 		}
 		else{
 			if (resp == "existe"){
-				alert("Email en uso, por favor ingrese otro");
+				//alert("Email en uso, por favor ingrese otro");
+				$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
+				$("#error").show();
+				return false;
 			}
-			else{
-				alert("Usuario no creado");
+			else{ //Aca en teoria anduvo. 
+				$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
+				$("#error").show();				
 			}
 		}
 	});

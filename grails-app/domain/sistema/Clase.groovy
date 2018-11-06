@@ -244,11 +244,171 @@ class Clase {
 		return(false)
 	}
 
-	// Pedido.executeUpdate("delete Pedido where cantidad = (:cant) and producto = (:productoId) and carrito = (:carritoId)",
- // //                [cant:ped.cantidad, productoId: ped.producto, carritoId: ped.carrito])
-    
-    
- // //    c.pedidos.removeAll{ pedidos-> 
- // //        pedidos.producto.id == id
- // //    }
+	def static listaOrdenada(){
+
+		def listaClases = Clase.findAll()
+		def listaHorarios = []
+		def listaHorariosFinal = []
+
+		Date hora = null;
+		String horaTexto = null
+		String fechaArmada = null
+
+		// println("PRIMER CICLO")
+		// println("-----------------------------")
+
+		for (Clase item: listaClases){
+		    def claseObjeto = Clase.get(item.id)
+		    horaTexto = claseObjeto.getHora()
+
+		    fechaArmada = "20-10-18 " + horaTexto
+
+		    hora = Date.parse("dd-MM-yy HH:mm", fechaArmada)
+		    listaHorarios << hora;
+
+		    // println("Hora Texto: " + horaTexto)
+		    // println("Hora Parseada: " + hora)
+		    // println("-----------------------------")
+
+		    hora = null
+		    horaTexto = null
+		    fechaArmada = null
+		}
+
+		// println("SORT LISTA")
+		// println("-----------------------------")
+		listaHorarios.sort{it}
+
+		def formatoNumdiafecha = new SimpleDateFormat("HH:mm")
+		String numdf = null
+
+		// println("SEGUNDO CICLO")
+		// println("-----------------------------")
+		for (Date item: listaHorarios){
+	        numdf = formatoNumdiafecha.format(item)
+	        listaHorariosFinal << numdf
+
+		    // println("Hora Final: " + numdf)
+		    // println("-----------------------------")
+
+		    numdf = null
+		}
+
+		def listaHorariosFinal1 = listaHorariosFinal.unique()
+
+		return (listaHorariosFinal1)
+	}
+
+	def static listaOrdenadaProfe(Usuario u){
+
+		def listaClases = Clase.findAllByProfe(u)
+		def listaHorarios = []
+		def listaHorariosFinal = []
+
+		Date hora = null;
+		String horaTexto = null
+		String fechaArmada = null
+
+		// println("PRIMER CICLO")
+		// println("-----------------------------")
+
+		for (Clase item: listaClases){
+		    def claseObjeto = Clase.get(item.id)
+		    horaTexto = claseObjeto.getHora()
+
+		    fechaArmada = "20-10-18 " + horaTexto
+
+		    hora = Date.parse("dd-MM-yy HH:mm", fechaArmada)
+		    listaHorarios << hora;
+
+		    // println("Hora Texto: " + horaTexto)
+		    // println("Hora Parseada: " + hora)
+		    // println("-----------------------------")
+
+		    hora = null
+		    horaTexto = null
+		    fechaArmada = null
+		}
+
+		// println("SORT LISTA")
+		// println("-----------------------------")
+		listaHorarios.sort{it}
+
+		def formatoNumdiafecha = new SimpleDateFormat("HH:mm")
+		String numdf = null
+
+		// println("SEGUNDO CICLO")
+		// println("-----------------------------")
+		for (Date item: listaHorarios){
+	        numdf = formatoNumdiafecha.format(item)
+	        listaHorariosFinal << numdf
+
+		    // println("Hora Final: " + numdf)
+		    // println("-----------------------------")
+
+		    numdf = null
+		}
+
+		def listaHorariosFinal1 = listaHorariosFinal.unique()
+
+		return (listaHorariosFinal1)
+	}
+
+	def static listaOrdenadaTipo(Tipousuario t){
+
+		def listaClases = Clase.findAllByTipo(t)
+		def listaHorarios = []
+		def listaHorariosFinal = []
+
+		Date hora = null;
+		String horaTexto = null
+		String fechaArmada = null
+
+		// println("PRIMER CICLO")
+		// println("-----------------------------")
+
+		for (Clase item: listaClases){
+		    def claseObjeto = Clase.get(item.id)
+		    horaTexto = claseObjeto.getHora()
+
+		    fechaArmada = "20-10-18 " + horaTexto
+
+		    hora = Date.parse("dd-MM-yy HH:mm", fechaArmada)
+		    listaHorarios << hora;
+
+		    // println("Hora Texto: " + horaTexto)
+		    // println("Hora Parseada: " + hora)
+		    // println("-----------------------------")
+
+		    hora = null
+		    horaTexto = null
+		    fechaArmada = null
+		}
+
+		// println("SORT LISTA")
+		// println("-----------------------------")
+		listaHorarios.sort{it}
+
+		def formatoNumdiafecha = new SimpleDateFormat("HH:mm")
+		String numdf = null
+
+		// println("SEGUNDO CICLO")
+		// println("-----------------------------")
+		for (Date item: listaHorarios){
+	        numdf = formatoNumdiafecha.format(item)
+	        listaHorariosFinal << numdf
+
+		    // println("Hora Final: " + numdf)
+		    // println("-----------------------------")
+
+		    numdf = null
+		}
+
+		def listaHorariosFinal1 = listaHorariosFinal.unique()
+
+		return (listaHorariosFinal1)
+	}
+	
+
+
 }

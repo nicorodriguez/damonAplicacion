@@ -471,7 +471,13 @@ class CalendarController {
             String tipo = request.getParameter("tipo")
             String estado = request.getParameter("estado")
 
-            println("Recibi los parametros: -> "+email+", "+servicio+", "+tipo+", "+estado)
+            println("Recibi los parametros: ")
+            println("EMAIL: " + email)
+            println("SERVICIO: " + servicio)
+            println("TIPOUSUARIO: " + tipo)
+            println("ESTADO: " + estado)
+
+            println("-------------------------------")
 
             //Voy a buscar al usuario
             Usuario usuario = Usuario.findByEmail(email)
@@ -485,7 +491,10 @@ class CalendarController {
             //Busco el verdadero usuario
             Usuario userACambiar = Usuario.get(usuario.id)
 
-            if (tipocambiar.nombre != userACambiar.tipo.nombre){
+            println("ENCONTRAMOS LO SIGUIENTE: -> " + usuario + ", " + tipocambiar 
+                 + ", " +  servcambiar + ", " + userACambiar)
+
+            if (!tipocambiar.nombre.equals(userACambiar.tipo.nombre)){
                 boolean a = userACambiar.setTipo(tipocambiar)
                 if(a){
                     println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.tipo.nombre)

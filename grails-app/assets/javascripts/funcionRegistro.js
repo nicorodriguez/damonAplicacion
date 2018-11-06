@@ -114,23 +114,29 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 		console.log(resp);
 		if(resp == "true"){
 
+			alert("Usuario creado Satisfactoriamente!");
 			
-			$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
-			$("#error").show();
+			// $("#errorText").innerHTML = "Usuario creado Satisfactoriamente!";				
+			// $("#error").show();
 				
 			$(location).attr('href', 'http://localhost:8080/damonAplicacion/');
-			return false;
+			// return false;
 		}
 		else{
 			if (resp == "existe"){
-				//alert("Email en uso, por favor ingrese otro");
-				$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
-				$("#error").show();
-				return false;
+
+				alert("Email en uso, por favor ingrese otro");
+				
+				// $("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
+				// $("#error").show();
+				// return false;
 			}
-			else{ //Aca en teoria anduvo. 
-				$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
-				$("#error").show();				
+			else{ //Aca en teoria anduvo.
+
+				alert("Ocurrió un error al crear el usuario!!");
+
+				// $("#errorText").innerHTML = "Ocurrió un error al crear el usuario!!";				
+				// $("#error").show();				
 			}
 		}
 	});

@@ -66,9 +66,7 @@ class RegistroController {
 
                 usuariorol.agregarUsuario(user)
                 usuariorol.save(flush: true)
-
-                def a = usuariorol.usuariosrol
-                println(a)
+                println(usuariorol)
 
                /* sendMail {
                    to "rodrigueznicolas.9319@gmail.com", email
@@ -76,7 +74,7 @@ class RegistroController {
                    html '<h1>HELLO John</h1>'
                 };*/
 
-                 redirect  (controller: "login" , action:"index")
+                // redirect  (controller: "login" , action:"index")
             }
             render ("true");
     	}

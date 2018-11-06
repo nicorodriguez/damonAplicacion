@@ -168,7 +168,7 @@
                          </select>
                          </td>
 
-                         <td id="apellido">
+                         <td id="creditos">
                           ${usuarioInstance.creditosActuales}
                          </td>
                               

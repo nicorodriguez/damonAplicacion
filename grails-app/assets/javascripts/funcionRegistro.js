@@ -10,8 +10,15 @@ function inicializarEventosRegistro(){
 	$("#error").hide();
 	$("#confirmar").hide();
 	x.click(checkname);
-
+	quitarPendiente();
 }
+
+function quitarPendiente()
+{
+    // Aca podemos quitar todas las 
+    $("#modalidad option[value='Pendiente']").remove();
+}
+
 
 function checkname(){
 	var nom;
@@ -22,11 +29,21 @@ function checkname(){
 	nom=nom.length
 	ape=ape.length
 
-	if ((ape != 0) && (nom !=0)){ // Email ok.
-		checkemail();
+	if ((ape > 2) && (nom > 2))
+	{ // Email ok.
+		if( (ape < 17) && (nom < 17))
+		{
+			checkemail();
+		}
+		else
+		{
+			windows.setTimeout(mostrarMensaje("No debe superar el maximo requerido"),5000)
+			//inicializarEventosRegistro(); 
+		}
 	}
 	else{
-		$('#error').show() // Error en el correo.
+		windows.setTimeout(mostrarMensaje("Debe superar el minimo requerido",'E'),5000) // Error en el correo.
+		//inicializarEventosRegistro();
 	}
 }
 
@@ -59,7 +76,7 @@ function checkPsw(){
 
 	psw=$("#psw").val();
 	rpsw=$("#rpsw").val();
-	if ((psw.length > 5) && (rpsw.length > 5)) {   //Chequea que las password no las deje en blanco y que sea >6 nº de caracteres
+	if ((psw.length > 5) && (rpsw.length > 5) && (psw.length < 19) && (rpsw.length < 19)) {   //Chequea que las password no las deje en blanco y que sea >6 nº de caracteres
 		if (psw == rpsw){
 		//alert("los emails y las psw coinciden")
 			checkmodalidad();
@@ -124,9 +141,8 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 		else{
 			if (resp == "existe"){
 				//alert("Email en uso, por favor ingrese otro");
-				$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
-				$("#error").show();
-				return false;
+				windows.setTimeout(mostrarMensaje("Email en uso, por favor ingrese otro",'E'),5000);				
+				
 			}
 			else{ //Aca en teoria anduvo. 
 				$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
@@ -135,6 +151,20 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 		}
 	});
 	
+}
+
+function mostrarMensaje(mensaje,tipo)
+{   
+    if(tipo == 'C') // Es un mensaje de confirmación
+    {   
+        $("#confirmText").text(mensaje);
+        $("#confirmar").show();
+    }
+    else if(tipo == 'E')//Error 
+    {
+        $("#errorText").text(mensaje);
+        $("#error").show();
+    }
 }
 
 //window.location.replace(...)

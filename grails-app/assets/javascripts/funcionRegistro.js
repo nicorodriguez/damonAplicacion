@@ -133,8 +133,6 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 
 			alert("Usuario creado Satisfactoriamente!");
 			
-			$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
-			$("#error").show();
 			// $("#errorText").innerHTML = "Usuario creado Satisfactoriamente!";				
 			// $("#error").show();
 				
@@ -156,9 +154,6 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 				// return false;
 >>>>>>> bdc26f5256d3da2064fe6c89a89501d0b9494765
 			}
-			else{ //Aca en teoria anduvo. 
-				$("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
-				$("#error").show();				
 			else{ //Aca en teoria anduvo.
 
 				alert("Ocurrió un error al crear el usuario!!");

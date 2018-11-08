@@ -21,12 +21,10 @@
   def claseLista2 = Clase.findAllByTipo(tipoUsuarioActual)
 
   def claseAnot = []
-  def listaHora2 = ["08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00",
-                    "12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30",
-                    "17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00",
-                    "21:30","22:00","22:30"]
 
-  println(listaHora2)
+  def listaHoraNueva = Clase.listaOrdenadaTipo(tipoUsuarioActual)
+
+  def listaHora2 = [];
 
   for (Clase item: claseLista2){
     def clase2 = Clase.get(item.id)
@@ -45,6 +43,7 @@
 
   def claseAnotP = claseAnot.unique()
   
+  def listaHoraP3 = listaHora2
   def listaHoraP2 = listaHora2.unique()
 
   def numDia = usuario.getNumdiaactual()
@@ -151,7 +150,7 @@
                                   </tr>
                                 </thead>
                                 <tbody id="tbUsuario">
-                                   <g:each var="horarios" in="${listaHoraP2}">
+                                   <g:each var="horarios" in="${listaHoraNueva}">
                                     <tr class="semana">
                                        <td>${horarios}</td>
                                        <td>
@@ -268,13 +267,13 @@
 <hr>
 <footer class="container-fluid text">
   <p>
-      <div class="footer-right">
+      %{-- <div class="footer-right">
         <a href="#"><i class="fa fa-facebook"></i></a>
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-github"></i></a>
 
-      </div>
+      </div> --}%
 
       <div class="footer-left">
         <!-- <p><a href="#"><span class="glyphicon glyphicon-envelope"></span></a>Envelope icon as a link: </p> -->

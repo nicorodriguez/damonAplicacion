@@ -14,13 +14,15 @@
 
   def claseLista1 = Clase.findAllByProfe(usuario)
   
-  def listaHora1 = []
-  for (Clase item: claseLista1){
-    def clase1 = Clase.get(item.id)
-    def hora1 = clase1.getHora()
-    listaHora1 << hora1   
-  }
-  def listaHoraP1 = listaHora1.unique()
+  // def listaHora1 = []
+  // for (Clase item: claseLista1){
+  //   def clase1 = Clase.get(item.id)
+  //   def hora1 = clase1.getHora()
+  //   listaHora1 << hora1   
+  // }
+  // def listaHoraP1 = listaHora1.unique()
+
+  def listaHoraNueva = Clase.listaOrdenadaProfe(usuario)
 
   Date lun = usuario.iniciarLunesAnt()
 
@@ -120,7 +122,7 @@
                                   </tr>
                                 </thead>
                                 <tbody id="tbUsuario">
-                                   <g:each var="horarios" in="${listaHoraP1}">
+                                   <g:each var="horarios" in="${listaHoraNueva}">
                                     <tr class="semana">
                                        <td>${horarios}</td>
                                        <td>

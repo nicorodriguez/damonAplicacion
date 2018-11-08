@@ -1,12 +1,14 @@
 function editarUsuario(){
 
-    var email,servicio
-    var estado, tipo
+    var email
+    var servicio
+    var estado
+    var tipo
 
     email=$("#email").text()
-    servicio=$(".servicio:selected").text()
+    servicio=$(".servicio:selected").val();
     estado=$(".estado:selected").val();
-    tipo=$("#tipo").text();
+    tipo=$(".tipo:selected").val();
 
     var datos = { 
         email: email,
@@ -19,11 +21,12 @@ function editarUsuario(){
         console.log(resp);
         if(resp == "true"){
             alert("Datos cambiados satisfactoriamente");
-             window.location.reload();
+            window.location.reload();
+            //$(location).attr('href', 'http://localhost:8080/damonAplicacion/adminview/busquedaUsuario?parametro=' + email.replace("@", "%40") + '&buscar=Buscar');
+            //$(location).attr('href', 'http://localhost:8080/damonAplicacion/adminview/adminUsuario');
         }
         else{
             alert("Datos no cambiados");
-            window.location.reload();
         }
     });
 }
@@ -32,16 +35,14 @@ function resetCreditos(){
     var email=$("#email").text()
 
     var datos={
-
         email:email
-
     }
 
     $.post( "/damonAplicacion/calendar/resetearCreds",datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
             alert("Creditos Reeteados satisfactoriamente");
-             window.location.reload();
+            window.location.reload();
         }
         else{
             alert("Creditos no Reseteados.");

@@ -108,7 +108,7 @@
 
                         <g:sortableColumn property="tipo" title="${message(code: 'usuario.tipo.label', default: 'Tipo')}" />
 
-
+                        <g:sortableColumn property="creditosActuales" title="${message(code: 'usuario.creditosActuales.label', default: 'Creditos')}" />
                                     
                     </tr>
                 </thead>
@@ -144,9 +144,10 @@
                             </option>
                             <g:if test="${usuarioInstance.servicio.nombreservicio != "Admin" && usuarioInstance.servicio.nombreservicio != "Profesor"}">
                             <g:each in="${listaServ}" var="serv">
-                            <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor" && serv.nombreservicio != usuarioInstance.servicio.nombreservicio}">                              
-                              <option class="servicio" value="${serv.nombreservicio}">${serv.nombreservicio}</option>
-                            </g:if>
+                            <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor" && serv.nombreservicio != usuarioInstance.servicio.nombreservicio}">  
+
+                              <option class="servicio" value="${serv.nombreservicio}">
+                              ${serv.nombreservicio}</option>                            </g:if>
                             </g:each>
                             </g:if>
                           </select>
@@ -154,20 +155,22 @@
 
                          <td>
                          <select>
-                          <option value="${usuarioInstance.tipo.nombre}">
+                          <option class="tipo" value="${usuarioInstance.tipo.nombre}">
                           ${usuarioInstance.tipo.nombre}
                           </option>
                           <g:if test="${usuarioInstance.tipo.nombre != "ADMIN" && usuarioInstance.tipo.nombre != "PROFESOR"}">
                           <g:each in="${listaTipo}" var="tip">
                             <g:if test="${tip.nombre != "ADMIN" && tip.nombre != "PROFESOR" && tip.nombre != "PENDIENTE" && tip.nombre != usuarioInstance.tipo.nombre}">
-                            <option id="tipo" value="${tip.nombre}">${tip.nombre}</option>
+                            <option class="tipo" value="${tip.nombre}">${tip.nombre}</option>
                             </g:if>
                           </g:each>
                           </g:if>
                          </select>
                          </td>
 
-
+                         <td id="creditos">
+                          ${usuarioInstance.creditosActuales}
+                         </td>
                               
                      </tr>
                   </g:if>

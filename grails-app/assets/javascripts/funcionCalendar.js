@@ -39,15 +39,12 @@ function envioDatos(profesor,tipo,fecha,cantidad){
     $.post( "/damonAplicacion/calendar/crearClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            msj = "Clase creada satisfactoriamente.";
-            setTimeout("showConfirm(msj)",5000);
-            //alert("Clase creada satisfactoriamente.");
-             window.location.reload();
+            windows.setTimeout(mostrarMensaje("Clase creada satisfactoriamente.",'C'),5000);
         }
         else{
-            msj = "Clase no creada";
-            setTimeout("showError()",5000);   
-            alert("Clase no creada");
+           
+            windows.setTimeout(mostrarMensaje('Clase no creada','E'),5000)   
+            
         }
     });
 }
@@ -72,33 +69,27 @@ function anotarse(tipoclase,fecha,hora){
         $.post( "/damonAplicacion/calendar/anotarseClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            msj = "Anotado satisfactoriamente.";
-            //alert("Anotado satisfactoriamente.");
-            //Esto redirige a algun lado, no usar para la recarga de la pagina.
+            windows.setTimeout(mostrarMensaje("Anotado satisfactoriamente.",'C'),5000);
+            inicializarEventosRegistro();
             //$(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
-            
             window.location.reload();
         }else if (resp == "creditos"){
-            msj = "Creditos insuficientes.";
-            //alert("Creditos insuficientes.");
-            window.location.reload();
+            windows.setTimeout(mostrarMensaje("Creditos insuficientes.",'E'),5000;
+            inicializarEventosRegistro();
+
         }else if (resp == "lleno"){
-            msj = "Creditos insuficientes.";
-            //alert("La clase se encuentra lleno.");
-            window.location.reload();
+            windows.setTimeout(mostrarMensaje("La clase se encuentra lleno.",'E'),5000);
+            inicializarEventosRegistro();
         }else if (resp == "yaanotado"){
-            msj =  "Ya te encuentras anotado a dicha clase.";          
-            //alert("Ya te encuentras anotado a dicha clase.");
-            window.location.reload();
+            windows.setTimeout(mostrarMensaje("Ya te encuentras anotado a dicha clase.",'E'),5000);
+            inicializarEventosRegistro();
         }else if (resp == "tarde"){
-            msj = "Ya es tarde para anotarse a dicha clase.";
-            //alert("Ya es tarde para anotarse a dicha clase.");
-            window.location.reload();
+            windows.setTimeout(mostrarMensaje("Ya es tarde para anotarse a dicha clase.",'E'),5000);
+            inicializarEventosRegistro();
         }
         else{
-            msj = "Hubo un inconveniente, no pudo anotarse";
-            //alert("Hubo un inconveniente, no pudo anotarse");
-            window.location.reload();
+            windows.setTimeout(mostrarMensaje("Hubo un inconveniente, no pudo anotarse",'E'),5000);
+            inicializarEventosRegistro();
         }
     });
  }
@@ -118,13 +109,13 @@ function anotarse(tipoclase,fecha,hora){
         $.post( "/damonAplicacion/calendar/desanotarseClase", datos).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Desanotado satisfactoriamente");
-            window.location.reload();
+            windows.setTimeout(mostrarMensaje("Desanotado satisfactoriamente",'C'),5000);
+            inicializarEventosRegistro();
             // $(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar')
         }
         else{
-            alert("No pudo desanotarse, se produjo algun error.");
-            window.location.reload();
+            windows.setTimeout(mostrarMensaje("No pudo desanotarse, se produjo algun error.",'E'),5000);
+            inicializarEventosRegistro();
         }
     });
 
@@ -142,22 +133,37 @@ function anotarse(tipoclase,fecha,hora){
     $.post( "/damonAplicacion/calendar/eliminarClase", parametros).done(function( resp ){
         console.log(resp);
         if(resp == "true"){
-            alert("Clase eliminada satisfactoriamente");
-            window.location.reload();
+            windwos.setTimeout(mostrarMensaje("Clase eliminada satisfactoriamente",'C'),5000);
+            inicializarEventosRegistro();
             // $(location).attr('href', 'http://localhost:8080/damonAplicacion/');
         }
         else{
             if (resp == "inexistente"){
-                alert("La clase que quiere eliminar no existe");
-                window.location.reload();
+
+                windows.setTimeout(mostrarMensaje("La clase que quiere eliminar no existe",'E'),5000);
+                inicializarEventosRegistro();
             }
             else{
-                alert("Error Inesperado");
-                window.location.reload();
+                windows.setTimeout(mostrarMensaje("Error Inesperado",'E'),5000);
+                inicializarEventosRegistro();
             }
         }
     });
     
+}
+
+function mostrarMensaje(mensaje,tipo)
+{   
+    if(tipo == 'C') // Es un mensaje de confirmación
+    {   
+        $("#confirmText").text(mensaje);
+        $("#confirmar").show();
+    }
+    else if(tipo == 'E')//Error 
+    {
+        $("#errorText").text(mensaje);
+        $("#error").show();
+    }
 }
 
     /*

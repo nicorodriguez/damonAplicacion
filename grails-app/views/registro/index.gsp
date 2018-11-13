@@ -90,7 +90,7 @@
      <!-- <div class="col-sm-4" style="padding-left:0px"> -->
       <label for="email">Modalidad:</label>
       <select class="form-control" id="modalidad">
-          <option value="0" disabled selected>-- Seleccionar --</option>
+          <option value="0" disabled selected id="modalidad">-- Seleccionar --</option>
           <g:each var="servicio" in="${servicioLista}">
           <% if (("${servicio.nombreservicio}" != "Profesor") && ("${servicio.nombreservicio}" != "Admin")){ %>
           <option value="${servicio.nombreservicio}">${servicio.nombreservicio}</option>

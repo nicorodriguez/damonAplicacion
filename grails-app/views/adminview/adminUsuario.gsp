@@ -125,9 +125,11 @@
                         <td>
                          <select>
                            <option class="estado" value="${usuarioInstance.estado}">${usuarioInstance.estado}</option>
-                           <option class="estado" value="v">v</option>
-                           <option class="estado" value="a">a</option>
-                           <option class="estado" value="i">i</option>
+                           <g:if test="${listaFiltrada.size() == 1}">
+                             <option class="estado" value="v">v</option>
+                             <option class="estado" value="a">a</option>
+                             <option class="estado" value="i">i</option>
+                           </g:if>
                          </select>
                          </td>
                     
@@ -142,12 +144,15 @@
                             <option class="servicio" value="${usuarioInstance.servicio.nombreservicio}">
                             ${usuarioInstance.servicio.nombreservicio}
                             </option>
-                            <g:if test="${usuarioInstance.servicio.nombreservicio != "Admin" && usuarioInstance.servicio.nombreservicio != "Profesor"}">
+                            <g:if test="${usuarioInstance.servicio.nombreservicio != "Admin" && usuarioInstance.servicio.nombreservicio != "Profesor"
+                               && listaFiltrada.size() == 1}">
+
                             <g:each in="${listaServ}" var="serv">
                             <g:if test="${serv.nombreservicio != "Admin" && serv.nombreservicio != "Profesor" && serv.nombreservicio != usuarioInstance.servicio.nombreservicio}">  
 
                               <option class="servicio" value="${serv.nombreservicio}">
-                              ${serv.nombreservicio}</option>                            </g:if>
+                              ${serv.nombreservicio}</option>                            
+                              </g:if>
                             </g:each>
                             </g:if>
                           </select>
@@ -158,7 +163,8 @@
                           <option class="tipo" value="${usuarioInstance.tipo.nombre}">
                           ${usuarioInstance.tipo.nombre}
                           </option>
-                          <g:if test="${usuarioInstance.tipo.nombre != "ADMIN" && usuarioInstance.tipo.nombre != "PROFESOR"}">
+                          <g:if test="${usuarioInstance.tipo.nombre != "ADMIN" && usuarioInstance.tipo.nombre != "PROFESOR"
+                            && listaFiltrada.size() == 1}">
                           <g:each in="${listaTipo}" var="tip">
                             <g:if test="${tip.nombre != "ADMIN" && tip.nombre != "PROFESOR" && tip.nombre != "PENDIENTE" && tip.nombre != usuarioInstance.tipo.nombre}">
                             <option class="tipo" value="${tip.nombre}">${tip.nombre}</option>

@@ -504,6 +504,7 @@ class CalendarController {
             if (servcambiar.nombreservicio != userACambiar.servicio.nombreservicio){
                 boolean b = userACambiar.setServicio(servcambiar)
                 if(b){
+                    userACambiar.resetarCreditos()
                     println("Se cambio el tipo porque era diferente, ahora es: "+ userACambiar.servicio.nombreservicio)
                 }
             }

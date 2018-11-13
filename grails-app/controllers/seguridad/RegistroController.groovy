@@ -68,11 +68,13 @@ class RegistroController {
                 usuariorol.save(flush: true)
                 println(usuariorol)
 
-               /* sendMail {
+                sendMail {
                    to "rodrigueznicolas.9319@gmail.com", email
-                   subject "Hello John"
-                   html '<h1>HELLO John</h1>'
-                };*/
+                   subject "Validación del Sistema DAMON CF"
+                   html '<h2>Este es el mail para confirmar tu registro a la página DAMON CF</h2>'
+                        '<br>'
+                        '<h4>Código de validación: abuvbijoa25562</h4>'
+                };
 
                 // redirect  (controller: "login" , action:"index")
             }

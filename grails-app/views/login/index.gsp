@@ -58,11 +58,13 @@
                             <fieldset>
                                 <div class="form-group">
                                    <label for="exampleInputEmail1">Email</label>
-                                   <input class="form-control input" placeholder="Ingrese Email" id="login-email" name="email" value="nico55@hotmail.com" type="email" autofocus="" maxlength="50" required>
+                                   %{-- <input class="form-control input" placeholder="Ingrese Email" id="login-email" name="email" value="nico55@hotmail.com" type="email" autofocus="" maxlength="50" required> --}%
+                                   <input class="form-control input" placeholder="Ingrese Email" id="login-email" name="email" value="" type="email" autofocus="" maxlength="50" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Contraseña <a href="LINK A OLVIDE CONTRASEÑA">(Olvide mi contraseña)</a></label>
-                                    <input class="form-control input" value="12345678" placeholder="Contraseña" id="login-pass" name="password" type="password"  maxlength="18" required>
+                                    %{-- <input class="form-control input" value="12345678" placeholder="Contraseña" id="login-pass" name="password" type="password"  maxlength="18" required> --}%
+                                    <input class="form-control input" value="" placeholder="Contraseña" id="login-pass" name="password" type="password"  maxlength="18" required>
                                 </div>
                                 %{-- <div class="checkbox">
                                     <label>

@@ -8,6 +8,8 @@ function inicializarEventosRegistro(){
 	var x;
 	x=$("#botonLogout");
 	x.click(logout);
+	$("#error").hide();
+	$("#confirmar").hide();
 
 }
 

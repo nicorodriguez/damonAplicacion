@@ -141,18 +141,15 @@ function enviarJSON(email,psw,nombre,apel,modalidad,sexo){
 		}
 		else{
 			if (resp == "existe"){
-<<<<<<< HEAD
+
 				//alert("Email en uso, por favor ingrese otro");
 				windows.setTimeout(mostrarMensaje("Email en uso, por favor ingrese otro",'E'),5000);				
 				
-=======
-
 				alert("Email en uso, por favor ingrese otro");
 				
 				// $("#errorText").innerHTML = "Email en uso, por favor ingrese otro";				
 				// $("#error").show();
-				// return false;
->>>>>>> bdc26f5256d3da2064fe6c89a89501d0b9494765
+				 return false;
 			}
 			else{ //Aca en teoria anduvo.
 

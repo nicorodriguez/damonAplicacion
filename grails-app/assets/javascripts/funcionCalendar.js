@@ -1,15 +1,5 @@
 var msj ="";
 
-var x;
-x=$(document);
-x.ready(inicializarEventosRegistro);
-
-function inicializarEventosRegistro()
-{
-    $("#error").hide();
-	$("#confirmar").hide();
-}
-
 function crearClase() {
     var dia;
     var horario;

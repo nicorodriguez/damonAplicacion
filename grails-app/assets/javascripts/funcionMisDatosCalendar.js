@@ -34,7 +34,7 @@
     }
 
 
-    function cambPsw(){
+    function ChangePassword(){
 
       var apsw,psw,npsw
 
@@ -60,12 +60,13 @@
     };
     $.post( "/damonAplicacion/calendar/cambiarContrasenia", datos).done(function( resp ){
         console.log(resp);
-        if(resp == "true"){
-            alert("Password Cambiada satisfactoriamente.");
-             window.location.reload();
+        if(resp.equals("true")){
+            alert("Contraseña Cambiada satisfactoriamente.");
+            window.location.reload();
         }
         else{
-          if(resp == "nocoincide"){
+          if(resp.equals("nocoincide")){
+            alert("La contraseña antigua no es correcta.");
             $(".ocultar").show()
           }
           else{

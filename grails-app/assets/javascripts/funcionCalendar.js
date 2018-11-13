@@ -64,7 +64,7 @@ function anotarse(tipoclase,fecha,hora){
             //$(location).attr('href', 'http://localhost:8080/damonAplicacion/calendar');
             window.location.reload();
         }else if (resp == "creditos"){
-            windows.setTimeout(mostrarMensaje("Creditos insuficientes.",'E'),5000;
+            windows.setTimeout(mostrarMensaje("Creditos insuficientes.",'E'),5000);
             inicializarEventosRegistro();
 
         }else if (resp == "lleno"){

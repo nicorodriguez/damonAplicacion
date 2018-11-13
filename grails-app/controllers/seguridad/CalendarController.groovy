@@ -673,7 +673,7 @@ class CalendarController {
             Usuario usuario = smgr.getCurrentUser()
             Usuario usuariocambiar = Usuario.get(usuario.id)
 
-            if (usuariocambiar.password == passv){
+            if (usuariocambiar.password.equals(passv)){
 
                 boolean b = usuariocambiar.setPassword(passn)
                 usuariocambiar.save(flush: true, failOnError: true)
@@ -715,7 +715,7 @@ class CalendarController {
             Boolean c
             Boolean d
 
-            if (rolcambiar.nombrerol == "ROL_ADMIN"){
+            if (rolcambiar.nombrerol.equals("ROL_ADMIN")){
                 Tipousuario tipocambiar = Tipousuario.findByNombre("ADMIN")
                 Servicio servcambiar = Servicio.findByNombreservicio("Admin")
 
@@ -727,7 +727,7 @@ class CalendarController {
 
             }
             else{
-                if (rolcambiar.nombrerol == "ROL_PROF"){
+                if (rolcambiar.nombrerol.equals("ROL_PROF")){
                     Tipousuario tipocambiar = Tipousuario.findByNombre("PROFESOR")
                     Servicio servcambiar = Servicio.findByNombreservicio("Profesor")
 
@@ -738,7 +738,7 @@ class CalendarController {
                     usuariocambiar.save(flush: true, failOnError: true)
                 }
                 else{
-                    if (rolcambiar.nombrerol == "ROL_USUARIO"){
+                    if (rolcambiar.nombrerol.equals("ROL_USUARIO")){
                         Tipousuario tipocambiar = Tipousuario.findByNombre("CROSSFITERO")
                         Servicio servcambiar = Servicio.findByNombreservicio("2 veces por semana")
 
